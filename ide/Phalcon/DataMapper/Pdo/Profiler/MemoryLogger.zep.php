@@ -29,7 +29,71 @@ class MemoryLogger extends AbstractLogger
      *
      * @return array
      */
-    public function getMessages()
+    public function getMessages(): array
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function emergency($message, array $context = [])
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function alert($message, array $context = [])
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function critical($message, array $context = [])
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function error($message, array $context = [])
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function warning($message, array $context = [])
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function notice($message, array $context = [])
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function info($message, array $context = [])
+    {
+    }
+
+    /**
+     * @param string $message
+     * @param mixed[] $context
+     */
+    public function debug($message, array $context = [])
     {
     }
 

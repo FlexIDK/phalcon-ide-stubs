@@ -48,8 +48,10 @@ use stdClass;
  */
 class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInterface
 {
-
-    private $filterService;
+    /**
+     * @var FilterInterface|null
+     */
+    private $filterService = null;
 
     /**
      * @var bool
@@ -61,11 +63,15 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
      */
     private $queryFilters = [];
 
+    /**
+     * @var array|null
+     */
+    private $putCache = null;
 
-    private $putCache;
-
-
-    private $rawBody;
+    /**
+     * @var string
+     */
+    private $rawBody = '';
 
     /**
      * @var bool

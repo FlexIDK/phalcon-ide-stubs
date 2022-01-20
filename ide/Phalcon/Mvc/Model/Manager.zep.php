@@ -46,116 +46,170 @@ use Phalcon\Mvc\Model\Query\StatusInterface;
  */
 class Manager implements \Phalcon\Mvc\Model\ManagerInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\Events\EventsAwareInterface
 {
-
+    /**
+     * @var array
+     */
     protected $aliases = [];
 
     /**
      * Models' behaviors
+     *
+     * @var array
      */
     protected $behaviors = [];
 
     /**
      * Belongs to relations
+     *
+     * @var array
      */
     protected $belongsTo = [];
 
     /**
      * All the relationships by model
+     *
+     * @var array
      */
     protected $belongsToSingle = [];
 
+    /**
+     * @var DiInterface|null
+     */
+    protected $container = null;
 
-    protected $container;
-
-
+    /**
+     * @var array
+     */
     protected $customEventsManager = [];
 
     /**
      * Does the model use dynamic update, instead of updating all rows?
+     *
+     * @var array
      */
     protected $dynamicUpdate = [];
 
-
-    protected $eventsManager;
+    /**
+     * @var EventsManagerInterface|null
+     */
+    protected $eventsManager = null;
 
     /**
      * Has many relations
+     *
+     * @var array
      */
     protected $hasMany = [];
 
     /**
      * Has many relations by model
+     *
+     * @var array
      */
     protected $hasManySingle = [];
 
     /**
      * Has many-Through relations
+     *
+     * @var array
      */
     protected $hasManyToMany = [];
 
     /**
      * Has many-Through relations by model
+     *
+     * @var array
      */
     protected $hasManyToManySingle = [];
 
     /**
      * Has one relations
+     *
+     * @var array
      */
     protected $hasOne = [];
 
     /**
      * Has one relations by model
+     *
+     * @var array
      */
     protected $hasOneSingle = [];
 
     /**
      * Has one through relations
+     *
+     * @var array
      */
     protected $hasOneThrough = [];
 
     /**
      * Has one through relations by model
+     *
+     * @var array
      */
     protected $hasOneThroughSingle = [];
 
     /**
      * Mark initialized models
+     *
+     * @var array
      */
     protected $initialized = [];
 
-
+    /**
+     * @var array
+     */
     protected $keepSnapshots = [];
 
     /**
      * Last model initialized
+     *
+     * @var ModelInterface|null
      */
-    protected $lastInitialized;
+    protected $lastInitialized = null;
 
     /**
      * Last query created/executed
+     *
+     * @var QueryInterface|null
      */
-    protected $lastQuery;
+    protected $lastQuery = null;
 
-
+    /**
+     * @var array
+     */
     protected $modelVisibility = [];
 
-
+    /**
+     * @var string
+     */
     protected $prefix = '';
 
-
+    /**
+     * @var array
+     */
     protected $readConnectionServices = [];
 
-
+    /**
+     * @var array
+     */
     protected $sources = [];
 
-
+    /**
+     * @var array
+     */
     protected $schemas = [];
 
-
+    /**
+     * @var array
+     */
     protected $writeConnectionServices = [];
 
     /**
      * Stores a list of reusable instances
+     *
+     * @var array
      */
     protected $reusable = [];
 
@@ -192,9 +246,9 @@ class Manager implements \Phalcon\Mvc\Model\ManagerInterface, \Phalcon\Di\Inject
     /**
      * Returns the internal event manager
      *
-     * @return EventsManagerInterface
+     * @return EventsManagerInterface|null
      */
-    public function getEventsManager(): EventsManagerInterface
+    public function getEventsManager(): ?EventsManagerInterface
     {
     }
 
@@ -350,9 +404,9 @@ class Manager implements \Phalcon\Mvc\Model\ManagerInterface, \Phalcon\Di\Inject
      * Returns the mapped schema for a model
      *
      * @param \Phalcon\Mvc\ModelInterface $model
-     * @return string
+     * @return string|null
      */
-    public function getModelSchema(\Phalcon\Mvc\ModelInterface $model): string
+    public function getModelSchema(\Phalcon\Mvc\ModelInterface $model): ?string
     {
     }
 
@@ -412,20 +466,6 @@ class Manager implements \Phalcon\Mvc\Model\ManagerInterface, \Phalcon\Di\Inject
     /**
      * Returns the connection to read or write data related to a model depending on the connection services.
      *
-     * @todo Remove in v5.0
-     * @deprecated Use getConnection()
-     *
-     * @return AdapterInterface
-     * @param \Phalcon\Mvc\ModelInterface $model
-     * @param mixed $connectionServices
-     */
-    protected function _getConnection(\Phalcon\Mvc\ModelInterface $model, $connectionServices): AdapterInterface
-    {
-    }
-
-    /**
-     * Returns the connection to read or write data related to a model depending on the connection services.
-     *
      * @return AdapterInterface
      * @param \Phalcon\Mvc\ModelInterface $model
      * @param mixed $connectionServices
@@ -451,21 +491,6 @@ class Manager implements \Phalcon\Mvc\Model\ManagerInterface, \Phalcon\Di\Inject
      * @return string
      */
     public function getWriteConnectionService(\Phalcon\Mvc\ModelInterface $model): string
-    {
-    }
-
-    /**
-     * Returns the connection service name used to read or write data related to
-     * a model depending on the connection services
-     *
-     * @todo Remove in v5.0
-     * @deprecated Use getConnectionService()
-     *
-     * @return string
-     * @param \Phalcon\Mvc\ModelInterface $model
-     * @param mixed $connectionServices
-     */
-    public function _getConnectionService(\Phalcon\Mvc\ModelInterface $model, $connectionServices): string
     {
     }
 
@@ -694,8 +719,8 @@ class Manager implements \Phalcon\Mvc\Model\ManagerInterface, \Phalcon\Di\Inject
      * Returns a relation by its alias
      *
      * @param string $modelName
-     * @param string $alias
-     * @return 0|RelationInterface
+     * @param string $alias *
+     * @return RelationInterface|bool
      */
     public function getRelationByAlias(string $modelName, string $alias)
     {
@@ -715,7 +740,7 @@ class Manager implements \Phalcon\Mvc\Model\ManagerInterface, \Phalcon\Di\Inject
     /**
      * Helper method to query records based on a relation definition
      *
-     * @return \Phalcon\Mvc\Model\Resultset\Simple|Phalcon\Mvc\Model\Resultset\Simple|int|false
+     * @return \Phalcon\Mvc\Model\Resultset\Simple|int|false
      * @param RelationInterface $relation
      * @param \Phalcon\Mvc\ModelInterface $record
      * @param mixed $parameters

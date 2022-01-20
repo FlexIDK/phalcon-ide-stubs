@@ -138,8 +138,7 @@ class Memory extends \Phalcon\Storage\Adapter\AbstractAdapter
      *
      * @param string $key
      * @param mixed  $value
-     * @param null   $ttl
-     *
+     * @param \DateInterval|int|null $ttl *
      * @return bool
      */
     public function set(string $key, $value, $ttl = null): bool

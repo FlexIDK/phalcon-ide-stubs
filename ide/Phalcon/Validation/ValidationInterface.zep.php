@@ -22,11 +22,11 @@ interface ValidationInterface
     /**
      * Adds a validator to a field
      *
-     * @param string $field
+     * @param string|array       $field
      * @param ValidatorInterface $validator
      * @return ValidationInterface
      */
-    public function add(string $field, ValidatorInterface $validator): ValidationInterface;
+    public function add($field, ValidatorInterface $validator): ValidationInterface;
 
     /**
      * Appends a message to the messages list
@@ -94,11 +94,11 @@ interface ValidationInterface
     /**
      * Alias of `add` method
      *
-     * @param string $field
+     * @param string|array       $field
      * @param ValidatorInterface $validator
      * @return ValidationInterface
      */
-    public function rule(string $field, ValidatorInterface $validator): ValidationInterface;
+    public function rule($field, ValidatorInterface $validator): ValidationInterface;
 
     /**
      * Adds the validators to a field

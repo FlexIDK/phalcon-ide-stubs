@@ -7,11 +7,10 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-namespace Phalcon;
+namespace Phalcon\Support;
 
 use ErrorException;
 use Phalcon\Helper\Arr;
-use Phalcon\Version;
 use Phalcon\Tag;
 use ReflectionClass;
 use ReflectionFunction;
@@ -26,8 +25,10 @@ class Debug
      */
     protected $blacklist = ['request' => [], 'server' => []];
 
-
-    protected $data;
+    /**
+     * @var array
+     */
+    protected $data = [];
 
     /**
      * @var bool
@@ -37,7 +38,7 @@ class Debug
     /**
      * @var bool
      */
-    static protected $isActive;
+    static protected $isActive = false;
 
     /**
      * @var bool
@@ -57,7 +58,7 @@ class Debug
     /**
      * @var string
      */
-    protected $uri = 'https://assets.phalcon.io/debug/4.0.x/';
+    protected $uri = 'https://assets.phalcon.io/debug/5.0.x/';
 
 
     /**
@@ -170,6 +171,14 @@ class Debug
     }
 
     /**
+     * @param \Throwable $exception
+     * @return string
+     */
+    public function renderHtml(\Throwable $exception): string
+    {
+    }
+
+    /**
      * Sets if files the exception's backtrace must be showed
      *
      * @param array $blacklist
@@ -259,14 +268,6 @@ class Debug
      * @return string
      */
     final protected function showTraceItem(int $n, array $trace): string
-    {
-    }
-
-    /**
-     * @param \Throwable $exception
-     * @return string
-     */
-    public function renderHtml(\Throwable $exception): string
     {
     }
 

@@ -130,11 +130,11 @@ class Gettext extends \Phalcon\Translate\Adapter\AbstractAdapter implements \Arr
      * $translator->query("你好 %name%！", ["name" => "Phalcon"]);
      * ```
      *
+     * @param string $translateKey
      * @param array $placeholders
-     * @param string $index
      * @return string
      */
-    public function query(string $index, array $placeholders = []): string
+    public function query(string $translateKey, array $placeholders = []): string
     {
     }
 
@@ -202,10 +202,10 @@ class Gettext extends \Phalcon\Translate\Adapter\AbstractAdapter implements \Arr
      * ```
      *
      * @param int $category
-     * @param string $locale
+     * @param array $localeArray
      * @return string|bool
      */
-    public function setLocale(int $category, string $locale)
+    public function setLocale(int $category, array $localeArray = [])
     {
     }
 

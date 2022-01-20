@@ -39,7 +39,7 @@ class File implements \Phalcon\Http\Request\FileInterface
     /**
      * @var string|null
      */
-    protected $error;
+    protected $error = null;
 
     /**
      * @var string
@@ -49,21 +49,31 @@ class File implements \Phalcon\Http\Request\FileInterface
     /**
      * @var string|null
      */
-    protected $key;
+    protected $key = null;
 
-
+    /**
+     * @var string
+     */
     protected $name;
 
-
+    /**
+     * @var string
+     */
     protected $realType;
 
+    /**
+     * @var int
+     */
+    protected $size = 0;
 
-    protected $size;
+    /**
+     * @var string|null
+     */
+    protected $tmp = null;
 
-
-    protected $tmp;
-
-
+    /**
+     * @var string
+     */
     protected $type;
 
 

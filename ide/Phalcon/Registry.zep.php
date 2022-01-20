@@ -69,7 +69,7 @@ final class Registry extends \Phalcon\Collection
      *
      * @param array $data
      */
-    final public function __construct(array $data = null)
+    final public function __construct(array $data = [])
     {
     }
 

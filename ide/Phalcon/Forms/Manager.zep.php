@@ -14,7 +14,9 @@ namespace Phalcon\Forms;
  */
 class Manager
 {
-
+    /**
+     * @var array
+     */
     protected $forms = [];
 
 

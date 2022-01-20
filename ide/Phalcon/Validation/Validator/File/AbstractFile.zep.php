@@ -56,16 +56,22 @@ abstract class AbstractFile extends AbstractValidator
 {
     /**
      * Empty is empty
+     *
+     * @var string
      */
     protected $messageFileEmpty = 'Field :field must not be empty';
 
     /**
      * File exceeds the file size set in PHP configuration
+     *
+     * @var string
      */
     protected $messageIniSize = 'File :field exceeds the maximum file size';
 
     /**
      * File is not valid
+     *
+     * @var string
      */
     protected $messageValid = 'Field :field is not valid';
 
@@ -73,8 +79,10 @@ abstract class AbstractFile extends AbstractValidator
     /**
      *
      * Empty is empty
+     *
+     * @return string
      */
-    public function getMessageFileEmpty()
+    public function getMessageFileEmpty(): string
     {
     }
 
@@ -82,17 +90,9 @@ abstract class AbstractFile extends AbstractValidator
      *
      * Empty is empty
      *
-     * @param mixed $messageFileEmpty
+     * @param string $messageFileEmpty
      */
-    public function setMessageFileEmpty($messageFileEmpty)
-    {
-    }
-
-    /**
-     *
-     * File exceeds the file size set in PHP configuration
-     */
-    public function getMessageIniSize()
+    public function setMessageFileEmpty(string $messageFileEmpty)
     {
     }
 
@@ -100,17 +100,29 @@ abstract class AbstractFile extends AbstractValidator
      *
      * File exceeds the file size set in PHP configuration
      *
-     * @param mixed $messageIniSize
+     * @return string
      */
-    public function setMessageIniSize($messageIniSize)
+    public function getMessageIniSize(): string
+    {
+    }
+
+    /**
+     *
+     * File exceeds the file size set in PHP configuration
+     *
+     * @param string $messageIniSize
+     */
+    public function setMessageIniSize(string $messageIniSize)
     {
     }
 
     /**
      *
      * File is not valid
+     *
+     * @return string
      */
-    public function getMessageValid()
+    public function getMessageValid(): string
     {
     }
 
@@ -118,20 +130,9 @@ abstract class AbstractFile extends AbstractValidator
      *
      * File is not valid
      *
-     * @param mixed $messageValid
+     * @param string $messageValid
      */
-    public function setMessageValid($messageValid)
-    {
-    }
-
-    /**
-     * Check on empty
-     *
-     * @param Validation $validation
-     * @param string $field
-     * @return bool
-     */
-    public function isAllowEmpty(\Phalcon\Validation $validation, string $field): bool
+    public function setMessageValid(string $messageValid)
     {
     }
 
@@ -143,17 +144,6 @@ abstract class AbstractFile extends AbstractValidator
      * @return bool
      */
     public function checkUpload(\Phalcon\Validation $validation, $field): bool
-    {
-    }
-
-    /**
-     * Check if uploaded file is larger than PHP allowed size
-     *
-     * @param Validation $validation
-     * @param mixed $field
-     * @return boolean
-     */
-    public function checkUploadMaxSize(\Phalcon\Validation $validation, $field): bool
     {
     }
 
@@ -180,12 +170,45 @@ abstract class AbstractFile extends AbstractValidator
     }
 
     /**
+     * Check if uploaded file is larger than PHP allowed size
+     *
+     * @param Validation $validation
+     * @param mixed $field
+     * @return boolean
+     */
+    public function checkUploadMaxSize(\Phalcon\Validation $validation, $field): bool
+    {
+    }
+
+    /**
      * Convert a string like "2.5MB" in bytes
      *
      * @param string $size
      * @return float
      */
     public function getFileSizeInBytes(string $size): float
+    {
+    }
+
+    /**
+     * Check on empty
+     *
+     * @param Validation $validation
+     * @param string $field
+     * @return bool
+     */
+    public function isAllowEmpty(\Phalcon\Validation $validation, string $field): bool
+    {
+    }
+
+    /**
+     * Checks if a file has been uploaded; Internal check that can be
+     * overriden in a subclass if you do not want to check uploaded files
+     *
+     * @param string $name
+     * @return bool
+     */
+    protected function checkIsUploadedFile(string $name): bool
     {
     }
 

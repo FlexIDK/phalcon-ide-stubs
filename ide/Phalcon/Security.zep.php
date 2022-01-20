@@ -68,7 +68,7 @@ class Security extends AbstractInjectionAware
     /**
      * @var int|null
      */
-    protected $defaultHash;
+    protected $defaultHash = null;
 
     /**
      * @var int
@@ -81,19 +81,19 @@ class Security extends AbstractInjectionAware
     protected $random;
 
     /**
-     * @var string}null
+     * @var string|null
      */
-    protected $requestToken;
+    protected $requestToken = null;
 
     /**
      * @var string|null
      */
-    protected $token;
+    protected $token = null;
 
     /**
      * @var string|null
      */
-    protected $tokenKey;
+    protected $tokenKey = null;
 
     /**
      * @var string

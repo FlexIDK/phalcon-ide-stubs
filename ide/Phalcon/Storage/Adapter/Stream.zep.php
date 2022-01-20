@@ -90,9 +90,8 @@ class Stream extends \Phalcon\Storage\Adapter\AbstractAdapter
      * Reads data from the adapter
      *
      * @param string $key
-     * @param null   $defaultValue
-     *
-     * @return mixed|null
+     * @param mixed|null $defaultValue *
+     * @return mixed
      */
     public function get(string $key, $defaultValue = null)
     {
@@ -146,7 +145,7 @@ class Stream extends \Phalcon\Storage\Adapter\AbstractAdapter
      *
      * @param string                $key
      * @param mixed                 $value
-     * @param DateInterval|int|null $ttl
+     * @param \DateInterval|int|null $ttl
      *
      * @return bool
      * @throws \Exception

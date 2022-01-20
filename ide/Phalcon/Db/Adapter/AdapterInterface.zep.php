@@ -134,13 +134,13 @@ interface AdapterInterface
     /**
      * Deletes data from a table using custom RDBMS SQL syntax
      *
-     * @param mixed $table
-     * @param mixed $whereCondition
-     * @param mixed $placeholders
-     * @param mixed $dataTypes
+     * @param array|string $table
+     * @param string|null $whereCondition
+     * @param array $placeholders
+     * @param array $dataTypes *
      * @return bool
      */
-    public function delete($table, $whereCondition = null, $placeholders = null, $dataTypes = null): bool;
+    public function delete($table, string $whereCondition = null, array $placeholders = [], array $dataTypes = []): bool;
 
     /**
      * Returns an array of Phalcon\Db\Column objects describing a table
@@ -250,21 +250,22 @@ interface AdapterInterface
      * return any rows
      *
      * @param string $sqlStatement
-     * @param mixed $placeholders
-     * @param mixed $dataTypes
+     * @param array $bindParams
+     * @param array $bindTypes
      * @return bool
      */
-    public function execute(string $sqlStatement, $placeholders = null, $dataTypes = null): bool;
+    public function execute(string $sqlStatement, array $bindParams = [], array $bindTypes = []): bool;
 
     /**
      * Dumps the complete result of a query into an array
      *
      * @param string $sqlQuery
      * @param int $fetchMode
-     * @param mixed $placeholders
+     * @param array $bindParams
+     * @param array $bindTypes
      * @return array
      */
-    public function fetchAll(string $sqlQuery, int $fetchMode = 2, $placeholders = null): array;
+    public function fetchAll(string $sqlQuery, int $fetchMode = 2, array $bindParams = [], array $bindTypes = []): array;
 
     /**
      * Returns the n'th field of first row in a SQL query result
@@ -294,10 +295,11 @@ interface AdapterInterface
      *
      * @param string $sqlQuery
      * @param int $fetchMode
-     * @param mixed $placeholders
+     * @param array $bindParams
+     * @param array $bindTypes
      * @return array
      */
-    public function fetchOne(string $sqlQuery, int $fetchMode = 2, $placeholders = null): array;
+    public function fetchOne(string $sqlQuery, int $fetchMode = 2, array $bindParams = [], array $bindTypes = []): array;
 
     /**
      * Returns a SQL modified with a FOR UPDATE clause
@@ -530,11 +532,11 @@ interface AdapterInterface
      * rows
      *
      * @param string $sqlStatement
-     * @param mixed $placeholders
-     * @param mixed $dataTypes
+     * @param array $bindParams
+     * @param array $bindTypes
      * @return 0|ResultInterface
      */
-    public function query(string $sqlStatement, $placeholders = null, $dataTypes = null);
+    public function query(string $sqlStatement, array $bindParams = [], array $bindTypes = []);
 
     /**
      * Releases given savepoint

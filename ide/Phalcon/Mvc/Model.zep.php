@@ -106,7 +106,9 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
 
     const TRANSACTION_INDEX = 'transaction';
 
-
+    /**
+     * @var int
+     */
     protected $dirtyState = 1;
 
     /**
@@ -119,18 +121,24 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      */
     protected $errorMessages = [];
 
+    /**
+     * @var ManagerInterface|null
+     */
+    protected $modelsManager = null;
 
-    protected $modelsManager;
-
-
-    protected $modelsMetaData;
+    /**
+     * @var MetaDataInterface|null
+     */
+    protected $modelsMetaData = null;
 
     /**
      * @var array
      */
     protected $related = [];
 
-
+    /**
+     * @var int
+     */
     protected $operationMade = 0;
 
     /**
@@ -138,26 +146,41 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      */
     protected $oldSnapshot = [];
 
+    /**
+     * @var bool
+     */
+    protected $skipped = false;
 
-    protected $skipped;
+    /**
+     * @var array
+     */
+    protected $snapshot = [];
+
+    /**
+     * @var TransactionInterface|null
+     */
+    protected $transaction = null;
+
+    /**
+     * @var string|null
+     */
+    protected $uniqueKey = null;
+
+    /**
+     * @var array
+     */
+    protected $uniqueParams = [];
+
+    /**
+     * @var array|null
+     * TODO: Make it always array in code
+     */
+    protected $uniqueTypes = null;
 
 
-    protected $snapshot;
-
-
-    protected $transaction;
-
-
-    protected $uniqueKey;
-
-
-    protected $uniqueParams;
-
-
-    protected $uniqueTypes;
-
-
-
+    /**
+     * @return TransactionInterface|null
+     */
     public function getTransaction()
     {
     }
@@ -344,9 +367,10 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * );
      * ```
      *
-     * @param array $dataColumnMap array to transform keys of data to another
-     * @param array $whiteList
      * @param array $data
+     * @param mixed $whiteList
+     * @param mixed $dataColumnMap Array to transform keys of data to another
+     *
      * @return ModelInterface
      */
     public function assign(array $data, $whiteList = null, $dataColumnMap = null): ModelInterface
@@ -383,9 +407,9 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * ```
      *
      * @param array $parameters
-     * @return double | ResultsetInterface
+     * @return float | ResultsetInterface
      */
-    public static function average($parameters = null)
+    public static function average(array $parameters = [])
     {
     }
 
@@ -426,12 +450,12 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * );
      * ```
      *
-     * @param \Phalcon\Mvc\ModelInterface|\Phalcon\Mvc\Model\Row $base
-     * @param array $columnMap
-     * @param array $data
+     * @param ModelInterface|\Phalcon\Mvc\Model\Row $base
+     * @param mixed $columnMap
      * @param int $dirtyState
-     * @param bool $keepSnapshots
+     * @param bool $keepSnapshots *
      * @return ModelInterface
+     * @param array $data
      */
     public static function cloneResultMap($base, array $data, $columnMap, int $dirtyState = 0, bool $keepSnapshots = null): ModelInterface
     {
@@ -440,10 +464,10 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     /**
      * Returns an hydrated result based on the data and the column map
      *
-     * @param array $columnMap
-     * @return mixed
      * @param array $data
-     * @param int $hydrationMode
+     * @param mixed $columnMap
+     * @param int $hydrationMode *
+     * @return mixed
      */
     public static function cloneResultMapHydrate(array $data, $columnMap, int $hydrationMode)
     {
@@ -478,7 +502,7 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * echo "There are ", $number, " mechanical robots\n";
      * ```
      *
-     * @param array $parameters
+     * @param array|string|null $parameters
      * @return 0|ResultsetInterface
      */
     public static function count($parameters = null)
@@ -979,7 +1003,7 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * Returns related records based on defined relations
      *
      * @param array $arguments
-     * @return \Phalcon\Mvc\Model\Resultset\Simple|Phalcon\Mvc\Model\Resultset\Simple|false
+     * @return \Phalcon\Mvc\Model\Resultset\Simple|false
      * @param string $alias
      */
     public function getRelated(string $alias, $arguments = null)
@@ -1016,9 +1040,9 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     /**
      * Returns schema name where the mapped table is located
      *
-     * @return string
+     * @return string|null
      */
-    final public function getSchema(): string
+    final public function getSchema(): ?string
     {
     }
 
@@ -1517,7 +1541,7 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      *
      * @return bool
      */
-    final protected function _checkForeignKeysRestrict(): bool
+    final protected function checkForeignKeysRestrict(): bool
     {
     }
 
@@ -1527,7 +1551,7 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      *
      * @return bool
      */
-    final protected function _checkForeignKeysReverseCascade(): bool
+    final protected function checkForeignKeysReverseCascade(): bool
     {
     }
 
@@ -1537,23 +1561,7 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      *
      * @return bool
      */
-    final protected function _checkForeignKeysReverseRestrict(): bool
-    {
-    }
-
-    /**
-     * Sends a pre-build INSERT SQL statement to the relational database system
-     *
-     * @todo Remove in v5.0
-     * @deprecated Use doLowInsert()
-     *
-     * @param string|array $table
-     * @param bool|string $identityField
-     * @param \Phalcon\Mvc\Model\MetaDataInterface $metaData
-     * @param \Phalcon\Db\Adapter\AdapterInterface $connection
-     * @return bool
-     */
-    protected function _doLowInsert(\Phalcon\Mvc\Model\MetaDataInterface $metaData, \Phalcon\Db\Adapter\AdapterInterface $connection, $table, $identityField): bool
+    final protected function checkForeignKeysReverseRestrict(): bool
     {
     }
 
@@ -1573,21 +1581,6 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     /**
      * Sends a pre-build UPDATE SQL statement to the relational database system
      *
-     * @todo Remove in v5.0
-     * @deprecated Use doLowUpdate()
-     *
-     * @param string|array $table
-     * @param \Phalcon\Mvc\Model\MetaDataInterface $metaData
-     * @param \Phalcon\Db\Adapter\AdapterInterface $connection
-     * @return bool
-     */
-    protected function _doLowUpdate(\Phalcon\Mvc\Model\MetaDataInterface $metaData, \Phalcon\Db\Adapter\AdapterInterface $connection, $table): bool
-    {
-    }
-
-    /**
-     * Sends a pre-build UPDATE SQL statement to the relational database system
-     *
      * @param string|array $table
      * @param \Phalcon\Mvc\Model\MetaDataInterface $metaData
      * @param \Phalcon\Db\Adapter\AdapterInterface $connection
@@ -1600,41 +1593,11 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     /**
      * Checks whether the current record already exists
      *
-     * @todo Remove in v5.0
-     * @deprecated Use exists()
-     *
-     * @return bool
-     * @param \Phalcon\Mvc\Model\MetaDataInterface $metaData
-     * @param \Phalcon\Db\Adapter\AdapterInterface $connection
-     */
-    protected function _exists(\Phalcon\Mvc\Model\MetaDataInterface $metaData, \Phalcon\Db\Adapter\AdapterInterface $connection): bool
-    {
-    }
-
-    /**
-     * Checks whether the current record already exists
-     *
      * @return bool
      * @param \Phalcon\Mvc\Model\MetaDataInterface $metaData
      * @param \Phalcon\Db\Adapter\AdapterInterface $connection
      */
     protected function exists(\Phalcon\Mvc\Model\MetaDataInterface $metaData, \Phalcon\Db\Adapter\AdapterInterface $connection): bool
-    {
-    }
-
-    /**
-     * Returns related records defined relations depending on the method name.
-     * Returns false if the relation is non-existent.
-     *
-     * @todo Remove in v5.0
-     * @deprecated Use getRelatedRecords()
-     *
-     * @param string $modelName
-     * @param string $method
-     * @param array $arguments *
-     * @return ResultsetInterface|ModelInterface|bool|null
-     */
-    protected function _getRelatedRecords(string $modelName, string $method, array $arguments)
     {
     }
 
@@ -1654,38 +1617,23 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     /**
      * Generate a PHQL SELECT statement for an aggregate
      *
-     * @todo Remove in v5.0
-     * @deprecated Use groupResult()
-     *
-     * @param array $parameters
-     * @return ResultsetInterface
      * @param string $functionName
      * @param string $alias
-     */
-    protected static function _groupResult(string $functionName, string $alias, $parameters): ResultsetInterface
-    {
-    }
-
-    /**
-     * Generate a PHQL SELECT statement for an aggregate
-     *
-     * @param array $parameters
+     * @param array|string|null $parameters *
      * @return ResultsetInterface
-     * @param string $functionName
-     * @param string $alias
      */
-    protected static function groupResult(string $functionName, string $alias, $parameters): ResultsetInterface
+    protected static function groupResult(string $functionName, string $alias, $parameters = null): ResultsetInterface
     {
     }
 
     /**
      * Try to check if the query must invoke a finder
      *
-     * @return \Phalcon\Mvc\ModelInterface[]|\Phalcon\Mvc\ModelInterface|bool
+     * @return ModelInterface[]|ModelInterface|bool
      * @param string $method
      * @param array $arguments
      */
-    protected final static function _invokeFinder(string $method, array $arguments)
+    protected final static function invokeFinder(string $method, array $arguments)
     {
     }
 
@@ -1696,22 +1644,7 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * @param mixed $value
      * @return bool
      */
-    final protected function _possibleSetter(string $property, $value): bool
-    {
-    }
-
-    /**
-     * Executes internal hooks before save a record
-     *
-     * @todo Remove in v5.0
-     * @deprecated Use preSave()
-     *
-     * @return bool
-     * @param \Phalcon\Mvc\Model\MetaDataInterface $metaData
-     * @param bool $exists
-     * @param mixed $identityField
-     */
-    protected function _preSave(\Phalcon\Mvc\Model\MetaDataInterface $metaData, bool $exists, $identityField): bool
+    final protected function possibleSetter(string $property, $value): bool
     {
     }
 
@@ -1730,39 +1663,11 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     /**
      * Saves related records that must be stored prior to save the master record
      *
-     * @todo Remove in v5.0
-     * @deprecated Use preSaveRelatedRecords()
-     *
-     * @param \Phalcon\Mvc\ModelInterface[] $related
-     * @param \Phalcon\Db\Adapter\AdapterInterface $connection
-     * @return bool
-     */
-    protected function _preSaveRelatedRecords(\Phalcon\Db\Adapter\AdapterInterface $connection, $related): bool
-    {
-    }
-
-    /**
-     * Saves related records that must be stored prior to save the master record
-     *
-     * @param \Phalcon\Mvc\ModelInterface[] $related
+     * @param ModelInterface[] $related
      * @return bool
      * @param \Phalcon\Db\Adapter\AdapterInterface $connection
      */
     protected function preSaveRelatedRecords(\Phalcon\Db\Adapter\AdapterInterface $connection, $related): bool
-    {
-    }
-
-    /**
-     * Executes internal events after save a record
-     *
-     * @todo Remove in v5.0
-     * @deprecated Use postSave()
-     *
-     * @return bool
-     * @param bool $success
-     * @param bool $exists
-     */
-    protected function _postSave(bool $success, bool $exists): bool
     {
     }
 
@@ -1780,21 +1685,7 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     /**
      * Save the related records assigned in the has-one/has-many relations
      *
-     * @todo Remove in v5.0
-     * @deprecated Use postSaveRelatedRecords()
-     *
-     * @param Phalcon\Mvc\ModelInterface[] $related
-     * @return bool
-     * @param \Phalcon\Db\Adapter\AdapterInterface $connection
-     */
-    protected function _postSaveRelatedRecords(\Phalcon\Db\Adapter\AdapterInterface $connection, $related): bool
-    {
-    }
-
-    /**
-     * Save the related records assigned in the has-one/has-many relations
-     *
-     * @param Phalcon\Mvc\ModelInterface[] $related
+     * @param ModelInterface[] $related
      * @return bool
      * @param \Phalcon\Db\Adapter\AdapterInterface $connection
      */
@@ -1824,16 +1715,6 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * @return void
      */
     protected function allowEmptyStringValues(array $attributes): void
-    {
-    }
-
-    /**
-     * Cancel the current operation
-     *
-     * @todo Remove in v5.0
-     * @deprecated Use cancelOperation()
-     */
-    protected function _cancelOperation()
     {
     }
 
@@ -1982,11 +1863,12 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * ```
      *
      * @param string|array $fields
+     * @param string $intermediateModel
      * @param string|array $intermediateFields
      * @param string|array $intermediateReferencedFields
+     * @param string $referenceModel
      * @param string|array $referencedFields
-     * @param array $options *
-     * @param array|null $options = [
+     * @param array $options = [
      *     'reusable' => false,
      *     'alias' => 'someAlias',
      *     'foreignKey' => [
@@ -2012,11 +1894,9 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      *         'hydration' => null
      *     ]
      * ]
-     * @param string $intermediateModel
-     * @param string $referenceModel
      * @return Relation
      */
-    protected function hasManyToMany($fields, string $intermediateModel, $intermediateFields, $intermediateReferencedFields, string $referenceModel, $referencedFields, $options = null): Relation
+    protected function hasManyToMany($fields, string $intermediateModel, $intermediateFields, $intermediateReferencedFields, string $referenceModel, $referencedFields, $options = []): Relation
     {
     }
 

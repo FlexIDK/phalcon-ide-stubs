@@ -131,4 +131,14 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
     {
     }
 
+    /**
+     * Returns the formatted item
+     *
+     * @param \Phalcon\Logger\Item $item
+     * @return string
+     */
+    protected function getFormattedItem(\Phalcon\Logger\Item $item): string
+    {
+    }
+
 }

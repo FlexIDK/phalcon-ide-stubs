@@ -44,7 +44,7 @@ class Config extends Collection implements \Phalcon\Config\ConfigInterface
     const DEFAULT_PATH_DELIMITER = '.';
 
     /**
-     * @var string
+     * @var string|null
      */
     protected $pathDelimiter = null;
 

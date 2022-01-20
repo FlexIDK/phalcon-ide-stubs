@@ -23,6 +23,11 @@ use Phalcon\Config\ConfigInterface;
 abstract class AbstractFactory
 {
     /**
+     * @var string
+     */
+    protected $exception = 'Phalcon\\\\Exception';
+
+    /**
      * @var array
      */
     protected $mapper = [];
@@ -67,6 +72,16 @@ abstract class AbstractFactory
      * @return void
      */
     protected function init(array $services = []): void
+    {
+    }
+
+    /**
+     * Returns the exception object for the child class
+     *
+     * @param string $message
+     * @return \Exception
+     */
+    protected function getException(string $message): \Exception
     {
     }
 

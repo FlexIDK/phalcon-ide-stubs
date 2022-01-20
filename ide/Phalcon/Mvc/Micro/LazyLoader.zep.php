@@ -18,20 +18,28 @@ use Phalcon\Mvc\Model\BinderInterface;
  */
 class LazyLoader
 {
+    /**
+     * @var object|null
+     */
+    protected $handler = null;
 
-    protected $handler;
-
-
+    /**
+     * @var string
+     */
     protected $definition;
 
 
-
+    /**
+     * @return object|null
+     */
     public function getHandler()
     {
     }
 
-
-    public function getDefinition()
+    /**
+     * @return string
+     */
+    public function getDefinition(): string
     {
     }
 

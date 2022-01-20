@@ -16,45 +16,71 @@ namespace Phalcon\Mvc\Router;
  */
 class Route implements \Phalcon\Mvc\Router\RouteInterface
 {
+    /**
+     * @var callable|null
+     */
+    protected $beforeMatch = null;
 
-    protected $beforeMatch;
+    /**
+     * @var string|null
+     */
+    protected $compiledPattern = null;
 
+    /**
+     * @var array
+     */
+    protected $converters = [];
 
-    protected $compiledPattern;
+    /**
+     * @var GroupInterface|null
+     */
+    protected $group = null;
 
+    /**
+     * @var string|null
+     */
+    protected $hostname = null;
 
-    protected $converters;
+    /**
+     * @var string|null
+     */
+    protected $id = null;
 
+    /**
+     * @var array|string
+     */
+    protected $methods = [];
 
-    protected $group;
+    /**
+     * @var callable|null
+     */
+    protected $match = null;
 
+    /**
+     * @var string|null
+     */
+    protected $name = null;
 
-    protected $hostname;
+    /**
+     * @var array
+     */
+    protected $paths = [];
 
-
-    protected $id;
-
-
-    protected $methods;
-
-
-    protected $match;
-
-
-    protected $name;
-
-
-    protected $paths;
-
-
+    /**
+     * @var string
+     */
     protected $pattern;
 
-
+    /**
+     * @var int
+     */
     static protected $uniqueId = 0;
 
 
-
-    public function getId()
+    /**
+     * @return string|null
+     */
+    public function getId(): ?string
     {
     }
 
@@ -93,7 +119,7 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
      * );
      * ```
      *
-     * @param mixed $callback
+     * @param callable $callback
      * @return RouteInterface
      */
     public function beforeMatch($callback): RouteInterface

@@ -22,34 +22,50 @@ use Phalcon\Validation\ValidatorInterface;
  */
 abstract class AbstractElement implements \Phalcon\Forms\Element\ElementInterface
 {
+    /**
+     * @var array
+     */
+    protected $attributes = [];
 
-    protected $attributes;
+    /**
+     * @var array
+     */
+    protected $filters = [];
 
+    /**
+     * @var Form|null
+     */
+    protected $form = null;
 
-    protected $filters;
+    /**
+     * @var string|null
+     */
+    protected $label = null;
 
-
-    protected $form;
-
-
-    protected $label;
-
-
+    /**
+     * @var Messages
+     */
     protected $messages;
 
-
+    /**
+     * @var string
+     */
     protected $name;
 
-
-    protected $options;
+    /**
+     * @var array
+     */
+    protected $options = [];
 
     /**
      * @var array
      */
     protected $validators = [];
 
-
-    protected $value;
+    /**
+     * @var mixed|null
+     */
+    protected $value = null;
 
 
     /**

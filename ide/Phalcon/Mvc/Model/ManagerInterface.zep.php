@@ -270,9 +270,9 @@ interface ManagerInterface
      * Returns the mapped schema for a model
      *
      * @param \Phalcon\Mvc\ModelInterface $model
-     * @return string
+     * @return string|null
      */
-    public function getModelSchema(\Phalcon\Mvc\ModelInterface $model): string;
+    public function getModelSchema(\Phalcon\Mvc\ModelInterface $model): ?string;
 
     /**
      * Returns the mapped source for a model
@@ -302,15 +302,15 @@ interface ManagerInterface
      * Returns a relation by its alias
      *
      * @param string $modelName
-     * @param string $alias
-     * @return 0|Relation
+     * @param string $alias *
+     * @return RelationInterface|bool
      */
     public function getRelationByAlias(string $modelName, string $alias);
 
     /**
      * Helper method to query records based on a relation definition
      *
-     * @return \Phalcon\Mvc\Model\Resultset\Simple|Phalcon\Mvc\Model\Resultset\Simple|int|false
+     * @return \Phalcon\Mvc\Model\Resultset\Simple|int|false
      * @param RelationInterface $relation
      * @param \Phalcon\Mvc\ModelInterface $record
      * @param mixed $parameters

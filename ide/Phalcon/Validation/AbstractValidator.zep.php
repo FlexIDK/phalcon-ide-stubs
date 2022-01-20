@@ -23,7 +23,7 @@ abstract class AbstractValidator implements \Phalcon\Validation\ValidatorInterfa
      *
      * @var string|null
      */
-    protected $template;
+    protected $template = null;
 
     /**
      * Message templates
@@ -32,8 +32,10 @@ abstract class AbstractValidator implements \Phalcon\Validation\ValidatorInterfa
      */
     protected $templates = [];
 
-
-    protected $options;
+    /**
+     * @var array
+     */
+    protected $options = [];
 
 
     /**

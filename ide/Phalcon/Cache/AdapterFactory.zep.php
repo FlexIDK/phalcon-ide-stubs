@@ -10,7 +10,6 @@
 namespace Phalcon\Cache;
 
 use Phalcon\Cache\Adapter\AdapterInterface;
-use Phalcon\Cache\Exception\Exception;
 use Phalcon\Factory\AbstractFactory;
 use Phalcon\Storage\SerializerFactory;
 
@@ -19,6 +18,9 @@ use Phalcon\Storage\SerializerFactory;
  */
 class AdapterFactory extends AbstractFactory
 {
+
+    protected $exception = 'Phalcon\\\\Cache\\\\Exception\\\\Exception';
+
     /**
      * @var SerializerFactory
      */
@@ -31,7 +33,7 @@ class AdapterFactory extends AbstractFactory
      * @param \Phalcon\Storage\SerializerFactory $factory
      * @param array $services
      */
-    public function __construct(\Phalcon\Storage\SerializerFactory $factory = null, array $services = [])
+    public function __construct(\Phalcon\Storage\SerializerFactory $factory, array $services = [])
     {
     }
 

@@ -64,10 +64,19 @@ use Phalcon\Http\Cookie\CookieInterface;
  */
 class Cookies extends AbstractInjectionAware implements \Phalcon\Http\Response\CookiesInterface
 {
-
+    /**
+     * @var array
+     */
     protected $cookies = [];
 
+    /**
+     * @var bool
+     */
+    protected $isSent = false;
 
+    /**
+     * @var bool
+     */
     protected $registered = false;
 
     /**
@@ -77,7 +86,9 @@ class Cookies extends AbstractInjectionAware implements \Phalcon\Http\Response\C
      */
     protected $signKey = null;
 
-
+    /**
+     * @var bool
+     */
     protected $useEncryption = true;
 
 
@@ -129,6 +140,15 @@ class Cookies extends AbstractInjectionAware implements \Phalcon\Http\Response\C
      * @return bool
      */
     public function has(string $name): bool
+    {
+    }
+
+    /**
+     * Returns if the headers have already been sent
+     *
+     * @return bool
+     */
+    public function isSent(): bool
     {
     }
 

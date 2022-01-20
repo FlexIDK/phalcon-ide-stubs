@@ -7,9 +7,7 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-namespace Phalcon\Translate\Interpolator;
-
-use Phalcon\Support\Helper\Str\Interpolate;
+namespace Phalcon\Support\Helper\Str;
 
 /**
  * This file is part of the Phalcon Framework.
@@ -19,17 +17,21 @@ use Phalcon\Support\Helper\Str\Interpolate;
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-class AssociativeArray implements \Phalcon\Translate\Interpolator\InterpolatorInterface
+class Interpolate
 {
 
     /**
-     * Replaces placeholders by the values passed
+     * Interpolates context values into the message placeholders
      *
-     * @param string $translation
-     * @param array $placeholders
+     * @see http://www.php-fig.org/psr/psr-3/ Section 1.2 Message
+     *
+     * @param string $message
+     * @param array  $context
+     * @param string $leftToken
+     * @param string $rightToken
      * @return string
      */
-    public function replacePlaceholders(string $translation, array $placeholders = []): string
+    public function __invoke(string $message, array $context = [], string $leftToken = '%', string $rightToken = '%'): string
     {
     }
 

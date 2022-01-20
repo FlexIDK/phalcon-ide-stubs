@@ -7,7 +7,7 @@
  * For the full copyright and license information, please view the LICENSE.txt
  * file that was distributed with this source code.
  */
-namespace Phalcon\Debug;
+namespace Phalcon\Support\Debug;
 
 /**
  * Exceptions thrown in Phalcon\Debug will use this class

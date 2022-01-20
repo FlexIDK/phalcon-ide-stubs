@@ -20,19 +20,19 @@ use Phalcon\Events\ManagerInterface;
 abstract class AbstractApplication extends Injectable implements \Phalcon\Events\EventsAwareInterface
 {
     /**
-     * @var DiInterface
+     * @var DiInterface|null
      */
-    protected $container;
+    protected $container = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    protected $defaultModule;
+    protected $defaultModule = null;
 
     /**
-     * @var null | ManagerInterface
+     * @var ManagerInterface|null
      */
-    protected $eventsManager;
+    protected $eventsManager = null;
 
     /**
      * @var array
@@ -61,17 +61,17 @@ abstract class AbstractApplication extends Injectable implements \Phalcon\Events
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface
+     * @return ManagerInterface|null
      */
-    public function getEventsManager(): ManagerInterface
+    public function getEventsManager(): ?ManagerInterface
     {
     }
 
     /**
      * Gets the module definition registered in the application via module name
      *
-     * @param string $name
-     * @return array|object
+     * @param string $name *
+     * @return array|mixed
      */
     public function getModule(string $name): array
     {

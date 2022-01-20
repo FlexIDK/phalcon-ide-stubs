@@ -22,7 +22,9 @@ use Phalcon\Image\Exception;
  */
 class Gd extends \Phalcon\Image\Adapter\AbstractAdapter
 {
-
+    /**
+     * @var bool
+     */
     static protected $checked = false;
 
 

@@ -77,88 +77,140 @@ class View extends Injectable implements \Phalcon\Mvc\ViewInterface, \Phalcon\Ev
      */
     const LEVEL_AFTER_TEMPLATE = 4;
 
-
+    /**
+     * @var string
+     */
     protected $actionName;
 
-
+    /**
+     * @var array
+     */
     protected $activeRenderPaths;
 
-
+    /**
+     * @var string
+     */
     protected $basePath = '';
 
-
+    /**
+     * @var string
+     */
     protected $content = '';
 
-
+    /**
+     * @var string
+     */
     protected $controllerName;
 
-
+    /**
+     * @var int
+     */
     protected $currentRenderLevel = 0;
 
-
+    /**
+     * @var bool
+     */
     protected $disabled = false;
 
+    /**
+     * @var array
+     */
+    protected $disabledLevels = [];
 
-    protected $disabledLevels;
-
-
+    /**
+     * @var array|bool
+     */
     protected $engines = false;
 
-
+    /**
+     * @var ManagerInterface|null
+     */
     protected $eventsManager;
 
+    /**
+     * @var string|null
+     */
+    protected $layout = null;
 
-    protected $layout;
-
-
+    /**
+     * @var string
+     */
     protected $layoutsDir = '';
 
-
+    /**
+     * @var string
+     */
     protected $mainView = 'index';
 
-
+    /**
+     * @var array
+     */
     protected $options = [];
 
+    /**
+     * @var array
+     */
+    protected $params = [];
 
-    protected $params;
-
-
+    /**
+     * @var array|null
+     */
     protected $pickView;
 
-
+    /**
+     * @var string
+     */
     protected $partialsDir = '';
 
-
+    /**
+     * @var array
+     */
     protected $registeredEngines = [];
 
-
+    /**
+     * @var int
+     */
     protected $renderLevel = 5;
 
-
+    /**
+     * @var array
+     */
     protected $templatesAfter = [];
 
-
+    /**
+     * @var array
+     */
     protected $templatesBefore = [];
 
-
+    /**
+     * @var array
+     */
     protected $viewsDirs = [];
 
-
+    /**
+     * @var array
+     */
     protected $viewParams = [];
 
 
-
-    public function getCurrentRenderLevel()
+    /**
+     * @return int
+     */
+    public function getCurrentRenderLevel(): int
     {
     }
 
-
-    public function getRegisteredEngines()
+    /**
+     * @return array
+     */
+    public function getRegisteredEngines(): array
     {
     }
 
-
-    public function getRenderLevel()
+    /**
+     * @return int
+     */
+    public function getRenderLevel(): int
     {
     }
 

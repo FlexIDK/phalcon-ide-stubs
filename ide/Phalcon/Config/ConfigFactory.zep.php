@@ -32,6 +32,9 @@ use Phalcon\Helper\Arr;
 class ConfigFactory extends AbstractFactory
 {
 
+    protected $exception = 'Phalcon\\\\Config\\\\Exception';
+
+
     /**
      * ConfigFactory constructor.
      *

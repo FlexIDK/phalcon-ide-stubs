@@ -38,9 +38,7 @@ use Phalcon\Filter\FilterInterface;
  */
 class Dispatcher extends \Phalcon\Dispatcher\AbstractDispatcher implements \Phalcon\Cli\DispatcherInterface
 {
-    /**
-     * @var string
-     */
+
     protected $defaultHandler = 'main';
 
     /**

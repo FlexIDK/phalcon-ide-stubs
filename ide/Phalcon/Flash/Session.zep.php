@@ -32,8 +32,9 @@ class Session extends \Phalcon\Flash\AbstractFlash
     /**
      * Returns the messages in the session flasher
      *
-     * @param mixed $type
+     * @param string|null $type
      * @param bool $remove
+     *
      * @return array
      */
     public function getMessages($type = null, bool $remove = true): array
@@ -43,7 +44,8 @@ class Session extends \Phalcon\Flash\AbstractFlash
     /**
      * Checks whether there are messages
      *
-     * @param mixed $type
+     * @param string|null $type
+     *
      * @return bool
      */
     public function has($type = null): bool
@@ -54,10 +56,10 @@ class Session extends \Phalcon\Flash\AbstractFlash
      * Adds a message to the session flasher
      *
      * @return null|string|void
-     * @param string $type
+     * @param mixed $type
      * @param string $message
      */
-    public function message(string $type, string $message): ?string
+    public function message($type, string $message): ?string
     {
     }
 
@@ -74,8 +76,9 @@ class Session extends \Phalcon\Flash\AbstractFlash
     /**
      * Returns the messages stored in session
      *
-     * @param bool $remove
-     * @param mixed $type
+     * @param bool        $remove
+     * @param string|null $type
+     *
      * @return array
      */
     protected function getSessionMessages(bool $remove, $type = null): array

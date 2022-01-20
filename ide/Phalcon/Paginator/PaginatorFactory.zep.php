@@ -24,6 +24,9 @@ use Phalcon\Helper\Arr;
 class PaginatorFactory extends AbstractFactory
 {
 
+    protected $exception = 'Phalcon\\\\Annotations\\\\Exception';
+
+
     /**
      * AdapterFactory constructor.
      *

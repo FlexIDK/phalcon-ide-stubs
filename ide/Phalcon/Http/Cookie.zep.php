@@ -35,8 +35,10 @@ class Cookie extends AbstractInjectionAware implements \Phalcon\Http\Cookie\Cook
      */
     protected $expire;
 
-
-    protected $filter;
+    /**
+     * @var FilterInterface|null
+     */
+    protected $filter = null;
 
     /**
      * @var bool
@@ -71,7 +73,7 @@ class Cookie extends AbstractInjectionAware implements \Phalcon\Http\Cookie\Cook
     /**
      * @var bool
      */
-    protected $secure;
+    protected $secure = true;
 
     /**
      * The cookie's sign key.
@@ -86,9 +88,9 @@ class Cookie extends AbstractInjectionAware implements \Phalcon\Http\Cookie\Cook
     protected $useEncryption = false;
 
     /**
-     * @var mixed
+     * @var mixed|null
      */
-    protected $value;
+    protected $value = null;
 
 
     /**
@@ -103,7 +105,7 @@ class Cookie extends AbstractInjectionAware implements \Phalcon\Http\Cookie\Cook
      * @param bool $httpOnly
      * @param array $options
      */
-    public function __construct(string $name, $value = null, int $expire = 0, string $path = '/', bool $secure = null, string $domain = null, bool $httpOnly = false, array $options = [])
+    public function __construct(string $name, $value = null, int $expire = 0, string $path = '/', bool $secure = null, string $domain = null, bool $httpOnly = null, array $options = [])
     {
     }
 

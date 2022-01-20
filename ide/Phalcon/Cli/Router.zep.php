@@ -37,13 +37,19 @@ use Phalcon\Cli\Router\RouteInterface;
  */
 class Router extends AbstractInjectionAware
 {
+    /**
+     * @var string|null
+     */
+    protected $action = null;
 
-    protected $action;
-
-
+    /**
+     * @var string|null
+     */
     protected $defaultAction = null;
 
-
+    /**
+     * @var string|null
+     */
     protected $defaultModule = null;
 
     /**
@@ -51,30 +57,45 @@ class Router extends AbstractInjectionAware
      */
     protected $defaultParams = [];
 
-
+    /**
+     * @var string|null
+     */
     protected $defaultTask = null;
 
+    /**
+     * @var RouteInterface|null
+     */
+    protected $matchedRoute = null;
 
-    protected $matchedRoute;
+    /**
+     * @var array|null
+     * TODO: make always array
+     */
+    protected $matches = null;
 
-
-    protected $matches;
-
-
-    protected $module;
+    /**
+     * @var string|null
+     */
+    protected $module = null;
 
     /**
      * @var array
      */
     protected $params = [];
 
+    /**
+     * @var array
+     */
+    protected $routes = [];
 
-    protected $routes;
+    /**
+     * @var string|null
+     */
+    protected $task = null;
 
-
-    protected $task;
-
-
+    /**
+     * @var bool
+     */
     protected $wasMatched = false;
 
 

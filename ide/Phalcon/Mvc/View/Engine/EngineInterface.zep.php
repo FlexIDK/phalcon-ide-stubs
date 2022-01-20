@@ -34,6 +34,8 @@ interface EngineInterface
     /**
      * Renders a view using the template engine
      *
+     * TODO: Change params to array type
+     *
      * @param string $path
      * @param mixed $params
      * @param bool $mustClean

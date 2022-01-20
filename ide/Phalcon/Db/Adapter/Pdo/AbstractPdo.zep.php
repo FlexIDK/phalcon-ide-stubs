@@ -38,8 +38,10 @@ abstract class AbstractPdo extends AbstractAdapter
 {
     /**
      * Last affected rows
+     *
+     * @var int
      */
-    protected $affectedRows;
+    protected $affectedRows = 0;
 
     /**
      * PDO Handler
@@ -52,7 +54,7 @@ abstract class AbstractPdo extends AbstractAdapter
     /**
      * Constructor for Phalcon\Db\Adapter\Pdo
      *
-     * @param array|\Phalcon\Config $descriptor = [
+     * @param array $descriptor = [
      *     'host' => 'localhost',
      *     'port' => '3306',
      *     'dbname' => 'blog',
@@ -205,11 +207,11 @@ abstract class AbstractPdo extends AbstractAdapter
      * ```
      *
      * @param string $sqlStatement
-     * @param mixed $bindParams
-     * @param mixed $bindTypes
+     * @param array $bindParams
+     * @param array $bindTypes
      * @return bool
      */
-    public function execute(string $sqlStatement, $bindParams = null, $bindTypes = null): bool
+    public function execute(string $sqlStatement, array $bindParams = [], array $bindTypes = []): bool
     {
     }
 
@@ -364,11 +366,11 @@ abstract class AbstractPdo extends AbstractAdapter
      * ```
      *
      * @param string $sqlStatement
-     * @param mixed $bindParams
-     * @param mixed $bindTypes
+     * @param array $bindParams
+     * @param array $bindTypes
      * @return 0|ResultInterface
      */
-    public function query(string $sqlStatement, $bindParams = null, $bindTypes = null)
+    public function query(string $sqlStatement, array $bindParams = [], array $bindTypes = [])
     {
     }
 

@@ -13,8 +13,6 @@ use Psr\Link\LinkInterface;
 use Psr\Link\LinkProviderInterface;
 
 /**
- * Class Phalcon\Http\Link\LinkProvider
- *
  * @property LinkInterface[] links
  */
 class LinkProvider implements \Psr\Link\LinkProviderInterface
@@ -54,7 +52,7 @@ class LinkProvider implements \Psr\Link\LinkProviderInterface
      * with that relationship are available, an empty array or \Traversable
      * MUST be returned.
      *
-     * @return LinkInterface[]|Traversable
+     * @return LinkInterface[]|\Traversable
      * @param mixed $rel
      */
     public function getLinksByRel($rel)

@@ -45,7 +45,7 @@ interface AdapterInterface
      * Reads data from the adapter
      *
      * @param string $key
-     * @param mixed $defaultValue
+     * @param mixed|null $defaultValue *
      * @return mixed
      */
     public function get(string $key, $defaultValue = null);
@@ -95,7 +95,7 @@ interface AdapterInterface
      *
      * @param string $key
      * @param mixed $value
-     * @param mixed $ttl
+     * @param \DateInterval|int|null $ttl
      * @return bool
      */
     public function set(string $key, $value, $ttl = null): bool;

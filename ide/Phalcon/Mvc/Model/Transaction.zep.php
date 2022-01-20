@@ -9,6 +9,7 @@
  */
 namespace Phalcon\Mvc\Model;
 
+use Phalcon\Db\Adapter\AdapterInterface;
 use Phalcon\Di\DiInterface;
 use Phalcon\Mvc\ModelInterface;
 use Phalcon\Mvc\Model\Transaction\Failed as TxFailed;
@@ -61,35 +62,51 @@ use Phalcon\Mvc\Model\TransactionInterface;
  */
 class Transaction implements \Phalcon\Mvc\Model\TransactionInterface
 {
-
+    /**
+     * @var bool
+     */
     protected $activeTransaction = false;
 
-
+    /**
+     * @var AdapterInterface
+     */
     protected $connection;
 
-
+    /**
+     * @var bool
+     */
     protected $isNewTransaction = true;
 
+    /**
+     * @var ManagerInterface|null
+     */
+    protected $manager = null;
 
-    protected $manager;
-
-
+    /**
+     * @var array
+     */
     protected $messages = [];
 
+    /**
+     * @var ModelInterface|null
+     */
+    protected $rollbackRecord = null;
 
-    protected $rollbackRecord;
-
-
+    /**
+     * @var bool
+     */
     protected $rollbackOnAbort = false;
 
-
+    /**
+     * @var bool
+     */
     protected $rollbackThrowException = false;
 
 
     /**
      * Phalcon\Mvc\Model\Transaction constructor
      *
-     * @param \Phalcon\Di\DiInterface $container
+     * @param DiInterface $container
      * @param bool $autoBegin
      * @param string $service
      */
@@ -118,9 +135,9 @@ class Transaction implements \Phalcon\Mvc\Model\TransactionInterface
     /**
      * Returns the connection related to transaction
      *
-     * @return \Phalcon\Db\Adapter\AdapterInterface
+     * @return AdapterInterface
      */
-    public function getConnection(): \Phalcon\Db\Adapter\AdapterInterface
+    public function getConnection(): AdapterInterface
     {
     }
 

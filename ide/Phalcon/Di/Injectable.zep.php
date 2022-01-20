@@ -46,9 +46,9 @@ abstract class Injectable implements \Phalcon\Di\InjectionAwareInterface
     /**
      * Dependency Injector
      *
-     * @var DiInterface
+     * @var DiInterface|null
      */
-    protected $container;
+    protected $container = null;
 
 
     /**

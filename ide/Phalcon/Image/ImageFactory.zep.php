@@ -20,6 +20,9 @@ use Phalcon\Image\Adapter\AdapterInterface;
 class ImageFactory extends AbstractFactory
 {
 
+    protected $exception = 'Phalcon\\\\Image\\\\Exception';
+
+
     /**
      * TagFactory constructor.
      *

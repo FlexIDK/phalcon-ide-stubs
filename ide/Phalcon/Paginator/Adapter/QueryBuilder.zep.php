@@ -40,11 +40,15 @@ class QueryBuilder extends \Phalcon\Paginator\Adapter\AbstractAdapter
 {
     /**
      * Paginator's data
+     *
+     * @var Builder
      */
     protected $builder;
 
     /**
      * Columns for count query if builder has having
+     *
+     * @var array|string
      */
     protected $columns;
 

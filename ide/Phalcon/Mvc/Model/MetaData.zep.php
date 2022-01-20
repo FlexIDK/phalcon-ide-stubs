@@ -87,21 +87,29 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
     const MODELS_REVERSE_COLUMN_MAP = 1;
 
     /**
-     * @var CacheAdapterInterface
+     * @var CacheAdapterInterface|null
      */
-    protected $adapter;
+    protected $adapter = null;
 
-
+    /**
+     * @var array
+     */
     protected $columnMap = [];
 
+    /**
+     * @var DiInterface|null
+     */
+    protected $container = null;
 
-    protected $container;
-
-
+    /**
+     * @var array
+     */
     protected $metaData = [];
 
-
-    protected $strategy;
+    /**
+     * @var StrategyInterface|null
+     */
+    protected $strategy = null;
 
 
     /**

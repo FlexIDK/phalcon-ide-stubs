@@ -18,8 +18,10 @@ use Phalcon\Tag\Select as SelectTag;
  */
 class Select extends \Phalcon\Forms\Element\AbstractElement
 {
-
-    protected $optionsValues;
+    /**
+     * @var object|array|null
+     */
+    protected $optionsValues = null;
 
 
     /**
@@ -29,7 +31,7 @@ class Select extends \Phalcon\Forms\Element\AbstractElement
      * @param array $attributes
      * @param string $name
      */
-    public function __construct(string $name, $options = null, $attributes = null)
+    public function __construct(string $name, $options = null, array $attributes = [])
     {
     }
 

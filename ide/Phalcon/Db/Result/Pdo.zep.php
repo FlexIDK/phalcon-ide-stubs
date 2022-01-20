@@ -30,17 +30,25 @@ use Phalcon\Db\Adapter\AdapterInterface;
  */
 class Pdo implements \Phalcon\Db\ResultInterface
 {
+    /**
+     * @var array
+     */
+    protected $bindParams = [];
 
-    protected $bindParams;
+    /**
+     * @var array
+     */
+    protected $bindTypes = [];
 
-
-    protected $bindTypes;
-
-
+    /**
+     * @var AdapterInterface
+     */
     protected $connection;
 
     /**
      * Active fetch mode
+     *
+     * @var int
      */
     protected $fetchMode = Enum::FETCH_OBJ;
 
@@ -51,14 +59,21 @@ class Pdo implements \Phalcon\Db\ResultInterface
      */
     protected $pdoStatement;
 
-
+    /**
+     * @var mixed
+     * TODO: Check if this property is used
+     */
     protected $result;
 
-
+    /**
+     * @var bool
+     */
     protected $rowCount = false;
 
-
-    protected $sqlStatement;
+    /**
+     * @var string|null
+     */
+    protected $sqlStatement = null;
 
 
     /**
@@ -90,7 +105,7 @@ class Pdo implements \Phalcon\Db\ResultInterface
      * $row = $result->fetch();
      * ```
      *
-     * @param long $number
+     * @param int $number *
      * @return void
      */
     public function dataSeek(int $number): void

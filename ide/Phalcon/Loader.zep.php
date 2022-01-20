@@ -41,7 +41,9 @@ use Phalcon\Events\EventsAwareInterface;
  */
 class Loader implements \Phalcon\Events\EventsAwareInterface
 {
-
+    /**
+     * @var string|null
+     */
     protected $checkedPath = null;
 
     /**
@@ -54,7 +56,9 @@ class Loader implements \Phalcon\Events\EventsAwareInterface
      */
     protected $directories = [];
 
-
+    /**
+     * @var ManagerInterface|null
+     */
     protected $eventsManager = null;
 
     /**
@@ -62,7 +66,9 @@ class Loader implements \Phalcon\Events\EventsAwareInterface
      */
     protected $extensions = ['php'];
 
-
+    /**
+     * @var string
+     */
     protected $fileCheckingCallback = 'is_file';
 
     /**
@@ -71,7 +77,7 @@ class Loader implements \Phalcon\Events\EventsAwareInterface
     protected $files = [];
 
     /**
-     * @var bool
+     * @var string|null
      */
     protected $foundPath = null;
 
@@ -126,9 +132,9 @@ class Loader implements \Phalcon\Events\EventsAwareInterface
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface
+     * @return ManagerInterface|null
      */
-    public function getEventsManager(): ManagerInterface
+    public function getEventsManager(): ?ManagerInterface
     {
     }
 

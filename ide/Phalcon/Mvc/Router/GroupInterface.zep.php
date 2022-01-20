@@ -66,8 +66,8 @@ interface GroupInterface
      * ```
      *
      * @param string $pattern
-     * @param mixed $paths
-     * @param mixed $httpMethods
+     * @param array|string|null $paths
+     * @param array|string|null $httpMethods *
      * @return RouteInterface
      */
     public function add(string $pattern, $paths = null, $httpMethods = null): RouteInterface;
@@ -76,7 +76,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is CONNECT
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addConnect(string $pattern, $paths = null): RouteInterface;
@@ -85,7 +85,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is DELETE
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addDelete(string $pattern, $paths = null): RouteInterface;
@@ -94,7 +94,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is GET
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addGet(string $pattern, $paths = null): RouteInterface;
@@ -103,7 +103,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is HEAD
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addHead(string $pattern, $paths = null): RouteInterface;
@@ -112,7 +112,7 @@ interface GroupInterface
      * Add a route to the router that only match if the HTTP method is OPTIONS
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addOptions(string $pattern, $paths = null): RouteInterface;
@@ -121,7 +121,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is PATCH
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addPatch(string $pattern, $paths = null): RouteInterface;
@@ -130,7 +130,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is POST
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addPost(string $pattern, $paths = null): RouteInterface;
@@ -139,7 +139,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is PURGE
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addPurge(string $pattern, $paths = null): RouteInterface;
@@ -148,7 +148,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is PUT
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addPut(string $pattern, $paths = null): RouteInterface;
@@ -157,7 +157,7 @@ interface GroupInterface
      * Adds a route to the router that only match if the HTTP method is TRACE
      *
      * @param string $pattern
-     * @param mixed $paths
+     * @param array|string|null $paths *
      * @return RouteInterface
      */
     public function addTrace(string $pattern, $paths = null): RouteInterface;

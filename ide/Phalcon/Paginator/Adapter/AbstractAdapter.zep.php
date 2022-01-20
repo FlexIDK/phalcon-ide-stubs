@@ -20,16 +20,22 @@ abstract class AbstractAdapter implements \Phalcon\Paginator\Adapter\AdapterInte
 {
     /**
      * Configuration of paginator
+     *
+     * @var array
      */
     protected $config;
 
     /**
      * Number of rows to show in the paginator. By default is null
+     *
+     * @var int|null
      */
     protected $limitRows = null;
 
     /**
      * Current page in paginate
+     *
+     * @var int|null
      */
     protected $page = null;
 

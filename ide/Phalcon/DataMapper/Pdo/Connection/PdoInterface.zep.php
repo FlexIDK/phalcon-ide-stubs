@@ -96,7 +96,7 @@ interface PdoInterface
      * @param string $statement
      * @param array  $options
      *
-     * @return PDOStatement|false
+     * @return \PDOStatement|false
      */
     public function prepare(string $statement, array $options = []);
 
@@ -107,7 +107,7 @@ interface PdoInterface
      * @param string $statement
      * @param mixed  ...$fetch
      *
-     * @return PDOStatement|false
+     * @return \PDOStatement|false
      */
     public function query(string $statement);
 

@@ -11,6 +11,7 @@ namespace Phalcon\Logger\Formatter;
 
 use DateTime;
 use Phalcon\Logger\Item;
+use Phalcon\Support\Helper\Str\Interpolate;
 
 /**
  * Phalcon\Logger\Formatter\Line
@@ -53,7 +54,7 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
      * @param string $format
      * @param string $dateFormat
      */
-    public function __construct(string $format = '[%date%][%type%] %message%', string $dateFormat = 'c')
+    public function __construct(string $format = '[%date%][%level%] %message%', string $dateFormat = 'c')
     {
     }
 

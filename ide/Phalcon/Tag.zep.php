@@ -59,47 +59,67 @@ class Tag
 
     const XHTML5 = 11;
 
-
+    /**
+     * @var bool
+     */
     static protected $autoEscape = true;
 
     /**
      * DI Container
+     *
+     * @var DiInterface|null
      */
-    static protected $container;
+    static protected $container = null;
 
     /**
      * Pre-assigned values for components
+     *
+     * @var array
      */
     static protected $displayValues;
 
+    /**
+     * @var array
+     */
+    static protected $documentAppendTitle;
 
-    static protected $documentAppendTitle = null;
-
-
-    static protected $documentPrependTitle = null;
+    /**
+     * @var array
+     */
+    static protected $documentPrependTitle;
 
     /**
      * HTML document title
+     *
+     * @var string|null
      */
     static protected $documentTitle = null;
 
-
+    /**
+     * @var string|null
+     */
     static protected $documentTitleSeparator = null;
 
-
+    /**
+     * @var int
+     */
     static protected $documentType = 11;
 
-
+    /**
+     * @var EscaperInterface|null
+     */
     static protected $escaperService = null;
 
-
+    /**
+     * @var UrlInterface|null
+     */
     static protected $urlService = null;
 
 
     /**
      * Appends a text to current document title
      *
-     * @param mixed $title
+     * @param array|string $title
      * @return void
      */
     public static function appendTitle($title): void
@@ -485,7 +505,7 @@ class Tag
     /**
      * Prepends a text to current document title
      *
-     * @param mixed $title
+     * @param array|string $title
      * @return void
      */
     public static function prependTitle($title): void

@@ -24,15 +24,17 @@ use Phalcon\Di\AbstractInjectionAware;
  */
 class Manager extends AbstractInjectionAware
 {
-
-    protected $collections;
+    /**
+     * @var array
+     */
+    protected $collections = [];
 
     /**
      * Options configure
      *
      * @var array
      */
-    protected $options;
+    protected $options = [];
 
     /**
      * @var bool
@@ -94,12 +96,12 @@ class Manager extends AbstractInjectionAware
      * @param string $path
      * @param mixed $local
      * @param bool $filter
-     * @param mixed $attributes
+     * @param array $attributes
      * @param string $version
      * @param bool $autoVersion
      * @return Manager
      */
-    public function addCss(string $path, $local = true, bool $filter = true, $attributes = null, string $version = null, bool $autoVersion = false): Manager
+    public function addCss(string $path, $local = true, bool $filter = true, array $attributes = [], string $version = null, bool $autoVersion = false): Manager
     {
     }
 
@@ -159,12 +161,12 @@ class Manager extends AbstractInjectionAware
      * @param string $path
      * @param mixed $local
      * @param bool $filter
-     * @param mixed $attributes
+     * @param array $attributes
      * @param string $version
      * @param bool $autoVersion
      * @return Manager
      */
-    public function addJs(string $path, $local = true, bool $filter = true, $attributes = null, string $version = null, bool $autoVersion = false): Manager
+    public function addJs(string $path, $local = true, bool $filter = true, array $attributes = [], string $version = null, bool $autoVersion = false): Manager
     {
     }
 
@@ -259,7 +261,7 @@ class Manager extends AbstractInjectionAware
     /**
      * Traverses a collection calling the callback to generate its HTML
      *
-     * @param callback $callback
+     * @param Collection $callback
      * @param string $type
      * @param Collection $collection
      * @return string|null

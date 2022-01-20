@@ -20,25 +20,36 @@ use Phalcon\Mvc\View\Exception;
  */
 class Volt extends \Phalcon\Mvc\View\Engine\AbstractEngine implements \Phalcon\Events\EventsAwareInterface
 {
-
+    /**
+     * @var Compiler
+     */
     protected $compiler;
 
-
+    /**
+     * @var ManagerInterface|null
+     */
     protected $eventsManager;
 
+    /**
+     * @var array
+     */
+    protected $macros = [];
 
-    protected $macros;
-
-
-    protected $options;
+    /**
+     * @var array
+     */
+    protected $options = [];
 
 
     /**
      * Checks if a macro is defined and calls it
      *
+     * @params string name
+     * @params array arguments
+     *
+     * @return mixed
      * @param string $name
      * @param array $arguments
-     * @return mixed
      */
     public function callMacro(string $name, array $arguments = [])
     {
@@ -47,10 +58,10 @@ class Volt extends \Phalcon\Mvc\View\Engine\AbstractEngine implements \Phalcon\E
     /**
      * Performs a string conversion
      *
+     * @return string
      * @param string $text
      * @param string $from
      * @param string $to
-     * @return string
      */
     public function convertEncoding(string $text, string $from, string $to): string
     {
@@ -87,7 +98,7 @@ class Volt extends \Phalcon\Mvc\View\Engine\AbstractEngine implements \Phalcon\E
      * Checks if the needle is included in the haystack
      *
      * @param mixed $needle
-     * @param mixed $haystack
+     * @param array|string $haystack *
      * @return bool
      */
     public function isIncluded($needle, $haystack): bool
@@ -97,7 +108,7 @@ class Volt extends \Phalcon\Mvc\View\Engine\AbstractEngine implements \Phalcon\E
     /**
      * Length filter. If an array/object is passed a count is performed otherwise a strlen/mb_strlen
      *
-     * @param mixed $item
+     * @param mixed $item *
      * @return int
      */
     public function length($item): int
@@ -107,18 +118,21 @@ class Volt extends \Phalcon\Mvc\View\Engine\AbstractEngine implements \Phalcon\E
     /**
      * Renders a view using the template engine
      *
-     * @param string $templatePath
+     * @param string $path
      * @param mixed $params
+     * @params bool mustClean
+     *
+     * @return void
      * @param bool $mustClean
      */
-    public function render(string $templatePath, $params, bool $mustClean = false)
+    public function render(string $path, $params, bool $mustClean = false)
     {
     }
 
     /**
      * Sets the events manager
      *
-     * @param \Phalcon\Events\ManagerInterface $eventsManager
+     * @param ManagerInterface $eventsManager *
      * @return void
      */
     public function setEventsManager(\Phalcon\Events\ManagerInterface $eventsManager): void
@@ -128,7 +142,8 @@ class Volt extends \Phalcon\Mvc\View\Engine\AbstractEngine implements \Phalcon\E
     /**
      * Set Volt's options
      *
-     * @param array $options
+     * @param array $options *
+     * @return void
      */
     public function setOptions(array $options)
     {

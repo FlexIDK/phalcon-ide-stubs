@@ -22,7 +22,7 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
     /**
      * Returns the fragment of the URL
      *
-     * @return string
+     * @var string
      */
     protected $fragment = '';
 
@@ -36,7 +36,7 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
      *
      * @see http://tools.ietf.org/html/rfc3986#section-3.2.2
      *
-     * @return string
+     * @var string
      */
     protected $host = '';
 
@@ -48,7 +48,7 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
     /**
      * Returns the path of the URL
      *
-     * @return string
+     * @var string
      */
     protected $path = '';
 
@@ -65,14 +65,14 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
      * If no port is present, but a scheme is present, this method MAY return
      * the standard port for that scheme, but SHOULD return null.
      *
-     * @return int|null
+     * @var int|null
      */
     protected $port = null;
 
     /**
      * Returns the query of the URL
      *
-     * @return string
+     * @var string
      */
     protected $query = '';
 
@@ -89,7 +89,7 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
      *
      * @see https://tools.ietf.org/html/rfc3986#section-3.1
      *
-     * @return string
+     * @var string
      */
     protected $scheme = 'https';
 
@@ -102,8 +102,10 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
     /**
      *
      * Returns the fragment of the URL
+     *
+     * @return string
      */
-    public function getFragment()
+    public function getFragment(): string
     {
     }
 
@@ -116,16 +118,20 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
      * The value returned MUST be normalized to lowercase, per RFC 3986
      *
      * Section 3.2.2.
+     *
+     * @return string
      */
-    public function getHost()
+    public function getHost(): string
     {
     }
 
     /**
      *
      * Returns the path of the URL
+     *
+     * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
     }
 
@@ -146,16 +152,20 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
      * If no port is present, but a scheme is present, this method MAY return
      *
      * the standard port for that scheme, but SHOULD return null.
+     *
+     * @return int|null
      */
-    public function getPort()
+    public function getPort(): ?int
     {
     }
 
     /**
      *
      * Returns the query of the URL
+     *
+     * @return string
      */
-    public function getQuery()
+    public function getQuery(): string
     {
     }
 
@@ -172,8 +182,10 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
      * The trailing ":" character is not part of the scheme and MUST NOT be
      *
      * added.
+     *
+     * @return string
      */
-    public function getScheme()
+    public function getScheme(): string
     {
     }
 
@@ -439,7 +451,7 @@ final class Uri extends \Phalcon\Http\Message\AbstractCommon implements \Psr\Htt
      *
      * @return int|null
      */
-    private function filterPort($port): int
+    private function filterPort($port): ?int
     {
     }
 

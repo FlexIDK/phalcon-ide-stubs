@@ -28,7 +28,7 @@ use Phalcon\Storage\Serializer\SerializerInterface;
 abstract class AbstractAdapter implements \Phalcon\Storage\Adapter\AdapterInterface
 {
     /**
-     * @var mixed
+     * @var mixed|null
      */
     protected $adapter;
 
@@ -136,7 +136,7 @@ abstract class AbstractAdapter implements \Phalcon\Storage\Adapter\AdapterInterf
      * Reads data from the adapter
      *
      * @param string $key
-     * @param mixed $defaultValue
+     * @param mixed|null $defaultValue *
      * @return mixed
      */
     abstract public function get(string $key, $defaultValue = null);
@@ -178,7 +178,7 @@ abstract class AbstractAdapter implements \Phalcon\Storage\Adapter\AdapterInterf
      *
      * @param string $key
      * @param mixed $value
-     * @param mixed $ttl
+     * @param DateInterval|int|null $ttl
      * @return bool
      */
     abstract public function set(string $key, $value, $ttl = null): bool;
@@ -231,10 +231,9 @@ abstract class AbstractAdapter implements \Phalcon\Storage\Adapter\AdapterInterf
      * Returns unserialized data
      *
      * @param mixed $content
-     * @param mixed $defaultValue
      * @return mixed
      */
-    protected function getUnserializedData($content, $defaultValue = null)
+    protected function getUnserializedData($content)
     {
     }
 

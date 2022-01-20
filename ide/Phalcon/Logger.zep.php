@@ -9,6 +9,8 @@
  */
 namespace Phalcon;
 
+use DateTimeImmutable;
+use DateTimeZone;
 use Psr\Log\LoggerInterface;
 use Phalcon\Logger\Adapter\AdapterInterface;
 use Phalcon\Logger\Item;
@@ -84,6 +86,13 @@ class Logger implements \Psr\Log\LoggerInterface
     protected $adapters = [];
 
     /**
+     * The excluded adapters for this log process
+     *
+     * @var AdapterInterface[]
+     */
+    protected $excluded = [];
+
+    /**
      * Minimum log level for the logger
      *
      * @var int
@@ -96,11 +105,9 @@ class Logger implements \Psr\Log\LoggerInterface
     protected $name = '';
 
     /**
-     * The excluded adapters for this log process
-     *
-     * @var AdapterInterface[]
+     * @var DateTimeZone|null
      */
-    protected $excluded = [];
+    protected $timezone = null;
 
 
     /**
@@ -118,8 +125,9 @@ class Logger implements \Psr\Log\LoggerInterface
      *
      * @param string $name The name of the logger
      * @param array $adapters The collection of adapters to be used for logging (default [])
+     * @param DateTimeZone|null $timezone The timezone
      */
-    public function __construct(string $name, array $adapters = [])
+    public function __construct(string $name, array $adapters = [], \DateTimeZone $timezone = null)
     {
     }
 

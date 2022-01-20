@@ -28,33 +28,49 @@ use Phalcon\Validation\ValidationInterface;
 class Form extends Injectable implements \Countable, \Iterator, \Phalcon\Html\Attributes\AttributesInterface
 {
     /**
-     * @var Attributes | null
+     * @var AttributesInterface|null
      */
     protected $attributes = null;
 
+    /**
+     * @var array
+     */
+    protected $data = [];
 
-    protected $data;
-
-
+    /**
+     * @var array
+     */
     protected $elements = [];
 
+    /**
+     * @var array
+     */
+    protected $elementsIndexed = [];
 
-    protected $elementsIndexed;
+    /**
+     * @var object|null
+     */
+    protected $entity = null;
 
+    /**
+     * @var Messages|array|null
+     */
+    protected $messages = null;
 
-    protected $entity;
+    /**
+     * @var int
+     */
+    protected $position = 0;
 
+    /**
+     * @var array
+     */
+    protected $options = [];
 
-    protected $messages;
-
-
-    protected $position;
-
-
-    protected $options;
-
-
-    protected $validation;
+    /**
+     * @var ValidationInterface|null
+     */
+    protected $validation = null;
 
 
     /**
@@ -64,7 +80,9 @@ class Form extends Injectable implements \Countable, \Iterator, \Phalcon\Html\At
     {
     }
 
-
+    /**
+     * @return ValidationInterface|null
+     */
     public function getValidation()
     {
     }

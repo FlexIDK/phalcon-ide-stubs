@@ -35,6 +35,9 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      *     'persistent' => false,
      *     'auth' => '',
      *     'socket' => '',
+     *     'connectionTimeout' => 0,
+     *     'retryInterval' => null,
+     *     'readTimeout' => 0,
      *     'defaultSerializer' => 'Php',
      *     'lifetime' => 3600,
      *     'serializer' => null,
@@ -85,8 +88,7 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * Reads data from the adapter
      *
      * @param string $key
-     * @param null   $defaultValue
-     *
+     * @param mixed|null $defaultValue *
      * @return mixed
      * @throws Exception
      */
@@ -147,8 +149,7 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      *
      * @param string $key
      * @param mixed  $value
-     * @param null   $ttl
-     *
+     * @param \DateInterval|int|null $ttl *
      * @return bool
      * @throws Exception
      */

@@ -106,9 +106,9 @@ abstract class AbstractAdapter implements \Phalcon\Acl\Adapter\AdapterInterface,
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface
+     * @return ManagerInterface|null
      */
-    public function getEventsManager(): ManagerInterface
+    public function getEventsManager(): ?ManagerInterface
     {
     }
 

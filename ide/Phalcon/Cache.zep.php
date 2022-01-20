@@ -160,10 +160,10 @@ class Cache implements \Psr\SimpleCache\CacheInterface
     /**
      * Checks the key. If it contains invalid characters an exception is thrown
      *
-     * @param mixed $key
+     * @param string $key
      * @return void
      */
-    protected function checkKey($key): void
+    protected function checkKey(string $key): void
     {
     }
 

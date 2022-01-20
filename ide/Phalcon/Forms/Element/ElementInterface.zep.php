@@ -39,9 +39,8 @@ interface ElementInterface
     /**
      * Adds a group of validators
      *
-     * @param \Phalcon\Validation\ValidatorInterface[]
-     * @param array $validators
-     * @param bool $merge
+     * @param \Phalcon\Validation\ValidatorInterface[] $validators
+     * @param bool $merge *
      * @return ElementInterface
      */
     public function addValidators(array $validators, bool $merge = true): ElementInterface;

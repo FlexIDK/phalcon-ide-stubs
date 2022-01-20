@@ -41,22 +41,34 @@ use Phalcon\Events\ManagerInterface;
  */
 class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\Events\EventsAwareInterface
 {
+    /**
+     * @var DiInterface|null
+     */
+    protected $container = null;
 
-    protected $container;
+    /**
+     * @var string|null
+     */
+    protected $content = null;
 
+    /**
+     * @var CookiesInterface|null
+     */
+    protected $cookies = null;
 
-    protected $content;
+    /**
+     * @var ManagerInterface|null
+     */
+    protected $eventsManager = null;
 
+    /**
+     * @var string|null
+     */
+    protected $file = null;
 
-    protected $cookies;
-
-
-    protected $eventsManager;
-
-
-    protected $file;
-
-
+    /**
+     * @var Headers
+     */
     protected $headers;
 
     /**
@@ -64,8 +76,10 @@ class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\Injection
      */
     protected $sent = false;
 
-
-    protected $statusCodes;
+    /**
+     * @var array
+     */
+    protected $statusCodes = [];
 
 
     /**
@@ -119,9 +133,9 @@ class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\Injection
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface
+     * @return ManagerInterface|null
      */
-    public function getEventsManager(): ManagerInterface
+    public function getEventsManager(): ?ManagerInterface
     {
     }
 

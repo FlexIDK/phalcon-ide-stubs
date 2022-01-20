@@ -9,6 +9,8 @@
  */
 namespace Phalcon\Logger;
 
+use DateTimeImmutable;
+
 /**
  * Phalcon\Logger\Item
  *
@@ -31,25 +33,25 @@ class Item
     protected $message;
 
     /**
-     * Log message
-     *
-     * @var string
-     */
-    protected $name;
-
-    /**
-     * Log timestamp
-     *
-     * @var integer
-     */
-    protected $time;
-
-    /**
      * Log type
      *
      * @var integer
      */
-    protected $type;
+    protected $level;
+
+    /**
+     * Log message
+     *
+     * @var string
+     */
+    protected $levelName;
+
+    /**
+     * Log timestamp
+     *
+     * @var DateTimeImmutable
+     */
+    protected $time;
 
 
     /**
@@ -74,11 +76,21 @@ class Item
 
     /**
      *
+     * Log type
+     *
+     * @return mixed
+     */
+    public function getLevel()
+    {
+    }
+
+    /**
+     *
      * Log message
      *
      * @return string
      */
-    public function getName(): string
+    public function getLevelName(): string
     {
     }
 
@@ -93,26 +105,15 @@ class Item
     }
 
     /**
-     *
-     * Log type
-     *
-     * @return mixed
-     */
-    public function getType()
-    {
-    }
-
-    /**
      * Phalcon\Logger\Item constructor
      *
-     * @todo Remove the time or change the signature to an array
      * @param string $message
-     * @param string $name
-     * @param int $type
-     * @param int $time
-     * @param mixed $context
+     * @param string $levelName
+     * @param int $level
+     * @param \DateTimeImmutable $time
+     * @param array $context
      */
-    public function __construct(string $message, string $name, int $type, int $time = 0, $context = [])
+    public function __construct(string $message, string $levelName, int $level, \DateTimeImmutable $time, array $context = [])
     {
     }
 
