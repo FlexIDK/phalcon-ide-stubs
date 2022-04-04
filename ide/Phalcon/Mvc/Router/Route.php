@@ -205,9 +205,9 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
     /**
      * Returns the hostname restriction if any
      *
-     * @return string
+     * @return string|null
      */
-    public function getHostname(): string
+    public function getHostname(): ?string
     {
     }
 
@@ -223,9 +223,9 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
     /**
      * Returns the route's name
      *
-     * @return string
+     * @return string|null
      */
-    public function getName(): string
+    public function getName(): ?string
     {
     }
 

@@ -28,7 +28,7 @@ use Phalcon\Db\Adapter\AdapterInterface;
  * }
  * ```
  */
-class Pdo implements \Phalcon\Db\ResultInterface
+class PdoResult implements \Phalcon\Db\ResultInterface
 {
 
     /**

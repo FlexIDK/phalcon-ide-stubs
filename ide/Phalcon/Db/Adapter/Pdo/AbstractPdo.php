@@ -12,7 +12,7 @@ namespace Phalcon\Db\Adapter\Pdo;
 use Phalcon\Db\Adapter\AbstractAdapter;
 use Phalcon\Db\Column;
 use Phalcon\Db\Exception;
-use Phalcon\Db\Result\Pdo as ResultPdo;
+use Phalcon\Db\Result\PdoResult;
 use Phalcon\Db\ResultInterface;
 use Phalcon\Events\ManagerInterface;
 
