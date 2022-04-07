@@ -9,12 +9,11 @@
  */
 namespace Phalcon\Config\Adapter;
 
-use Phalcon\Config\Config;
+use Phalcon\Config;
 use Phalcon\Config\Exception;
-use Phalcon\Support\Traits\PhpFileTrait;
 
 /**
- * Reads ini files and converts them to Phalcon\Config\Config objects.
+ * Reads ini files and converts them to Phalcon\Config objects.
  *
  * Given the next configuration file:
  *
@@ -63,11 +62,9 @@ class Ini extends Config
      * Ini constructor.
      *
      * @param string $filePath
-     * @param int    $mode
-     *
-     * @throws Exception
+     * @param mixed $mode
      */
-    public function __construct(string $filePath, int $mode = 1)
+    public function __construct(string $filePath, $mode = null)
     {
     }
 
@@ -76,19 +73,9 @@ class Ini extends Config
      * implementation.
      *
      * @param mixed $ini
-     *
-     * @return array|float|int|mixed|string|null
+     * @return bool|double|int|string|null
      */
     protected function cast($ini)
-    {
-    }
-
-    /**
-     * @param array $ini
-     *
-     * @return array
-     */
-    protected function castArray(array $ini): array
     {
     }
 
@@ -96,21 +83,10 @@ class Ini extends Config
      * Build multidimensional array from string
      *
      * @param string $path
-     * @param mixed  $value
-     *
+     * @param mixed $value
      * @return array
      */
     protected function parseIniString(string $path, $value): array
-    {
-    }
-
-    /**
-     * @todo to be removed when we get traits
-     * @param string $filename
-     * @param bool $processSections
-     * @param int $scannerMode
-     */
-    protected function phpParseIniFile(string $filename, bool $processSections = false, int $scannerMode = 1)
     {
     }
 }

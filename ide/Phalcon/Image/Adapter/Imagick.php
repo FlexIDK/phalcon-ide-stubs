@@ -24,20 +24,15 @@ use Phalcon\Image\Exception;
  *
  * if ($image->save()) {
  *     echo "success";
+ *
  * }
  * ```
  */
 class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
 {
 
-    /**
-     * @var bool
-     */
     static protected $checked = false;
 
-    /**
-     * @var int
-     */
     static protected $version = 0;
 
     /**
@@ -82,9 +77,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * @link http://php.net/manual/ru/imagick.constants.php#imagick.constants.resourcetypes
      * @param int $type
      * @param int $limit
-     * @return void
      */
-    public function setResourceLimit(int $type, int $limit): void
+    public function setResourceLimit(int $type, int $limit)
     {
     }
 
@@ -95,9 +89,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * @param int $g
      * @param int $b
      * @param int $opacity
-     * @return void
      */
-    protected function processBackground(int $r, int $g, int $b, int $opacity): void
+    protected function processBackground(int $r, int $g, int $b, int $opacity)
     {
     }
 
@@ -105,9 +98,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * Blur image
      *
      * @param int $radius Blur radius
-     * @return void
      */
-    protected function processBlur(int $radius): void
+    protected function processBlur(int $radius)
     {
     }
 
@@ -118,9 +110,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * @param int $height
      * @param int $offsetX
      * @param int $offsetY
-     * @return void
      */
-    protected function processCrop(int $width, int $height, int $offsetX, int $offsetY): void
+    protected function processCrop(int $width, int $height, int $offsetX, int $offsetY)
     {
     }
 
@@ -128,9 +119,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * Execute a flip.
      *
      * @param int $direction
-     * @return void
      */
-    protected function processFlip(int $direction): void
+    protected function processFlip(int $direction)
     {
     }
 
@@ -142,9 +132,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * @param int $height  new height
      * @param int $deltaX How much the seam can traverse on x-axis. Passing 0 causes the seams to be straight.
      * @param int $rigidity Introduces a bias for non-straight seams. This parameter is typically 0.
-     * @return void
      */
-    protected function processLiquidRescale(int $width, int $height, int $deltaX, int $rigidity): void
+    protected function processLiquidRescale(int $width, int $height, int $deltaX, int $rigidity)
     {
     }
 
@@ -152,9 +141,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * Composite one image onto another
      *
      * @param AdapterInterface $image
-     * @return void
      */
-    protected function processMask(AdapterInterface $image): void
+    protected function processMask(AdapterInterface $image)
     {
     }
 
@@ -162,9 +150,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * Pixelate image
      *
      * @param int $amount amount to pixelate
-     * @return void
      */
-    protected function processPixelate(int $amount): void
+    protected function processPixelate(int $amount)
     {
     }
 
@@ -174,9 +161,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * @param int $height
      * @param int $opacity
      * @param bool $fadeIn
-     * @return void
      */
-    protected function processReflection(int $height, int $opacity, bool $fadeIn): void
+    protected function processReflection(int $height, int $opacity, bool $fadeIn)
     {
     }
 
@@ -196,9 +182,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      *
      * @param int $width
      * @param int $height
-     * @return void
      */
-    protected function processResize(int $width, int $height): void
+    protected function processResize(int $width, int $height)
     {
     }
 
@@ -206,9 +191,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      * Execute a rotation.
      *
      * @param int $degrees
-     * @return void
      */
-    protected function processRotate(int $degrees): void
+    protected function processRotate(int $degrees)
     {
     }
 
@@ -217,9 +201,8 @@ class Imagick extends \Phalcon\Image\Adapter\AbstractAdapter
      *
      * @param string $file
      * @param int $quality
-     * @return void
      */
-    protected function processSave(string $file, int $quality): void
+    protected function processSave(string $file, int $quality)
     {
     }
 

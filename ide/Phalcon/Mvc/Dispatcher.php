@@ -21,7 +21,7 @@ use Phalcon\Dispatcher\AbstractDispatcher as BaseDispatcher;
  * controller.
  *
  * ```php
- * $di = new \Phalcon\Di\Di();
+ * $di = new \Phalcon\Di();
  *
  * $dispatcher = new \Phalcon\Mvc\Dispatcher();
  *

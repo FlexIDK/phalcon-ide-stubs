@@ -30,6 +30,7 @@ class Role implements \Phalcon\Acl\RoleInterface
     private $description;
 
     /**
+     *
      * Role name
      *
      * @return string
@@ -39,6 +40,7 @@ class Role implements \Phalcon\Acl\RoleInterface
     }
 
     /**
+     *
      * Role name
      *
      * @return string
@@ -48,6 +50,7 @@ class Role implements \Phalcon\Acl\RoleInterface
     }
 
     /**
+     *
      * Role description
      *
      * @return string

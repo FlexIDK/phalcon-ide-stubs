@@ -19,7 +19,7 @@ interface DispatcherInterface
     /**
      * Dispatches a handle action taking into account the routing parameters
      *
-     * @return mixed
+     * @return object|false
      */
     public function dispatch();
 

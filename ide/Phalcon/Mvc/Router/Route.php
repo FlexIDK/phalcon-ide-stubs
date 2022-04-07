@@ -17,70 +17,31 @@ namespace Phalcon\Mvc\Router;
 class Route implements \Phalcon\Mvc\Router\RouteInterface
 {
 
-    /**
-     * @var callable|null
-     */
-    protected $beforeMatch = null;
+    protected $beforeMatch;
 
-    /**
-     * @var string|null
-     */
-    protected $compiledPattern = null;
+    protected $compiledPattern;
 
-    /**
-     * @var array
-     */
-    protected $converters = [];
+    protected $converters;
 
-    /**
-     * @var GroupInterface|null
-     */
-    protected $group = null;
+    protected $group;
 
-    /**
-     * @var string|null
-     */
-    protected $hostname = null;
+    protected $hostname;
 
-    /**
-     * @var string|null
-     */
-    protected $id = null;
+    protected $id;
 
-    /**
-     * @var array|string
-     */
-    protected $methods = [];
+    protected $methods;
 
-    /**
-     * @var callable|null
-     */
-    protected $match = null;
+    protected $match;
 
-    /**
-     * @var string|null
-     */
-    protected $name = null;
+    protected $name;
 
-    /**
-     * @var array
-     */
-    protected $paths = [];
+    protected $paths;
 
-    /**
-     * @var string
-     */
     protected $pattern;
 
-    /**
-     * @var int
-     */
     static protected $uniqueId = 0;
 
-    /**
-     * @return string|null
-     */
-    public function getId(): ?string
+    public function getId()
     {
     }
 
@@ -119,7 +80,7 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
      * );
      * ```
      *
-     * @param callable $callback
+     * @param mixed $callback
      * @return RouteInterface
      */
     public function beforeMatch($callback): RouteInterface
@@ -205,9 +166,9 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
     /**
      * Returns the hostname restriction if any
      *
-     * @return string|null
+     * @return string
      */
-    public function getHostname(): ?string
+    public function getHostname(): string
     {
     }
 
@@ -223,9 +184,9 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
     /**
      * Returns the route's name
      *
-     * @return string|null
+     * @return string
      */
-    public function getName(): ?string
+    public function getName(): string
     {
     }
 

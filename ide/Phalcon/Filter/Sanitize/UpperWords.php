@@ -20,8 +20,6 @@ class UpperWords
 
     /**
      * @param string $input The text to sanitize
-     *
-     * @return false|string|string[]
      */
     public function __invoke(string $input)
     {

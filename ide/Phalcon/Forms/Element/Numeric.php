@@ -19,9 +19,14 @@ use Phalcon\Tag;
 class Numeric extends \Phalcon\Forms\Element\AbstractElement
 {
 
-    /**
-     * @var string
-     */
-    protected $method = 'inputNumeric';
 
+    /**
+     * Renders the element widget returning HTML
+     *
+     * @param array $attributes
+     * @return string
+     */
+    public function render(array $attributes = []): string
+    {
+    }
 }

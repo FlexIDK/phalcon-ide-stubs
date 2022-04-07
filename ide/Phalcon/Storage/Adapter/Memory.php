@@ -9,32 +9,39 @@
  */
 namespace Phalcon\Storage\Adapter;
 
-use DateInterval;
-use Exception as BaseException;
+use Phalcon\Collection;
+use Phalcon\Collection\CollectionInterface;
+use Phalcon\Helper\Arr;
+use Phalcon\Storage\Exception;
 use Phalcon\Storage\SerializerFactory;
-use Phalcon\Support\Exception as SupportException;
+use Phalcon\Storage\Serializer\SerializerInterface;
 
 /**
  * Memory adapter
- *
- * @property array $data
- * @property array $options
  */
 class Memory extends \Phalcon\Storage\Adapter\AbstractAdapter
 {
 
     /**
-     * @var array
+     * @var Collection|CollectionInterface
      */
-    protected $data = [];
+    protected $data;
 
     /**
-     * Memory constructor.
+     * @var array
+     */
+    protected $options = [];
+
+    /**
+     * Constructor
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
-     *
-     * @throws SupportException
+     * @param array $options = [
+     *     'defaultSerializer' => 'Php',
+     *     'lifetime' => 3600,
+     *     'serializer' => null,
+     *     'prefix' => ''
+     * ]
+     * @param \Phalcon\Storage\SerializerFactory $factory
      */
     public function __construct(\Phalcon\Storage\SerializerFactory $factory, array $options = [])
     {
@@ -62,7 +69,7 @@ class Memory extends \Phalcon\Storage\Adapter\AbstractAdapter
     }
 
     /**
-     * Deletes data from the adapter
+     * Reads data from the adapter
      *
      * @param string $key
      *
@@ -85,11 +92,19 @@ class Memory extends \Phalcon\Storage\Adapter\AbstractAdapter
     }
 
     /**
+     * Always returns null
+     *
+     * @return null
+     */
+    public function getAdapter()
+    {
+    }
+
+    /**
      * Stores data in the adapter
      *
-     * @param string $prefix
-     *
      * @return array
+     * @param string $prefix
      */
     public function getKeys(string $prefix = ''): array
     {
@@ -121,27 +136,13 @@ class Memory extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Stores data in the adapter
      *
-     * @param string                 $key
-     * @param mixed                  $value
-     * @param \DateInterval|int|null $ttl
-     *
-     * @return bool
-     * @throws BaseException
-     */
-    public function set(string $key, $value, $ttl = null): bool
-    {
-    }
-
-    /**
-     * Stores data in the adapter forever. The key needs to manually deleted
-     * from the adapter.
-     *
      * @param string $key
      * @param mixed  $value
+     * @param null   $ttl
      *
      * @return bool
      */
-    public function setForever(string $key, $value): bool
+    public function set(string $key, $value, $ttl = null): bool
     {
     }
 }

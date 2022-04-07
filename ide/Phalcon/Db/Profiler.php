@@ -65,16 +65,16 @@ class Profiler
 {
 
     /**
-     * Active Item
+     * Active Phalcon\Db\Profiler\Item
      *
-     * @var Item
+     * @var Phalcon\Db\Profiler\Item
      */
     protected $activeProfile;
 
     /**
-     * All the Items in the active profile
+     * All the Phalcon\Db\Profiler\Item in the active profile
      *
-     * @var Item[]
+     * @var \Phalcon\Db\Profiler\Item[]
      */
     protected $allProfiles;
 

@@ -19,10 +19,8 @@ class Remove
 
 
     /**
-     * @param mixed $input
+     * @param mixed $input The text to sanitize
      * @param mixed $replace
-     *
-     * @return string|string[]
      */
     public function __invoke($input, $replace)
     {

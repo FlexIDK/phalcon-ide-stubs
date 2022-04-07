@@ -9,11 +9,10 @@
  */
 namespace Phalcon\Storage\Adapter;
 
-use DateInterval;
-use Exception as BaseException;
-use Phalcon\Storage\Exception as StorageException;
+use Phalcon\Helper\Arr;
+use Phalcon\Storage\Exception;
 use Phalcon\Storage\SerializerFactory;
-use Phalcon\Support\Exception as SupportException;
+use Phalcon\Storage\Serializer\SerializerInterface;
 
 /**
  * Libmemcached adapter
@@ -22,17 +21,27 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
 {
 
     /**
-     * @var string
+     * @var array
      */
-    protected $prefix = 'ph-memc-';
+    protected $options = [];
 
     /**
      * Libmemcached constructor.
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
-     *
-     * @throws SupportException
+     * @param array $options = [
+     *     'servers' => [
+     *         [
+     *             'host' => '127.0.0.1',
+     *             'port' => 11211,
+     *             'weight' => 1
+     *         ]
+     *     ],
+     *     'defaultSerializer' => 'Php',
+     *     'lifetime' => 3600,
+     *     'serializer' => null,
+     *     'prefix' => ''
+     * ]
+     * @param \Phalcon\Storage\SerializerFactory $factory
      */
     public function __construct(\Phalcon\Storage\SerializerFactory $factory, array $options = [])
     {
@@ -42,7 +51,7 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
      * Flushes/clears the cache
      *
      * @return bool
-     * @throws StorageException
+     * @throws Exception
      */
     public function clear(): bool
     {
@@ -52,10 +61,8 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
      * Decrements a stored number
      *
      * @param string $key
-     * @param int    $value
-     *
-     * @return bool|int
-     * @throws StorageException
+     * @param int $value
+     * @return int|bool
      */
     public function decrement(string $key, int $value = 1)
     {
@@ -67,7 +74,7 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
      * @param string $key
      *
      * @return bool
-     * @throws StorageException
+     * @throws Exception
      */
     public function delete(string $key): bool
     {
@@ -76,11 +83,11 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Reads data from the adapter
      *
-     * @param string     $key
-     * @param mixed|null $defaultValue
+     * @param string $key
+     * @param null   $defaultValue
      *
-     * @return mixed|null
-     * @throws StorageException
+     * @return mixed
+     * @throws Exception
      */
     public function get(string $key, $defaultValue = null)
     {
@@ -90,8 +97,8 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
      * Returns the already connected adapter or connects to the Memcached
      * server(s)
      *
-     * @return \Memcached|null
-     * @throws StorageException
+     * @return \Memcached
+     * @throws Exception
      */
     public function getAdapter()
     {
@@ -100,10 +107,8 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Stores data in the adapter
      *
-     * @param string $prefix
-     *
      * @return array
-     * @throws StorageException
+     * @param string $prefix
      */
     public function getKeys(string $prefix = ''): array
     {
@@ -115,7 +120,7 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
      * @param string $key
      *
      * @return bool
-     * @throws StorageException
+     * @throws Exception
      */
     public function has(string $key): bool
     {
@@ -128,7 +133,7 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
      * @param int    $value
      *
      * @return bool|int
-     * @throws StorageException
+     * @throws Exception
      */
     public function increment(string $key, int $value = 1)
     {
@@ -137,50 +142,14 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Stores data in the adapter
      *
-     * @param string                 $key
-     * @param mixed                  $value
-     * @param \DateInterval|int|null $ttl
-     *
-     * @return bool
-     * @throws BaseException
-     * @throws StorageException
-     */
-    public function set(string $key, $value, $ttl = null): bool
-    {
-    }
-
-    /**
-     * Stores data in the adapter forever. The key needs to manually deleted
-     * from the adapter.
-     *
      * @param string $key
      * @param mixed  $value
+     * @param null   $ttl
      *
      * @return bool
+     * @throws Exception
      */
-    public function setForever(string $key, $value): bool
-    {
-    }
-
-    /**
-     * @param \Memcached $connection
-     * @param array      $client
-     *
-     * @return Libmemcached
-     * @throws StorageException
-     */
-    private function setOptions(\Memcached $connection, array $client): Libmemcached
-    {
-    }
-
-    /**
-     * @param \Memcached $connection
-     * @param string     $saslUser
-     * @param string     $saslPass
-     *
-     * @return Libmemcached
-     */
-    private function setSasl(\Memcached $connection, string $saslUser, string $saslPass): Libmemcached
+    public function set(string $key, $value, $ttl = null): bool
     {
     }
 
@@ -189,20 +158,8 @@ class Libmemcached extends \Phalcon\Storage\Adapter\AbstractAdapter
      * the custom one is set.
      *
      * @param \Memcached $connection
-     * @return void
      */
-    private function setSerializer(\Memcached $connection): void
-    {
-    }
-
-    /**
-     * @param \Memcached $connection
-     * @param array      $servers
-     *
-     * @return Libmemcached
-     * @throws StorageException
-     */
-    private function setServers(\Memcached $connection, array $servers): Libmemcached
+    private function setSerializer(\Memcached $connection)
     {
     }
 }

@@ -9,10 +9,15 @@
  */
 namespace Phalcon\Storage\Serializer;
 
+use InvalidArgumentException;
+
 /**
- * Class None
+ * This file is part of the Phalcon Framework.
  *
- * @package Phalcon\Storage\Serializer
+ * (c) Phalcon Team <team@phalcon.io>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  */
 class None extends \Phalcon\Storage\Serializer\AbstractSerializer
 {
@@ -30,9 +35,7 @@ class None extends \Phalcon\Storage\Serializer\AbstractSerializer
     /**
      * Unserializes data
      *
-     * @param string $data
-     *
-     * @retrun void
+     * @param mixed $data
      * @return void
      */
     public function unserialize($data): void

@@ -11,7 +11,7 @@ namespace Phalcon\Annotations;
 
 use Phalcon\Annotations\Adapter\AdapterInterface;
 use Phalcon\Factory\AbstractFactory;
-use Phalcon\Support\Helper\Arr\Get;
+use Phalcon\Helper\Arr;
 
 /**
  * Factory to create annotations components
@@ -30,7 +30,7 @@ class AnnotationsFactory extends AbstractFactory
     }
 
     /**
-     * @param array|\Phalcon\Config\Config $config = [
+     * @param array|\Phalcon\Config $config = [
      *     'adapter' => 'apcu',
      *     'options' => [
      *         'prefix' => 'phalcon',
@@ -62,18 +62,11 @@ class AnnotationsFactory extends AbstractFactory
     }
 
     /**
-     * @return string
-     */
-    protected function getExceptionClass(): string
-    {
-    }
-
-    /**
-     * Returns the available adapters
+     * The available adapters
      *
-     * @return string[]
+     * @return array
      */
-    protected function getServices(): array
+    protected function getAdapters(): array
     {
     }
 }

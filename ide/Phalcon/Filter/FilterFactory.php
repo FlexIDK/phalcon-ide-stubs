@@ -9,12 +9,15 @@
  */
 namespace Phalcon\Filter;
 
-use Phalcon\Filter\Filter;
+use Phalcon\Filter;
 
 /**
- * Class FilterFactory
+ * This file is part of the Phalcon Framework.
  *
- * @package Phalcon\Filter
+ * (c) Phalcon Team <team@phalcon.io>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  */
 class FilterFactory
 {
@@ -31,11 +34,9 @@ class FilterFactory
     }
 
     /**
-     * Returns the available adapters
-     *
-     * @return string[]
+     * @return array
      */
-    protected function getServices(): array
+    protected function getAdapters(): array
     {
     }
 }

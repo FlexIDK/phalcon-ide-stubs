@@ -9,9 +9,10 @@
  */
 namespace Phalcon\Mvc\Model\Query;
 
-use Phalcon\Di\Di;
+use Phalcon\Di;
 use Phalcon\Db\Column;
 use Phalcon\Di\DiInterface;
+use Phalcon\Helper\Arr;
 use Phalcon\Mvc\Model\Exception;
 use Phalcon\Di\InjectionAwareInterface;
 use Phalcon\Mvc\Model\QueryInterface;
@@ -55,64 +56,31 @@ use Phalcon\Mvc\Model\QueryInterface;
 class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\InjectionAwareInterface
 {
 
-    /**
-     * @var array
-     */
-    protected $bindParams = [];
+    protected $bindParams;
 
-    /**
-     * @var array
-     */
-    protected $bindTypes = [];
+    protected $bindTypes;
 
-    /**
-     * @var array|string|null
-     */
-    protected $columns = null;
+    protected $columns;
 
-    /**
-     * @var array|string|null
-     */
-    protected $conditions = null;
+    protected $conditions;
 
-    /**
-     * @var DiInterface|null
-     */
     protected $container;
 
-    /**
-     * @var mixed
-     */
-    protected $distinct = null;
+    protected $distinct;
 
-    /**
-     * @var bool
-     */
-    protected $forUpdate = false;
+    protected $forUpdate;
 
     /**
      * @var array
      */
-    protected $group = [];
+    protected $group;
 
-    /**
-     * @var string|null
-     */
-    protected $having = null;
+    protected $having;
 
-    /**
-     * @var int
-     */
     protected $hiddenParamNumber = 0;
 
-    /**
-     * @var array
-     */
-    protected $joins = [];
+    protected $joins;
 
-    /**
-     * @var array|string
-     */
     protected $limit;
 
     /**
@@ -120,26 +88,17 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
      */
     protected $models;
 
-    /**
-     * @var int
-     */
-    protected $offset = 0;
+    protected $offset;
 
-    /**
-     * @var array|string
-     */
     protected $order;
 
-    /**
-     * @var bool
-     */
-    protected $sharedLock = false;
+    protected $sharedLock;
 
     /**
      * Phalcon\Mvc\Model\Query\Builder constructor
      *
-     * @param array|string|null $params
-     * @param DiInterface|null $container
+     * @param mixed $params
+     * @param \Phalcon\Di\DiInterface $container
      */
     public function __construct($params = null, \Phalcon\Di\DiInterface $container = null)
     {
@@ -368,7 +327,7 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
     /**
      * Return the columns to be queried
      *
-     * @return array|string
+     * @return string|array
      */
     public function getColumns()
     {
@@ -395,7 +354,7 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
     /**
      * Return the models who makes part of the query
      *
-     * @return array|string
+     * @return string|array
      */
     public function getFrom()
     {
@@ -431,7 +390,7 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
     /**
      * Returns the current LIMIT clause
      *
-     * @return array|string
+     * @return string|array
      */
     public function getLimit()
     {
@@ -458,7 +417,7 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
     /**
      * Returns the set ORDER BY clause
      *
-     * @return array|string
+     * @return string|array
      */
     public function getOrderBy()
     {
@@ -485,7 +444,7 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
     /**
      * Return the conditions for the query
      *
-     * @return array|string
+     * @return string|array
      */
     public function getWhere()
     {
@@ -502,7 +461,7 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
      * );
      * ```
      *
-     * @param array|string $group
+     * @param string|array $group
      * @return BuilderInterface
      */
     public function groupBy($group): BuilderInterface
@@ -523,12 +482,12 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
      * );
      * ```
      *
-     * @param string $conditions
+     * @param mixed $conditions
      * @param array $bindParams
      * @param array $bindTypes
      * @return BuilderInterface
      */
-    public function having(string $conditions, array $bindParams = [], array $bindTypes = []): BuilderInterface
+    public function having($conditions, array $bindParams = [], array $bindTypes = []): BuilderInterface
     {
     }
 
@@ -766,7 +725,7 @@ class Builder implements \Phalcon\Mvc\Model\Query\BuilderInterface, \Phalcon\Di\
      * $builder->orderBy(["Robots.name DESC"]);
      * ```
      *
-     * @param array|string $orderBy
+     * @param string|array $orderBy
      * @return BuilderInterface
      */
     public function orderBy($orderBy): BuilderInterface

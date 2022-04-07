@@ -9,7 +9,7 @@
  */
 namespace Phalcon\Mvc\Model;
 
-use Phalcon\Di\Di;
+use Phalcon\Di;
 use Phalcon\Db\Column;
 use Phalcon\Di\DiInterface;
 use Phalcon\Di\InjectionAwareInterface;
@@ -35,29 +35,14 @@ use Phalcon\Mvc\Model\Query\BuilderInterface;
 class Criteria implements \Phalcon\Mvc\Model\CriteriaInterface, \Phalcon\Di\InjectionAwareInterface
 {
 
-    /**
-     * @var array
-     */
     protected $bindParams;
 
-    /**
-     * @var array
-     */
     protected $bindTypes;
 
-    /**
-     * @var int
-     */
     protected $hiddenParamNumber = 0;
 
-    /**
-     * @var string|null
-     */
-    protected $model = null;
+    protected $model;
 
-    /**
-     * @var array
-     */
     protected $params = [];
 
     /**

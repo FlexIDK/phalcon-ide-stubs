@@ -28,9 +28,6 @@ use Phalcon\Di\Service\Builder;
 class Service implements \Phalcon\Di\ServiceInterface
 {
 
-    /**
-     * @var mixed
-     */
     protected $definition;
 
     /**
@@ -43,10 +40,7 @@ class Service implements \Phalcon\Di\ServiceInterface
      */
     protected $shared = false;
 
-    /**
-     * @var mixed|null
-     */
-    protected $sharedInstance = null;
+    protected $sharedInstance;
 
     /**
      * Phalcon\Di\Service

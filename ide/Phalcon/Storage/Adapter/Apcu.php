@@ -10,31 +10,32 @@
 namespace Phalcon\Storage\Adapter;
 
 use APCuIterator;
-use DateInterval;
-use Exception;
+use Phalcon\Helper\Arr;
+use Phalcon\Storage\Exception;
 use Phalcon\Storage\SerializerFactory;
-use Phalcon\Support\Exception as SupportException;
+use Phalcon\Storage\Serializer\SerializerInterface;
 
 /**
  * Apcu adapter
- *
- * @property array $options
  */
 class Apcu extends \Phalcon\Storage\Adapter\AbstractAdapter
 {
 
     /**
-     * @var string
+     * @var array
      */
-    protected $prefix = 'ph-apcu-';
+    protected $options = [];
 
     /**
-     * Apcu constructor.
+     * Constructor
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
-     *
-     * @throws SupportException
+     * @param array $options = [
+     *     'defaultSerializer' => 'Php',
+     *     'lifetime' => 3600,
+     *     'serializer' => null,
+     *     'prefix' => ''
+     * ]
+     * @param \Phalcon\Storage\SerializerFactory $factory
      */
     public function __construct(\Phalcon\Storage\SerializerFactory $factory, array $options = [])
     {
@@ -75,8 +76,8 @@ class Apcu extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Reads data from the adapter
      *
-     * @param string     $key
-     * @param mixed|null $defaultValue
+     * @param string $key
+     * @param null   $defaultValue
      *
      * @return mixed
      */
@@ -85,11 +86,19 @@ class Apcu extends \Phalcon\Storage\Adapter\AbstractAdapter
     }
 
     /**
+     * Always returns null
+     *
+     * @return null
+     */
+    public function getAdapter()
+    {
+    }
+
+    /**
      * Stores data in the adapter
      *
-     * @param string $prefix
-     *
      * @return array
+     * @param string $prefix
      */
     public function getKeys(string $prefix = ''): array
     {
@@ -121,27 +130,14 @@ class Apcu extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Stores data in the adapter
      *
-     * @param string                 $key
-     * @param mixed                  $value
-     * @param \DateInterval|int|null $ttl
-     *
-     * @return bool
-     * @throws Exception
-     */
-    public function set(string $key, $value, $ttl = null): bool
-    {
-    }
-
-    /**
-     * Stores data in the adapter forever. The key needs to manually deleted
-     * from the adapter.
-     *
      * @param string $key
      * @param mixed  $value
+     * @param null   $ttl
      *
      * @return bool
+     * @throws \Exception
      */
-    public function setForever(string $key, $value): bool
+    public function set(string $key, $value, $ttl = null): bool
     {
     }
 }

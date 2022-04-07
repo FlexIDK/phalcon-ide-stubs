@@ -20,16 +20,13 @@ use Phalcon\Mvc\ModelInterface;
 class Failed extends \Phalcon\Mvc\Model\Transaction\Exception
 {
 
-    /**
-     * @var ModelInterface|null
-     */
     protected $record = null;
 
     /**
      * Phalcon\Mvc\Model\Transaction\Failed constructor
      *
      * @param string $message
-     * @param ModelInterface|null $record
+     * @param \Phalcon\Mvc\ModelInterface $record
      */
     public function __construct(string $message, \Phalcon\Mvc\ModelInterface $record = null)
     {
@@ -47,7 +44,7 @@ class Failed extends \Phalcon\Mvc\Model\Transaction\Exception
     /**
      * Returns validation record messages which stop the transaction
      *
-     * @return MessageInterface[]
+     * @return array|\Phalcon\Messages\MessageInterface[]
      */
     public function getRecordMessages(): array
     {

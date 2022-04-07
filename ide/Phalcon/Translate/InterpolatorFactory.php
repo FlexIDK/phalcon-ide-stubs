@@ -25,7 +25,7 @@ class InterpolatorFactory extends AbstractFactory
 
 
     /**
-     * InterpolatorFactor constructor.
+     * AdapterFactory constructor.
      *
      * @param array $services
      */
@@ -37,27 +37,16 @@ class InterpolatorFactory extends AbstractFactory
      * Create a new instance of the adapter
      *
      * @param string $name
-     *
      * @return InterpolatorInterface
-     * @throws Exception
      */
     public function newInstance(string $name): InterpolatorInterface
     {
     }
 
     /**
-     * @return string
+     * @return array
      */
-    protected function getExceptionClass(): string
-    {
-    }
-
-    /**
-     * Returns the available adapters
-     *
-     * @return string[]
-     */
-    protected function getServices(): array
+    protected function getAdapters(): array
     {
     }
 }

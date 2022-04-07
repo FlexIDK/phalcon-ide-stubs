@@ -9,6 +9,8 @@
  */
 namespace Phalcon\Http\Request;
 
+use Phalcon\Helper\Arr;
+
 /**
  * Phalcon\Http\Request\File
  *
@@ -38,7 +40,7 @@ class File implements \Phalcon\Http\Request\FileInterface
     /**
      * @var string|null
      */
-    protected $error = null;
+    protected $error;
 
     /**
      * @var string
@@ -48,31 +50,16 @@ class File implements \Phalcon\Http\Request\FileInterface
     /**
      * @var string|null
      */
-    protected $key = null;
+    protected $key;
 
-    /**
-     * @var string
-     */
     protected $name;
 
-    /**
-     * @var string
-     */
     protected $realType;
 
-    /**
-     * @var int
-     */
-    protected $size = 0;
+    protected $size;
 
-    /**
-     * @var string|null
-     */
-    protected $tmp = null;
+    protected $tmp;
 
-    /**
-     * @var string
-     */
     protected $type;
 
     /**
@@ -168,17 +155,6 @@ class File implements \Phalcon\Http\Request\FileInterface
      * @return bool
      */
     public function moveTo(string $destination): bool
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param array $collection
-     * @param mixed $index
-     * @param mixed $defaultValue
-     * @return mixed
-     */
-    private function getArrVal(array $collection, $index, $defaultValue = null)
     {
     }
 }

@@ -206,10 +206,10 @@ interface DialectInterface
      *
      * @param array $expression
      * @param string $escapeChar
-     * @param array $bindCounts
+     * @param mixed $bindCounts
      * @return string
      */
-    public function getSqlExpression(array $expression, string $escapeChar = null, array $bindCounts = []): string;
+    public function getSqlExpression(array $expression, string $escapeChar = null, $bindCounts = null): string;
 
     /**
      * Generates the SQL for LIMIT clause

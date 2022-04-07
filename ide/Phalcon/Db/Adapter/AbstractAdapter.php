@@ -29,29 +29,23 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
 
     /**
      * Connection ID
-     *
-     * @var int
      */
     static protected $connectionConsecutive = 0;
 
     /**
      * Active connection ID
      *
-     * @var int
+     * @var long
      */
     protected $connectionId;
 
     /**
      * Descriptor used to connect to a database
-     *
-     * @var array
      */
     protected $descriptor = [];
 
     /**
      * Dialect instance
-     *
-     * @var object
      */
     protected $dialect;
 
@@ -65,9 +59,9 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     /**
      * Event Manager
      *
-     * @var ManagerInterface|null
+     * @var ManagerInterface
      */
-    protected $eventsManager = null;
+    protected $eventsManager;
 
     /**
      * The real SQL statement - what was executed
@@ -81,7 +75,7 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
      *
      * @var array
      */
-    protected $sqlBindTypes = [];
+    protected $sqlBindTypes;
 
     /**
      * Active SQL Statement
@@ -95,19 +89,15 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
      *
      * @var array
      */
-    protected $sqlVariables = [];
+    protected $sqlVariables;
 
     /**
      * Current transaction level
-     *
-     * @var int
      */
     protected $transactionLevel = 0;
 
     /**
      * Whether the database supports transactions with save points
-     *
-     * @var bool
      */
     protected $transactionsWithSavepoints = false;
 
@@ -119,6 +109,7 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     protected $type;
 
     /**
+     *
      * Name of the dialect used
      *
      * @return string
@@ -128,6 +119,17 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     }
 
     /**
+     *
+     * Active SQL bound parameter variables
+     *
+     * @return array
+     */
+    public function getSqlVariables(): array
+    {
+    }
+
+    /**
+     *
      * Type of database system the adapter is used for
      *
      * @return string
@@ -251,13 +253,13 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
      * DELETE FROM `robots` WHERE `id` = 101
      * ```
      *
-     * @param array|string $table
-     * @param string|null $whereCondition
-     * @param array $placeholders
-     * @param array $dataTypes *
+     * @param mixed $table
+     * @param mixed $whereCondition
+     * @param mixed $placeholders
+     * @param mixed $dataTypes
      * @return bool
      */
-    public function delete($table, string $whereCondition = null, array $placeholders = [], array $dataTypes = []): bool
+    public function delete($table, $whereCondition = null, $placeholders = null, $dataTypes = null): bool
     {
     }
 
@@ -418,11 +420,11 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
      *
      * @param string $sqlQuery
      * @param int $fetchMode
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $bindParams
+     * @param mixed $bindTypes
      * @return array
      */
-    public function fetchAll(string $sqlQuery, int $fetchMode = Enum::FETCH_ASSOC, array $bindParams = [], array $bindTypes = []): array
+    public function fetchAll(string $sqlQuery, int $fetchMode = Enum::FETCH_ASSOC, $bindParams = null, $bindTypes = null): array
     {
     }
 
@@ -469,11 +471,11 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
      *
      * @param string $sqlQuery
      * @param mixed $fetchMode
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $bindParams
+     * @param mixed $bindTypes
      * @return array
      */
-    public function fetchOne(string $sqlQuery, $fetchMode = Enum::FETCH_ASSOC, array $bindParams = [], array $bindTypes = []): array
+    public function fetchOne(string $sqlQuery, $fetchMode = Enum::FETCH_ASSOC, $bindParams = null, $bindTypes = null): array
     {
     }
 
@@ -589,9 +591,9 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface|null
+     * @return ManagerInterface
      */
-    public function getEventsManager(): ?ManagerInterface
+    public function getEventsManager(): ManagerInterface
     {
     }
 
@@ -628,15 +630,6 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
      * @return string
      */
     public function getSQLStatement(): string
-    {
-    }
-
-    /**
-     * Active SQL variables in the object
-     *
-     * @return array
-     */
-    public function getSQLVariables(): array
     {
     }
 

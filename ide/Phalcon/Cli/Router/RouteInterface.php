@@ -92,7 +92,7 @@ interface RouteInterface
      * Reconfigure the route adding a new pattern and a set of paths
      *
      * @param string $pattern
-     * @param array|string|null $paths *
+     * @param mixed $paths
      * @return void
      */
     public function reConfigure(string $pattern, $paths = null): void;

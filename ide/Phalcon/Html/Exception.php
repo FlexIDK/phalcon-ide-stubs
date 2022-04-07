@@ -14,7 +14,7 @@ namespace Phalcon\Html;
  *
  * Exceptions thrown in Phalcon\Html\Tag will use this class
  */
-class Exception extends \Exception
+class Exception extends \Phalcon\Exception
 {
 
 

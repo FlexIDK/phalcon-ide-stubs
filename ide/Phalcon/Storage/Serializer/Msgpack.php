@@ -33,8 +33,7 @@ class Msgpack extends \Phalcon\Storage\Serializer\AbstractSerializer
     /**
      * Unserializes data
      *
-     * @param string $data
-     *
+     * @param mixed $data
      * @return void
      */
     public function unserialize($data): void

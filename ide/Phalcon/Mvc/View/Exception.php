@@ -14,7 +14,7 @@ namespace Phalcon\Mvc\View;
  *
  * Class for exceptions thrown by Phalcon\Mvc\View
  */
-class Exception extends \Exception
+class Exception extends \Phalcon\Exception
 {
 
 

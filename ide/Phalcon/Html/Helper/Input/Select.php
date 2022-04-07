@@ -51,7 +51,7 @@ class Select extends AbstractList
     }
 
     /**
-     * Add a placeholder to the element
+     * Add an element to the list
      *
      * @param string $text
      * @param string $value

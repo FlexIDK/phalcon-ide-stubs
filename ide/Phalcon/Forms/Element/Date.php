@@ -17,9 +17,14 @@ use Phalcon\Tag;
 class Date extends \Phalcon\Forms\Element\AbstractElement
 {
 
-    /**
-     * @var string
-     */
-    protected $method = 'inputDate';
 
+    /**
+     * Renders the element widget returning html
+     *
+     * @param array $attributes
+     * @return string
+     */
+    public function render(array $attributes = []): string
+    {
+    }
 }

@@ -18,8 +18,8 @@ use Phalcon\Db\Enum;
 use Phalcon\Messages\MessageInterface;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\ModelInterface;
+use Phalcon\Cache\Adapter\AdapterInterface;
 use Phalcon\Storage\Serializer\SerializerInterface;
-use Psr\SimpleCache\CacheInterface;
 use SeekableIterator;
 use Serializable;
 
@@ -76,65 +76,36 @@ abstract class Resultset implements \Phalcon\Mvc\Model\ResultsetInterface, \Iter
 
     const TYPE_RESULT_PARTIAL = 1;
 
-    /**
-     * @var mixed|null
-     */
     protected $activeRow = null;
 
-    /**
-     * @var CacheInterface|null
-     */
     protected $cache = null;
 
-    /**
-     * @var int
-     */
     protected $count = 0;
 
-    /**
-     * @var array
-     */
     protected $errorMessages = [];
 
-    /**
-     * @var int
-     */
     protected $hydrateMode = 0;
 
-    /**
-     * @var bool
-     */
     protected $isFresh = true;
 
-    /**
-     * @var int
-     */
     protected $pointer = 0;
 
-    /**
-     * @var mixed|null
-     */
     protected $row = null;
 
-    /**
-     * @var array|null
-     */
     protected $rows = null;
 
     /**
      * Phalcon\Db\ResultInterface or false for empty resultset
-     *
-     * @var ResultInterface|bool
      */
     protected $result;
 
     /**
      * Phalcon\Mvc\Model\Resultset constructor
      *
-     * @param ResultInterface|false $result
-     * @param CacheInterface|null $cache
+     * @param \Phalcon\Db\ResultInterface|false $result
+     * @param \Phalcon\Cache\Adapter\AdapterInterface $cache
      */
-    public function __construct($result, \Psr\SimpleCache\CacheInterface $cache = null)
+    public function __construct($result, \Phalcon\Cache\Adapter\AdapterInterface $cache = null)
     {
     }
 
@@ -180,9 +151,9 @@ abstract class Resultset implements \Phalcon\Mvc\Model\ResultsetInterface, \Iter
     /**
      * Returns the associated cache for the resultset
      *
-     * @return CacheInterface|null
+     * @return AdapterInterface
      */
-    public function getCache(): ?CacheInterface
+    public function getCache(): AdapterInterface
     {
     }
 

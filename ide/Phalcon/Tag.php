@@ -9,15 +9,15 @@
  */
 namespace Phalcon;
 
-use Phalcon\Di\Di;
 use Phalcon\Di\DiInterface;
-use Phalcon\Html\Escaper\EscaperInterface;
+use Phalcon\Escaper\EscaperInterface;
 use Phalcon\Html\Link\Link;
 use Phalcon\Html\Link\Serializer\Header;
+use Phalcon\Helper\Str;
+use Phalcon\Helper\Exception as HelperException;
 use Phalcon\Tag\Select;
 use Phalcon\Tag\Exception;
-use Phalcon\Mvc\Url\UrlInterface;
-use Phalcon\Support\Helper\Str\Friendly;
+use Phalcon\Url\UrlInterface;
 
 /**
  * Phalcon\Tag is designed to simplify building of HTML tags.
@@ -48,66 +48,39 @@ class Tag
 
     const XHTML5 = 11;
 
-    /**
-     * @var bool
-     */
     static protected $autoEscape = true;
 
     /**
      * DI Container
-     *
-     * @var DiInterface|null
      */
-    static protected $container = null;
+    static protected $container;
 
     /**
      * Pre-assigned values for components
-     *
-     * @var array
      */
     static protected $displayValues;
 
-    /**
-     * @var array
-     */
-    static protected $documentAppendTitle;
+    static protected $documentAppendTitle = null;
 
-    /**
-     * @var array
-     */
-    static protected $documentPrependTitle;
+    static protected $documentPrependTitle = null;
 
     /**
      * HTML document title
-     *
-     * @var string|null
      */
     static protected $documentTitle = null;
 
-    /**
-     * @var string|null
-     */
     static protected $documentTitleSeparator = null;
 
-    /**
-     * @var int
-     */
     static protected $documentType = 11;
 
-    /**
-     * @var EscaperInterface|null
-     */
     static protected $escaperService = null;
 
-    /**
-     * @var UrlInterface|null
-     */
     static protected $urlService = null;
 
     /**
      * Appends a text to current document title
      *
-     * @param array|string $title
+     * @param mixed $title
      * @return void
      */
     public static function appendTitle($title): void
@@ -493,7 +466,7 @@ class Tag
     /**
      * Prepends a text to current document title
      *
-     * @param array|string $title
+     * @param mixed $title
      * @return void
      */
     public static function prependTitle($title): void
@@ -806,12 +779,13 @@ class Tag
     /**
      * Builds a HTML input[type="time"] tag
      *
-     * @param array $parameters = [
+     * @param array $paramters = [
      *     'id' => '',
      *     'name' => '',
      *     'value' => '',
      *     'class' => ''
      * ]
+     * @param mixed $parameters
      * @return string
      */
     public static function timeField($parameters): string
@@ -821,12 +795,13 @@ class Tag
     /**
      * Builds a HTML input[type="url"] tag
      *
-     * @param array $parameters = [
+     * @param array $paramters = [
      *     'id' => '',
      *     'name' => '',
      *     'value' => '',
      *     'class' => ''
      * ]
+     * @param mixed $parameters
      * @return string
      */
     public static function urlField($parameters): string
@@ -851,7 +826,7 @@ class Tag
     /**
      * Builds generic INPUT tags
      *
-     * @param array $parameters = [
+     * @param array $paramters = [
      *     'id' => '',
      *     'name' => '',
      *     'value' => '',
@@ -859,6 +834,7 @@ class Tag
      *     'type' => ''
      * ]
      * @param string $type
+     * @param mixed $parameters
      * @param bool $asValue
      * @return string
      */

@@ -21,8 +21,7 @@ interface FilterInterface
      *
      * @param mixed $value
      * @param mixed $sanitizers
-     * @param bool  $noRecursive
-     *
+     * @param bool $noRecursive
      * @return mixed
      */
     public function sanitize($value, $sanitizers, bool $noRecursive = false);

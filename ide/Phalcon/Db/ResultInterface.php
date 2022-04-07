@@ -20,7 +20,7 @@ interface ResultInterface
      * Moves internal resultset cursor to another position letting us to fetch a
      * certain row
      *
-     * @param int $number
+     * @param long $number
      */
     public function dataSeek(int $number);
 

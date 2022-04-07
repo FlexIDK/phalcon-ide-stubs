@@ -13,6 +13,8 @@ use Closure;
 use Phalcon\Di\DiInterface;
 use Phalcon\Di\Injectable;
 use Phalcon\Events\ManagerInterface;
+use Phalcon\Helper\Arr;
+use Phalcon\Helper\Str;
 use Phalcon\Mvc\View\Exception;
 use Phalcon\Events\EventsAwareInterface;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
@@ -75,139 +77,61 @@ class View extends Injectable implements \Phalcon\Mvc\ViewInterface, \Phalcon\Ev
      */
     const LEVEL_AFTER_TEMPLATE = 4;
 
-    /**
-     * @var string
-     */
     protected $actionName;
 
-    /**
-     * @var array
-     */
     protected $activeRenderPaths;
 
-    /**
-     * @var string
-     */
     protected $basePath = '';
 
-    /**
-     * @var string
-     */
     protected $content = '';
 
-    /**
-     * @var string
-     */
     protected $controllerName;
 
-    /**
-     * @var int
-     */
     protected $currentRenderLevel = 0;
 
-    /**
-     * @var bool
-     */
     protected $disabled = false;
 
-    /**
-     * @var array
-     */
-    protected $disabledLevels = [];
+    protected $disabledLevels;
 
-    /**
-     * @var array|bool
-     */
     protected $engines = false;
 
-    /**
-     * @var ManagerInterface|null
-     */
     protected $eventsManager;
 
-    /**
-     * @var string|null
-     */
-    protected $layout = null;
+    protected $layout;
 
-    /**
-     * @var string
-     */
     protected $layoutsDir = '';
 
-    /**
-     * @var string
-     */
     protected $mainView = 'index';
 
-    /**
-     * @var array
-     */
     protected $options = [];
 
-    /**
-     * @var array
-     */
-    protected $params = [];
+    protected $params;
 
-    /**
-     * @var array|null
-     */
     protected $pickView;
 
-    /**
-     * @var string
-     */
     protected $partialsDir = '';
 
-    /**
-     * @var array
-     */
     protected $registeredEngines = [];
 
-    /**
-     * @var int
-     */
     protected $renderLevel = 5;
 
-    /**
-     * @var array
-     */
     protected $templatesAfter = [];
 
-    /**
-     * @var array
-     */
     protected $templatesBefore = [];
 
-    /**
-     * @var array
-     */
     protected $viewsDirs = [];
 
-    /**
-     * @var array
-     */
     protected $viewParams = [];
 
-    /**
-     * @return int
-     */
-    public function getCurrentRenderLevel(): int
+    public function getCurrentRenderLevel()
     {
     }
 
-    /**
-     * @return array
-     */
-    public function getRegisteredEngines(): array
+    public function getRegisteredEngines()
     {
     }
 
-    /**
-     * @return int
-     */
-    public function getRenderLevel(): int
+    public function getRenderLevel()
     {
     }
 
@@ -318,7 +242,6 @@ class View extends Injectable implements \Phalcon\Mvc\ViewInterface, \Phalcon\Ev
     /**
      * Checks whether view exists
      *
-     * @deprecated
      * @param string $view
      * @return bool
      */
@@ -507,16 +430,6 @@ class View extends Injectable implements \Phalcon\Mvc\ViewInterface, \Phalcon\Ev
      * @return array
      */
     protected function getViewsDirs(): array
-    {
-    }
-
-    /**
-     * Checks whether view exists
-     *
-     * @param string $view
-     * @return bool
-     */
-    public function has(string $view): bool
     {
     }
 
@@ -886,15 +799,6 @@ class View extends Injectable implements \Phalcon\Mvc\ViewInterface, \Phalcon\Ev
      * @return bool
      */
     public function processRender(string $controllerName, string $actionName, array $params = [], bool $fireEvents = true): bool
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param string $directory
-     * @return string
-     */
-    private function getDirSeparator(string $directory): string
     {
     }
 }

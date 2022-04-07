@@ -33,7 +33,7 @@ class Update extends \Phalcon\DataMapper\Query\AbstractConditions
      *
      * @param string $column
      *
-     * @return Update
+     * @return this
      * @param mixed $value
      * @param int $type
      */
@@ -46,7 +46,7 @@ class Update extends \Phalcon\DataMapper\Query\AbstractConditions
      *
      * @param array $columns
      *
-     * @return Update
+     * @return this
      */
     public function columns(array $columns): Update
     {

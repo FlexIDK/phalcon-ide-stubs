@@ -17,16 +17,13 @@ use Phalcon\Mvc\View\Exception as BaseException;
 class Exception extends \Phalcon\Mvc\View\Exception
 {
 
-    /**
-     * @var array
-     */
-    protected $statement = [];
+    protected $statement;
 
     /**
      * @param string $message
      * @param array $statement
      * @param int $code
-     * @param \Exception|null $previous
+     * @param \Exception $previous
      */
     public function __construct(string $message = '', array $statement = [], int $code = 0, \Exception $previous = null)
     {

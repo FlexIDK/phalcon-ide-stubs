@@ -43,18 +43,9 @@ class SerializerFactory extends AbstractFactory
     }
 
     /**
-     * @return string
+     * @return array
      */
-    protected function getExceptionClass(): string
-    {
-    }
-
-    /**
-     * Returns the available adapters
-     *
-     * @return string[]
-     */
-    protected function getServices(): array
+    protected function getAdapters(): array
     {
     }
 }

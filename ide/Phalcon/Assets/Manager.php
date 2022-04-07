@@ -9,31 +9,30 @@
  */
 namespace Phalcon\Assets;
 
-use Phalcon\Assets\Asset\Css as AssetCss;
+use Phalcon\Tag;
 use Phalcon\Assets\Asset\Js as AssetJs;
+use Phalcon\Assets\Asset\Css as AssetCss;
 use Phalcon\Assets\Inline\Css as InlineCss;
 use Phalcon\Assets\Inline\Js as InlineJs;
+use Phalcon\Di\DiInterface;
 use Phalcon\Di\AbstractInjectionAware;
-use Phalcon\Html\Helper\Element;
-use Phalcon\Html\Helper\Link;
-use Phalcon\Html\Helper\Script;
-use Phalcon\Html\TagFactory;
 
 /**
- * Manages collections of CSS/JavaScript assets
+ * Phalcon\Assets\Manager
  *
- * @property array      $collections
- * @property bool       $implicitOutput
- * @property array      $options
- * @property TagFactory $tagFactory
+ * Manages collections of CSS/JavaScript assets
  */
 class Manager extends AbstractInjectionAware
 {
 
+    protected $collections;
+
     /**
+     * Options configure
+     *
      * @var array
      */
-    protected $collections = [];
+    protected $options;
 
     /**
      * @var bool
@@ -41,27 +40,22 @@ class Manager extends AbstractInjectionAware
     protected $implicitOutput = true;
 
     /**
-     * @var array
-     */
-    protected $options = [];
-
-    /**
-     * @var TagFactory
-     */
-    protected $tagFactory;
-
-    /**
-     * Manager constructor.
+     * Phalcon\Assets\Manager constructor
      *
-     * @param TagFactory $tagFactory
-     * @param array      $options
+     * @param array $options
      */
-    public function __construct(\Phalcon\Html\TagFactory $tagFactory, array $options = [])
+    public function __construct(array $options = [])
     {
     }
 
     /**
      * Adds a raw asset to the manager
+     *
+     * ```php
+     * $assets->addAsset(
+     *     new Phalcon\Assets\Asset("css", "css/style.css")
+     * );
+     * ```
      *
      * @param Asset $asset
      * @return Manager
@@ -73,8 +67,15 @@ class Manager extends AbstractInjectionAware
     /**
      * Adds a asset by its type
      *
+     * ```php
+     * $assets->addAssetByType(
+     *     "css",
+     *     new \Phalcon\Assets\Asset\Css("css/style.css")
+     * );
+     * ```
+     *
      * @param string $type
-     * @param Asset  $asset
+     * @param Asset $asset
      * @return Manager
      */
     public function addAssetByType(string $type, Asset $asset): Manager
@@ -84,15 +85,20 @@ class Manager extends AbstractInjectionAware
     /**
      * Adds a CSS asset to the 'css' collection
      *
-     * @param string      $path
-     * @param bool        $local
-     * @param bool        $filter
-     * @param array       $attributes
-     * @param string|null $version
-     * @param bool        $autoVersion
+     * ```php
+     * $assets->addCss("css/bootstrap.css");
+     * $assets->addCss("http://bootstrap.my-cdn.com/style.css", false);
+     * ```
+     *
+     * @param string $path
+     * @param mixed $local
+     * @param bool $filter
+     * @param mixed $attributes
+     * @param string $version
+     * @param bool $autoVersion
      * @return Manager
      */
-    public function addCss(string $path, bool $local = true, bool $filter = true, array $attributes = [], string $version = null, bool $autoVersion = false): Manager
+    public function addCss(string $path, $local = true, bool $filter = true, $attributes = null, string $version = null, bool $autoVersion = false): Manager
     {
     }
 
@@ -121,11 +127,11 @@ class Manager extends AbstractInjectionAware
      * Adds an inline CSS to the 'css' collection
      *
      * @param string $content
-     * @param bool   $filter
-     * @param array  $attributes
+     * @param mixed $filter
+     * @param mixed $attributes
      * @return Manager
      */
-    public function addInlineCss(string $content, bool $filter = true, array $attributes = []): Manager
+    public function addInlineCss(string $content, $filter = true, $attributes = null): Manager
     {
     }
 
@@ -133,11 +139,11 @@ class Manager extends AbstractInjectionAware
      * Adds an inline JavaScript to the 'js' collection
      *
      * @param string $content
-     * @param bool   $filter
-     * @param array  $attributes
+     * @param mixed $filter
+     * @param mixed $attributes
      * @return Manager
      */
-    public function addInlineJs(string $content, bool $filter = true, array $attributes = []): Manager
+    public function addInlineJs(string $content, $filter = true, $attributes = null): Manager
     {
     }
 
@@ -149,15 +155,15 @@ class Manager extends AbstractInjectionAware
      * $assets->addJs("http://jquery.my-cdn.com/jquery.js", false);
      * ```
      *
-     * @param string      $path
-     * @param bool        $local
-     * @param bool        $filter
-     * @param array       $attributes
-     * @param string|null $version
-     * @param bool        $autoVersion
+     * @param string $path
+     * @param mixed $local
+     * @param bool $filter
+     * @param mixed $attributes
+     * @param string $version
+     * @param bool $autoVersion
      * @return Manager
      */
-    public function addJs(string $path, bool $local = true, bool $filter = true, array $attributes = [], string $version = null, bool $autoVersion = false): Manager
+    public function addJs(string $path, $local = true, bool $filter = true, $attributes = null, string $version = null, bool $autoVersion = false): Manager
     {
     }
 
@@ -174,7 +180,7 @@ class Manager extends AbstractInjectionAware
     /**
      * Creates/Returns a collection of assets by type
      *
-     * @param array  $assets
+     * @param array $assets
      * @param string $type
      * @return array
      */
@@ -186,17 +192,16 @@ class Manager extends AbstractInjectionAware
      * Returns true or false if collection exists.
      *
      * ```php
-     * if ($manager->exists("jsHeader")) {
+     * if ($assets->exists("jsHeader")) {
      *     // \Phalcon\Assets\Collection
-     *     $collection = $manager->get("jsHeader");
+     *     $collection = $assets->get("jsHeader");
      * }
      * ```
      *
-     * @param string $name
-     * @deprecated
+     * @param string $id
      * @return bool
      */
-    public function exists(string $name): bool
+    public function exists(string $id): bool
     {
     }
 
@@ -207,19 +212,17 @@ class Manager extends AbstractInjectionAware
      * $scripts = $assets->get("js");
      * ```
      *
-     * @param string $name
-     *
+     * @param string $id
      * @return Collection
-     * @throws Exception
      */
-    public function get(string $name): Collection
+    public function get(string $id): Collection
     {
     }
 
     /**
      * Returns existing collections in the manager
      *
-     * @return Collection[]
+     * @return array|Collection[]
      */
     public function getCollections(): array
     {
@@ -253,55 +256,33 @@ class Manager extends AbstractInjectionAware
     }
 
     /**
-     * Returns true or false if collection exists.
-     *
-     * ```php
-     * if ($manager->has("jsHeader")) {
-     *     // \Phalcon\Assets\Collection
-     *     $collection = $manager->get("jsHeader");
-     * }
-     * ```
-     *
-     * @param string $name
-     * @return bool
-     */
-    public function has(string $name): bool
-    {
-    }
-
-    /**
      * Traverses a collection calling the callback to generate its HTML
      *
+     * @param callback $callback
+     * @param string $type
      * @param Collection $collection
-     * @param string     $type
-     *
      * @return string|null
-     * @throws Exception
      */
-    public function output(Collection $collection, string $type): ?string
+    public function output(Collection $collection, $callback, $type): ?string
     {
     }
 
     /**
      * Prints the HTML for CSS assets
      *
-     * @param string|null $name
-     *
+     * @param string $collectionName
      * @return string
-     * @throws Exception
      */
-    public function outputCss(string $name = null): string
+    public function outputCss(string $collectionName = null): string
     {
     }
 
     /**
      * Traverses a collection and generate its HTML
      *
+     * @param string $type
      * @param Collection $collection
-     * @param string     $type
-     *
      * @return string
-     * @throws Exception
      */
     public function outputInline(Collection $collection, $type): string
     {
@@ -310,34 +291,30 @@ class Manager extends AbstractInjectionAware
     /**
      * Prints the HTML for inline CSS
      *
-     * @param string|null $name
-     *
+     * @param string $collectionName
      * @return string
      */
-    public function outputInlineCss(string $name = null): string
+    public function outputInlineCss(string $collectionName = null): string
     {
     }
 
     /**
      * Prints the HTML for inline JS
      *
-     * @param string|null $name
-     *
+     * @param string $collectionName
      * @return string
      */
-    public function outputInlineJs(string $name = null): string
+    public function outputInlineJs(string $collectionName = null): string
     {
     }
 
     /**
      * Prints the HTML for JS assets
      *
-     * @param string|null $name
-     *
+     * @param string $collectionName
      * @return string
-     * @throws Exception
      */
-    public function outputJs(string $name = null): string
+    public function outputJs(string $collectionName = null): string
     {
     }
 
@@ -348,11 +325,11 @@ class Manager extends AbstractInjectionAware
      * $assets->set("js", $collection);
      * ```
      *
-     * @param string     $name
+     * @param string $id
      * @param Collection $collection
      * @return Manager
      */
-    public function set(string $name, Collection $collection): Manager
+    public function set(string $id, Collection $collection): Manager
     {
     }
 
@@ -377,73 +354,13 @@ class Manager extends AbstractInjectionAware
     }
 
     /**
-     * Calculates the prefixed path including the version
+     * Returns the prefixed path
      *
      * @param Collection $collection
-     * @param string     $path
-     * @param string     $filePath
-     *
+     * @param string $path
      * @return string
      */
-    private function calculatePrefixedPath(Collection $collection, string $path, string $filePath): string
-    {
-    }
-
-    /**
-     * @param string $type
-     * @return Collection
-     */
-    private function checkAndCreateCollection(string $type): Collection
-    {
-    }
-
-    /**
-     * Builds a LINK[rel="stylesheet"] tag
-     *
-     * @param mixed $parameters
-     * @param bool  $local
-     *
-     * @return string
-     * @throws Exception
-     */
-    private function cssLink($parameters = [], bool $local = true): string
-    {
-    }
-
-    /**
-     * @param mixed  $callback
-     * @param array  $attributes
-     * @param string $prefixedPath
-     * @param bool   $local
-     *
-     * @return string
-     */
-    private function doCallback($callback, array $attributes, string $prefixedPath, bool $local): string
-    {
-    }
-
-    /**
-     * @param mixed $parameters
-     * @param bool  $local
-     *
-     * @return string
-     * @throws Exception
-     */
-    private function jsLink($parameters = [], bool $local = true): string
-    {
-    }
-
-    /**
-     * Processes common parameters for js/css link generation
-     *
-     * @param mixed $parameters
-     * @param bool $local
-     * @param string $helperClass
-     * @param string $type
-     * @param string $name
-     * @return string
-     */
-    private function processParameters($parameters, bool $local, string $helperClass, string $type, string $name): string
+    private function getPrefixedPath(Collection $collection, string $path): string
     {
     }
 }

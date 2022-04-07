@@ -26,8 +26,8 @@ use Phalcon\Http\Cookie\CookieInterface;
  * `Phalcon\Http\Response\Cookies::setSignKey()`.
  *
  * ```php
- * use Phalcon\Di\Di;
- * use Phalcon\Encryption\Crypt;
+ * use Phalcon\Di;
+ * use Phalcon\Crypt;
  * use Phalcon\Http\Response\Cookies;
  *
  * $di = new Di();
@@ -65,19 +65,8 @@ use Phalcon\Http\Cookie\CookieInterface;
 class Cookies extends AbstractInjectionAware implements \Phalcon\Http\Response\CookiesInterface
 {
 
-    /**
-     * @var array
-     */
     protected $cookies = [];
 
-    /**
-     * @var bool
-     */
-    protected $isSent = false;
-
-    /**
-     * @var bool
-     */
     protected $registered = false;
 
     /**
@@ -87,9 +76,6 @@ class Cookies extends AbstractInjectionAware implements \Phalcon\Http\Response\C
      */
     protected $signKey = null;
 
-    /**
-     * @var bool
-     */
     protected $useEncryption = true;
 
     /**
@@ -140,15 +126,6 @@ class Cookies extends AbstractInjectionAware implements \Phalcon\Http\Response\C
      * @return bool
      */
     public function has(string $name): bool
-    {
-    }
-
-    /**
-     * Returns if the headers have already been sent
-     *
-     * @return bool
-     */
-    public function isSent(): bool
     {
     }
 

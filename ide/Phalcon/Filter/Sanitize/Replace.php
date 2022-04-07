@@ -19,11 +19,7 @@ class Replace
 
 
     /**
-     * @param mixed $input
-     * @param mixed $source
-     * @param mixed $target
-     *
-     * @return string|string[]
+     * @param mixed $input The text to sanitize
      * @param mixed $from
      * @param mixed $to
      */

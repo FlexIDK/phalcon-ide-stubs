@@ -9,15 +9,20 @@
  */
 namespace Phalcon\Logger\Formatter;
 
+use DateTimeImmutable;
+use DateTimeZone;
+use Phalcon\Logger;
 use Phalcon\Logger\Item;
-use Phalcon\Support\Helper\Str\AbstractStr;
 
 /**
- * Class AbstractFormatter
+ * This file is part of the Phalcon Framework.
  *
- * @property string $dateFormat
+ * (c) Phalcon Team <team@phalcon.io>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  */
-abstract class AbstractFormatter extends AbstractStr implements \Phalcon\Logger\Formatter\FormatterInterface
+abstract class AbstractFormatter implements \Phalcon\Logger\Formatter\FormatterInterface
 {
 
     /**
@@ -25,9 +30,10 @@ abstract class AbstractFormatter extends AbstractStr implements \Phalcon\Logger\
      *
      * @var string
      */
-    protected $dateFormat = 'c';
+    protected $dateFormat;
 
     /**
+     *
      * Default date format
      *
      * @return string
@@ -37,6 +43,7 @@ abstract class AbstractFormatter extends AbstractStr implements \Phalcon\Logger\
     }
 
     /**
+     *
      * Default date format
      *
      * @param string $dateFormat
@@ -46,13 +53,24 @@ abstract class AbstractFormatter extends AbstractStr implements \Phalcon\Logger\
     }
 
     /**
+     * Interpolates context values into the message placeholders
+     *
+     * @see http://www.php-fig.org/psr/psr-3/ Section 1.2 Message
+     * @param string $message
+     * @param array $context
+     */
+    public function interpolate(string $message, $context = null)
+    {
+    }
+
+    /**
      * Returns the date formatted for the logger.
      *
-     * @param Item $item
-     *
+     * @todo Not using the set time from the Item since we have interface
+     * misalignment which will break semver This will change in the future
      * @return string
      */
-    protected function getFormattedDate(\Phalcon\Logger\Item $item): string
+    protected function getFormattedDate(): string
     {
     }
 }

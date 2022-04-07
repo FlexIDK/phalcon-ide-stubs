@@ -20,16 +20,13 @@ use Phalcon\Mvc\ViewBaseInterface;
 abstract class AbstractEngine extends Injectable implements \Phalcon\Mvc\View\Engine\EngineInterface
 {
 
-    /**
-     * @var ViewBaseInterface
-     */
     protected $view;
 
     /**
      * Phalcon\Mvc\View\Engine constructor
      *
-     * @param ViewBaseInterface $view
-     * @param DiInterface|null $container
+     * @param \Phalcon\Mvc\ViewBaseInterface $view
+     * @param \Phalcon\Di\DiInterface $container
      */
     public function __construct(\Phalcon\Mvc\ViewBaseInterface $view, \Phalcon\Di\DiInterface $container = null)
     {
@@ -56,8 +53,8 @@ abstract class AbstractEngine extends Injectable implements \Phalcon\Mvc\View\En
     /**
      * Renders a partial inside another view
      *
+     * @param array $params
      * @param string $partialPath
-     * @param mixed|null $params *
      * @return void
      */
     public function partial(string $partialPath, $params = null): void

@@ -9,6 +9,7 @@
  */
 namespace Phalcon\Http\Message;
 
+use Phalcon\Helper\Arr;
 use Exception;
 use Psr\Http\Message\StreamInterface;
 use RuntimeException;
@@ -250,17 +251,6 @@ class Stream implements \Psr\Http\Message\StreamInterface
      * @return void
      */
     private function checkWritable(): void
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param array $collection
-     * @param mixed $index
-     * @param mixed $defaultValue
-     * @return mixed
-     */
-    private function getArrVal(array $collection, $index, $defaultValue = null)
     {
     }
 }

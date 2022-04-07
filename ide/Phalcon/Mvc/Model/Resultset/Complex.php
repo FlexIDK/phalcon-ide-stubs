@@ -9,7 +9,8 @@
  */
 namespace Phalcon\Mvc\Model\Resultset;
 
-use Phalcon\Di\Di;
+use Phalcon\Cache\Adapter\AdapterInterface;
+use Phalcon\Di;
 use Phalcon\Di\DiInterface;
 use Phalcon\Db\ResultInterface;
 use Phalcon\Mvc\Model;
@@ -19,7 +20,6 @@ use Phalcon\Mvc\Model\ResultsetInterface;
 use Phalcon\Mvc\Model\Row;
 use Phalcon\Mvc\ModelInterface;
 use Phalcon\Storage\Serializer\SerializerInterface;
-use Psr\SimpleCache\CacheInterface;
 use stdClass;
 
 /**
@@ -31,16 +31,11 @@ use stdClass;
 class Complex extends Resultset implements \Phalcon\Mvc\Model\ResultsetInterface
 {
 
-    /**
-     * @var array
-     */
     protected $columnTypes;
 
     /**
      * Unserialised result-set hydrated all rows already. unserialise() sets
      * disableHydration to true
-     *
-     * @var bool
      */
     protected $disableHydration = false;
 
@@ -48,10 +43,10 @@ class Complex extends Resultset implements \Phalcon\Mvc\Model\ResultsetInterface
      * Phalcon\Mvc\Model\Resultset\Complex constructor
      *
      * @param array $columnTypes
-     * @param ResultInterface|null $result
-     * @param CacheInterface|null $cache
+     * @param \Phalcon\Db\ResultInterface $result
+     * @param \Phalcon\Cache\Adapter\AdapterInterface $cache
      */
-    public function __construct($columnTypes, \Phalcon\Db\ResultInterface $result = null, \Psr\SimpleCache\CacheInterface $cache = null)
+    public function __construct($columnTypes, \Phalcon\Db\ResultInterface $result = null, \Phalcon\Cache\Adapter\AdapterInterface $cache = null)
     {
     }
 

@@ -19,9 +19,7 @@ class Trim
 
 
     /**
-     * @param string $input The text to sanitize
-     *
-     * @return string
+     * @param mixed $input The text to sanitize
      */
     public function __invoke(string $input)
     {

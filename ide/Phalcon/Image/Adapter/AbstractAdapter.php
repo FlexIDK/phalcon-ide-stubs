@@ -20,14 +20,8 @@ use Phalcon\Image\Exception;
 abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterface
 {
 
-    /**
-     * @var bool
-     */
     static protected $checked = false;
 
-    /**
-     * @var string
-     */
     protected $file;
 
     /**
@@ -37,10 +31,7 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
      */
     protected $height;
 
-    /**
-     * @var object|null
-     */
-    protected $image = null;
+    protected $image;
 
     /**
      * Image mime type
@@ -49,9 +40,6 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
      */
     protected $mime;
 
-    /**
-     * @var string
-     */
     protected $realpath;
 
     /**
@@ -71,6 +59,7 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     protected $width;
 
     /**
+     *
      * Image height
      *
      * @return int
@@ -79,14 +68,12 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     {
     }
 
-    /**
-     * @return object|null
-     */
     public function getImage()
     {
     }
 
     /**
+     *
      * Image mime type
      *
      * @return string
@@ -95,14 +82,12 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     {
     }
 
-    /**
-     * @return string
-     */
-    public function getRealpath(): string
+    public function getRealpath()
     {
     }
 
     /**
+     *
      * Image type
      *
      * Driver dependent
@@ -114,6 +99,7 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     }
 
     /**
+     *
      * Image width
      *
      * @return int

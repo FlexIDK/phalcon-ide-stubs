@@ -21,14 +21,12 @@ class Label extends \Phalcon\Html\Helper\AbstractHelper
     /**
      * Produce a `<label>` tag.
      *
-     * @param string $label
-     * @param array  $attributes
-     * @param bool   $raw
+     * @param array $attributes
      *
      * @return string
      * @throws Exception
      */
-    public function __invoke(string $label, array $attributes = [], bool $raw = false): string
+    public function __invoke(array $attributes = []): string
     {
     }
 }

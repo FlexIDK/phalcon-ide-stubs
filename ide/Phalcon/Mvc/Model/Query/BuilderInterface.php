@@ -203,10 +203,10 @@ interface BuilderInterface
     /**
      * Sets a HAVING condition clause
      *
-     * @param string $conditions
+     * @param string $having
      * @return BuilderInterface
      */
-    public function having(string $conditions): BuilderInterface;
+    public function having(string $having): BuilderInterface;
 
     /**
      * Adds an INNER join to the query
@@ -296,10 +296,10 @@ interface BuilderInterface
     /**
      * Sets an ORDER BY condition clause
      *
-     * @param array|string $orderBy
+     * @param string $orderBy
      * @return BuilderInterface
      */
-    public function orderBy($orderBy): BuilderInterface;
+    public function orderBy(string $orderBy): BuilderInterface;
 
     /**
      * Appends a condition to the current conditions using an OR operator

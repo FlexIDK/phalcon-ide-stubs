@@ -33,7 +33,7 @@ class Insert extends \Phalcon\DataMapper\Query\AbstractQuery
      *
      * @param string $column
      *
-     * @return Insert
+     * @return this
      * @param mixed $value
      * @param int $type
      */
@@ -46,7 +46,7 @@ class Insert extends \Phalcon\DataMapper\Query\AbstractQuery
      *
      * @param array $columns
      *
-     * @return Insert
+     * @return this
      */
     public function columns(array $columns): Insert
     {

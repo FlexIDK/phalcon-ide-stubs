@@ -9,32 +9,38 @@
  */
 namespace Phalcon\Storage\Adapter;
 
-use DateInterval;
-use Exception as BaseException;
-use Phalcon\Storage\Exception as StorageException;
+use Phalcon\Helper\Arr;
+use Phalcon\Storage\Exception;
 use Phalcon\Storage\SerializerFactory;
-use Phalcon\Support\Exception as SupportException;
+use Phalcon\Storage\Serializer\SerializerInterface;
 
 /**
  * Redis adapter
- *
- * @property array $options
  */
 class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
 {
 
     /**
-     * @var string
+     * @var array
      */
-    protected $prefix = 'ph-reds-';
+    protected $options = [];
 
     /**
-     * Redis constructor.
+     * Constructor
      *
-     * @param SerializerFactory $factory
-     * @param array             $options
-     *
-     * @throws SupportException
+     * @param array $options = [
+     *     'host' => '127.0.0.1',
+     *     'port' => 6379,
+     *     'index' => 0,
+     *     'persistent' => false,
+     *     'auth' => '',
+     *     'socket' => '',
+     *     'defaultSerializer' => 'Php',
+     *     'lifetime' => 3600,
+     *     'serializer' => null,
+     *     'prefix' => ''
+     * ]
+     * @param \Phalcon\Storage\SerializerFactory $factory
      */
     public function __construct(\Phalcon\Storage\SerializerFactory $factory, array $options = [])
     {
@@ -44,7 +50,7 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * Flushes/clears the cache
      *
      * @return bool
-     * @throws StorageException
+     * @throws Exception
      */
     public function clear(): bool
     {
@@ -57,7 +63,7 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * @param int    $value
      *
      * @return bool|int
-     * @throws StorageException
+     * @throws Exception
      */
     public function decrement(string $key, int $value = 1)
     {
@@ -69,7 +75,7 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * @param string $key
      *
      * @return bool
-     * @throws StorageException
+     * @throws Exception
      */
     public function delete(string $key): bool
     {
@@ -78,11 +84,11 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Reads data from the adapter
      *
-     * @param string     $key
-     * @param mixed|null $defaultValue
+     * @param string $key
+     * @param null   $defaultValue
      *
-     * @return mixed|null
-     * @throws StorageException
+     * @return mixed
+     * @throws Exception
      */
     public function get(string $key, $defaultValue = null)
     {
@@ -93,19 +99,19 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * server(s)
      *
      * @return mixed|\Redis
-     * @throws StorageException
+     * @throws Exception
      */
     public function getAdapter()
     {
     }
 
     /**
-     * Stores data in the adapter
-     *
-     * @param string $prefix
+     * Gets the keys from the adapter. Accepts an optional prefix which will
+     * filter the keys returned
      *
      * @return array
-     * @throws StorageException
+     * @throws Exception
+     * @param string $prefix
      */
     public function getKeys(string $prefix = ''): array
     {
@@ -117,7 +123,7 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * @param string $key
      *
      * @return bool
-     * @throws StorageException
+     * @throws Exception
      */
     public function has(string $key): bool
     {
@@ -129,8 +135,8 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * @param string $key
      * @param int    $value
      *
-     * @return bool|false|int
-     * @throws StorageException
+     * @return bool|int
+     * @throws Exception
      */
     public function increment(string $key, int $value = 1)
     {
@@ -139,57 +145,14 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
     /**
      * Stores data in the adapter
      *
-     * @param string                 $key
-     * @param mixed                  $value
-     * @param \DateInterval|int|null $ttl
-     *
-     * @return bool
-     * @throws BaseException
-     */
-    public function set(string $key, $value, $ttl = null): bool
-    {
-    }
-
-    /**
-     * Stores data in the adapter forever. The key needs to manually deleted
-     * from the adapter.
-     *
      * @param string $key
      * @param mixed  $value
+     * @param null   $ttl
      *
      * @return bool
+     * @throws Exception
      */
-    public function setForever(string $key, $value): bool
-    {
-    }
-
-    /**
-     * @param \Redis $connection
-     *
-     * @return Redis
-     * @throws StorageException
-     */
-    private function checkAuth(\Redis $connection): Redis
-    {
-    }
-
-    /**
-     * @param \Redis $connection
-     *
-     * @return Redis
-     * @throws StorageException
-     */
-    private function checkConnect(\Redis $connection): Redis
-    {
-    }
-
-    /**
-     * @param \Redis $connection
-     *
-     * @return Redis
-     * @throws StorageException
-     */
-    private function checkIndex(\Redis $connection): Redis
+    public function set(string $key, $value, $ttl = null): bool
     {
     }
 
@@ -198,9 +161,8 @@ class Redis extends \Phalcon\Storage\Adapter\AbstractAdapter
      * the custom one is set.
      *
      * @param \Redis $connection
-     * @return void
      */
-    private function setSerializer(\Redis $connection): void
+    private function setSerializer(\Redis $connection)
     {
     }
 }

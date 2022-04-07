@@ -9,7 +9,7 @@
  */
 namespace Phalcon\Forms\Element;
 
-use Phalcon\Forms\Exception;
+use Phalcon\Tag;
 
 /**
  * Phalcon\Forms\Element\Text
@@ -20,4 +20,13 @@ class Text extends \Phalcon\Forms\Element\AbstractElement
 {
 
 
+    /**
+     * Renders the element widget
+     *
+     * @param array $attributes
+     * @return string
+     */
+    public function render(array $attributes = []): string
+    {
+    }
 }

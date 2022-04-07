@@ -33,26 +33,21 @@ class Binder implements \Phalcon\Mvc\Model\BinderInterface
 
     /**
      * Cache object used for caching parameters for model binding
-     *
-     * @var AdapterInterface|null
      */
     protected $cache;
 
     /**
      * Internal cache for caching parameters for model binding during request
-     *
-     * @var array
      */
     protected $internalCache = [];
 
     /**
      * Array for original values
-     *
-     * @var array
      */
     protected $originalValues = [];
 
     /**
+     *
      * Array for storing active bound models
      *
      * @return array
@@ -62,11 +57,10 @@ class Binder implements \Phalcon\Mvc\Model\BinderInterface
     }
 
     /**
-     * Array for original values
      *
-     * @return array
+     * Array for original values
      */
-    public function getOriginalValues(): array
+    public function getOriginalValues()
     {
     }
 
@@ -95,7 +89,7 @@ class Binder implements \Phalcon\Mvc\Model\BinderInterface
     /**
      * Find the model by param value.
      *
-     * @return mixed
+     * @return object|false
      * @param mixed $paramValue
      * @param string $className
      */

@@ -12,7 +12,7 @@ namespace Phalcon\Di;
 use ArrayAccess;
 
 /**
- * Interface for Phalcon\Di\Di
+ * Interface for Phalcon\Di
  */
 interface DiInterface extends \ArrayAccess
 {

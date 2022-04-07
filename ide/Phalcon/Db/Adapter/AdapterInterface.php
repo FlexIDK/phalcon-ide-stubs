@@ -83,9 +83,9 @@ interface AdapterInterface
      * Closes active connection returning success. Phalcon automatically closes
      * and destroys active connections within Phalcon\Db\Pool
      *
-     * @return void
+     * @return bool
      */
-    public function close(): void;
+    public function close(): bool;
 
     /**
      * Commits the active transaction in the connection
@@ -100,9 +100,9 @@ interface AdapterInterface
      * constructor. Call it when you need to restore a database connection
      *
      * @param array $descriptor
-     * @return void
+     * @return bool
      */
-    public function connect(array $descriptor = []): void;
+    public function connect(array $descriptor = null): bool;
 
     /**
      * Creates a new savepoint
@@ -135,13 +135,13 @@ interface AdapterInterface
     /**
      * Deletes data from a table using custom RDBMS SQL syntax
      *
-     * @param array|string $table
-     * @param string|null $whereCondition
-     * @param array $placeholders
-     * @param array $dataTypes *
+     * @param mixed $table
+     * @param mixed $whereCondition
+     * @param mixed $placeholders
+     * @param mixed $dataTypes
      * @return bool
      */
-    public function delete($table, string $whereCondition = null, array $placeholders = [], array $dataTypes = []): bool;
+    public function delete($table, $whereCondition = null, $placeholders = null, $dataTypes = null): bool;
 
     /**
      * Returns an array of Phalcon\Db\Column objects describing a table
@@ -251,22 +251,21 @@ interface AdapterInterface
      * return any rows
      *
      * @param string $sqlStatement
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $placeholders
+     * @param mixed $dataTypes
      * @return bool
      */
-    public function execute(string $sqlStatement, array $bindParams = [], array $bindTypes = []): bool;
+    public function execute(string $sqlStatement, $placeholders = null, $dataTypes = null): bool;
 
     /**
      * Dumps the complete result of a query into an array
      *
      * @param string $sqlQuery
      * @param int $fetchMode
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $placeholders
      * @return array
      */
-    public function fetchAll(string $sqlQuery, int $fetchMode = 2, array $bindParams = [], array $bindTypes = []): array;
+    public function fetchAll(string $sqlQuery, int $fetchMode = 2, $placeholders = null): array;
 
     /**
      * Returns the n'th field of first row in a SQL query result
@@ -296,11 +295,10 @@ interface AdapterInterface
      *
      * @param string $sqlQuery
      * @param int $fetchMode
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $placeholders
      * @return array
      */
-    public function fetchOne(string $sqlQuery, int $fetchMode = 2, array $bindParams = [], array $bindTypes = []): array;
+    public function fetchOne(string $sqlQuery, int $fetchMode = 2, $placeholders = null): array;
 
     /**
      * Returns a SQL modified with a FOR UPDATE clause
@@ -388,9 +386,9 @@ interface AdapterInterface
     /**
      * Return internal PDO handler
      *
-     * @return mixed
+     * @return \PDO
      */
-    public function getInternalHandler();
+    public function getInternalHandler(): \PDO;
 
     /**
      * Returns the savepoint name to use for nested transactions
@@ -487,10 +485,9 @@ interface AdapterInterface
      * Returns insert id for the auto_increment column inserted in the last SQL
      * statement
      *
-     * @param string|null $name Name of the sequence object from which the ID should be returned.
-     * @return string|bool
+     * @param mixed $sequenceName
      */
-    public function lastInsertId(string $name = null);
+    public function lastInsertId($sequenceName = null);
 
     /**
      * Appends a LIMIT clause to sqlQuery argument
@@ -534,11 +531,11 @@ interface AdapterInterface
      * rows
      *
      * @param string $sqlStatement
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $placeholders
+     * @param mixed $dataTypes
      * @return bool|ResultInterface
      */
-    public function query(string $sqlStatement, array $bindParams = [], array $bindTypes = []);
+    public function query(string $sqlStatement, $placeholders = null, $dataTypes = null);
 
     /**
      * Releases given savepoint

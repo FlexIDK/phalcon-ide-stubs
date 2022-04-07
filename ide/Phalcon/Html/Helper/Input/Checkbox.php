@@ -9,7 +9,8 @@
  */
 namespace Phalcon\Html\Helper\Input;
 
-use Phalcon\Html\Escaper\EscaperInterface;
+use Phalcon\Escaper\EscaperInterface;
+use Phalcon\Helper\Arr;
 
 /**
  * Class Checkbox
@@ -34,7 +35,7 @@ class Checkbox extends \Phalcon\Html\Helper\Input\AbstractInput
      *
      * @param EscaperInterface $escaper
      */
-    public function __construct(\Phalcon\Html\Escaper\EscaperInterface $escaper)
+    public function __construct(\Phalcon\Escaper\EscaperInterface $escaper)
     {
     }
 

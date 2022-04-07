@@ -19,9 +19,14 @@ use Phalcon\Tag;
 class Password extends \Phalcon\Forms\Element\AbstractElement
 {
 
-    /**
-     * @var string
-     */
-    protected $method = 'inputPassword';
 
+    /**
+     * Renders the element widget returning HTML
+     *
+     * @param array $attributes
+     * @return string
+     */
+    public function render(array $attributes = []): string
+    {
+    }
 }

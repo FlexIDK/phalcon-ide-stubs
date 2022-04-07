@@ -21,19 +21,19 @@ abstract class AbstractApplication extends Injectable implements \Phalcon\Events
 {
 
     /**
-     * @var DiInterface|null
+     * @var DiInterface
      */
-    protected $container = null;
+    protected $container;
 
     /**
-     * @var string|null
+     * @var string
      */
-    protected $defaultModule = null;
+    protected $defaultModule;
 
     /**
-     * @var ManagerInterface|null
+     * @var null | ManagerInterface
      */
-    protected $eventsManager = null;
+    protected $eventsManager;
 
     /**
      * @var array
@@ -61,17 +61,17 @@ abstract class AbstractApplication extends Injectable implements \Phalcon\Events
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface|null
+     * @return ManagerInterface
      */
-    public function getEventsManager(): ?ManagerInterface
+    public function getEventsManager(): ManagerInterface
     {
     }
 
     /**
      * Gets the module definition registered in the application via module name
      *
-     * @param string $name *
-     * @return array|mixed
+     * @param string $name
+     * @return array|object
      */
     public function getModule(string $name)
     {

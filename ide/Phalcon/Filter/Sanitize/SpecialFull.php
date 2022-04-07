@@ -20,8 +20,6 @@ class SpecialFull
 
     /**
      * @param mixed $input The text to sanitize
-     *
-     * @return mixed
      */
     public function __invoke($input)
     {

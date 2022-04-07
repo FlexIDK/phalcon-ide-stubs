@@ -37,7 +37,7 @@ class Row implements \Phalcon\Mvc\EntityInterface, \Phalcon\Mvc\Model\ResultInte
      * Gets a record in a specific position of the row
      *
      * @param string|int $index *
-     * @return string|ModelInterface
+     * @return string|Phalcon\Mvc\ModelInterface
      */
     public function offsetGet($index)
     {
@@ -57,7 +57,7 @@ class Row implements \Phalcon\Mvc\EntityInterface, \Phalcon\Mvc\Model\ResultInte
      * Rows cannot be changed. It has only been implemented to meet the definition of the ArrayAccess interface
      *
      * @param string|int $index
-     * @param ModelInterface $value
+     * @param \Phalcon\Mvc\ModelInterface $value
      * @return void
      */
     public function offsetSet($index, $value): void

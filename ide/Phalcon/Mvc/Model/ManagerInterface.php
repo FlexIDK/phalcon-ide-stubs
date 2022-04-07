@@ -101,7 +101,7 @@ interface ManagerInterface
     /**
      * Creates a Phalcon\Mvc\Model\Query\Builder
      *
-     * @param array|string|null $params
+     * @param string $params
      * @return BuilderInterface
      */
     public function createBuilder($params = null): BuilderInterface;
@@ -123,6 +123,51 @@ interface ManagerInterface
      * @param string $phql
      */
     public function executeQuery(string $phql, $placeholders = null, $types = null);
+
+    /**
+     * Checks whether a model has a belongsTo relation with another model
+     *
+     * @param string $modelName
+     * @param string $modelRelation
+     * @return bool
+     */
+    public function existsBelongsTo(string $modelName, string $modelRelation): bool;
+
+    /**
+     * Checks whether a model has a hasMany relation with another model
+     *
+     * @param string $modelName
+     * @param string $modelRelation
+     * @return bool
+     */
+    public function existsHasMany(string $modelName, string $modelRelation): bool;
+
+    /**
+     * Checks whether a model has a hasOne relation with another model
+     *
+     * @param string $modelName
+     * @param string $modelRelation
+     * @return bool
+     */
+    public function existsHasOne(string $modelName, string $modelRelation): bool;
+
+    /**
+     * Checks whether a model has a hasOneThrough relation with another model
+     *
+     * @param string $modelName
+     * @param string $modelRelation
+     * @return bool
+     */
+    public function existsHasOneThrough(string $modelName, string $modelRelation): bool;
+
+    /**
+     * Checks whether a model has a hasManyToMany relation with another model
+     *
+     * @param string $modelName
+     * @param string $modelRelation
+     * @return bool
+     */
+    public function existsHasManyToMany(string $modelName, string $modelRelation): bool;
 
     /**
      * Gets belongsTo relations defined on a model
@@ -226,9 +271,9 @@ interface ManagerInterface
      * Returns the mapped schema for a model
      *
      * @param \Phalcon\Mvc\ModelInterface $model
-     * @return string|null
+     * @return string
      */
-    public function getModelSchema(\Phalcon\Mvc\ModelInterface $model): ?string;
+    public function getModelSchema(\Phalcon\Mvc\ModelInterface $model): string;
 
     /**
      * Returns the mapped source for a model
@@ -258,15 +303,15 @@ interface ManagerInterface
      * Returns a relation by its alias
      *
      * @param string $modelName
-     * @param string $alias *
-     * @return RelationInterface|bool
+     * @param string $alias
+     * @return bool|Relation
      */
     public function getRelationByAlias(string $modelName, string $alias);
 
     /**
      * Helper method to query records based on a relation definition
      *
-     * @return \Phalcon\Mvc\Model\Resultset\Simple|int|false
+     * @return \Phalcon\Mvc\Model\Resultset\Simple|Phalcon\Mvc\Model\Resultset\Simple|int|false
      * @param RelationInterface $relation
      * @param \Phalcon\Mvc\ModelInterface $record
      * @param mixed $parameters
@@ -306,51 +351,6 @@ interface ManagerInterface
      * @return string
      */
     public function getWriteConnectionService(\Phalcon\Mvc\ModelInterface $model): string;
-
-    /**
-     * Checks whether a model has a belongsTo relation with another model
-     *
-     * @param string $modelName
-     * @param string $modelRelation
-     * @return bool
-     */
-    public function hasBelongsTo(string $modelName, string $modelRelation): bool;
-
-    /**
-     * Checks whether a model has a hasMany relation with another model
-     *
-     * @param string $modelName
-     * @param string $modelRelation
-     * @return bool
-     */
-    public function hasHasMany(string $modelName, string $modelRelation): bool;
-
-    /**
-     * Checks whether a model has a hasOne relation with another model
-     *
-     * @param string $modelName
-     * @param string $modelRelation
-     * @return bool
-     */
-    public function hasHasOne(string $modelName, string $modelRelation): bool;
-
-    /**
-     * Checks whether a model has a hasOneThrough relation with another model
-     *
-     * @param string $modelName
-     * @param string $modelRelation
-     * @return bool
-     */
-    public function hasHasOneThrough(string $modelName, string $modelRelation): bool;
-
-    /**
-     * Checks whether a model has a hasManyToMany relation with another model
-     *
-     * @param string $modelName
-     * @param string $modelRelation
-     * @return bool
-     */
-    public function hasHasManyToMany(string $modelName, string $modelRelation): bool;
 
     /**
      * Loads a model throwing an exception if it doesn't exist

@@ -17,15 +17,7 @@ namespace Phalcon\Http\Response;
 class Headers implements \Phalcon\Http\Response\HeadersInterface
 {
 
-    /**
-     * @var array
-     */
     protected $headers = [];
-
-    /**
-     * @var bool
-     */
-    protected $isSent = false;
 
     /**
      * Gets a header value from the internal bag
@@ -48,16 +40,7 @@ class Headers implements \Phalcon\Http\Response\HeadersInterface
     }
 
     /**
-     * Returns if the headers have already been sent
-     *
-     * @return bool
-     */
-    public function isSent(): bool
-    {
-    }
-
-    /**
-     * Removes a header by its name
+     * Removes a header to be sent at the end of the request
      *
      * @param string $header
      * @return HeadersInterface

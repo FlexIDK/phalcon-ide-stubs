@@ -20,7 +20,7 @@ use Phalcon\Filter\FilterInterface;
  * it, and then instantiating a task and calling an action on it.
  *
  * ```php
- * use Phalcon\Di\Di;
+ * use Phalcon\Di;
  * use Phalcon\Cli\Dispatcher;
  *
  * $di = new Di();
@@ -39,6 +39,9 @@ use Phalcon\Filter\FilterInterface;
 class Dispatcher extends \Phalcon\Dispatcher\AbstractDispatcher implements \Phalcon\Cli\DispatcherInterface
 {
 
+    /**
+     * @var string
+     */
     protected $defaultHandler = 'main';
 
     /**

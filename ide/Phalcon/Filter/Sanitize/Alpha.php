@@ -20,8 +20,6 @@ class Alpha
 
     /**
      * @param mixed $input The text to sanitize
-     *
-     * @return string|string[]|null
      */
     public function __invoke($input)
     {

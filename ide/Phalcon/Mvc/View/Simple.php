@@ -14,6 +14,8 @@ use Phalcon\Di\DiInterface;
 use Phalcon\Di\Injectable;
 use Phalcon\Events\EventsAwareInterface;
 use Phalcon\Events\ManagerInterface;
+use Phalcon\Helper\Arr;
+use Phalcon\Helper\Str;
 use Phalcon\Mvc\ViewBaseInterface;
 use Phalcon\Mvc\View\Engine\EngineInterface;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
@@ -48,44 +50,28 @@ use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phalcon\Events\EventsAwareInterface
 {
 
-    /**
-     * @var string
-     */
     protected $activeRenderPath;
 
-    /**
-     * @var string
-     */
     protected $content;
 
     /**
-     * @var EngineInterface[]|false
+     * @var \Phalcon\Mvc\View\EngineInterface[]|false
      */
     protected $engines = false;
 
-    /**
-     * @var ManagerInterface|null
-     */
     protected $eventsManager;
 
-    /**
-     * @var array
-     */
-    protected $options = [];
+    protected $options;
+
+    protected $partialsDir;
 
     /**
      * @var array|null
      */
     protected $registeredEngines;
 
-    /**
-     * @var string
-     */
     protected $viewsDir;
 
-    /**
-     * @var array
-     */
     protected $viewParams = [];
 
     /**
@@ -111,8 +97,8 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * echo $this->view->products;
      * ```
      *
-     * @return mixed|null
      * @param string $key
+     * @return mixed|null
      */
     public function __get(string $key)
     {
@@ -125,11 +111,10 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * $this->view->products = $products;
      * ```
      *
-     * @return void
      * @param string $key
      * @param mixed $value
      */
-    public function __set(string $key, $value): void
+    public function __set(string $key, $value)
     {
     }
 
@@ -172,8 +157,8 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
     /**
      * Returns a parameter previously set in the view
      *
-     * @return mixed|null
      * @param string $key
+     * @return mixed|null
      */
     public function getVar(string $key)
     {
@@ -206,11 +191,10 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * );
      * ```
      *
-     * @return void
      * @param string $partialPath
      * @param mixed $params
      */
-    public function partial(string $partialPath, $params = null): void
+    public function partial(string $partialPath, $params = null)
     {
     }
 
@@ -227,19 +211,18 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * );
      * ```
      *
-     * @return void
      * @param array $engines
      */
-    public function registerEngines(array $engines): void
+    public function registerEngines(array $engines)
     {
     }
 
     /**
      * Renders a view
      *
-     * @return string
      * @param string $path
      * @param array $params
+     * @return string
      */
     public function render(string $path, array $params = []): string
     {
@@ -252,8 +235,8 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * $this->view->setContent("<h1>hello</h1>");
      * ```
      *
-     * @return Simple
      * @param string $content
+     * @return Simple
      */
     public function setContent(string $content): Simple
     {
@@ -262,8 +245,8 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
     /**
      * Sets the events manager
      *
-     * @return void
      * @param \Phalcon\Events\ManagerInterface $eventsManager
+     * @return void
      */
     public function setEventsManager(\Phalcon\Events\ManagerInterface $eventsManager): void
     {
@@ -276,9 +259,9 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * $this->view->setParamToView("products", $products);
      * ```
      *
-     * @return Simple
      * @param string $key
      * @param mixed $value
+     * @return Simple
      */
     public function setParamToView(string $key, $value): Simple
     {
@@ -291,9 +274,9 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * $this->view->setVar("products", $products);
      * ```
      *
-     * @return Simple
      * @param string $key
      * @param mixed $value
+     * @return Simple
      */
     public function setVar(string $key, $value): Simple
     {
@@ -310,9 +293,9 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
      * );
      * ```
      *
-     * @return Simple
      * @param array $params
      * @param bool $merge
+     * @return Simple
      */
     public function setVars(array $params, bool $merge = true): Simple
     {
@@ -321,10 +304,9 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
     /**
      * Sets views directory
      *
-     * @return void
      * @param string $viewsDir
      */
-    public function setViewsDir(string $viewsDir): void
+    public function setViewsDir(string $viewsDir)
     {
     }
 
@@ -341,20 +323,10 @@ class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phal
     /**
      * Tries to render the view with every engine registered in the component
      *
+     * @param array $params
      * @param string $path
-     * @param array $params *
-     * @return void
      */
-    final protected function internalRender(string $path, $params): void
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param string $directory
-     * @return string
-     */
-    private function getDirSeparator(string $directory): string
+    final protected function internalRender(string $path, $params)
     {
     }
 }

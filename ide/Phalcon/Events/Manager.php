@@ -34,15 +34,9 @@ class Manager implements \Phalcon\Events\ManagerInterface
      */
     protected $enablePriorities = false;
 
-    /**
-     * @var array
-     */
-    protected $events = [];
+    protected $events = null;
 
-    /**
-     * @var array
-     */
-    protected $responses = [];
+    protected $responses;
 
     /**
      * Attach a listener to the events manager

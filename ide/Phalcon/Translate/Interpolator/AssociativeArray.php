@@ -9,12 +9,13 @@
  */
 namespace Phalcon\Translate\Interpolator;
 
-use Phalcon\Support\Helper\Str\Interpolate;
-
 /**
- * Class AssociativeArray
+ * This file is part of the Phalcon Framework.
  *
- * @package Phalcon\Translate\Interpolator
+ * (c) Phalcon Team <team@phalcon.io>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  */
 class AssociativeArray implements \Phalcon\Translate\Interpolator\InterpolatorInterface
 {
@@ -24,8 +25,7 @@ class AssociativeArray implements \Phalcon\Translate\Interpolator\InterpolatorIn
      * Replaces placeholders by the values passed
      *
      * @param string $translation
-     * @param array  $placeholders
-     *
+     * @param array $placeholders
      * @return string
      */
     public function replacePlaceholders(string $translation, array $placeholders = []): string

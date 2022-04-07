@@ -9,7 +9,7 @@
  */
 namespace Phalcon\Logger\Formatter;
 
-use JsonException;
+use Phalcon\Helper\Json as JsonHelper;
 use Phalcon\Logger\Item;
 
 /**
@@ -22,7 +22,7 @@ class Json extends \Phalcon\Logger\Formatter\AbstractFormatter
 
 
     /**
-     * Json constructor.
+     * Phalcon\Logger\Formatter\Json construct
      *
      * @param string $dateFormat
      */
@@ -33,10 +33,8 @@ class Json extends \Phalcon\Logger\Formatter\AbstractFormatter
     /**
      * Applies a format to a message before sent it to the internal log
      *
-     * @param Item $item
-     *
+     * @param \Phalcon\Logger\Item $item
      * @return string
-     * @throws JsonException
      */
     public function format(\Phalcon\Logger\Item $item): string
     {

@@ -9,55 +9,63 @@
  */
 namespace Phalcon\Logger;
 
-use DateTimeImmutable;
-
 /**
  * Phalcon\Logger\Item
  *
  * Represents each item in a logging transaction
- *
- * @property array             $context
- * @property string            $message
- * @property int               $level
- * @property string            $levelName
- * @property DateTimeImmutable $datetime
  */
 class Item
 {
 
     /**
-     * @var array
+     * Log Context
+     *
+     * @var mixed
      */
-    protected $context = [];
+    protected $context;
 
     /**
+     * Log message
+     *
      * @var string
      */
     protected $message;
 
     /**
-     * @var int
-     */
-    protected $level;
-
-    /**
+     * Log message
+     *
      * @var string
      */
-    protected $levelName;
+    protected $name;
 
     /**
-     * @var DateTimeImmutable
+     * Log timestamp
+     *
+     * @var integer
      */
-    protected $dateTime;
+    protected $time;
 
     /**
-     * @return array
+     * Log type
+     *
+     * @var integer
      */
-    public function getContext(): array
+    protected $type;
+
+    /**
+     *
+     * Log Context
+     *
+     * @return mixed
+     */
+    public function getContext()
     {
     }
 
     /**
+     *
+     * Log message
+     *
      * @return string
      */
     public function getMessage(): string
@@ -65,37 +73,46 @@ class Item
     }
 
     /**
-     * @return int
-     */
-    public function getLevel(): int
-    {
-    }
-
-    /**
+     *
+     * Log message
+     *
      * @return string
      */
-    public function getLevelName(): string
+    public function getName(): string
     {
     }
 
     /**
+     *
+     * Log timestamp
+     *
      * @return mixed
      */
-    public function getDateTime()
+    public function getTime()
     {
     }
 
     /**
-     * Item constructor.
      *
-     * @param string            $message
-     * @param string            $levelName
-     * @param int               $level
-     * @param DateTimeImmutable $datetime
-     * @param array             $context
-     * @param \DateTimeImmutable $dateTime
+     * Log type
+     *
+     * @return mixed
      */
-    public function __construct(string $message, string $levelName, int $level, \DateTimeImmutable $dateTime, array $context = [])
+    public function getType()
+    {
+    }
+
+    /**
+     * Phalcon\Logger\Item constructor
+     *
+     * @todo Remove the time or change the signature to an array
+     * @param string $message
+     * @param string $name
+     * @param int $type
+     * @param int $time
+     * @param mixed $context
+     */
+    public function __construct(string $message, string $name, int $type, int $time = 0, $context = [])
     {
     }
 }

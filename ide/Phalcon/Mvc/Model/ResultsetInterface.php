@@ -12,7 +12,7 @@ namespace Phalcon\Mvc\Model;
 use Closure;
 use Phalcon\Messages\MessageInterface;
 use Phalcon\Mvc\ModelInterface;
-use Psr\SimpleCache\CacheInterface;
+use Phalcon\Cache\Adapter\AdapterInterface;
 
 /**
  * Phalcon\Mvc\Model\ResultsetInterface
@@ -52,9 +52,9 @@ interface ResultsetInterface
     /**
      * Returns the associated cache for the resultset
      *
-     * @return CacheInterface|null
+     * @return AdapterInterface
      */
-    public function getCache(): ?CacheInterface;
+    public function getCache(): AdapterInterface;
 
     /**
      * Get first row in the resultset

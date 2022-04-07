@@ -15,7 +15,7 @@ use Psr\Http\Message\UriInterface;
 /**
  * Request methods
  */
-abstract class AbstractRequest extends \Phalcon\Http\Message\AbstractMessage implements \Phalcon\Http\Message\RequestMethodInterface
+abstract class AbstractRequest extends \Phalcon\Http\Message\AbstractMessage
 {
 
     /**
@@ -23,7 +23,7 @@ abstract class AbstractRequest extends \Phalcon\Http\Message\AbstractMessage imp
      *
      * @var string
      */
-    protected $method = self::METHOD_GET;
+    protected $method = 'GET';
 
     /**
      * The request-target, if it has been provided or calculated.
@@ -44,6 +44,7 @@ abstract class AbstractRequest extends \Phalcon\Http\Message\AbstractMessage imp
     protected $uri;
 
     /**
+     *
      * Retrieves the HTTP method of the request.
      *
      * @return string
@@ -53,6 +54,7 @@ abstract class AbstractRequest extends \Phalcon\Http\Message\AbstractMessage imp
     }
 
     /**
+     *
      * Retrieves the URI instance.
      *
      * This method MUST return a UriInterface instance.

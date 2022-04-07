@@ -9,37 +9,22 @@
  */
 namespace Phalcon\Html\Helper;
 
-use Phalcon\Html\Exception;
-
 /**
  * Class Script
  */
-class Script extends \Phalcon\Html\Helper\AbstractSeries
+class Script extends \Phalcon\Html\Helper\Style
 {
 
 
     /**
-     * Add an element to the list
-     *
-     * @param string $url
-     * @param array  $attributes
-     *
-     * @return $this
-     * @throws Exception
-     */
-    public function add(string $url, array $attributes = [])
-    {
-    }
-
-    /**
      * Returns the necessary attributes
      *
-     * @param string $url
+     * @param string $src
      * @param array  $attributes
      *
      * @return array
      */
-    protected function getAttributes(string $url, array $attributes): array
+    protected function getAttributes(string $src, array $attributes): array
     {
     }
 

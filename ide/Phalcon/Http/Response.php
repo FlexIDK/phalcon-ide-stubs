@@ -11,14 +11,14 @@ namespace Phalcon\Http;
 
 use DateTime;
 use DateTimeZone;
-use InvalidArgumentException;
-use Phalcon\Di\Di;
+use Phalcon\Di;
 use Phalcon\Di\DiInterface;
-use Phalcon\Http\Message\ResponseStatusCodeInterface;
+use Phalcon\Helper\Fs;
+use Phalcon\Helper\Json;
 use Phalcon\Http\Response\Exception;
 use Phalcon\Http\Response\HeadersInterface;
 use Phalcon\Http\Response\CookiesInterface;
-use Phalcon\Mvc\Url\UrlInterface;
+use Phalcon\Url\UrlInterface;
 use Phalcon\Mvc\ViewInterface;
 use Phalcon\Http\Response\Headers;
 use Phalcon\Di\InjectionAwareInterface;
@@ -39,37 +39,19 @@ use Phalcon\Events\ManagerInterface;
  * $response->send();
  * ```
  */
-class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\Events\EventsAwareInterface, \Phalcon\Http\Message\ResponseStatusCodeInterface
+class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\Events\EventsAwareInterface
 {
 
-    /**
-     * @var DiInterface|null
-     */
-    protected $container = null;
+    protected $container;
 
-    /**
-     * @var string|null
-     */
-    protected $content = null;
+    protected $content;
 
-    /**
-     * @var CookiesInterface|null
-     */
-    protected $cookies = null;
+    protected $cookies;
 
-    /**
-     * @var ManagerInterface|null
-     */
-    protected $eventsManager = null;
+    protected $eventsManager;
 
-    /**
-     * @var string|null
-     */
-    protected $file = null;
+    protected $file;
 
-    /**
-     * @var Headers
-     */
     protected $headers;
 
     /**
@@ -77,10 +59,7 @@ class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\Injection
      */
     protected $sent = false;
 
-    /**
-     * @var array
-     */
-    protected $statusCodes = [];
+    protected $statusCodes;
 
     /**
      * Phalcon\Http\Response constructor
@@ -133,9 +112,9 @@ class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\Injection
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface|null
+     * @return ManagerInterface
      */
-    public function getEventsManager(): ?ManagerInterface
+    public function getEventsManager(): ManagerInterface
     {
     }
 
@@ -506,27 +485,6 @@ class Response implements \Phalcon\Http\ResponseInterface, \Phalcon\Di\Injection
      * @return ResponseInterface
      */
     public function setRawHeader(string $header): ResponseInterface
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param string $uri
-     * @param mixed $suffix
-     * @return string
-     */
-    private function getBasename(string $uri, $suffix = null): string
-    {
-    }
-
-    /**
-     * @todo This will be removed when traits are introduced
-     * @param mixed $data
-     * @param int $options
-     * @param int $depth
-     * @return string
-     */
-    private function encode($data, int $options = 0, int $depth = 512): string
     {
     }
 }

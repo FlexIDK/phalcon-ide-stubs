@@ -14,8 +14,9 @@ use Phalcon\Acl\Role;
 use Phalcon\Acl\RoleInterface;
 use Phalcon\Acl\Component;
 use Phalcon\Acl\Exception;
-use Phalcon\Acl\RoleAwareInterface;
-use Phalcon\Acl\ComponentAwareInterface;
+use Phalcon\Events\Manager as EventsManager;
+use Phalcon\Acl\RoleAware;
+use Phalcon\Acl\ComponentAware;
 use Phalcon\Acl\ComponentInterface;
 use ReflectionFunction;
 
@@ -163,6 +164,14 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     protected $roleInherits;
 
     /**
+     * Roles Names
+     *
+     * @var mixed
+     */
+    protected $rolesNames;
+
+    /**
+     *
      * Returns latest function used to acquire access
      *
      * @return mixed
@@ -172,6 +181,7 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     }
 
     /**
+     *
      * Returns number of additional arguments(excluding role and resource) for active function
      *
      * @return int
@@ -181,6 +191,7 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     }
 
     /**
+     *
      * Returns latest key used to acquire access
      *
      * @return string|null
@@ -351,27 +362,6 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     }
 
     /**
-     * Return an array with every component registered in the list
-     *
-     * @return array|\Phalcon\Acl\ComponentInterface[]
-     */
-    public function getComponents(): array
-    {
-    }
-
-    /**
-     * Returns the inherited roles for a passed role name. If no role name
-     * has been specified it will return the whole array. If the role has not
-     * been found it returns an empty array
-     *
-     * @param string $roleName
-     * @return array
-     */
-    public function getInheritedRoles(string $roleName = ''): array
-    {
-    }
-
-    /**
      * Returns the default ACL access level for no arguments provided in
      * `isAllowed` action if a `func` (callable) exists for `accessKey`
      *
@@ -387,6 +377,15 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
      * @return array|\Phalcon\Acl\RoleInterface[]
      */
     public function getRoles(): array
+    {
+    }
+
+    /**
+     * Return an array with every component registered in the list
+     *
+     * @return array|\Phalcon\Acl\ComponentInterface[]
+     */
+    public function getComponents(): array
     {
     }
 
@@ -466,19 +465,6 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
      * @return string|bool
      */
     private function canAccess(string $roleName, string $componentName, string $access)
-    {
-    }
-
-    /**
-     * @param array  $collection
-     * @param string $element
-     * @param string $elementName
-     * @param string $suffix
-     *
-     * @throws Exception
-     * @return void
-     */
-    private function checkExists(array $collection, string $element, string $elementName, string $suffix = 'ACL'): void
     {
     }
 }

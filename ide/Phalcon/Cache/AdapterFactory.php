@@ -16,8 +16,6 @@ use Phalcon\Storage\SerializerFactory;
 
 /**
  * Factory to create Cache adapters
- *
- * @property SerializerFactory $serializerFactory
  */
 class AdapterFactory extends AbstractFactory
 {
@@ -30,58 +28,49 @@ class AdapterFactory extends AbstractFactory
     /**
      * AdapterFactory constructor.
      *
-     * @param SerializerFactory $factory
-     * @param array             $services
+     * @param \Phalcon\Storage\SerializerFactory $factory
+     * @param array $services
      */
-    public function __construct(\Phalcon\Storage\SerializerFactory $factory, array $services = [])
+    public function __construct(\Phalcon\Storage\SerializerFactory $factory = null, array $services = [])
     {
     }
 
     /**
      * Create a new instance of the adapter
      *
-     * @param string $name
-     * @param array  $options = [
+     * @param array $options = [
      *     'servers' => [
      *         [
-     *             'host'   => 'localhost',
-     *             'port'   => 11211,
+     *             'host' => 'localhost',
+     *             'port' => 11211,
      *             'weight' => 1,
      *         ]
      *     ],
-     *     'host'              => '127.0.0.1',
-     *     'port'              => 6379,
-     *     'index'             => 0,
-     *     'persistent'        => false,
-     *     'auth'              => '',
-     *     'socket'            => '',
+     *     'host' => '127.0.0.1',
+     *     'port' => 6379,
+     *     'index' => 0,
+     *     'persistent' => false,
+     *     'auth' => '',
+     *     'socket' => '',
      *     'defaultSerializer' => 'Php',
-     *     'lifetime'          => 3600,
-     *     'serializer'        => null,
-     *     'prefix'            => 'phalcon',
-     *     'storageDir'        => ''
+     *     'lifetime' => 3600,
+     *     'serializer' => null,
+     *     'prefix' => 'phalcon',
+     *     'storageDir' => ''
      * ]
-     *
+     * @param string $name
      * @return AdapterInterface
-     * @throws Exception
      */
     public function newInstance(string $name, array $options = []): AdapterInterface
     {
     }
 
     /**
-     * @return string
-     */
-    protected function getExceptionClass(): string
-    {
-    }
-
-    /**
      * Returns the available adapters
      *
-     * @return string[]
+     * @return array
      */
-    protected function getServices(): array
+    protected function getAdapters(): array
     {
     }
 }

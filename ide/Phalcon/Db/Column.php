@@ -81,11 +81,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     const TYPE_BIT = 19;
 
     /**
-     * Binary abstract data type
-     */
-    const TYPE_BINARY = 26;
-
-    /**
      * Blob abstract data type
      */
     const TYPE_BLOB = 11;
@@ -206,11 +201,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     const TYPE_TINYTEXT = 25;
 
     /**
-     * Varbinary abstract data type
-     */
-    const TYPE_VARBINARY = 27;
-
-    /**
      * Varchar abstract data type
      */
     const TYPE_VARCHAR = 2;
@@ -220,7 +210,7 @@ class Column implements \Phalcon\Db\ColumnInterface
      *
      * @var string|null
      */
-    protected $after = null;
+    protected $after;
 
     /**
      * Column is autoIncrement?
@@ -231,15 +221,11 @@ class Column implements \Phalcon\Db\ColumnInterface
 
     /**
      * Bind Type
-     *
-     * @var int
      */
     protected $bindType = 2;
 
     /**
      * Default column value
-     *
-     * @var mixed|null
      */
     protected $_default = null;
 
@@ -252,8 +238,6 @@ class Column implements \Phalcon\Db\ColumnInterface
 
     /**
      * The column have some numeric type?
-     *
-     * @var bool
      */
     protected $isNumeric = false;
 
@@ -267,7 +251,7 @@ class Column implements \Phalcon\Db\ColumnInterface
     /**
      * Column's comment
      *
-     * @var string|null
+     * @var string
      */
     protected $comment = null;
 
@@ -282,8 +266,6 @@ class Column implements \Phalcon\Db\ColumnInterface
 
     /**
      * Column is part of the primary key?
-     *
-     * @var bool
      */
     protected $primary = false;
 
@@ -297,7 +279,7 @@ class Column implements \Phalcon\Db\ColumnInterface
     /**
      * Integer column size
      *
-     * @var int|string
+     * @var int | string
      */
     protected $size = 0;
 
@@ -330,15 +312,15 @@ class Column implements \Phalcon\Db\ColumnInterface
     protected $unsigned = false;
 
     /**
-     * Default column value
      *
-     * @return mixed|null
+     * Default column value
      */
     public function getDefault()
     {
     }
 
     /**
+     *
      * Column's name
      *
      * @return string
@@ -348,15 +330,17 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
+     *
      * Column's comment
      *
-     * @return string|null
+     * @return string
      */
-    public function getComment(): ?string
+    public function getComment(): string
     {
     }
 
     /**
+     *
      * Integer column number scale
      *
      * @return int
@@ -366,6 +350,7 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
+     *
      * Integer column size
      *
      * @return int|string
@@ -375,6 +360,7 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
+     *
      * Column data type
      *
      * @return int
@@ -384,6 +370,7 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
+     *
      * Column data type reference
      *
      * @return int
@@ -393,6 +380,7 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
+     *
      * Column data type values
      *
      * @return array|string

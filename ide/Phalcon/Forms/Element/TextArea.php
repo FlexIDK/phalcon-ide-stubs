@@ -17,9 +17,14 @@ use Phalcon\Tag;
 class TextArea extends \Phalcon\Forms\Element\AbstractElement
 {
 
-    /**
-     * @var string
-     */
-    protected $method = 'inputTextarea';
 
+    /**
+     * Renders the element widget
+     *
+     * @param array $attributes
+     * @return string
+     */
+    public function render(array $attributes = []): string
+    {
+    }
 }

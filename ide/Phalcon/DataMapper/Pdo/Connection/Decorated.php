@@ -27,7 +27,7 @@ class Decorated extends \Phalcon\DataMapper\Pdo\Connection\AbstractConnection
      * This overrides the parent so that it can take an existing PDO instance
      * and decorate it with the extended methods.
      *
-     * @param \PDO                   $pdo
+     * @param PDO                    $pdo
      * @param ProfilerInterface|null $profiler
      *
      */

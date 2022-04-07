@@ -32,10 +32,8 @@ class Noop implements \SessionHandlerInterface
 
     /**
      * The connection of some adapters
-     *
-     * @var null
      */
-    protected $connection = null;
+    protected $connection;
 
     /**
      * Session options
@@ -92,8 +90,9 @@ class Noop implements \SessionHandlerInterface
      * Garbage Collector
      *
      * @param mixed $maxlifetime
+     * @return bool
      */
-    public function gc($maxlifetime)
+    public function gc($maxlifetime): bool
     {
     }
 

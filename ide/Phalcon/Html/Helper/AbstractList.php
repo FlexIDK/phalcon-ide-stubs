@@ -39,7 +39,7 @@ abstract class AbstractList extends \Phalcon\Html\Helper\AbstractHelper
      *
      * @return AbstractList
      */
-    public function __invoke(string $indent = '    ', string $delimiter = null, array $attributes = []): AbstractList
+    public function __invoke(string $indent = null, string $delimiter = null, array $attributes = []): AbstractList
     {
     }
 

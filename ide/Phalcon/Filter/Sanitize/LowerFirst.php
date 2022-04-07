@@ -20,8 +20,6 @@ class LowerFirst
 
     /**
      * @param string $input The text to sanitize
-     *
-     * @return string
      */
     public function __invoke(string $input)
     {

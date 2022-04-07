@@ -12,7 +12,7 @@ namespace Phalcon\Db\Adapter\Pdo;
 use Phalcon\Db\Adapter\AbstractAdapter;
 use Phalcon\Db\Column;
 use Phalcon\Db\Exception;
-use Phalcon\Db\Result\PdoResult;
+use Phalcon\Db\Result\Pdo as ResultPdo;
 use Phalcon\Db\ResultInterface;
 use Phalcon\Events\ManagerInterface;
 
@@ -39,10 +39,8 @@ abstract class AbstractPdo extends AbstractAdapter
 
     /**
      * Last affected rows
-     *
-     * @var int
      */
-    protected $affectedRows = 0;
+    protected $affectedRows;
 
     /**
      * PDO Handler
@@ -54,7 +52,7 @@ abstract class AbstractPdo extends AbstractAdapter
     /**
      * Constructor for Phalcon\Db\Adapter\Pdo
      *
-     * @param array $descriptor = [
+     * @param array|\Phalcon\Config $descriptor = [
      *     'host' => 'localhost',
      *     'port' => '3306',
      *     'dbname' => 'blog',
@@ -112,9 +110,9 @@ abstract class AbstractPdo extends AbstractAdapter
      * Closes the active connection returning success. Phalcon automatically
      * closes and destroys active connections when the request ends
      *
-     * @return void
+     * @return bool
      */
-    public function close(): void
+    public function close(): bool
     {
     }
 
@@ -143,9 +141,9 @@ abstract class AbstractPdo extends AbstractAdapter
      * ```
      *
      * @param array $descriptor
-     * @return void
+     * @return bool
      */
-    public function connect(array $descriptor = []): void
+    public function connect(array $descriptor = null): bool
     {
     }
 
@@ -207,11 +205,11 @@ abstract class AbstractPdo extends AbstractAdapter
      * ```
      *
      * @param string $sqlStatement
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $bindParams
+     * @param mixed $bindTypes
      * @return bool
      */
-    public function execute(string $sqlStatement, array $bindParams = [], array $bindTypes = []): bool
+    public function execute(string $sqlStatement, $bindParams = null, $bindTypes = null): bool
     {
     }
 
@@ -232,7 +230,7 @@ abstract class AbstractPdo extends AbstractAdapter
      *         "name" => "Voltron",
      *     ],
      *     [
-     *         "name" => Column::BIND_PARAM_STR,
+     *         "name" => Column::BIND_PARAM_INT,
      *     ]
      * );
      * ```
@@ -248,19 +246,17 @@ abstract class AbstractPdo extends AbstractAdapter
 
     /**
      * Return the error info, if any
-     *
-     * @return array
      */
-    public function getErrorInfo(): array
+    public function getErrorInfo()
     {
     }
 
     /**
      * Return internal PDO handler
      *
-     * @return mixed
+     * @return \PDO
      */
-    public function getInternalHandler()
+    public function getInternalHandler(): \PDO
     {
     }
 
@@ -313,10 +309,10 @@ abstract class AbstractPdo extends AbstractAdapter
      * $id = $connection->lastInsertId();
      * ```
      *
-     * @param string|null $name
-     * @return string|bool
+     * @param mixed $sequenceName
+     * @return int|bool
      */
-    public function lastInsertId(string $name = null)
+    public function lastInsertId($sequenceName = null)
     {
     }
 
@@ -368,11 +364,11 @@ abstract class AbstractPdo extends AbstractAdapter
      * ```
      *
      * @param string $sqlStatement
-     * @param array $bindParams
-     * @param array $bindTypes
+     * @param mixed $bindParams
+     * @param mixed $bindTypes
      * @return bool|ResultInterface
      */
-    public function query(string $sqlStatement, array $bindParams = [], array $bindTypes = [])
+    public function query(string $sqlStatement, $bindParams = null, $bindTypes = null)
     {
     }
 

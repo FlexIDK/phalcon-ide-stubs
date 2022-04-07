@@ -9,11 +9,11 @@
  */
 namespace Phalcon\Config\Adapter;
 
-use Phalcon\Config\Config;
+use Phalcon\Config;
 use Phalcon\Config\Exception;
 
 /**
- * Reads YAML files and converts them to Phalcon\Config\Config objects.
+ * Reads YAML files and converts them to Phalcon\Config objects.
  *
  * Given the following configuration file:
  *
@@ -60,25 +60,6 @@ class Yaml extends Config
      * @param array $callbacks
      */
     public function __construct(string $filePath, array $callbacks = null)
-    {
-    }
-
-    /**
-     * @todo to be removed when we get traits
-     * @param mixed $filename
-     * @param mixed $pos
-     * @param mixed $ndocs
-     * @param mixed $callbacks
-     */
-    protected function phpYamlParseFile($filename, $pos = 0, $ndocs = null, $callbacks = [])
-    {
-    }
-
-    /**
-     * @param string $name
-     * @return bool
-     */
-    protected function phpExtensionLoaded(string $name): bool
     {
     }
 }

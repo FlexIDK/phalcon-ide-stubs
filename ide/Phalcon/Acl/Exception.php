@@ -12,7 +12,7 @@ namespace Phalcon\Acl;
 /**
  * Class for exceptions thrown by Phalcon\Acl
  */
-class Exception extends \Exception
+class Exception extends \Phalcon\Exception
 {
 
 

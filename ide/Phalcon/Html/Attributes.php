@@ -9,8 +9,9 @@
  */
 namespace Phalcon\Html;
 
-use Phalcon\Support\Collection;
+use Phalcon\Collection;
 use Phalcon\Html\Attributes\RenderInterface;
+use Phalcon\Tag;
 
 /**
  * This class helps to work with HTML Attributes
@@ -34,15 +35,6 @@ class Attributes extends Collection implements \Phalcon\Html\Attributes\RenderIn
      * @return string
      */
     public function __toString(): string
-    {
-    }
-
-    /**
-     * @todo remove this when we refactor forms. Maybe remove this class? Put it into traits
-     * @param array $attributes
-     * @return string
-     */
-    protected function renderAttributes(array $attributes): string
     {
     }
 }

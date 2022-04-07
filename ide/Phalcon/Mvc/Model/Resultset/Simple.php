@@ -9,7 +9,8 @@
  */
 namespace Phalcon\Mvc\Model\Resultset;
 
-use Phalcon\Di\Di;
+use Phalcon\Cache\Adapter\AdapterInterface;
+use Phalcon\Di;
 use Phalcon\Di\DiInterface;
 use Phalcon\Mvc\Model;
 use Phalcon\Mvc\Model\Exception;
@@ -17,7 +18,6 @@ use Phalcon\Mvc\Model\Resultset;
 use Phalcon\Mvc\Model\Row;
 use Phalcon\Mvc\ModelInterface;
 use Phalcon\Storage\Serializer\SerializerInterface;
-use Psr\SimpleCache\CacheInterface;
 
 /**
  * Phalcon\Mvc\Model\Resultset\Simple
@@ -28,14 +28,8 @@ use Psr\SimpleCache\CacheInterface;
 class Simple extends Resultset
 {
 
-    /**
-     * @var array|string
-     */
     protected $columnMap;
 
-    /**
-     * @var ModelInterface|Row
-     */
     protected $model;
 
     /**
@@ -47,12 +41,12 @@ class Simple extends Resultset
      * Phalcon\Mvc\Model\Resultset\Simple constructor
      *
      * @param array $columnMap
-     * @param ModelInterface|Row $model
-     * @param \Phalcon\Db\ResultInterface|false $result
-     * @param CacheInterface|null $cache
-     * @param bool $keepSnapshots false
+     * @param \Phalcon\Mvc\ModelInterface|Phalcon\Mvc\Model\Row $model
+     * @param mixed $result
+     * @param \Phalcon\Cache\Adapter\AdapterInterface $cache
+     * @param bool $keepSnapshots
      */
-    public function __construct($columnMap, $model, $result, \Psr\SimpleCache\CacheInterface $cache = null, bool $keepSnapshots = false)
+    public function __construct($columnMap, $model, $result, \Phalcon\Cache\Adapter\AdapterInterface $cache = null, bool $keepSnapshots = null)
     {
     }
 

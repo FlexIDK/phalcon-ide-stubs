@@ -9,12 +9,15 @@
  */
 namespace Phalcon\Storage\Serializer;
 
+use Phalcon\Storage\Exception;
+
 /**
- * Class AbstractSerializer
+ * This file is part of the Phalcon Framework.
  *
- * @package Phalcon\Storage\Serializer
+ * (c) Phalcon Team <team@phalcon.io>
  *
- * @property mixed $data
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  */
 abstract class AbstractSerializer implements \Phalcon\Storage\Serializer\SerializerInterface
 {
@@ -25,9 +28,9 @@ abstract class AbstractSerializer implements \Phalcon\Storage\Serializer\Seriali
     protected $data = null;
 
     /**
-     * Constructor.
+     * Constructor
      *
-     * @param mixed|null $data
+     * @param mixed $data
      */
     public function __construct($data = null)
     {
@@ -37,7 +40,6 @@ abstract class AbstractSerializer implements \Phalcon\Storage\Serializer\Seriali
      * If this returns true, then the data returns back as is
      *
      * @param mixed $data
-     *
      * @return bool
      */
     protected function isSerializable($data): bool

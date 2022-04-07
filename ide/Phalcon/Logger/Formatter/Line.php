@@ -9,13 +9,13 @@
  */
 namespace Phalcon\Logger\Formatter;
 
-use Exception;
+use DateTime;
 use Phalcon\Logger\Item;
 
 /**
- * Class Line
+ * Phalcon\Logger\Formatter\Line
  *
- * @property string $format
+ * Formats messages using an one-line string
  */
 class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
 {
@@ -28,6 +28,7 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
     protected $format;
 
     /**
+     *
      * Format applied to each message
      *
      * @return string
@@ -37,6 +38,7 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
     }
 
     /**
+     *
      * Format applied to each message
      *
      * @param string $format
@@ -46,22 +48,20 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
     }
 
     /**
-     * Line constructor.
+     * Phalcon\Logger\Formatter\Line construct
      *
      * @param string $format
      * @param string $dateFormat
      */
-    public function __construct(string $format = '[%date%][%level%] %message%', string $dateFormat = 'c')
+    public function __construct(string $format = '[%date%][%type%] %message%', string $dateFormat = 'c')
     {
     }
 
     /**
      * Applies a format to a message before sent it to the internal log
      *
-     * @param Item $item
-     *
+     * @param \Phalcon\Logger\Item $item
      * @return string
-     * @throws Exception
      */
     public function format(\Phalcon\Logger\Item $item): string
     {

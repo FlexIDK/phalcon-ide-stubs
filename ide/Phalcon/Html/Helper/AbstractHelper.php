@@ -9,14 +9,16 @@
  */
 namespace Phalcon\Html\Helper;
 
-use Phalcon\Html\Escaper\EscaperInterface;
+use Phalcon\Escaper\EscaperInterface;
 use Phalcon\Html\Exception;
 
 /**
- * @property string           $delimiter
- * @property EscaperInterface $escaper
- * @property string           $indent
- * @property int              $indentLevel
+ * Class AbstractHelper
+ *
+ * @property string  $delimiter
+ * @property Escaper $escaper
+ * @property string  $indent
+ * @property int     $indentLevel
  */
 abstract class AbstractHelper
 {
@@ -44,9 +46,9 @@ abstract class AbstractHelper
     /**
      * AbstractHelper constructor.
      *
-     * @param EscaperInterface $escaper
+     * @param Escaper $escaper
      */
-    public function __construct(\Phalcon\Html\Escaper\EscaperInterface $escaper)
+    public function __construct(\Phalcon\Escaper\EscaperInterface $escaper)
     {
     }
 

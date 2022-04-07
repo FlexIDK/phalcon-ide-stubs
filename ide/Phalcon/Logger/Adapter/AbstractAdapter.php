@@ -9,18 +9,18 @@
  */
 namespace Phalcon\Logger\Adapter;
 
+use Phalcon\Logger;
 use Phalcon\Logger\Exception;
 use Phalcon\Logger\Formatter\FormatterInterface;
-use Phalcon\Logger\Formatter\Line;
 use Phalcon\Logger\Item;
 
 /**
- * Class AbstractAdapter
+ * This file is part of the Phalcon Framework.
  *
- * @property string             $defaultFormatter
- * @property FormatterInterface $formatter
- * @property bool               $inTransaction
- * @property array              $queue
+ * (c) Phalcon Team <team@phalcon.io>
+ *
+ * For the full copyright and license information, please view the LICENSE.txt
+ * file that was distributed with this source code.
  */
 abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterface
 {
@@ -30,12 +30,12 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
      *
      * @var string
      */
-    protected $defaultFormatter = 'Phalcon\\\\Logger\\Formatter\\\\Line';
+    protected $defaultFormatter = 'Line';
 
     /**
      * Formatter
      *
-     * @var FormatterInterface|null
+     * @var FormatterInterface
      */
     protected $formatter;
 
@@ -55,37 +55,15 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
 
     /**
      * Destructor cleanup
-     *
-     * @throws Exception
      */
     public function __destruct()
     {
     }
 
     /**
-     * Prevent serialization
-     *
-     * @return array
-     */
-    public function __serialize(): array
-    {
-    }
-
-    /**
-     * Prevent unserialization
-     *
-     * @param array $data
-     * @return void
-     */
-    public function __unserialize(array $data): void
-    {
-    }
-
-    /**
      * Adds a message to the queue
      *
-     * @param Item $item
-     *
+     * @param \Phalcon\Logger\Item $item
      * @return AdapterInterface
      */
     public function add(\Phalcon\Logger\Item $item): AdapterInterface
@@ -105,7 +83,6 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
      * Commits the internal transaction
      *
      * @return AdapterInterface
-     * @throws Exception
      */
     public function commit(): AdapterInterface
     {
@@ -119,8 +96,7 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
     }
 
     /**
-     * Returns the whether the logger is currently in an active transaction or
-     * not
+     * Returns the whether the logger is currently in an active transaction or not
      *
      * @return bool
      */
@@ -131,7 +107,7 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
     /**
      * Processes the message in the adapter
      *
-     * @param Item $item
+     * @param \Phalcon\Logger\Item $item
      * @return void
      */
     abstract public function process(\Phalcon\Logger\Item $item): void;
@@ -140,7 +116,6 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
      * Rollbacks the internal transaction
      *
      * @return AdapterInterface
-     * @throws Exception
      */
     public function rollback(): AdapterInterface
     {
@@ -149,40 +124,10 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
     /**
      * Sets the message formatter
      *
-     * @param FormatterInterface $formatter
-     *
+     * @param \Phalcon\Logger\Formatter\FormatterInterface $formatter
      * @return AdapterInterface
      */
     public function setFormatter(\Phalcon\Logger\Formatter\FormatterInterface $formatter): AdapterInterface
-    {
-    }
-
-    /**
-     * Returns the formatted item
-     *
-     * @param \Phalcon\Logger\Item $item
-     * @return string
-     */
-    protected function getFormattedItem(\Phalcon\Logger\Item $item): string
-    {
-    }
-
-    /**
-     * Checks if the transaction is active
-     *
-     * @throws Exception
-     * @return void
-     */
-    private function checkTransaction(): void
-    {
-    }
-
-    /**
-     * Resets the transaction flag and queue array
-     *
-     * @return void
-     */
-    private function resetTransaction(): void
     {
     }
 }

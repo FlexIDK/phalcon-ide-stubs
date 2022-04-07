@@ -20,8 +20,6 @@ class IntVal
 
     /**
      * @param mixed $input The text to sanitize
-     *
-     * @return int
      */
     public function __invoke($input)
     {

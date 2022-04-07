@@ -9,14 +9,17 @@
  */
 namespace Phalcon\Logger;
 
-use DateTimeZone;
+use Phalcon\Config;
 use Phalcon\Config\ConfigInterface;
-use Phalcon\Factory\AbstractConfigFactory;
+use Phalcon\Helper\Arr;
+use Phalcon\Logger;
 
 /**
- * Factory creating logger objects
+ * Phalcon\Logger\LoggerFactory
+ *
+ * Logger factory
  */
-class LoggerFactory extends AbstractConfigFactory
+class LoggerFactory
 {
 
     /**
@@ -34,18 +37,16 @@ class LoggerFactory extends AbstractConfigFactory
     /**
      * Factory to create an instance from a Config object
      *
-     * @param array|ConfigInterface $config = [
-     *     'name'     => 'messages',
+     * @param array|\Phalcon\Config $config = [
+     *     'name' => 'messages',
      *     'adapters' => [
-     *         'adapter-name' => [
-     *              'adapter' => 'stream',
-     *              'name'    => 'file.log',
-     *              'options' => [
-     *                  'mode'     => 'ab',
-     *                  'option'   => null,
-     *                  'facility' => null
-     *              ],
-     *         ],
+     *         'adapter' => 'stream',
+     *         'name' => 'file.log',
+     *         'options' => [
+     *             'mode' => 'ab',
+     *             'option' => null,
+     *             'facility' => null
+     *         ]
      *     ]
      * ]
      * @return Logger
@@ -57,31 +58,12 @@ class LoggerFactory extends AbstractConfigFactory
     /**
      * Returns a Logger object
      *
-     * @param string            $name
-     * @param array             $adapters
-     * @param DateTimeZone|null $timezone
+     * @param string $name
+     * @param array  $adapters
      *
      * @return Logger
      */
-    public function newInstance(string $name, array $adapters = [], \DateTimeZone $timezone = null): Logger
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param array $collection
-     * @param mixed $index
-     * @param mixed $defaultValue
-     * @return mixed
-     */
-    protected function getArrVal(array $collection, $index, $defaultValue = null)
-    {
-    }
-
-    /**
-     * @return string
-     */
-    protected function getExceptionClass(): string
+    public function newInstance(string $name, array $adapters = []): Logger
     {
     }
 }

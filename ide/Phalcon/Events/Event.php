@@ -44,7 +44,7 @@ class Event implements \Phalcon\Events\EventInterface
     /**
      * Event source
      *
-     * @var object|null
+     * @var object
      */
     protected $source;
 
@@ -63,6 +63,7 @@ class Event implements \Phalcon\Events\EventInterface
     protected $type;
 
     /**
+     *
      * Event data
      *
      * @return mixed
@@ -72,15 +73,17 @@ class Event implements \Phalcon\Events\EventInterface
     }
 
     /**
+     *
      * Event source
      *
-     * @return object|null
+     * @return object
      */
     public function getSource()
     {
     }
 
     /**
+     *
      * Event type
      *
      * @return string
@@ -97,7 +100,7 @@ class Event implements \Phalcon\Events\EventInterface
      * @param mixed $data
      * @param bool $cancelable
      */
-    public function __construct(string $type, $source = null, $data = null, bool $cancelable = true)
+    public function __construct(string $type, $source, $data = null, bool $cancelable = true)
     {
     }
 

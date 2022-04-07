@@ -14,7 +14,7 @@ namespace Phalcon\Translate;
  *
  * Class for exceptions thrown by Phalcon\Translate
  */
-class Exception extends \Exception
+class Exception extends \Phalcon\Exception
 {
 
 

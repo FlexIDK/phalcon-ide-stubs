@@ -12,7 +12,7 @@ namespace Phalcon\Forms\Element;
 use Phalcon\Forms\Form;
 use Phalcon\Messages\MessageInterface;
 use Phalcon\Messages\Messages;
-use Phalcon\Filter\Validation\ValidatorInterface;
+use Phalcon\Validation\ValidatorInterface;
 
 /**
  * Interface for Phalcon\Forms\Element classes
@@ -32,16 +32,17 @@ interface ElementInterface
     /**
      * Adds a validator to the element
      *
-     * @param \Phalcon\Filter\Validation\ValidatorInterface $validator
+     * @param \Phalcon\Validation\ValidatorInterface $validator
      * @return ElementInterface
      */
-    public function addValidator(\Phalcon\Filter\Validation\ValidatorInterface $validator): ElementInterface;
+    public function addValidator(\Phalcon\Validation\ValidatorInterface $validator): ElementInterface;
 
     /**
      * Adds a group of validators
      *
-     * @param \Phalcon\Filter\Validation\ValidatorInterface[] $validators
-     * @param bool $merge *
+     * @param \Phalcon\Validation\ValidatorInterface[]
+     * @param array $validators
+     * @param bool $merge
      * @return ElementInterface
      */
     public function addValidators(array $validators, bool $merge = true): ElementInterface;
@@ -139,7 +140,7 @@ interface ElementInterface
     /**
      * Returns the validators registered for the element
      *
-     * @return array|\Phalcon\Filter\Validation\ValidatorInterface[]
+     * @return array|\Phalcon\Validation\ValidatorInterface[]
      */
     public function getValidators(): array;
 
@@ -163,6 +164,16 @@ interface ElementInterface
      * @return string
      */
     public function label(): string;
+
+    /**
+     * Returns an array of prepared attributes for Phalcon\Tag helpers
+     * according to the element's parameters
+     *
+     * @param array $attributes
+     * @param bool $useChecked
+     * @return array
+     */
+    public function prepareAttributes(array $attributes = [], bool $useChecked = false): array;
 
     /**
      * Renders the element widget

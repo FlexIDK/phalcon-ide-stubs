@@ -10,7 +10,7 @@
 namespace Phalcon\Db\Adapter;
 
 use Phalcon\Factory\AbstractFactory;
-use Phalcon\Support\Helper\Arr\Get;
+use Phalcon\Helper\Arr;
 
 /**
  * This file is part of the Phalcon Framework.
@@ -36,7 +36,7 @@ class PdoFactory extends AbstractFactory
     /**
      * Factory to create an instance from a Config object
      *
-     * @param array|\Phalcon\Config\Config $config = [
+     * @param array|\Phalcon\Config $config = [
      *     'adapter' => 'mysql',
      *     'options' => [
      *         'host' => 'localhost',
@@ -68,18 +68,11 @@ class PdoFactory extends AbstractFactory
     }
 
     /**
-     * @return string
-     */
-    protected function getExceptionClass(): string
-    {
-    }
-
-    /**
      * Returns the available adapters
      *
-     * @return string[]
+     * @return array
      */
-    protected function getServices(): array
+    protected function getAdapters(): array
     {
     }
 }

@@ -9,8 +9,8 @@
  */
 namespace Phalcon\Http\Message;
 
-use Phalcon\Support\Collection;
-use Phalcon\Support\Collection\CollectionInterface;
+use Phalcon\Collection;
+use Phalcon\Collection\CollectionInterface;
 use Phalcon\Http\Message\Exception\InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
@@ -57,6 +57,7 @@ abstract class AbstractMessage extends \Phalcon\Http\Message\AbstractCommon
     protected $uri;
 
     /**
+     *
      * Gets the body of the message.
      *
      * @return mixed
@@ -66,9 +67,11 @@ abstract class AbstractMessage extends \Phalcon\Http\Message\AbstractCommon
     }
 
     /**
+     *
      * Retrieves the HTTP protocol version as a string.
      *
      * The string MUST contain only the HTTP version number (e.g., '1.1',
+     *
      * '1.0').
      *
      * @return string
@@ -78,6 +81,7 @@ abstract class AbstractMessage extends \Phalcon\Http\Message\AbstractCommon
     }
 
     /**
+     *
      * Retrieves the URI instance.
      *
      * This method MUST return a UriInterface instance.
@@ -271,7 +275,7 @@ abstract class AbstractMessage extends \Phalcon\Http\Message\AbstractCommon
      *
      * @return CollectionInterface
      */
-    final protected function checkHeaderHost(\Phalcon\Support\Collection\CollectionInterface $collection): CollectionInterface
+    final protected function checkHeaderHost(\Phalcon\Collection\CollectionInterface $collection): CollectionInterface
     {
     }
 

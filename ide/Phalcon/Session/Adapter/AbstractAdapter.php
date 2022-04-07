@@ -51,8 +51,9 @@ abstract class AbstractAdapter implements \SessionHandlerInterface
      * Garbage Collector
      *
      * @param mixed $maxlifetime
+     * @return bool
      */
-    public function gc($maxlifetime)
+    public function gc($maxlifetime): bool
     {
     }
 
@@ -85,17 +86,6 @@ abstract class AbstractAdapter implements \SessionHandlerInterface
      * @return bool
      */
     public function write($id, $data): bool
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param array $collection
-     * @param mixed $index
-     * @param mixed $defaultValue
-     * @return mixed
-     */
-    protected function getArrVal(array $collection, $index, $defaultValue = null)
     {
     }
 }

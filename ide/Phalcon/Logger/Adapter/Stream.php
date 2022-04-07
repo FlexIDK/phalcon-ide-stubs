@@ -9,9 +9,11 @@
  */
 namespace Phalcon\Logger\Adapter;
 
-use LogicException;
+use Phalcon\Logger\Adapter;
 use Phalcon\Logger\Exception;
+use Phalcon\Logger\Formatter\FormatterInterface;
 use Phalcon\Logger\Item;
+use UnexpectedValueException;
 
 /**
  * Phalcon\Logger\Adapter\Stream
@@ -19,19 +21,14 @@ use Phalcon\Logger\Item;
  * Adapter to store logs in plain text files
  *
  * ```php
- * $logger = new \Phalcon\Logger\Adapter\Stream('app/logs/test.log');
+ * $logger = new \Phalcon\Logger\Adapter\Stream("app/logs/test.log");
  *
- * $logger->log('This is a message');
- * $logger->log(\Phalcon\Logger::ERROR, 'This is an error');
- * $logger->error('This is another error');
+ * $logger->log("This is a message");
+ * $logger->log(\Phalcon\Logger::ERROR, "This is an error");
+ * $logger->error("This is another error");
  *
  * $logger->close();
  * ```
- *
- * @property resource|null $handler
- * @property string        $mode
- * @property string        $name
- * @property array         $options
  */
 class Stream extends \Phalcon\Logger\Adapter\AbstractAdapter
 {
@@ -44,7 +41,7 @@ class Stream extends \Phalcon\Logger\Adapter\AbstractAdapter
     protected $handler = null;
 
     /**
-     * The file open mode. Defaults to 'ab'
+     * The file open mode. Defaults to "ab"
      *
      * @var string
      */
@@ -65,6 +62,7 @@ class Stream extends \Phalcon\Logger\Adapter\AbstractAdapter
     protected $options;
 
     /**
+     *
      * Stream name
      *
      * @return string
@@ -74,12 +72,12 @@ class Stream extends \Phalcon\Logger\Adapter\AbstractAdapter
     }
 
     /**
-     * Stream constructor.
+     * Constructor. Accepts the name and some options
      *
+     * @param array $options = [
+     *     'mode' => 'ab'
+     * ]
      * @param string $name
-     * @param array  $options
-     *
-     * @throws Exception
      */
     public function __construct(string $name, array $options = [])
     {
@@ -97,19 +95,10 @@ class Stream extends \Phalcon\Logger\Adapter\AbstractAdapter
     /**
      * Processes the message i.e. writes it to the file
      *
-     * @param Item $item
+     * @param \Phalcon\Logger\Item $item
      * @return void
      */
     public function process(\Phalcon\Logger\Item $item): void
-    {
-    }
-
-    /**
-     * @todo to be removed when we get traits
-     * @param string $filename
-     * @param string $mode
-     */
-    protected function phpFopen(string $filename, string $mode)
     {
     }
 }

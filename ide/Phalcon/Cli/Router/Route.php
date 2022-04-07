@@ -16,59 +16,26 @@ class Route implements \Phalcon\Cli\Router\RouteInterface
 {
     const DEFAULT_DELIMITER = ' ';
 
-    /**
-     * @var mixed|null
-     */
-    protected $beforeMatch = null;
+    protected $beforeMatch;
 
-    /**
-     * @var string|null
-     */
-    protected $compiledPattern = null;
+    protected $compiledPattern;
 
-    /**
-     * @var array
-     */
-    protected $converters = [];
+    protected $converters;
 
-    /**
-     * @var string
-     */
     protected $delimiter;
 
-    /**
-     * @var string
-     */
     static protected $delimiterPath = self::DEFAULT_DELIMITER;
 
-    /**
-     * @var string|null
-     */
-    protected $description = null;
+    protected $description;
 
-    /**
-     * @var string
-     */
     protected $id;
 
-    /**
-     * @var string|null
-     */
-    protected $name = null;
+    protected $name;
 
-    /**
-     * @var array
-     */
-    protected $paths = [];
+    protected $paths;
 
-    /**
-     * @var string
-     */
     protected $pattern;
 
-    /**
-     * @var int|string
-     */
     static protected $uniqueId = 0;
 
     /**
@@ -84,7 +51,7 @@ class Route implements \Phalcon\Cli\Router\RouteInterface
      * The developer can implement any arbitrary conditions here
      * If the callback returns false the route is treated as not matched
      *
-     * @param mixed $callback
+     * @param callback $callback
      * @return RouteInterface
      */
     public function beforeMatch($callback): RouteInterface
@@ -227,8 +194,8 @@ class Route implements \Phalcon\Cli\Router\RouteInterface
     /**
      * Reconfigure the route adding a new pattern and a set of paths
      *
+     * @param array|string $paths
      * @param string $pattern
-     * @param array|string|null $paths *
      * @return void
      */
     public function reConfigure(string $pattern, $paths = null): void

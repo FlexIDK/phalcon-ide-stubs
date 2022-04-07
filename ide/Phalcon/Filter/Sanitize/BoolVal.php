@@ -20,8 +20,6 @@ class BoolVal
 
     /**
      * @param mixed $input The text to sanitize
-     *
-     * @return bool
      */
     public function __invoke($input)
     {

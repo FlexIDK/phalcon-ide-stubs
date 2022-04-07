@@ -51,80 +51,35 @@ use Throwable;
 class Micro extends Injectable implements \ArrayAccess, \Phalcon\Events\EventsAwareInterface
 {
 
-    /**
-     * @var callable|null
-     */
-    protected $activeHandler = null;
+    protected $activeHandler;
 
-    /**
-     * @var array
-     */
     protected $afterBindingHandlers = [];
 
-    /**
-     * @var array
-     */
     protected $afterHandlers = [];
 
-    /**
-     * @var array
-     */
     protected $beforeHandlers = [];
 
-    /**
-     * @var DiInterface|null
-     */
-    protected $container = null;
+    protected $container;
 
-    /**
-     * @var callable|null
-     */
-    protected $errorHandler = null;
+    protected $errorHandler;
 
-    /**
-     * @var ManagerInterface|null
-     */
-    protected $eventsManager = null;
+    protected $eventsManager;
 
-    /**
-     * @var array
-     */
     protected $finishHandlers = [];
 
-    /**
-     * @var array
-     */
     protected $handlers = [];
 
-    /**
-     * @var BinderInterface|null
-     */
-    protected $modelBinder = null;
+    protected $modelBinder;
 
-    /**
-     * @var callable|null
-     */
-    protected $notFoundHandler = null;
+    protected $notFoundHandler;
 
-    /**
-     * @var callable|null
-     */
-    protected $responseHandler = null;
+    protected $responseHandler;
 
-    /**
-     * @var mixed|null
-     */
-    protected $returnedValue = null;
+    protected $returnedValue;
 
-    /**
-     * @var RouterInterface|null
-     */
-    protected $router = null;
+    protected $router;
 
-    /**
-     * @var bool
-     */
-    protected $stopped = false;
+    protected $stopped;
 
     /**
      * Phalcon\Mvc\Micro constructor

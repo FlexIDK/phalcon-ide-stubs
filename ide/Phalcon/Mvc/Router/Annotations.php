@@ -38,30 +38,15 @@ use Phalcon\Annotations\Annotation;
 class Annotations extends Router
 {
 
-    /**
-     * @var string
-     */
     protected $actionSuffix = 'Action';
 
-    /**
-     * @var callable|string|null
-     */
-    protected $actionPreformatCallback = null;
+    protected $actionPreformatCallback;
 
-    /**
-     * @var string
-     */
     protected $controllerSuffix = 'Controller';
 
-    /**
-     * @var array
-     */
     protected $handlers = [];
 
-    /**
-     * @var string
-     */
-    protected $routePrefix = '';
+    protected $routePrefix;
 
     /**
      * Adds a resource to the annotations handler
@@ -116,9 +101,8 @@ class Annotations extends Router
      * @param string $controller
      * @param string $action
      * @param \Phalcon\Annotations\Annotation $annotation
-     * @return void
      */
-    public function processActionAnnotation(string $module, string $namespaceName, string $controller, string $action, \Phalcon\Annotations\Annotation $annotation): void
+    public function processActionAnnotation(string $module, string $namespaceName, string $controller, string $action, \Phalcon\Annotations\Annotation $annotation)
     {
     }
 
@@ -147,19 +131,12 @@ class Annotations extends Router
      *
      * ```php
      * // Array as callback
-     * $annotationRouter->setActionPreformatCallback(
-     *      [
-     *          new Uncamelize(),
-     *          '__invoke'
-     *      ]
-     *  );
+     * $annotationRouter->setActionPreformatCallback([Text::class, 'uncamelize']);
      *
      * // Function as callback
-     * $annotationRouter->setActionPreformatCallback(
-     *     function ($action) {
-     *         return $action;
-     *     }
-     * );
+     * $annotationRouter->setActionPreformatCallback(function(action){
+     *     return action;
+     * });
      *
      * // String as callback
      * $annotationRouter->setActionPreformatCallback('strtolower');

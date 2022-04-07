@@ -10,13 +10,13 @@
 namespace Phalcon\Acl\Adapter;
 
 use Phalcon\Acl\Enum;
-use Phalcon\Events\AbstractEventsAware;
+use Phalcon\Events\ManagerInterface;
 use Phalcon\Events\EventsAwareInterface;
 
 /**
  * Adapter for Phalcon\Acl adapters
  */
-abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\Acl\Adapter\AdapterInterface, \Phalcon\Events\EventsAwareInterface
+abstract class AbstractAdapter implements \Phalcon\Acl\Adapter\AdapterInterface, \Phalcon\Events\EventsAwareInterface
 {
 
     /**
@@ -56,6 +56,14 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     protected $defaultAccess = Enum::DENY;
 
     /**
+     * Events manager
+     *
+     * @var ManagerInterface|null
+     */
+    protected $eventsManager;
+
+    /**
+     *
      * Active access which the list is checking if some role can access it
      *
      * @return string|null
@@ -65,6 +73,7 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     }
 
     /**
+     *
      * Role which the list is checking if it's allowed to certain
      *
      * component/access
@@ -76,6 +85,7 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     }
 
     /**
+     *
      * Component which the list is checking if some role can access it
      *
      * @return string|null
@@ -94,12 +104,31 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     }
 
     /**
+     * Returns the internal event manager
+     *
+     * @return ManagerInterface
+     */
+    public function getEventsManager(): ManagerInterface
+    {
+    }
+
+    /**
      * Sets the default access level (Phalcon\Acl::ALLOW or Phalcon\Acl::DENY)
      *
      * @param int $defaultAccess
      * @return void
      */
     public function setDefaultAction(int $defaultAccess): void
+    {
+    }
+
+    /**
+     * Sets the events manager
+     *
+     * @param \Phalcon\Events\ManagerInterface $eventsManager
+     * @return void
+     */
+    public function setEventsManager(\Phalcon\Events\ManagerInterface $eventsManager): void
     {
     }
 }

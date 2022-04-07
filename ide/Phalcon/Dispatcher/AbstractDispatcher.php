@@ -27,19 +27,13 @@ use Phalcon\Mvc\Model\BinderInterface;
 abstract class AbstractDispatcher extends AbstractInjectionAware implements \Phalcon\Dispatcher\DispatcherInterface, \Phalcon\Events\EventsAwareInterface
 {
 
-    /**
-     * @var object|null
-     */
-    protected $activeHandler = null;
+    protected $activeHandler;
 
     /**
      * @var array
      */
     protected $activeMethodMap = [];
 
-    /**
-     * @var string|null
-     */
     protected $actionName = null;
 
     /**
@@ -57,14 +51,8 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      */
     protected $defaultAction = '';
 
-    /**
-     * @var string|null
-     */
     protected $defaultNamespace = null;
 
-    /**
-     * @var string|null
-     */
     protected $defaultHandler = null;
 
     /**
@@ -72,9 +60,6 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      */
     protected $handlerHashes = [];
 
-    /**
-     * @var string|null
-     */
     protected $handlerName = null;
 
     /**
@@ -82,10 +67,7 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      */
     protected $handlerSuffix = '';
 
-    /**
-     * @var ManagerInterface|null
-     */
-    protected $eventsManager = null;
+    protected $eventsManager;
 
     /**
      * @var bool
@@ -102,14 +84,8 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      */
     protected $isControllerInitialize = false;
 
-    /**
-     * @var mixed|null
-     */
     protected $lastHandler = null;
 
-    /**
-     * @var BinderInterface|null
-     */
     protected $modelBinder = null;
 
     /**
@@ -117,14 +93,8 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      */
     protected $modelBinding = false;
 
-    /**
-     * @var string|null
-     */
     protected $moduleName = null;
 
-    /**
-     * @var string|null
-     */
     protected $namespaceName = null;
 
     /**
@@ -132,24 +102,12 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      */
     protected $params = [];
 
-    /**
-     * @var string|null
-     */
     protected $previousActionName = null;
 
-    /**
-     * @var string|null
-     */
     protected $previousHandlerName = null;
 
-    /**
-     * @var string|null
-     */
     protected $previousNamespaceName = null;
 
-    /**
-     * @var string|null
-     */
     protected $returnedValue = null;
 
     /**
@@ -165,9 +123,9 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      * Process the results of the router by calling into the appropriate
      * controller action(s) including any routing data or injected parameters.
      *
-     * @return mixed Returns the dispatched handler class (the Controller for Mvc dispatching or a Task
-     *               for CLI dispatching) or <tt>false</tt> if an exception occurred and the operation was
-     *               stopped by returning <tt>false</tt> in the exception handler.
+     * @return object|false Returns the dispatched handler class (the Controller for Mvc dispatching or a Task
+     *                      for CLI dispatching) or <tt>false</tt> if an exception occurred and the operation was
+     *                      stopped by returning <tt>false</tt> in the exception handler.
      *
      * @throws \Exception if any uncaught or unhandled exception occurs during the dispatcher process.
      */
@@ -187,7 +145,7 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      * );
      * ```
      *
-     * @throws PhalconException
+     * @throws \Phalcon\Exception
      * @param array $forward
      * @return void
      */
@@ -254,9 +212,9 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
     /**
      * Returns the internal event manager
      *
-     * @return ManagerInterface|null
+     * @return ManagerInterface
      */
-    public function getEventsManager(): ?ManagerInterface
+    public function getEventsManager(): ManagerInterface
     {
     }
 
@@ -360,10 +318,10 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
     /**
      * Sets the default namespace
      *
-     * @param string $defaultNamespace
+     * @param string $namespaceName
      * @return void
      */
-    public function setDefaultNamespace(string $defaultNamespace): void
+    public function setDefaultNamespace(string $namespaceName): void
     {
     }
 

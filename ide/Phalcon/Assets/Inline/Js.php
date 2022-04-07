@@ -23,9 +23,9 @@ class Js extends \Phalcon\Assets\Inline
      *
      * @param string $content
      * @param bool $filter
-     * @param array $attributes
+     * @param mixed $attributes
      */
-    public function __construct(string $content, bool $filter = true, array $attributes = [])
+    public function __construct(string $content, bool $filter = true, $attributes = null)
     {
     }
 }

@@ -9,14 +9,14 @@
  */
 namespace Phalcon\Config;
 
-use Phalcon\Support\Collection\CollectionInterface;
+use Phalcon\Collection\CollectionInterface;
 
 /**
  * Phalcon\Config\ConfigInterface
  *
  * Interface for Phalcon\Config class
  */
-interface ConfigInterface extends \Phalcon\Support\Collection\CollectionInterface
+interface ConfigInterface extends \Phalcon\Collection\CollectionInterface
 {
 
 
@@ -26,24 +26,21 @@ interface ConfigInterface extends \Phalcon\Support\Collection\CollectionInterfac
     public function getPathDelimiter(): string;
 
     /**
-     * @param array|ConfigInterface $toMerge
-     *
+     * @param mixed $toMerge
      * @return ConfigInterface
      */
     public function merge($toMerge): ConfigInterface;
 
     /**
-     * @param string      $path
-     * @param mixed|null  $defaultValue
-     * @param string|null $delimiter
-     *
-     * @return mixed
+     * @param string $path
+     * @param mixed $defaultValue
+     * @param mixed $delimiter
+     * @return mixed|null
      */
-    public function path(string $path, $defaultValue = null, string $delimiter = null);
+    public function path(string $path, $defaultValue = null, $delimiter = null);
 
     /**
-     * @param string|null $delimiter
-     *
+     * @param string $delimiter
      * @return ConfigInterface
      */
     public function setPathDelimiter(string $delimiter = null): ConfigInterface;

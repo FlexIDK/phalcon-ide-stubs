@@ -37,10 +37,10 @@ interface ModelInterface
     /**
      * Assigns values to a model from an array
      *
+     * @param array $columnMap
      * @param array $data
      * @param mixed $whiteList
-     * @param mixed $dataColumnMap Array to transform keys of data to another
-     *
+     * @param mixed $dataColumnMap
      * @return ModelInterface
      */
     public function assign(array $data, $whiteList = null, $dataColumnMap = null): ModelInterface;
@@ -50,9 +50,9 @@ interface ModelInterface
      * conditions
      *
      * @param array $parameters
-     * @return ResultsetInterface|float
+     * @return double | ResultsetInterface
      */
-    public static function average(array $parameters = []);
+    public static function average($parameters = null);
 
     /**
      * Assigns values to a model from an array returning a new model
@@ -67,14 +67,14 @@ interface ModelInterface
     /**
      * Assigns values to a model from an array returning a new model
      *
-     * @param ModelInterface|\Phalcon\Mvc\Model\Row $base
-     * @param mixed $columnMap
-     * @param int $dirtyState
-     * @param bool $keepSnapshots *
-     * @return ModelInterface
+     * @param \Phalcon\Mvc\Model $base
+     * @param array $columnMap
+     * @return \Phalcon\Mvc\Model result
      * @param array $data
+     * @param int $dirtyState
+     * @param bool $keepSnapshots
      */
-    public static function cloneResultMap($base, array $data, $columnMap, int $dirtyState = 0, bool $keepSnapshots = false): ModelInterface;
+    public static function cloneResultMap($base, array $data, $columnMap, int $dirtyState = 0, bool $keepSnapshots = null): ModelInterface;
 
     /**
      * Returns an hydrated result based on the data and the column map
@@ -92,7 +92,7 @@ interface ModelInterface
      * instance for when the GROUP condition is used. The results will
      * contain the count of each group.
      *
-     * @param array|string|null $parameters
+     * @param array $parameters
      * @return int|ResultsetInterface
      */
     public static function count($parameters = null);
@@ -116,7 +116,7 @@ interface ModelInterface
     /**
      * Allows to query a set of records that match the specified conditions
      *
-     * @param array|string|int|null $parameters *
+     * @param mixed $parameters
      * @return ResultsetInterface
      */
     public static function find($parameters = null): ResultsetInterface;
@@ -127,9 +127,8 @@ interface ModelInterface
      * @param array $parameters
      * @return \Phalcon\Mvc\ModelInterface|\Phalcon\Mvc\Model\Row|null
      *
-     * TODO: Current method signature must be reviewed in v5. As it must return only ?ModelInterface (it also returns Row).
+     * TODO: Current method signature must be reviewed in v5. As it must return only ?ModelInterface.
      * @see https://github.com/phalcon/cphalcon/issues/15212
-     * @see https://github.com/phalcon/cphalcon/issues/15883
      */
     public static function findFirst($parameters = null);
 
@@ -199,18 +198,18 @@ interface ModelInterface
     /**
      * Returns related records based on defined relations
      *
-     * @param string $alias
      * @param array $arguments
-     * @return \Phalcon\Mvc\Model\Resultset\Simple|false
+     * @return \Phalcon\Mvc\Model\Resultset\Simple|Phalcon\Mvc\Model\Resultset\Simple|false
+     * @param string $alias
      */
     public function getRelated(string $alias, $arguments = null);
 
     /**
      * Returns schema name where table mapped is located
      *
-     * @return string|null
+     * @return string
      */
-    public function getSchema(): ?string;
+    public function getSchema(): string;
 
     /**
      * Returns table name mapped in the model
@@ -337,7 +336,7 @@ interface ModelInterface
      * Allows to calculate a sum on a column that match the specified conditions
      *
      * @param array $parameters
-     * @return float|ResultsetInterface
+     * @return double | ResultsetInterface
      */
     public static function sum($parameters = null);
 

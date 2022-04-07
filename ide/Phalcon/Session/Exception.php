@@ -14,7 +14,7 @@ namespace Phalcon\Session;
  *
  * Exceptions thrown in Phalcon\Session will use this class
  */
-class Exception extends \Exception
+class Exception extends \Phalcon\Exception
 {
 
 

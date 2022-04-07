@@ -10,9 +10,8 @@
 namespace Phalcon\Flash;
 
 /**
- * Class Direct
- *
- * @package Phalcon\Flash
+ * This is an implementation of the Phalcon\Flash\FlashInterface that
+ * immediately outputs any message passed to it.
  */
 class Direct extends \Phalcon\Flash\AbstractFlash
 {
@@ -21,11 +20,9 @@ class Direct extends \Phalcon\Flash\AbstractFlash
     /**
      * Outputs a message
      *
+     * @return null|string|void
      * @param string $type
-     * @param mixed  $message
-     *
-     * @return string|null
-     * @throws Exception
+     * @param mixed $message
      */
     public function message(string $type, $message): ?string
     {

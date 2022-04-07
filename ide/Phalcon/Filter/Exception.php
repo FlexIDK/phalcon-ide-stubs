@@ -14,7 +14,7 @@ namespace Phalcon\Filter;
  *
  * Exceptions thrown in Phalcon\Filter will use this class
  */
-class Exception extends \Exception
+class Exception extends \Phalcon\Exception
 {
 
 

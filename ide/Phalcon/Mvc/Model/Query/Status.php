@@ -42,14 +42,8 @@ use Phalcon\Mvc\ModelInterface;
 class Status implements \Phalcon\Mvc\Model\Query\StatusInterface
 {
 
-    /**
-     * @var ModelInterface|null
-     */
     protected $model;
 
-    /**
-     * @var bool
-     */
     protected $success;
 
     /**

@@ -71,29 +71,17 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
     const MODELS_REVERSE_COLUMN_MAP = 1;
 
     /**
-     * @var CacheAdapterInterface|null
+     * @var CacheAdapterInterface
      */
-    protected $adapter = null;
+    protected $adapter;
 
-    /**
-     * @var array
-     */
     protected $columnMap = [];
 
-    /**
-     * @var DiInterface|null
-     */
-    protected $container = null;
+    protected $container;
 
-    /**
-     * @var array
-     */
     protected $metaData = [];
 
-    /**
-     * @var StrategyInterface|null
-     */
-    protected $strategy = null;
+    protected $strategy;
 
     /**
      * Returns table attributes names (fields)
@@ -631,17 +619,6 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
      * @return void
      */
     private function throwWriteException($option): void
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param array $collection
-     * @param mixed $index
-     * @param mixed $defaultValue
-     * @return mixed
-     */
-    protected function getArrVal(array $collection, $index, $defaultValue = null)
     {
     }
 }

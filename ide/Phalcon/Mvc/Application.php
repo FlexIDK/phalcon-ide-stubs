@@ -67,19 +67,10 @@ use Phalcon\Mvc\ModuleDefinitionInterface;
 class Application extends AbstractApplication
 {
 
-    /**
-     * @var bool
-     */
     protected $implicitView = true;
 
-    /**
-     * @var bool
-     */
     protected $sendCookies = true;
 
-    /**
-     * @var bool
-     */
     protected $sendHeaders = true;
 
     /**

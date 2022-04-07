@@ -61,28 +61,17 @@ class AdapterFactory extends AbstractFactory
      *     'socket' => '',
      *     'storageDir' => '',
      * ]
-     *
-     * @return AdapterInterface
-     * @throws Exception
      * @param string $name
+     * @return AdapterInterface
      */
     public function newInstance(string $name, array $options = []): AdapterInterface
     {
     }
 
     /**
-     * @return string
+     * @return array
      */
-    protected function getExceptionClass(): string
-    {
-    }
-
-    /**
-     * Returns the available adapters
-     *
-     * @return string[]
-     */
-    protected function getServices(): array
+    protected function getAdapters(): array
     {
     }
 }

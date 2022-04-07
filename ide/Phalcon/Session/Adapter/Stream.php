@@ -9,6 +9,7 @@
  */
 namespace Phalcon\Session\Adapter;
 
+use Phalcon\Helper\Str;
 use Phalcon\Session\Exception;
 
 /**
@@ -60,11 +61,10 @@ class Stream extends \Phalcon\Session\Adapter\Noop
     }
 
     /**
-     * Garbage Collector
-     *
      * @param mixed $maxlifetime
+     * @return bool
      */
-    public function gc($maxlifetime)
+    public function gc($maxlifetime): bool
     {
     }
 
@@ -93,15 +93,6 @@ class Stream extends \Phalcon\Session\Adapter\Noop
      * @return bool
      */
     public function write($id, $data): bool
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param string $directory
-     * @return string
-     */
-    private function getDirSeparator(string $directory): string
     {
     }
 }

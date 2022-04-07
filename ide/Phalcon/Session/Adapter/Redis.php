@@ -10,6 +10,7 @@
 namespace Phalcon\Session\Adapter;
 
 use Phalcon\Storage\AdapterFactory;
+use Phalcon\Helper\Arr;
 
 /**
  * Phalcon\Session\Adapter\Redis

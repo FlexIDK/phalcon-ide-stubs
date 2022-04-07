@@ -46,7 +46,7 @@ interface AdapterInterface
      * Reads data from the adapter
      *
      * @param string $key
-     * @param mixed|null $defaultValue *
+     * @param mixed $defaultValue
      * @return mixed
      */
     public function get(string $key, $defaultValue = null);
@@ -92,28 +92,12 @@ interface AdapterInterface
     public function increment(string $key, int $value = 1);
 
     /**
-     * Stores data in the adapter. If the TTL is `null` (default) or not defined
-     * then the default TTL will be used, as set in this adapter. If the TTL
-     * is `0` or a negative number, a `delete()` will be issued, since this
-     * item has expired. If you need to set this key forever, you should use
-     * the `setForever()` method.
+     * Stores data in the adapter
      *
-     * @param string                 $key
-     * @param mixed                  $value
-     * @param \DateInterval|int|null $ttl
-     *
+     * @param string $key
+     * @param mixed $value
+     * @param mixed $ttl
      * @return bool
      */
     public function set(string $key, $value, $ttl = null): bool;
-
-    /**
-     * Stores data in the adapter forever. The key needs to manually deleted
-     * from the adapter.
-     *
-     * @param string $key
-     * @param mixed  $value
-     *
-     * @return bool
-     */
-    public function setForever(string $key, $value): bool;
 }

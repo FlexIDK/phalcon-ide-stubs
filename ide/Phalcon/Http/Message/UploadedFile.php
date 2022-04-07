@@ -9,6 +9,9 @@
  */
 namespace Phalcon\Http\Message;
 
+use Phalcon\Helper\Number;
+use Phalcon\Helper\Arr;
+use Phalcon\Helper\Str;
 use Phalcon\Http\Message\Exception\InvalidArgumentException;
 use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UploadedFileInterface;
@@ -98,13 +101,17 @@ final class UploadedFile implements \Psr\Http\Message\UploadedFileInterface
     private $stream;
 
     /**
+     *
      * Retrieve the filename sent by the client.
      *
      * Do not trust the value returned by this method. A client could send
+     *
      * a malicious filename with the intention to corrupt or hack your
+     *
      * application.
      *
      * Implementations SHOULD return the value stored in the 'name' key of
+     *
      * the file in the $_FILES array.
      *
      * @return string|null
@@ -114,13 +121,17 @@ final class UploadedFile implements \Psr\Http\Message\UploadedFileInterface
     }
 
     /**
+     *
      * Retrieve the media type sent by the client.
      *
      * Do not trust the value returned by this method. A client could send
+     *
      * a malicious media type with the intention to corrupt or hack your
+     *
      * application.
      *
      * Implementations SHOULD return the value stored in the 'type' key of
+     *
      * the file in the $_FILES array.
      *
      * @return string|null
@@ -130,14 +141,17 @@ final class UploadedFile implements \Psr\Http\Message\UploadedFileInterface
     }
 
     /**
+     *
      * Retrieve the error associated with the uploaded file.
      *
      * The return value MUST be one of PHP's UPLOAD_ERR_XXX constants.
      *
      * If the file was uploaded successfully, this method MUST return
+     *
      * UPLOAD_ERR_OK.
      *
      * Implementations SHOULD return the value stored in the 'error' key of
+     *
      * the file in the $_FILES array.
      *
      * @return int
@@ -147,10 +161,13 @@ final class UploadedFile implements \Psr\Http\Message\UploadedFileInterface
     }
 
     /**
+     *
      * Retrieve the file size.
      *
      * Implementations SHOULD return the value stored in the 'size' key of
+     *
      * the file in the $_FILES array if available, as PHP calculates this based
+     *
      * on the actual size transmitted.
      *
      * @return int|null
@@ -269,17 +286,6 @@ final class UploadedFile implements \Psr\Http\Message\UploadedFileInterface
      * @return void
      */
     private function storeFile(string $targetPath): void
-    {
-    }
-
-    /**
-     * @todo Remove this when we get traits
-     * @param int $value
-     * @param int $from
-     * @param int $to
-     * @return bool
-     */
-    private function isBetween(int $value, int $from, int $to): bool
     {
     }
 }

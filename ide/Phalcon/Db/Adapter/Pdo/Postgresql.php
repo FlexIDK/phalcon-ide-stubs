@@ -63,9 +63,9 @@ class Postgresql extends \Phalcon\Db\Adapter\Pdo\AbstractPdo
      * constructor. Call it when you need to restore a database connection.
      *
      * @param array $descriptor
-     * @return void
+     * @return bool
      */
-    public function connect(array $descriptor = []): void
+    public function connect(array $descriptor = null): bool
     {
     }
 

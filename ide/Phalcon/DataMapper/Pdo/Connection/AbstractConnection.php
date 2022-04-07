@@ -24,7 +24,7 @@ abstract class AbstractConnection implements \Phalcon\DataMapper\Pdo\Connection\
 {
 
     /**
-     * @var \PDO
+     * @var PDO
      */
     protected $pdo;
 
@@ -265,7 +265,7 @@ abstract class AbstractConnection implements \Phalcon\DataMapper\Pdo\Connection\
     /**
      * Return the inner PDO (if any)
      *
-     * @return \PDO
+     * @return PDO
      */
     public function getAdapter(): \PDO
     {
@@ -361,7 +361,7 @@ abstract class AbstractConnection implements \Phalcon\DataMapper\Pdo\Connection\
      * @param string $statement
      * @param array  $values
      *
-     * @return \PDOStatement
+     * @return PDOStatement
      */
     public function perform(string $statement, array $values = []): \PDOStatement
     {
@@ -373,7 +373,7 @@ abstract class AbstractConnection implements \Phalcon\DataMapper\Pdo\Connection\
      * @param string $statement
      * @param array  $options
      *
-     * @return \PDOStatement|false
+     * @return PDOStatement|false
      */
     public function prepare(string $statement, array $options = [])
     {
@@ -386,7 +386,7 @@ abstract class AbstractConnection implements \Phalcon\DataMapper\Pdo\Connection\
      * @param string $statement
      * @param mixed  ...$fetch
      *
-     * @return \PDOStatement|false
+     * @return PDOStatement|false
      */
     public function query(string $statement)
     {
@@ -440,9 +440,9 @@ abstract class AbstractConnection implements \Phalcon\DataMapper\Pdo\Connection\
     /**
      * Bind a value using the proper PDO::PARAM_ type.
      *
-     * @param \PDOStatement $statement
-     * @param mixed         $name
-     * @param mixed         $arguments
+     * @param PDOStatement $statement
+     * @param mixed        $name
+     * @param mixed        $arguments
      * @return void
      */
     protected function performBind(\PDOStatement $statement, $name, $arguments): void

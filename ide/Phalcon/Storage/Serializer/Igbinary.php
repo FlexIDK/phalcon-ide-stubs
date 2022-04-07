@@ -26,15 +26,14 @@ class Igbinary extends \Phalcon\Storage\Serializer\AbstractSerializer
      *
      * @return string
      */
-    public function serialize()
+    public function serialize(): string
     {
     }
 
     /**
      * Unserializes data
      *
-     * @param string $data
-     *
+     * @param mixed $data
      * @return void
      */
     public function unserialize($data): void
