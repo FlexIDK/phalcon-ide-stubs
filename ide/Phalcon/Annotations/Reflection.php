@@ -40,13 +40,19 @@ class Reflection
      * @var array
      * TODO: Make always array
      */
-    protected $methodAnnotations;
+    protected $constantAnnotations;
 
     /**
      * @var array
      * TODO: Make always array
      */
     protected $propertyAnnotations;
+
+    /**
+     * @var array
+     * TODO: Make always array
+     */
+    protected $methodAnnotations;
 
     /**
      * @var array
@@ -72,11 +78,11 @@ class Reflection
     }
 
     /**
-     * Returns the annotations found in the methods' docblocks
+     * Returns the annotations found in the constants' docblocks
      *
      * @return array|bool|Collection[]
      */
-    public function getMethodsAnnotations()
+    public function getConstantsAnnotations()
     {
     }
 
@@ -86,6 +92,15 @@ class Reflection
      * @return array|bool|Collection[]
      */
     public function getPropertiesAnnotations()
+    {
+    }
+
+    /**
+     * Returns the annotations found in the methods' docblocks
+     *
+     * @return array|bool|Collection[]
+     */
+    public function getMethodsAnnotations()
     {
     }
 

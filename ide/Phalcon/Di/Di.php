@@ -18,6 +18,7 @@ use Phalcon\Config\Adapter\Yaml;
 use Phalcon\Config\ConfigInterface;
 use Phalcon\Di\ServiceInterface;
 use Phalcon\Events\ManagerInterface;
+use Phalcon\Di\InitializationAwareInterface;
 use Phalcon\Di\InjectionAwareInterface;
 use Phalcon\Di\ServiceProviderInterface;
 

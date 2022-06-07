@@ -27,5 +27,5 @@ interface FormatterInterface
      *
      * @return string
      */
-    public function format(\Phalcon\Logger\Item $item);
+    public function format(\Phalcon\Logger\Item $item): string;
 }

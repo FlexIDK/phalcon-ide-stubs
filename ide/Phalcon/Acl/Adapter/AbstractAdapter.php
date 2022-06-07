@@ -94,7 +94,7 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     }
 
     /**
-     * Sets the default access level (Phalcon\Acl::ALLOW or Phalcon\Acl::DENY)
+     * Sets the default access level (Phalcon\Acl\Enum::ALLOW or Phalcon\Acl\Enum::DENY)
      *
      * @param int $defaultAccess
      * @return void

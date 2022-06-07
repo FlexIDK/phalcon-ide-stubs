@@ -17,7 +17,7 @@ interface ReaderInterface
 
 
     /**
-     * Reads annotations from the class docblocks, its methods and/or properties
+     * Reads annotations from the class docblocks, its constants, properties and methods
      *
      * @param string $className
      * @return array

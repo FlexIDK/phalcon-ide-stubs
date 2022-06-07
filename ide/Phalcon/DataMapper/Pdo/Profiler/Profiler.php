@@ -11,8 +11,8 @@ namespace Phalcon\DataMapper\Pdo\Profiler;
 
 use InvalidArgumentException;
 use Phalcon\DataMapper\Pdo\Exception\Exception;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use Phalcon\Logger\Enum;
+use Phalcon\Logger\LoggerInterface;
 
 /**
  * Sends query profiles to a logger.
@@ -56,7 +56,7 @@ class Profiler implements \Phalcon\DataMapper\Pdo\Profiler\ProfilerInterface
      *
      * @param LoggerInterface $logger
      */
-    public function __construct(\Psr\Log\LoggerInterface $logger = null)
+    public function __construct(\Phalcon\Logger\LoggerInterface $logger = null)
     {
     }
 

@@ -96,6 +96,15 @@ class Csv extends \Phalcon\Translate\Adapter\AbstractAdapter implements \ArrayAc
     }
 
     /**
+     * Returns the internal array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+    }
+
+    /**
      * @todo to be removed when we get traits
      * @param string $filename
      * @param string $mode

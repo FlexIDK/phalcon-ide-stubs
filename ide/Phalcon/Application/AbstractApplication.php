@@ -26,9 +26,9 @@ abstract class AbstractApplication extends Injectable implements \Phalcon\Events
     protected $container = null;
 
     /**
-     * @var string|null
+     * @var string
      */
-    protected $defaultModule = null;
+    protected $defaultModule = '';
 
     /**
      * @var ManagerInterface|null

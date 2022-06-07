@@ -37,7 +37,7 @@ abstract class AbstractAdapter implements \Phalcon\Logger\Adapter\AdapterInterfa
      *
      * @var FormatterInterface|null
      */
-    protected $formatter;
+    protected $formatter = null;
 
     /**
      * Tells if there is an active transaction or not

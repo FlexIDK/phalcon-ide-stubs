@@ -99,4 +99,13 @@ class NativeArray extends \Phalcon\Translate\Adapter\AbstractAdapter implements 
     public function query(string $translateKey, array $placeholders = []): string
     {
     }
+
+    /**
+     * Returns the internal array
+     *
+     * @return array
+     */
+    public function toArray(): array
+    {
+    }
 }

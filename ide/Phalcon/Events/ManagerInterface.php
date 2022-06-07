@@ -10,8 +10,6 @@
 namespace Phalcon\Events;
 
 /**
- * Phalcon\Events\ManagerInterface
- *
  * Interface for Phalcon\Events managers.
  */
 interface ManagerInterface

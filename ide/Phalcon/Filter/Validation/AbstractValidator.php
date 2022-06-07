@@ -133,9 +133,9 @@ abstract class AbstractValidator implements \Phalcon\Filter\Validation\Validator
      * Prepares a validation code.
      *
      * @param string $field
-     * @return int|null
+     * @return int
      */
-    protected function prepareCode(string $field): ?int
+    protected function prepareCode(string $field): int
     {
     }
 
