@@ -60,6 +60,7 @@ class Payload implements \Phalcon\Domain\Payload\PayloadInterface
     protected $output;
 
     /**
+     *
      * Extra information
      *
      * @return mixed
@@ -69,6 +70,7 @@ class Payload implements \Phalcon\Domain\Payload\PayloadInterface
     }
 
     /**
+     *
      * Input
      *
      * @return mixed
@@ -78,6 +80,7 @@ class Payload implements \Phalcon\Domain\Payload\PayloadInterface
     }
 
     /**
+     *
      * Messages
      *
      * @return mixed
@@ -87,6 +90,7 @@ class Payload implements \Phalcon\Domain\Payload\PayloadInterface
     }
 
     /**
+     *
      * Status
      *
      * @return mixed
@@ -96,6 +100,7 @@ class Payload implements \Phalcon\Domain\Payload\PayloadInterface
     }
 
     /**
+     *
      * Output
      *
      * @return mixed

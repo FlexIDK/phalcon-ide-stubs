@@ -56,6 +56,7 @@ class Escaper implements \Phalcon\Html\Escaper\EscaperInterface
     }
 
     /**
+     *
      * ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401
      *
      * @return int
@@ -232,9 +233,9 @@ class Escaper implements \Phalcon\Html\Escaper\EscaperInterface
      * ```
      *
      * @param int $flags
-     * @return Escaper
+     * @return EscaperInterface
      */
-    public function setFlags(int $flags): Escaper
+    public function setFlags(int $flags): EscaperInterface
     {
     }
 

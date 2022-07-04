@@ -69,6 +69,7 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     protected $width;
 
     /**
+     *
      * Image height
      *
      * @return int
@@ -85,6 +86,7 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     }
 
     /**
+     *
      * Image mime type
      *
      * @return string
@@ -101,6 +103,7 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     }
 
     /**
+     *
      * Image type
      *
      * Driver dependent
@@ -112,6 +115,7 @@ abstract class AbstractAdapter implements \Phalcon\Image\Adapter\AdapterInterfac
     }
 
     /**
+     *
      * Image width
      *
      * @return int

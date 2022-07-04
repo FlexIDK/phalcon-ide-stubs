@@ -28,6 +28,7 @@ abstract class AbstractFormatter extends AbstractStr implements \Phalcon\Logger\
     protected $dateFormat = 'c';
 
     /**
+     *
      * Default date format
      *
      * @return string
@@ -37,6 +38,7 @@ abstract class AbstractFormatter extends AbstractStr implements \Phalcon\Logger\
     }
 
     /**
+     *
      * Default date format
      *
      * @param string $dateFormat

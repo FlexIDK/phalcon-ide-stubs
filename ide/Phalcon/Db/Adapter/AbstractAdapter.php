@@ -119,6 +119,7 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     protected $type;
 
     /**
+     *
      * Name of the dialect used
      *
      * @return string
@@ -128,6 +129,7 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     }
 
     /**
+     *
      * Type of database system the adapter is used for
      *
      * @return string

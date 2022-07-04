@@ -61,6 +61,7 @@ class Event implements \Phalcon\Events\EventInterface
     protected $type;
 
     /**
+     *
      * Event data
      *
      * @return mixed
@@ -70,6 +71,7 @@ class Event implements \Phalcon\Events\EventInterface
     }
 
     /**
+     *
      * Event source
      *
      * @return object|null
@@ -79,6 +81,7 @@ class Event implements \Phalcon\Events\EventInterface
     }
 
     /**
+     *
      * Event type
      *
      * @return string

@@ -163,6 +163,7 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     protected $roleInherits;
 
     /**
+     *
      * Returns latest function used to acquire access
      *
      * @return mixed
@@ -172,6 +173,7 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     }
 
     /**
+     *
      * Returns number of additional arguments(excluding role and resource) for active function
      *
      * @return int
@@ -181,6 +183,7 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     }
 
     /**
+     *
      * Returns latest key used to acquire access
      *
      * @return string|null

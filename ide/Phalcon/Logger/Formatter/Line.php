@@ -28,6 +28,7 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
     protected $format;
 
     /**
+     *
      * Format applied to each message
      *
      * @return string
@@ -37,6 +38,7 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
     }
 
     /**
+     *
      * Format applied to each message
      *
      * @param string $format

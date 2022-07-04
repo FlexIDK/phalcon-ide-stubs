@@ -17,11 +17,11 @@ class StringVal
 
 
     /**
-     * @param mixed $input The text to sanitize
+     * @param string $input The text to sanitize
      *
-     * @return string|false
+     * @return string
      */
-    public function __invoke($input)
+    public function __invoke(string $input): string
     {
     }
 }
