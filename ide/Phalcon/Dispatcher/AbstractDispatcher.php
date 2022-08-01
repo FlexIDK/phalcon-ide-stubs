@@ -281,9 +281,9 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
     /**
      * Gets the module where the controller class is
      *
-     * @return string
+     * @return string|null
      */
-    public function getModuleName(): string
+    public function getModuleName(): ?string
     {
     }
 
@@ -470,7 +470,7 @@ abstract class AbstractDispatcher extends AbstractInjectionAware implements \Pha
      * @param string $moduleName
      * @return void
      */
-    public function setModuleName(string $moduleName): void
+    public function setModuleName(string $moduleName = null): void
     {
     }
 

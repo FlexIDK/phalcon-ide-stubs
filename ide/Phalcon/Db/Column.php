@@ -330,7 +330,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     protected $unsigned = false;
 
     /**
-     *
      * Default column value
      *
      * @return mixed|null
@@ -340,7 +339,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
-     *
      * Column's name
      *
      * @return string
@@ -350,7 +348,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
-     *
      * Column's comment
      *
      * @return string|null
@@ -360,7 +357,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
-     *
      * Integer column number scale
      *
      * @return int
@@ -370,7 +366,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
-     *
      * Integer column size
      *
      * @return int|string
@@ -380,7 +375,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
-     *
      * Column data type
      *
      * @return int
@@ -390,7 +384,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
-     *
      * Column data type reference
      *
      * @return int
@@ -400,7 +393,6 @@ class Column implements \Phalcon\Db\ColumnInterface
     }
 
     /**
-     *
      * Column data type values
      *
      * @return array|string

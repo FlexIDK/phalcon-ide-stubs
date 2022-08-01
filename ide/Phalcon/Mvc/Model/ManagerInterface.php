@@ -145,6 +145,13 @@ interface ManagerInterface
     public function getBelongsToRecords(string $modelName, string $modelRelation, \Phalcon\Mvc\ModelInterface $record, $parameters = null, string $method = null);
 
     /**
+     * Returns the newly created Phalcon\Mvc\Model\Query\Builder or null
+     *
+     * @return BuilderInterface|null
+     */
+    public function getBuilder(): ?BuilderInterface;
+
+    /**
      * Gets hasMany relations defined on a model
      *
      * @param \Phalcon\Mvc\ModelInterface $model

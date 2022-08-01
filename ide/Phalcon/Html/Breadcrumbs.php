@@ -43,7 +43,6 @@ class Breadcrumbs
     private $template = '<dt><a href=\\\"%link%\\\">%label%</a></dt>';
 
     /**
-     *
      * Crumb separator
      *
      * @return string
@@ -53,7 +52,6 @@ class Breadcrumbs
     }
 
     /**
-     *
      * Crumb separator
      *
      * @param string $separator

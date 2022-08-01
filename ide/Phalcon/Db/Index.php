@@ -63,7 +63,6 @@ class Index implements \Phalcon\Db\IndexInterface
     protected $type;
 
     /**
-     *
      * Index columns
      *
      * @return array
@@ -73,7 +72,6 @@ class Index implements \Phalcon\Db\IndexInterface
     }
 
     /**
-     *
      * Index name
      *
      * @return string
@@ -83,7 +81,6 @@ class Index implements \Phalcon\Db\IndexInterface
     }
 
     /**
-     *
      * Index type
      *
      * @return string

@@ -77,7 +77,6 @@ abstract class AbstractFile extends AbstractValidator
     protected $messageValid = 'Field :field is not valid';
 
     /**
-     *
      * Empty is empty
      *
      * @return string
@@ -87,7 +86,6 @@ abstract class AbstractFile extends AbstractValidator
     }
 
     /**
-     *
      * Empty is empty
      *
      * @param string $messageFileEmpty
@@ -97,7 +95,6 @@ abstract class AbstractFile extends AbstractValidator
     }
 
     /**
-     *
      * File exceeds the file size set in PHP configuration
      *
      * @return string
@@ -107,7 +104,6 @@ abstract class AbstractFile extends AbstractValidator
     }
 
     /**
-     *
      * File exceeds the file size set in PHP configuration
      *
      * @param string $messageIniSize
@@ -117,7 +113,6 @@ abstract class AbstractFile extends AbstractValidator
     }
 
     /**
-     *
      * File is not valid
      *
      * @return string
@@ -127,7 +122,6 @@ abstract class AbstractFile extends AbstractValidator
     }
 
     /**
-     *
      * File is not valid
      *
      * @param string $messageValid

@@ -34,7 +34,6 @@ class RawValue
     protected $value;
 
     /**
-     *
      * Raw value without quoting or formatting
      *
      * @return string
@@ -44,7 +43,6 @@ class RawValue
     }
 
     /**
-     *
      * Raw value without quoting or formatting
      *
      * @return string

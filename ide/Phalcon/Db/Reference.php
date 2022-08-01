@@ -90,7 +90,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     protected $onUpdate;
 
     /**
-     *
      * Local reference columns
      *
      * @return array
@@ -100,7 +99,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     }
 
     /**
-     *
      * Constraint name
      *
      * @return string
@@ -110,7 +108,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     }
 
     /**
-     *
      * Referenced Columns
      *
      * @return array
@@ -120,7 +117,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     }
 
     /**
-     *
      * Referenced Schema
      *
      * @return string
@@ -130,7 +126,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     }
 
     /**
-     *
      * Referenced Table
      *
      * @return string
@@ -140,7 +135,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     }
 
     /**
-     *
      * Schema name
      *
      * @return string
@@ -150,7 +144,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     }
 
     /**
-     *
      * ON DELETE
      *
      * @return string
@@ -160,7 +153,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     }
 
     /**
-     *
      * ON UPDATE
      *
      * @return string

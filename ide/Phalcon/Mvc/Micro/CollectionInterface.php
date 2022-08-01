@@ -130,7 +130,8 @@ interface CollectionInterface
      * Sets the main handler
      *
      * @param mixed $handler
-     * @param bool $lazy *
+     * @param bool  $lazy
+     *
      * @return CollectionInterface
      */
     public function setHandler($handler, bool $lazy = false): CollectionInterface;
