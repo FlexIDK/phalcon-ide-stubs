@@ -126,7 +126,6 @@ class Asset implements \Phalcon\Assets\AssetInterface
     }
 
     /**
-     *
      * Version of resource
      *
      * @return string|null

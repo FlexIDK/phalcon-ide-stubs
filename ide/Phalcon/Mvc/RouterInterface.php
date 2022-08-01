@@ -26,8 +26,110 @@ interface RouterInterface
      * @param array|string|null $paths
      * @param array|string|null $httpMethods *
      * @return RouteInterface
+     * @param int $position
      */
-    public function add(string $pattern, $paths = null, $httpMethods = null): RouteInterface;
+    public function add(string $pattern, $paths = null, $httpMethods = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is CONNECT
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addConnect(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is DELETE
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addDelete(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is HEAD
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addHead(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is GET
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addGet(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Add a route to the router that only match if the HTTP method is OPTIONS
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addOptions(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is PATCH
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addPatch(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is POST
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addPost(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is PURGE
+     * (Squid and Varnish support)
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addPurge(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is PUT
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addPut(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
+
+    /**
+     * Adds a route to the router that only match if the HTTP method is TRACE
+     *
+     * @param string $pattern
+     * @param array|string|null $paths *
+     * @return RouteInterface
+     * @param int $position
+     */
+    public function addTrace(string $pattern, $paths = null, int $position = Router::POSITION_LAST): RouteInterface;
 
     /**
      * Attach Route object to the routes stack.
@@ -37,97 +139,6 @@ interface RouterInterface
      * @return RouterInterface
      */
     public function attach(\Phalcon\Mvc\Router\RouteInterface $route, int $position = Router::POSITION_LAST): RouterInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is CONNECT
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addConnect(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is DELETE
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addDelete(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is HEAD
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addHead(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is GET
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addGet(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Add a route to the router that only match if the HTTP method is OPTIONS
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addOptions(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is PATCH
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addPatch(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is POST
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addPost(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is PURGE
-     * (Squid and Varnish support)
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addPurge(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is PUT
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addPut(string $pattern, $paths = null): RouteInterface;
-
-    /**
-     * Adds a route to the router that only match if the HTTP method is TRACE
-     *
-     * @param string $pattern
-     * @param array|string|null $paths *
-     * @return RouteInterface
-     */
-    public function addTrace(string $pattern, $paths = null): RouteInterface;
 
     /**
      * Removes all the defined routes

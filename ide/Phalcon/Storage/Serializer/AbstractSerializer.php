@@ -36,6 +36,25 @@ abstract class AbstractSerializer implements \Phalcon\Storage\Serializer\Seriali
     }
 
     /**
+     * Serialize data
+     *
+     * @return array
+     */
+    public function __serialize(): array
+    {
+    }
+
+    /**
+     * Unserialize data
+     *
+     * @param array $data
+     * @return void
+     */
+    public function __unserialize(array $data): void
+    {
+    }
+
+    /**
      * @return mixed
      */
     public function getData()
@@ -68,21 +87,6 @@ abstract class AbstractSerializer implements \Phalcon\Storage\Serializer\Seriali
      * @return bool
      */
     protected function isSerializable($data): bool
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function __serialize(): array
-    {
-    }
-
-    /**
-     * @param array $data
-     * @return void
-     */
-    public function __unserialize(array $data): void
     {
     }
 }

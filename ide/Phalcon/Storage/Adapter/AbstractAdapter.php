@@ -76,7 +76,6 @@ abstract class AbstractAdapter implements \Phalcon\Storage\Adapter\AdapterInterf
     protected $serializerFactory;
 
     /**
-     *
      * Name of the default serializer class
      *
      * @return string

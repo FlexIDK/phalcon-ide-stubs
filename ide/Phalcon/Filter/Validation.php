@@ -78,7 +78,6 @@ class Validation extends Injectable implements \Phalcon\Filter\Validation\Valida
     }
 
     /**
-     *
      * List of validators
      *
      * @param array $validators

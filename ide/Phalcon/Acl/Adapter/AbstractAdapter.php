@@ -56,7 +56,6 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     protected $defaultAccess = Enum::DENY;
 
     /**
-     *
      * Active access which the list is checking if some role can access it
      *
      * @return string|null
@@ -66,7 +65,6 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     }
 
     /**
-     *
      * Role which the list is checking if it's allowed to certain
      *
      * component/access
@@ -78,7 +76,6 @@ abstract class AbstractAdapter extends AbstractEventsAware implements \Phalcon\A
     }
 
     /**
-     *
      * Component which the list is checking if some role can access it
      *
      * @return string|null

@@ -53,7 +53,6 @@ class Binder implements \Phalcon\Mvc\Model\BinderInterface
     protected $originalValues = [];
 
     /**
-     *
      * Array for storing active bound models
      *
      * @return array
@@ -63,7 +62,6 @@ class Binder implements \Phalcon\Mvc\Model\BinderInterface
     }
 
     /**
-     *
      * Array for original values
      *
      * @return array

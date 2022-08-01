@@ -65,7 +65,6 @@ class Stream extends \Phalcon\Logger\Adapter\AbstractAdapter
     protected $options;
 
     /**
-     *
      * Stream name
      *
      * @return string

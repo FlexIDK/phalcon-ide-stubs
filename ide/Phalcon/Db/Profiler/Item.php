@@ -51,7 +51,6 @@ class Item
     protected $sqlVariables;
 
     /**
-     *
      * Timestamp when the profile ended
      *
      * @param double $finalTime
@@ -61,7 +60,6 @@ class Item
     }
 
     /**
-     *
      * Timestamp when the profile ended
      *
      * @return float
@@ -71,7 +69,6 @@ class Item
     }
 
     /**
-     *
      * Timestamp when the profile started
      *
      * @param double $initialTime
@@ -81,7 +78,6 @@ class Item
     }
 
     /**
-     *
      * Timestamp when the profile started
      *
      * @return float
@@ -91,7 +87,6 @@ class Item
     }
 
     /**
-     *
      * SQL bind types related to the profile
      *
      * @param array $sqlBindTypes
@@ -101,7 +96,6 @@ class Item
     }
 
     /**
-     *
      * SQL bind types related to the profile
      *
      * @return array
@@ -111,7 +105,6 @@ class Item
     }
 
     /**
-     *
      * SQL statement related to the profile
      *
      * @param string $sqlStatement
@@ -121,7 +114,6 @@ class Item
     }
 
     /**
-     *
      * SQL statement related to the profile
      *
      * @return string
@@ -131,7 +123,6 @@ class Item
     }
 
     /**
-     *
      * SQL variables related to the profile
      *
      * @param array $sqlVariables
@@ -141,7 +132,6 @@ class Item
     }
 
     /**
-     *
      * SQL variables related to the profile
      *
      * @return array

@@ -30,7 +30,6 @@ class Component implements \Phalcon\Acl\ComponentInterface
     private $name;
 
     /**
-     *
      * Component description
      *
      * @return string
@@ -40,7 +39,6 @@ class Component implements \Phalcon\Acl\ComponentInterface
     }
 
     /**
-     *
      * Component name
      *
      * @return string
@@ -50,7 +48,6 @@ class Component implements \Phalcon\Acl\ComponentInterface
     }
 
     /**
-     *
      * Component name
      *
      * @return string
