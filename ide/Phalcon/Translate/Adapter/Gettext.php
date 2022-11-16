@@ -60,34 +60,6 @@ class Gettext extends \Phalcon\Translate\Adapter\AbstractAdapter implements \Arr
     protected $locale;
 
     /**
-     * @return int
-     */
-    public function getCategory(): int
-    {
-    }
-
-    /**
-     * @return string
-     */
-    public function getDefaultDomain(): string
-    {
-    }
-
-    /**
-     * @return string|array
-     */
-    public function getDirectory()
-    {
-    }
-
-    /**
-     * @return string
-     */
-    public function getLocale(): string
-    {
-    }
-
-    /**
      * Gettext constructor.
      *
      * @param InterpolatorFactory $interpolator
@@ -113,6 +85,34 @@ class Gettext extends \Phalcon\Translate\Adapter\AbstractAdapter implements \Arr
      * @deprecated
      */
     public function exists(string $index): bool
+    {
+    }
+
+    /**
+     * @return int
+     */
+    public function getCategory(): int
+    {
+    }
+
+    /**
+     * @return string
+     */
+    public function getDefaultDomain(): string
+    {
+    }
+
+    /**
+     * @return string|array
+     */
+    public function getDirectory()
+    {
+    }
+
+    /**
+     * @return string
+     */
+    public function getLocale(): string
     {
     }
 

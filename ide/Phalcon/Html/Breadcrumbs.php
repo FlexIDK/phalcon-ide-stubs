@@ -43,24 +43,6 @@ class Breadcrumbs
     private $template = '<dt><a href=\\\"%link%\\\">%label%</a></dt>';
 
     /**
-     * Crumb separator
-     *
-     * @return string
-     */
-    public function getSeparator(): string
-    {
-    }
-
-    /**
-     * Crumb separator
-     *
-     * @param string $separator
-     */
-    public function setSeparator(string $separator)
-    {
-    }
-
-    /**
      * Adds a new crumb.
      *
      * ```php
@@ -93,6 +75,15 @@ class Breadcrumbs
     }
 
     /**
+     * Crumb separator
+     *
+     * @return string
+     */
+    public function getSeparator(): string
+    {
+    }
+
+    /**
      * Removes crumb by url.
      *
      * ```php
@@ -119,6 +110,15 @@ class Breadcrumbs
      * @return string
      */
     public function render(): string
+    {
+    }
+
+    /**
+     * @param string $separator
+     *
+     * @return Breadcrumbs
+     */
+    public function setSeparator(string $separator): Breadcrumbs
     {
     }
 

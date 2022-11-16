@@ -100,7 +100,7 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     protected $accessList;
 
     /**
-     * Returns latest function used to acquire access
+     * Returns the latest function used to acquire access
      *
      * @var mixed
      */
@@ -114,11 +114,11 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     protected $activeFunctionCustomArgumentsCount = 0;
 
     /**
-     * Returns latest key used to acquire access
+     * Returns the latest key used to acquire access
      *
      * @var string|null
      */
-    protected $activeKey;
+    protected $activeKey = null;
 
     /**
      * Components
@@ -142,7 +142,7 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     protected $func;
 
     /**
-     * Default action for no arguments is allow
+     * Default action for no arguments is `allow`
      *
      * @var mixed
      */
@@ -163,33 +163,6 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     protected $roleInherits;
 
     /**
-     * Returns latest function used to acquire access
-     *
-     * @return mixed
-     */
-    public function getActiveFunction()
-    {
-    }
-
-    /**
-     * Returns number of additional arguments(excluding role and resource) for active function
-     *
-     * @return int
-     */
-    public function getActiveFunctionCustomArgumentsCount(): int
-    {
-    }
-
-    /**
-     * Returns latest key used to acquire access
-     *
-     * @return string|null
-     */
-    public function getActiveKey(): ?string
-    {
-    }
-
-    /**
      * Phalcon\Acl\Adapter\Memory constructor
      */
     public function __construct()
@@ -200,11 +173,11 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
      * Adds a component to the ACL list
      *
      * Access names can be a particular action, by example
-     * search, update, delete, etc or a list of them
+     * search, update, delete, etc. or a list of them
      *
      * Example:
      * ```php
-     * // Add a component to the the list allowing access to an action
+     * // Add a component to the list allowing access to an action
      * $acl->addComponent(
      *     new Phalcon\Acl\Component("customers"),
      *     "search"
@@ -340,13 +313,40 @@ class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
     }
 
     /**
-     * Removes an access from a component
+     * Removes access from a component
      *
      * @param string $componentName
      * @param mixed $accessList
      * @return void
      */
     public function dropComponentAccess(string $componentName, $accessList): void
+    {
+    }
+
+    /**
+     * Returns the latest function used to acquire access
+     *
+     * @return mixed
+     */
+    public function getActiveFunction()
+    {
+    }
+
+    /**
+     * Returns number of additional arguments(excluding role and resource) for active function
+     *
+     * @return int
+     */
+    public function getActiveFunctionCustomArgumentsCount(): int
+    {
+    }
+
+    /**
+     * Returns the latest key used to acquire access
+     *
+     * @return string|null
+     */
+    public function getActiveKey(): ?string
     {
     }
 

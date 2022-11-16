@@ -67,6 +67,11 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
     /**
      * @var array|null
      */
+    private $patchCache = null;
+
+    /**
+     * @var array|null
+     */
     private $putCache = null;
 
     /**
@@ -78,20 +83,6 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
      * @var bool
      */
     private $strictHostCheck = false;
-
-    /**
-     * @return bool
-     */
-    public function getHttpMethodParameterOverride(): bool
-    {
-    }
-
-    /**
-     * @param bool $httpMethodParameterOverride
-     */
-    public function setHttpMethodParameterOverride(bool $httpMethodParameterOverride)
-    {
-    }
 
     /**
      * Gets a variable from the $_REQUEST superglobal applying filters if
@@ -167,6 +158,15 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
     }
 
     /**
+     * Return the HTTP method parameter override flag
+     *
+     * @return bool
+     */
+    public function getHttpMethodParameterOverride(): bool
+    {
+    }
+
+    /**
      * Gets the preferred ISO locale variant.
      *
      * Gets the preferred locale accepted by the client from the
@@ -233,6 +233,19 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
      * @return mixed
      */
     public function getFilteredQuery(string $name = null, $defaultValue = null, bool $notAllowEmpty = false, bool $noRecursive = false)
+    {
+    }
+
+    /**
+     * Retrieves a patch value always sanitized with the preset filters
+     *
+     * @param string $name
+     * @param mixed $defaultValue
+     * @param bool $notAllowEmpty
+     * @param bool $noRecursive
+     * @return mixed
+     */
+    public function getFilteredPatch(string $name = null, $defaultValue = null, bool $notAllowEmpty = false, bool $noRecursive = false)
     {
     }
 
@@ -375,6 +388,28 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
      * @return string
      */
     final public function getMethod(): string
+    {
+    }
+
+    /**
+     * Gets a variable from put request
+     *
+     * ```php
+     * // Returns value from $_PATCH["user_email"] without sanitizing
+     * $userEmail = $request->getPatch("user_email");
+     *
+     * // Returns value from $_PATCH["user_email"] with sanitizing
+     * $userEmail = $request->getPatch("user_email", "email");
+     * ```
+     *
+     * @param string $name
+     * @param mixed $filters
+     * @param mixed $defaultValue
+     * @param bool $notAllowEmpty
+     * @param bool $noRecursive
+     * @return mixed
+     */
+    public function getPatch(string $name = null, $filters = null, $defaultValue = null, bool $notAllowEmpty = false, bool $noRecursive = false)
     {
     }
 
@@ -568,6 +603,16 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
      * @return bool
      */
     final public function hasHeader(string $header): bool
+    {
+    }
+
+    /**
+     * Checks whether the PATCH data has certain index
+     *
+     * @param string $name
+     * @return bool
+     */
+    public function hasPatch(string $name): bool
     {
     }
 
@@ -781,6 +826,17 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
     }
 
     /**
+     * Set the HTTP method parameter override flag
+     *
+     * @param bool $override
+     *
+     * @return Request
+     */
+    public function setHttpMethodParameterOverride(bool $override): Request
+    {
+    }
+
+    /**
      * Sets automatic sanitizers/filters for a particular field and for
      * particular methods
      *
@@ -890,6 +946,44 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
      * @return array
      */
     private function getServerArray(): array
+    {
+    }
+
+    /**
+     * Gets filtered data
+     *
+     * @param string $methodKey
+     * @param string $method
+     * @param string $name
+     * @param mixed $defaultValue
+     * @param bool $notAllowEmpty
+     * @param bool $noRecursive
+     * @return mixed
+     */
+    public function getFilteredData(string $methodKey, string $method, string $name = null, $defaultValue = null, bool $notAllowEmpty = false, bool $noRecursive = false)
+    {
+    }
+
+    /**
+     * Gets a variable from put request
+     *
+     * ```php
+     * // Returns value from $_PATCH["user_email"] without sanitizing
+     * $userEmail = $request->getPatch("user_email");
+     *
+     * // Returns value from $_PATCH["user_email"] with sanitizing
+     * $userEmail = $request->getPatch("user_email", "email");
+     * ```
+     *
+     * @param string $collection
+     * @param string $name
+     * @param mixed $filters
+     * @param mixed $defaultValue
+     * @param bool $notAllowEmpty
+     * @param bool $noRecursive
+     * @return mixed
+     */
+    private function getPatchPut(string $collection, string $name = null, $filters = null, $defaultValue = null, bool $notAllowEmpty = false, bool $noRecursive = false)
     {
     }
 }

@@ -90,6 +90,16 @@ class Reference implements \Phalcon\Db\ReferenceInterface
     protected $onUpdate;
 
     /**
+     * Phalcon\Db\Reference constructor
+     *
+     * @param string $name
+     * @param array $definition
+     */
+    public function __construct(string $name, array $definition)
+    {
+    }
+
+    /**
      * Local reference columns
      *
      * @return array
@@ -158,16 +168,6 @@ class Reference implements \Phalcon\Db\ReferenceInterface
      * @return string
      */
     public function getOnUpdate(): string
-    {
-    }
-
-    /**
-     * Phalcon\Db\Reference constructor
-     *
-     * @param string $name
-     * @param array $definition
-     */
-    public function __construct(string $name, array $definition)
     {
     }
 }

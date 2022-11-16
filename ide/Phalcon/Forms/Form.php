@@ -90,20 +90,6 @@ class Form extends Injectable implements \Countable, \Iterator, \Phalcon\Html\At
     protected $whitelist = [];
 
     /**
-     * @return ValidationInterface|null
-     */
-    public function getValidation()
-    {
-    }
-
-    /**
-     * @return array
-     */
-    public function getWhitelist(): array
-    {
-    }
-
-    /**
      * Phalcon\Forms\Form constructor
      *
      * @param mixed $entity
@@ -300,6 +286,24 @@ class Form extends Injectable implements \Countable, \Iterator, \Phalcon\Html\At
     }
 
     /**
+     * return ValidationInterface|null
+     *
+     * @return ValidationInterface|null
+     */
+    public function getValidation(): ?ValidationInterface
+    {
+    }
+
+    /**
+     * return array
+     *
+     * @return array
+     */
+    public function getWhitelist(): array
+    {
+    }
+
+    /**
      * Check if the form contains an element
      *
      * @param string $name
@@ -347,7 +351,7 @@ class Form extends Injectable implements \Countable, \Iterator, \Phalcon\Html\At
      * @param array $attributes
      * @return string
      */
-    public function label(string $name, array $attributes = null): string
+    public function label(string $name, array $attributes = []): string
     {
     }
 

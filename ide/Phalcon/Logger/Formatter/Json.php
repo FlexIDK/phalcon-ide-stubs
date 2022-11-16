@@ -13,8 +13,6 @@ use JsonException;
 use Phalcon\Logger\Item;
 
 /**
- * Phalcon\Logger\Formatter\Json
- *
  * Formats messages using JSON encoding
  */
 class Json extends \Phalcon\Logger\Formatter\AbstractFormatter

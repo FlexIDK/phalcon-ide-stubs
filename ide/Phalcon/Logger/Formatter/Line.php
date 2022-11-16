@@ -14,8 +14,6 @@ use Phalcon\Logger\Item;
 
 /**
  * Class Line
- *
- * @property string $format
  */
 class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
 {
@@ -26,24 +24,6 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
      * @var string
      */
     protected $format;
-
-    /**
-     * Format applied to each message
-     *
-     * @return string
-     */
-    public function getFormat(): string
-    {
-    }
-
-    /**
-     * Format applied to each message
-     *
-     * @param string $format
-     */
-    public function setFormat(string $format)
-    {
-    }
 
     /**
      * Line constructor.
@@ -64,6 +44,26 @@ class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
      * @throws Exception
      */
     public function format(\Phalcon\Logger\Item $item): string
+    {
+    }
+
+    /**
+     * Return the format applied to each message
+     *
+     * @return string
+     */
+    public function getFormat(): string
+    {
+    }
+
+    /**
+     * Set the format applied to each message
+     *
+     * @param string $format
+     *
+     * @return Line
+     */
+    public function setFormat(string $format): Line
     {
     }
 }

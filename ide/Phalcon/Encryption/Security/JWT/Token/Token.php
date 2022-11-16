@@ -9,12 +9,14 @@
  */
 namespace Phalcon\Encryption\Security\JWT\Token;
 
+use Phalcon\Encryption\Security\JWT\Signer\SignerInterface;
+use Phalcon\Encryption\Security\JWT\Validator;
+
 /**
- * Class Token
+ * Token Class.
  *
- * @property Item      $claims
- * @property Item      $headers
- * @property Signature $signature
+ * A container for Token related data. It stores the claims, headers, signature
+ * and payload. It also calculates and returns the token string.
  *
  * @link https://tools.ietf.org/html/rfc7519
  */
@@ -37,27 +39,6 @@ class Token
     private $signature;
 
     /**
-     * @return mixed
-     */
-    public function getClaims()
-    {
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getHeaders()
-    {
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getSignature()
-    {
-    }
-
-    /**
      * Token constructor.
      *
      * @param Item      $headers
@@ -69,6 +50,20 @@ class Token
     }
 
     /**
+     * @return Item
+     */
+    public function getClaims(): Item
+    {
+    }
+
+    /**
+     * @return Item
+     */
+    public function getHeaders(): Item
+    {
+    }
+
+    /**
      * @return string
      */
     public function getPayload(): string
@@ -76,9 +71,37 @@ class Token
     }
 
     /**
+     * @return Signature
+     */
+    public function getSignature(): Signature
+    {
+    }
+
+    /**
      * @return string
      */
     public function getToken(): string
+    {
+    }
+
+    /**
+     * @param Validator $validator
+     *
+     * @return array
+     */
+    public function validate(\Phalcon\Encryption\Security\JWT\Validator $validator): array
+    {
+    }
+
+    /**
+     * Verify the signature
+     *
+     * @param SignerInterface $signer
+     * @param string          $key
+     *
+     * @return bool
+     */
+    public function verify(\Phalcon\Encryption\Security\JWT\Signer\SignerInterface $signer, string $key): bool
     {
     }
 }

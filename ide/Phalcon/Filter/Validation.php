@@ -71,22 +71,6 @@ class Validation extends Injectable implements \Phalcon\Filter\Validation\Valida
     protected $values = [];
 
     /**
-     * @return mixed
-     */
-    public function getData()
-    {
-    }
-
-    /**
-     * List of validators
-     *
-     * @param array $validators
-     */
-    public function setValidators(array $validators)
-    {
-    }
-
-    /**
      * Phalcon\Filter\Validation constructor
      *
      * @param array $validators
@@ -126,6 +110,13 @@ class Validation extends Injectable implements \Phalcon\Filter\Validation\Valida
      * @return ValidationInterface
      */
     public function bind($entity, $data): ValidationInterface
+    {
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData()
     {
     }
 
@@ -259,6 +250,14 @@ class Validation extends Injectable implements \Phalcon\Filter\Validation\Valida
      * @return void
      */
     public function setLabels(array $labels): void
+    {
+    }
+
+    /**
+     * @param array $validators
+     * @return Validation
+     */
+    public function setValidators(array $validators): Validation
     {
     }
 

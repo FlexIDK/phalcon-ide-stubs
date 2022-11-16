@@ -44,7 +44,7 @@ class Event implements \Phalcon\Events\EventInterface
      *
      * @var object|null
      */
-    protected $source;
+    protected $source = null;
 
     /**
      * Is event propagation stopped?
@@ -61,33 +61,6 @@ class Event implements \Phalcon\Events\EventInterface
     protected $type;
 
     /**
-     * Event data
-     *
-     * @return mixed
-     */
-    public function getData()
-    {
-    }
-
-    /**
-     * Event source
-     *
-     * @return object|null
-     */
-    public function getSource()
-    {
-    }
-
-    /**
-     * Event type
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-    }
-
-    /**
      * Phalcon\Events\Event constructor
      *
      * @param object $source
@@ -96,6 +69,27 @@ class Event implements \Phalcon\Events\EventInterface
      * @param bool $cancelable
      */
     public function __construct(string $type, $source = null, $data = null, bool $cancelable = true)
+    {
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getData()
+    {
+    }
+
+    /**
+     * @return object|null
+     */
+    public function getSource()
+    {
+    }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
     {
     }
 

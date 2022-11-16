@@ -10,7 +10,7 @@
 namespace Phalcon\Encryption\Security\JWT\Token;
 
 /**
- * Class Item
+ * Storage class for a Token Item
  */
 class Item extends \Phalcon\Encryption\Security\JWT\Token\AbstractItem
 {

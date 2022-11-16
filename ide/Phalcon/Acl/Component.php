@@ -30,26 +30,16 @@ class Component implements \Phalcon\Acl\ComponentInterface
     private $name;
 
     /**
-     * Component description
+     * Phalcon\Acl\Component constructor
      *
-     * @return string
+     * @param string $name
+     * @param string $description
      */
-    public function getDescription(): string
+    public function __construct(string $name, string $description = null)
     {
     }
 
     /**
-     * Component name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-    }
-
-    /**
-     * Component name
-     *
      * @return string
      */
     public function __toString(): string
@@ -57,12 +47,16 @@ class Component implements \Phalcon\Acl\ComponentInterface
     }
 
     /**
-     * Phalcon\Acl\Component constructor
-     *
-     * @param string $name
-     * @param string $description
+     * @return string
      */
-    public function __construct(string $name, string $description = null)
+    public function getDescription(): string
+    {
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
     {
     }
 }

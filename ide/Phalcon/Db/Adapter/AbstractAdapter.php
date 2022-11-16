@@ -119,24 +119,6 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     protected $type;
 
     /**
-     * Name of the dialect used
-     *
-     * @return string
-     */
-    public function getDialectType(): string
-    {
-    }
-
-    /**
-     * Type of database system the adapter is used for
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-    }
-
-    /**
      * Phalcon\Db\Adapter constructor
      *
      * @param array $descriptor = [
@@ -587,6 +569,15 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
     }
 
     /**
+     * Name of the dialect used
+     *
+     * @return string
+     */
+    public function getDialectType(): string
+    {
+    }
+
+    /**
      * Returns the internal event manager
      *
      * @return ManagerInterface|null
@@ -637,6 +628,15 @@ abstract class AbstractAdapter implements \Phalcon\Db\Adapter\AdapterInterface, 
      * @return array
      */
     public function getSQLVariables(): array
+    {
+    }
+
+    /**
+     * Type of database system the adapter is used for
+     *
+     * @return string
+     */
+    public function getType(): string
     {
     }
 

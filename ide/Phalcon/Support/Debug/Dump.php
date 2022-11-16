@@ -52,20 +52,6 @@ class Dump
     protected $styles = [];
 
     /**
-     * @return bool
-     */
-    public function getDetailed(): bool
-    {
-    }
-
-    /**
-     * @param bool $detailed
-     */
-    public function setDetailed(bool $detailed)
-    {
-    }
-
-    /**
      * Phalcon\Debug\Dump constructor
      *
      * @param array $styles
@@ -81,6 +67,21 @@ class Dump
      * @return string
      */
     public function all(): string
+    {
+    }
+
+    /**
+     * @return bool
+     */
+    public function getDetailed(): bool
+    {
+    }
+
+    /**
+     * @param bool $detailed
+     * @return void
+     */
+    public function setDetailed(bool $detailed): void
     {
     }
 

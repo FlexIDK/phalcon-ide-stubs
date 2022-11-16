@@ -9,6 +9,9 @@
  */
 namespace Phalcon\Di;
 
+/**
+ * Interface for components that have `initialize()`
+ */
 interface InitializationAwareInterface
 {
 

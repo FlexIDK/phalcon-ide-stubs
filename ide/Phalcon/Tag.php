@@ -252,7 +252,7 @@ class Tag
      * ]
      * @return string
      */
-    public static function form($parameters): string
+    public static function formLegacy($parameters): string
     {
     }
 

@@ -49,29 +49,20 @@ class Escaper implements \Phalcon\Html\Escaper\EscaperInterface
     protected $flags = 11;
 
     /**
-     * @return string
-     */
-    public function getEncoding(): string
-    {
-    }
-
-    /**
-     * ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML401
+     * Escapes a HTML attribute string or array
      *
-     * @return int
-     */
-    public function getFlags(): int
-    {
-    }
-
-    /**
-     * Escapes a HTML attribute string
+     * If the input is an array, the keys are the attribute names and the
+     * values are attribute values. If a value is boolean (true/false) then
+     * the attribute will have no value:
+     * `['disabled' => true]` -> `'disabled``
      *
-     * @param string $input
+     * The resulting string will have attribute pairs separated by a space.
+     *
+     * @param array|string $input
      *
      * @return string
      */
-    public function attributes(string $input): string
+    public function attributes($input): string
     {
     }
 
@@ -159,6 +150,20 @@ class Escaper implements \Phalcon\Html\Escaper\EscaperInterface
      * @deprecated
      */
     public function escapeUrl(string $input): string
+    {
+    }
+
+    /**
+     * @return string
+     */
+    public function getEncoding(): string
+    {
+    }
+
+    /**
+     * @return int
+     */
+    public function getFlags(): int
     {
     }
 
@@ -261,6 +266,17 @@ class Escaper implements \Phalcon\Html\Escaper\EscaperInterface
      * @return string
      */
     public function url(string $input): string
+    {
+    }
+
+    /**
+     * Proxy method for testing
+     *
+     * @param string $input
+     *
+     * @return string
+     */
+    protected function phpHtmlSpecialChars(string $input): string
     {
     }
 

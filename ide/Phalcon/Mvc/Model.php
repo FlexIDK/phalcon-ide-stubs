@@ -163,17 +163,9 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     protected $uniqueParams = [];
 
     /**
-     * @var array|null
-     * TODO: Make it always array in code
+     * @var array
      */
-    protected $uniqueTypes = null;
-
-    /**
-     * @return TransactionInterface|null
-     */
-    public function getTransaction()
-    {
-    }
+    protected $uniqueTypes = [];
 
     /**
      * Phalcon\Mvc\Model constructor
@@ -1432,6 +1424,13 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
     }
 
     /**
+     * @return TransactionInterface|null
+     */
+    public function getTransaction(): ?TransactionInterface
+    {
+    }
+
+    /**
      * Enables/disables options in the ORM
      *
      * @param array $options
@@ -2058,8 +2057,9 @@ abstract class Model extends AbstractInjectionAware implements \Phalcon\Mvc\Enti
      * ```
      *
      * @param array $attributes
+     * @return void
      */
-    protected function skipAttributes(array $attributes)
+    protected function skipAttributes(array $attributes): void
     {
     }
 

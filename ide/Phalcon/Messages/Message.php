@@ -45,6 +45,28 @@ class Message implements \Phalcon\Messages\MessageInterface, \JsonSerializable
     protected $metaData = [];
 
     /**
+     * Phalcon\Messages\Message constructor
+     *
+     * @param string $message
+     * @param mixed $field
+     * @param string $type
+     * @param int $code
+     * @param array $metaData
+     */
+    public function __construct(string $message, $field = '', string $type = '', int $code = 0, array $metaData = [])
+    {
+    }
+
+    /**
+     * Magic __toString method returns verbose message
+     *
+     * @return string
+     */
+    public function __toString(): string
+    {
+    }
+
+    /**
      * @return int
      */
     public function getCode(): int
@@ -76,28 +98,6 @@ class Message implements \Phalcon\Messages\MessageInterface, \JsonSerializable
      * @return array
      */
     public function getMetaData(): array
-    {
-    }
-
-    /**
-     * Phalcon\Messages\Message constructor
-     *
-     * @param string $message
-     * @param mixed $field
-     * @param string $type
-     * @param int $code
-     * @param array $metaData
-     */
-    public function __construct(string $message, $field = '', string $type = '', int $code = 0, array $metaData = [])
-    {
-    }
-
-    /**
-     * Magic __toString method returns verbose message
-     *
-     * @return string
-     */
-    public function __toString(): string
     {
     }
 

@@ -10,7 +10,7 @@
 namespace Phalcon\Encryption\Security\JWT\Token;
 
 /**
- * Class Item
+ * Signature class containing the encoded data and the hash.
  */
 class Signature extends \Phalcon\Encryption\Security\JWT\Token\AbstractItem
 {

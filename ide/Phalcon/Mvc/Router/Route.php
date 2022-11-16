@@ -78,13 +78,6 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
     static protected $uniqueId = 0;
 
     /**
-     * @return string|null
-     */
-    public function getId(): ?string
-    {
-    }
-
-    /**
      * Phalcon\Mvc\Router\Route constructor
      *
      * @param string $pattern
@@ -208,6 +201,13 @@ class Route implements \Phalcon\Mvc\Router\RouteInterface
      * @return string|null
      */
     public function getHostname(): ?string
+    {
+    }
+
+    /**
+     * @return string | null
+     */
+    public function getId(): ?string
     {
     }
 

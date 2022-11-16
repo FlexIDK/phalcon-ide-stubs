@@ -164,9 +164,9 @@ interface RouterInterface
     /**
      * Returns the route that matches the handled URI
      *
-     * @return RouteInterface
+     * @return RouteInterface|null
      */
-    public function getMatchedRoute(): RouteInterface;
+    public function getMatchedRoute(): ?RouteInterface;
 
     /**
      * Return the sub expressions in the regular expression matched

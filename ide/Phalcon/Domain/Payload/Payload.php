@@ -60,6 +60,15 @@ class Payload implements \Phalcon\Domain\Payload\PayloadInterface
     protected $output;
 
     /**
+     * Gets the potential exception thrown in the domain layer
+     *
+     * @return Throwable|null
+     */
+    public function getException(): ?Throwable
+    {
+    }
+
+    /**
      * Extra information
      *
      * @return mixed
@@ -101,15 +110,6 @@ class Payload implements \Phalcon\Domain\Payload\PayloadInterface
      * @return mixed
      */
     public function getOutput()
-    {
-    }
-
-    /**
-     * Gets the potential exception thrown in the domain layer
-     *
-     * @return Throwable|null
-     */
-    public function getException(): ?Throwable
     {
     }
 

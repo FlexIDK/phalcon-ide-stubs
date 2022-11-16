@@ -528,8 +528,10 @@ class Micro extends Injectable implements \ArrayAccess, \Phalcon\Events\EventsAw
     /**
      * Stops the middleware execution avoiding than other middlewares be
      * executed
+     *
+     * @return void
      */
-    public function stop()
+    public function stop(): void
     {
     }
 }
