@@ -6,7 +6,7 @@ Current version: **v5.1.2**
 
 Other [tags](https://github.com/FlexIDK/phalcon-ide-stubs/tags):
 
-- 5.1.1
+- [5.1.1](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.1)
 - [5.0.0rc3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.0.0rc3)
 - [5.0.0rc2](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.0.0rc2)
 - [5.0.0rc1](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.0.0rc1)
