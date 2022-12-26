@@ -8,15 +8,27 @@ indent_style = space
 indent_size = 2
 trim_trailing_whitespace = true
 
+<<<<<<< HEAD
+=======
+[*.ts]
+indent_size = 4
+
+[*.json]
+indent_size = 4
+
+>>>>>>> origin/5.0.0rc3
 [*.php]
 indent_size = 4
 
 [*.blade.php]
 indent_size = 2
 
+<<<<<<< HEAD
 [*.json]
 indent_size = 4
 
+=======
+>>>>>>> origin/5.0.0rc3
 [*.js]
 indent_size = 2
 
@@ -27,5 +39,12 @@ trim_trailing_whitespace = false
 indent_size = 2
 
 [docker-compose.yml]
+<<<<<<< HEAD
 indent_size = 2
 
+=======
+indent_size = 4
+
+[*.vue]
+indent_size = 2
+>>>>>>> origin/5.0.0rc3
