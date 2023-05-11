@@ -6,21 +6,21 @@ Current version: **v5.2.1**
 
 Other [tags](https://github.com/FlexIDK/phalcon-ide-stubs/tags):
 
-- [5.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.2.1)
-- [5.1.4](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.4)
-- [5.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.3)
-- [5.1.2](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.2)
-- [5.1.1](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.1)
-- [5.0.0rc3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.0.0rc3)
-- [5.0.0rc2](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.0.0rc2)
-- [5.0.0rc1](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.0.0rc1)
+- [5.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.2.1)
+- [5.1.4](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.1.4)
+- [5.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.1.3)
+- [5.1.2](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.1.2)
+- [5.1.1](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.1.1)
+- [5.0.0rc3](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.0.0rc3)
+- [5.0.0rc2](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.0.0rc2)
+- [5.0.0rc1](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.0.0rc1)
 - [5.0.0beta3](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.0.0beta3)
 - [5.0.0beta2](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.0.0beta2)
 - [5.0.0alpha7](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.0.0alpha7)
-- [5.0.0alpha3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.0.0alpha3)
-- [4.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/4.1.3)
-- [4.1.2](https://github.com/FlexIDK/phalcon-ide-stubs/tree/4.1.2)
-- [3.4.5](https://github.com/FlexIDK/phalcon-ide-stubs/tree/3.4.5)
+- [5.0.0alpha3](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.0.0alpha3)
+- [4.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/4.1.3)
+- [4.1.2](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/4.1.2)
+- [3.4.5](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/3.4.5)
 
 ## Source
 
