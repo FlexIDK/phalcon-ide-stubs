@@ -2,10 +2,12 @@
 
 ## Phalcon IDE stubs
 
-Current version: **v5.1.4**
+Current version: **v5.2.1**
 
 Other [tags](https://github.com/FlexIDK/phalcon-ide-stubs/tags):
 
+- [5.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.2.1)
+- [5.1.4](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.4)
 - [5.1.3](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.3)
 - [5.1.2](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.2)
 - [5.1.1](https://github.com/FlexIDK/phalcon-ide-stubs/tree/5.1.1)
@@ -20,13 +22,15 @@ Other [tags](https://github.com/FlexIDK/phalcon-ide-stubs/tags):
 - [4.1.2](https://github.com/FlexIDK/phalcon-ide-stubs/tree/4.1.2)
 - [3.4.5](https://github.com/FlexIDK/phalcon-ide-stubs/tree/3.4.5)
 
-## Phalcon source
+## Source
 
 - https://github.com/phalcon/cphalcon/
+- https://github.com/zephir-lang/zephir
+- https://github.com/zephir-lang/php-zephir-parser
 
 ## Security
 
-If you discover any security related issues, please email eugene@krivoruchko.info instead of using the issue tracker.
+If you discover any security related issues, please email [eugene@krivoruchko.info](mailto:eugene@krivoruchko.info) instead of using the issue tracker.
 
 ## License
 
