@@ -1,219 +1,176 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc;
+namespace Phalcon\Mvc {
 
-use Phalcon\Mvc\Dispatcher\Exception;
-use Phalcon\Events\ManagerInterface;
-use Phalcon\Http\ResponseInterface;
-use Phalcon\Dispatcher\AbstractDispatcher as BaseDispatcher;
+	/**
+	 * Phalcon\Mvc\Dispatcher
+	 *
+	 * Dispatching is the process of taking the request object, extracting the module name,
+	 * controller name, action name, and optional parameters contained in it, and then
+	 * instantiating a controller and calling an action of that controller.
+	 *
+	 *<code>
+	 * $di = new \Phalcon\Di();
+	 *
+	 * $dispatcher = new \Phalcon\Mvc\Dispatcher();
+	 *
+	 * $dispatcher->setDI($di);
+	 *
+	 * $dispatcher->setControllerName("posts");
+	 * $dispatcher->setActionName("index");
+	 * $dispatcher->setParams([]);
+	 *
+	 * $controller = $dispatcher->dispatch();
+	 *</code>
+	 */
+	
+	class Dispatcher extends \Phalcon\Dispatcher implements \Phalcon\Events\EventsAwareInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\DispatcherInterface, \Phalcon\Mvc\DispatcherInterface {
 
-/**
- * Dispatching is the process of taking the request object, extracting the
- * module name, controller name, action name, and optional parameters contained
- * in it, and then instantiating a controller and calling an action of that
- * controller.
- *
- * ```php
- * $di = new \Phalcon\Di\Di();
- *
- * $dispatcher = new \Phalcon\Mvc\Dispatcher();
- *
- * $dispatcher->setDI($di);
- *
- * $dispatcher->setControllerName("posts");
- * $dispatcher->setActionName("index");
- * $dispatcher->setParams([]);
- *
- * $controller = $dispatcher->dispatch();
- * ```
- */
-class Dispatcher extends \Phalcon\Dispatcher\AbstractDispatcher implements \Phalcon\Mvc\DispatcherInterface
-{
+		const EXCEPTION_NO_DI = 0;
 
-    protected $defaultAction = 'index';
+		const EXCEPTION_CYCLIC_ROUTING = 1;
 
-    protected $defaultHandler = 'index';
+		const EXCEPTION_HANDLER_NOT_FOUND = 2;
 
-    protected $handlerSuffix = 'Controller';
+		const EXCEPTION_INVALID_HANDLER = 3;
 
-    /**
-     * Forwards the execution flow to another controller/action.
-     *
-     * ```php
-     * use Phalcon\Events\Event;
-     * use Phalcon\Mvc\Dispatcher;
-     * use App\Backend\Bootstrap as Backend;
-     * use App\Frontend\Bootstrap as Frontend;
-     *
-     * // Registering modules
-     * $modules = [
-     *     "frontend" => [
-     *         "className" => Frontend::class,
-     *         "path"      => __DIR__ . "/app/Modules/Frontend/Bootstrap.php",
-     *         "metadata"  => [
-     *             "controllersNamespace" => "App\Frontend\Controllers",
-     *         ],
-     *     ],
-     *     "backend" => [
-     *         "className" => Backend::class,
-     *         "path"      => __DIR__ . "/app/Modules/Backend/Bootstrap.php",
-     *         "metadata"  => [
-     *             "controllersNamespace" => "App\Backend\Controllers",
-     *         ],
-     *     ],
-     * ];
-     *
-     * $application->registerModules($modules);
-     *
-     * // Setting beforeForward listener
-     * $eventsManager  = $di->getShared("eventsManager");
-     *
-     * $eventsManager->attach(
-     *     "dispatch:beforeForward",
-     *     function(Event $event, Dispatcher $dispatcher, array $forward) use ($modules) {
-     *         $metadata = $modules[$forward["module"]]["metadata"];
-     *
-     *         $dispatcher->setModuleName(
-     *             $forward["module"]
-     *         );
-     *
-     *         $dispatcher->setNamespaceName(
-     *             $metadata["controllersNamespace"]
-     *         );
-     *     }
-     * );
-     *
-     * // Forward
-     * $this->dispatcher->forward(
-     *     [
-     *         "module"     => "backend",
-     *         "controller" => "posts",
-     *         "action"     => "index",
-     *     ]
-     * );
-     * ```
-     *
-     * @param array $forward
-     * @return void
-     */
-    public function forward(array $forward): void
-    {
-    }
+		const EXCEPTION_INVALID_PARAMS = 4;
 
-    /**
-     * Returns the active controller in the dispatcher
-     *
-     * @return ControllerInterface
-     */
-    public function getActiveController(): ControllerInterface
-    {
-    }
+		const EXCEPTION_ACTION_NOT_FOUND = 5;
 
-    /**
-     * Possible controller class name that will be located to dispatch the
-     * request
-     *
-     * @return string
-     */
-    public function getControllerClass(): string
-    {
-    }
+		protected $_handlerSuffix;
 
-    /**
-     * Gets last dispatched controller name
-     *
-     * @return string
-     */
-    public function getControllerName(): string
-    {
-    }
+		protected $_defaultHandler;
 
-    /**
-     * Returns the latest dispatched controller
-     *
-     * @return ControllerInterface
-     */
-    public function getLastController(): ControllerInterface
-    {
-    }
+		protected $_defaultAction;
 
-    /**
-     * Gets previous dispatched action name
-     *
-     * @return string
-     */
-    public function getPreviousActionName(): string
-    {
-    }
+		/**
+		 * Sets the default controller suffix
+		 */
+		public function setControllerSuffix($controllerSuffix){ }
 
-    /**
-     * Gets previous dispatched controller name
-     *
-     * @return string
-     */
-    public function getPreviousControllerName(): string
-    {
-    }
 
-    /**
-     * Gets previous dispatched namespace name
-     *
-     * @return string
-     */
-    public function getPreviousNamespaceName(): string
-    {
-    }
+		/**
+		 * Sets the default controller name
+		 */
+		public function setDefaultController($controllerName){ }
 
-    /**
-     * Sets the controller name to be dispatched
-     *
-     * @param string $controllerName
-     */
-    public function setControllerName(string $controllerName)
-    {
-    }
 
-    /**
-     * Sets the default controller suffix
-     *
-     * @param string $controllerSuffix
-     */
-    public function setControllerSuffix(string $controllerSuffix)
-    {
-    }
+		/**
+		 * Sets the controller name to be dispatched
+		 */
+		public function setControllerName($controllerName){ }
 
-    /**
-     * Sets the default controller name
-     *
-     * @param string $controllerName
-     */
-    public function setDefaultController(string $controllerName)
-    {
-    }
 
-    /**
-     * Handles a user exception
-     *
-     * @param \Exception $exception
-     */
-    protected function handleException(\Exception $exception)
-    {
-    }
+		/**
+		 * Gets last dispatched controller name
+		 */
+		public function getControllerName(){ }
 
-    /**
-     * Throws an internal exception
-     *
-     * @param string $message
-     * @param int $exceptionCode
-     */
-    protected function throwDispatchException(string $message, int $exceptionCode = 0)
-    {
-    }
+
+		/**
+		 * Gets previous dispatched namespace name
+		 */
+		public function getPreviousNamespaceName(){ }
+
+
+		/**
+		 * Gets previous dispatched controller name
+		 */
+		public function getPreviousControllerName(){ }
+
+
+		/**
+		 * Gets previous dispatched action name
+		 */
+		public function getPreviousActionName(){ }
+
+
+		/**
+		 * Throws an internal exception
+		 */
+		protected function _throwDispatchException($message, $exceptionCode=null){ }
+
+
+		/**
+		 * Handles a user exception
+		 */
+		protected function _handleException(\Exception $exception){ }
+
+
+		/**
+		 * Forwards the execution flow to another controller/action.
+		 *
+		 * <code>
+		 * use \Phalcon\Events\Event;
+		 * use \Phalcon\Mvc\Dispatcher;
+		 * use App\Backend\Bootstrap as Backend;
+		 * use App\Frontend\Bootstrap as Frontend;
+		 *
+		 * // Registering modules
+		 * $modules = [
+		 *     "frontend" => [
+		 *         "className" => Frontend::class,
+		 *         "path"      => __DIR__ . "/app/Modules/Frontend/Bootstrap.php",
+		 *         "metadata"  => [
+		 *             "controllersNamespace" => "App\Frontend\Controllers",
+		 *         ],
+		 *     ],
+		 *     "backend" => [
+		 *         "className" => Backend::class,
+		 *         "path"      => __DIR__ . "/app/Modules/Backend/Bootstrap.php",
+		 *         "metadata"  => [
+		 *             "controllersNamespace" => "App\Backend\Controllers",
+		 *         ],
+		 *     ],
+		 * ];
+		 *
+		 * $application->registerModules($modules);
+		 *
+		 * // Setting beforeForward listener
+		 * $eventsManager  = $di->getShared("eventsManager");
+		 *
+		 * $eventsManager->attach(
+		 *     "dispatch:beforeForward",
+		 *     function(Event $event, Dispatcher $dispatcher, array $forward) use ($modules) {
+		 *         $metadata = $modules[$forward["module"]]["metadata"];
+		 *
+		 *         $dispatcher->setModuleName($forward["module"]);
+		 *         $dispatcher->setNamespaceName($metadata["controllersNamespace"]);
+		 *     }
+		 * );
+		 *
+		 * // Forward
+		 * $this->dispatcher->forward(
+		 *     [
+		 *         "module"     => "backend",
+		 *         "controller" => "posts",
+		 *         "action"     => "index",
+		 *     ]
+		 * );
+		 * </code>
+		 *
+		 * @param array forward
+		 */
+		public function forward($forward){ }
+
+
+		/**
+		 * Possible controller class name that will be located to dispatch the request
+		 */
+		public function getControllerClass(){ }
+
+
+		/**
+		 * Returns the latest dispatched controller
+		 */
+		public function getLastController(){ }
+
+
+		/**
+		 * Returns the active controller in the dispatcher
+		 */
+		public function getActiveController(){ }
+
+	}
 }

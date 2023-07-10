@@ -1,85 +1,59 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Forms\Element;
+namespace Phalcon\Forms\Element {
 
-use Phalcon\Tag\Select as SelectTag;
+	/**
+	 * Phalcon\Forms\Element\Select
+	 *
+	 * Component SELECT (choice) for forms
+	 */
+	
+	class Select extends \Phalcon\Forms\Element implements \Phalcon\Forms\ElementInterface {
 
-/**
- * Component SELECT (choice) for forms
- */
-class Select extends \Phalcon\Forms\Element\AbstractElement
-{
+		protected $_optionsValues;
 
-    /**
-     * @var object|array|null
-     */
-    protected $optionsValues = null;
+		/**
+		 * \Phalcon\Forms\Element constructor
+		 *
+		 * @param string name
+		 * @param object|array options
+		 * @param array attributes
+		 */
+		public function __construct($name, $options=null, $attributes=null){ }
 
-    /**
-     * Constructor
-     *
-     * @param object|array $options
-     * @param array $attributes
-     * @param string $name
-     */
-    public function __construct(string $name, $options = null, array $attributes = [])
-    {
-    }
 
-    /**
-     * Adds an option to the current options
-     *
-     * @param array|string $option
-     * @return ElementInterface
-     */
-    public function addOption($option): ElementInterface
-    {
-    }
+		/**
+		 * Set the choice's options
+		 *
+		 * @param array|object options
+		 * @return \Phalcon\Forms\Element
+		 */
+		public function setOptions($options){ }
 
-    /**
-     * Returns the choices' options
-     *
-     * @return array|object
-     */
-    public function getOptions()
-    {
-    }
 
-    /**
-     * Renders the element widget returning HTML
-     *
-     * @param array $attributes
-     * @return string
-     */
-    public function render(array $attributes = []): string
-    {
-    }
+		/**
+		 * Returns the choices' options
+		 *
+		 * @return array|object
+		 */
+		public function getOptions(){ }
 
-    /**
-     * Set the choice's options
-     *
-     * @param array|object $options
-     * @return ElementInterface
-     */
-    public function setOptions($options): ElementInterface
-    {
-    }
 
-    /**
-     * Returns an array of prepared attributes for Phalcon\Html\TagFactory
-     * helpers according to the element parameters
-     *
-     * @param array $attributes
-     * @return array
-     */
-    protected function prepareAttributes(array $attributes = []): array
-    {
-    }
+		/**
+		 * Adds an option to the current options
+		 *
+		 * @param array option
+		 * @return this
+		 */
+		public function addOption($option){ }
+
+
+		/**
+		 * Renders the element widget returning html
+		 *
+		 * @param array attributes
+		 */
+		public function render($attributes=null){ }
+
+	}
 }

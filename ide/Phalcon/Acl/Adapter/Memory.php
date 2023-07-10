@@ -1,485 +1,286 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Acl\Adapter;
+namespace Phalcon\Acl\Adapter {
 
-use Phalcon\Acl\Enum;
-use Phalcon\Acl\Role;
-use Phalcon\Acl\RoleInterface;
-use Phalcon\Acl\Component;
-use Phalcon\Acl\Exception;
-use Phalcon\Acl\RoleAwareInterface;
-use Phalcon\Acl\ComponentAwareInterface;
-use Phalcon\Acl\ComponentInterface;
-use ReflectionClass;
-use ReflectionFunction;
+	/**
+	 * Phalcon\Acl\Adapter\Memory
+	 *
+	 * Manages ACL lists in memory
+	 *
+	 *<code>
+	 * $acl = new \Phalcon\Acl\Adapter\Memory();
+	 *
+	 * $acl->setDefaultAction(
+	 *     \Phalcon\Acl::DENY
+	 * );
+	 *
+	 * // Register roles
+	 * $roles = [
+	 *     "users"  => new \Phalcon\Acl\Role("Users"),
+	 *     "guests" => new \Phalcon\Acl\Role("Guests"),
+	 * ];
+	 * foreach ($roles as $role) {
+	 *     $acl->addRole($role);
+	 * }
+	 *
+	 * // Private area resources
+	 * $privateResources = [
+	 *     "companies" => ["index", "search", "new", "edit", "save", "create", "delete"],
+	 *     "products"  => ["index", "search", "new", "edit", "save", "create", "delete"],
+	 *     "invoices"  => ["index", "profile"],
+	 * ];
+	 *
+	 * foreach ($privateResources as $resourceName => $actions) {
+	 *     $acl->addResource(
+	 *         new \Phalcon\Acl\Resource($resourceName),
+	 *         $actions
+	 *     );
+	 * }
+	 *
+	 * // Public area resources
+	 * $publicResources = [
+	 *     "index"   => ["index"],
+	 *     "about"   => ["index"],
+	 *     "session" => ["index", "register", "start", "end"],
+	 *     "contact" => ["index", "send"],
+	 * ];
+	 *
+	 * foreach ($publicResources as $resourceName => $actions) {
+	 *     $acl->addResource(
+	 *         new \Phalcon\Acl\Resource($resourceName),
+	 *         $actions
+	 *     );
+	 * }
+	 *
+	 * // Grant access to public areas to both users and guests
+	 * foreach ($roles as $role){
+	 *     foreach ($publicResources as $resource => $actions) {
+	 *         $acl->allow($role->getName(), $resource, "*");
+	 *     }
+	 * }
+	 *
+	 * // Grant access to private area to role Users
+	 * foreach ($privateResources as $resource => $actions) {
+	 *     foreach ($actions as $action) {
+	 *         $acl->allow("Users", $resource, $action);
+	 *     }
+	 * }
+	 *</code>
+	 */
+	
+	class Memory extends \Phalcon\Acl\Adapter implements \Phalcon\Events\EventsAwareInterface, \Phalcon\Acl\AdapterInterface {
 
-/**
- * Manages ACL lists in memory
- *
- * ```php
- * $acl = new \Phalcon\Acl\Adapter\Memory();
- *
- * $acl->setDefaultAction(
- *     \Phalcon\Acl\Enum::DENY
- * );
- *
- * // Register roles
- * $roles = [
- *     "users"  => new \Phalcon\Acl\Role("Users"),
- *     "guests" => new \Phalcon\Acl\Role("Guests"),
- * ];
- * foreach ($roles as $role) {
- *     $acl->addRole($role);
- * }
- *
- * // Private area components
- * $privateComponents = [
- *     "companies" => ["index", "search", "new", "edit", "save", "create", "delete"],
- *     "products"  => ["index", "search", "new", "edit", "save", "create", "delete"],
- *     "invoices"  => ["index", "profile"],
- * ];
- *
- * foreach ($privateComponents as $componentName => $actions) {
- *     $acl->addComponent(
- *         new \Phalcon\Acl\Component($componentName),
- *         $actions
- *     );
- * }
- *
- * // Public area components
- * $publicComponents = [
- *     "index"   => ["index"],
- *     "about"   => ["index"],
- *     "session" => ["index", "register", "start", "end"],
- *     "contact" => ["index", "send"],
- * ];
- *
- * foreach ($publicComponents as $componentName => $actions) {
- *     $acl->addComponent(
- *         new \Phalcon\Acl\Component($componentName),
- *         $actions
- *     );
- * }
- *
- * // Grant access to public areas to both users and guests
- * foreach ($roles as $role) {
- *     foreach ($publicComponents as $component => $actions) {
- *         $acl->allow($role->getName(), $component, "");
- *     }
- * }
- *
- * // Grant access to private area to role Users
- * foreach ($privateComponents as $component => $actions) {
- *     foreach ($actions as $action) {
- *         $acl->allow("Users", $component, $action);
- *     }
- * }
- * ```
- */
-class Memory extends \Phalcon\Acl\Adapter\AbstractAdapter
-{
+		protected $_rolesNames;
 
-    /**
-     * Access
-     *
-     * @var mixed
-     */
-    protected $access;
+		protected $_roles;
 
-    /**
-     * Access List
-     *
-     * @var mixed
-     */
-    protected $accessList;
+		protected $_resourcesNames;
 
-    /**
-     * Returns the latest function used to acquire access
-     *
-     * @var mixed
-     */
-    protected $activeFunction;
+		protected $_resources;
 
-    /**
-     * Returns number of additional arguments(excluding role and resource) for active function
-     *
-     * @var int
-     */
-    protected $activeFunctionCustomArgumentsCount = 0;
+		protected $_access;
 
-    /**
-     * Returns the latest key used to acquire access
-     *
-     * @var string|null
-     */
-    protected $activeKey = null;
+		protected $_roleInherits;
 
-    /**
-     * Components
-     *
-     * @var mixed
-     */
-    protected $components;
+		protected $_accessList;
 
-    /**
-     * Component Names
-     *
-     * @var mixed
-     */
-    protected $componentsNames;
+		protected $_func;
 
-    /**
-     * Function List
-     *
-     * @var mixed
-     */
-    protected $func;
+		protected $_noArgumentsDefaultAction;
 
-    /**
-     * Default action for no arguments is `allow`
-     *
-     * @var mixed
-     */
-    protected $noArgumentsDefaultAction = Enum::DENY;
+		/**
+		 * \Phalcon\Acl\Adapter\Memory constructor
+		 */
+		public function __construct(){ }
 
-    /**
-     * Roles
-     *
-     * @var mixed
-     */
-    protected $roles;
 
-    /**
-     * Role Inherits
-     *
-     * @var mixed
-     */
-    protected $roleInherits;
+		/**
+		 * Adds a role to the ACL list. Second parameter allows inheriting access data from other existing role
+		 *
+		 * Example:
+		 * <code>
+		 * $acl->addRole(
+		 *     new \Phalcon\Acl\Role("administrator"),
+		 *     "consultant"
+		 * );
+		 *
+		 * $acl->addRole("administrator", "consultant");
+		 * </code>
+		 *
+		 * @param  array|string         accessInherits
+		 * @param  RoleInterface|string role
+		 */
+		public function addRole($role, $accessInherits=null){ }
 
-    /**
-     * Phalcon\Acl\Adapter\Memory constructor
-     */
-    public function __construct()
-    {
-    }
 
-    /**
-     * Adds a component to the ACL list
-     *
-     * Access names can be a particular action, by example
-     * search, update, delete, etc. or a list of them
-     *
-     * Example:
-     * ```php
-     * // Add a component to the list allowing access to an action
-     * $acl->addComponent(
-     *     new Phalcon\Acl\Component("customers"),
-     *     "search"
-     * );
-     *
-     * $acl->addComponent("customers", "search");
-     *
-     * // Add a component  with an access list
-     * $acl->addComponent(
-     *     new Phalcon\Acl\Component("customers"),
-     *     [
-     *         "create",
-     *         "search",
-     *     ]
-     * );
-     *
-     * $acl->addComponent(
-     *     "customers",
-     *     [
-     *         "create",
-     *         "search",
-     *     ]
-     * );
-     * ```
-     *
-     * @param mixed $componentValue
-     * @param mixed $accessList
-     * @return bool
-     */
-    public function addComponent($componentValue, $accessList): bool
-    {
-    }
+		/**
+		 * Do a role inherit from another existing role
+		 */
+		public function addInherit($roleName, $roleToInherit){ }
 
-    /**
-     * Adds access to components
-     *
-     * @param string $componentName
-     * @param mixed $accessList
-     * @return bool
-     */
-    public function addComponentAccess(string $componentName, $accessList): bool
-    {
-    }
 
-    /**
-     * Do a role inherit from another existing role
-     *
-     * ```php
-     * $acl->addRole("administrator", "consultant");
-     * $acl->addRole("administrator", ["consultant", "consultant2"]);
-     * ```
-     *
-     * @param string $roleName
-     * @param mixed $roleToInherits
-     * @return bool
-     */
-    public function addInherit(string $roleName, $roleToInherits): bool
-    {
-    }
+		/**
+		 * Check whether role exist in the roles list
+		 */
+		public function isRole($roleName){ }
 
-    /**
-     * Adds a role to the ACL list. Second parameter allows inheriting access data from other existing role
-     *
-     * ```php
-     * $acl->addRole(
-     *     new Phalcon\Acl\Role("administrator"),
-     *     "consultant"
-     * );
-     *
-     * $acl->addRole("administrator", "consultant");
-     * $acl->addRole("administrator", ["consultant", "consultant2"]);
-     * ```
-     *
-     * @param mixed $role
-     * @param mixed $accessInherits
-     * @return bool
-     */
-    public function addRole($role, $accessInherits = null): bool
-    {
-    }
 
-    /**
-     * Allow access to a role on a component. You can use `` as wildcard
-     *
-     * ```php
-     * // Allow access to guests to search on customers
-     * $acl->allow("guests", "customers", "search");
-     *
-     * // Allow access to guests to search or create on customers
-     * $acl->allow("guests", "customers", ["search", "create"]);
-     *
-     * // Allow access to any role to browse on products
-     * $acl->allow("", "products", "browse");
-     *
-     * // Allow access to any role to browse on any component
-     * $acl->allow("", "", "browse");
-     *
-     * @param string $roleName
-     * @param string $componentName
-     * @param mixed $access
-     * @param mixed $func
-     * @return void
-     */
-    public function allow(string $roleName, string $componentName, $access, $func = null): void
-    {
-    }
+		/**
+		 * Check whether resource exist in the resources list
+		 */
+		public function isResource($resourceName){ }
 
-    /**
-     * Deny access to a role on a component. You can use `` as wildcard
-     *
-     * ```php
-     * // Deny access to guests to search on customers
-     * $acl->deny("guests", "customers", "search");
-     *
-     * // Deny access to guests to search or create on customers
-     * $acl->deny("guests", "customers", ["search", "create"]);
-     *
-     * // Deny access to any role to browse on products
-     * $acl->deny("", "products", "browse");
-     *
-     * // Deny access to any role to browse on any component
-     * $acl->deny("", "", "browse");
-     * ```
-     *
-     * @param string $roleName
-     * @param string $componentName
-     * @param mixed $access
-     * @param mixed $func
-     * @return void
-     */
-    public function deny(string $roleName, string $componentName, $access, $func = null): void
-    {
-    }
 
-    /**
-     * Removes access from a component
-     *
-     * @param string $componentName
-     * @param mixed $accessList
-     * @return void
-     */
-    public function dropComponentAccess(string $componentName, $accessList): void
-    {
-    }
+		/**
+		 * Adds a resource to the ACL list
+		 *
+		 * Access names can be a particular action, by example
+		 * search, update, delete, etc or a list of them
+		 *
+		 * Example:
+		 * <code>
+		 * // Add a resource to the the list allowing access to an action
+		 * $acl->addResource(
+		 *     new \Phalcon\Acl\Resource("customers"),
+		 *     "search"
+		 * );
+		 *
+		 * $acl->addResource("customers", "search");
+		 *
+		 * // Add a resource  with an access list
+		 * $acl->addResource(
+		 *     new \Phalcon\Acl\Resource("customers"),
+		 *     [
+		 *         "create",
+		 *         "search",
+		 *     ]
+		 * );
+		 *
+		 * $acl->addResource(
+		 *     "customers",
+		 *     [
+		 *         "create",
+		 *         "search",
+		 *     ]
+		 * );
+		 * </code>
+		 *
+		 * @param   \Phalcon\Acl\Resource|string resourceValue
+		 * @param   array|string accessList
+		 */
+		public function addResource($resourceValue, $accessList){ }
 
-    /**
-     * Returns the latest function used to acquire access
-     *
-     * @return mixed
-     */
-    public function getActiveFunction()
-    {
-    }
 
-    /**
-     * Returns number of additional arguments(excluding role and resource) for active function
-     *
-     * @return int
-     */
-    public function getActiveFunctionCustomArgumentsCount(): int
-    {
-    }
+		/**
+		 * Adds access to resources
+		 *
+		 * @param array|string accessList
+		 */
+		public function addResourceAccess($resourceName, $accessList){ }
 
-    /**
-     * Returns the latest key used to acquire access
-     *
-     * @return string|null
-     */
-    public function getActiveKey(): ?string
-    {
-    }
 
-    /**
-     * Return an array with every component registered in the list
-     *
-     * @return array|\Phalcon\Acl\ComponentInterface[]
-     */
-    public function getComponents(): array
-    {
-    }
+		/**
+		 * Removes an access from a resource
+		 *
+		 * @param array|string accessList
+		 */
+		public function dropResourceAccess($resourceName, $accessList){ }
 
-    /**
-     * Returns the inherited roles for a passed role name. If no role name
-     * has been specified it will return the whole array. If the role has not
-     * been found it returns an empty array
-     *
-     * @param string $roleName
-     * @return array
-     */
-    public function getInheritedRoles(string $roleName = ''): array
-    {
-    }
 
-    /**
-     * Returns the default ACL access level for no arguments provided in
-     * `isAllowed` action if a `func` (callable) exists for `accessKey`
-     *
-     * @return int
-     */
-    public function getNoArgumentsDefaultAction(): int
-    {
-    }
+		/**
+		 * Checks if a role has access to a resource
+		 */
+		protected function _allowOrDeny($roleName, $resourceName, $access, $action, $func=null){ }
 
-    /**
-     * Return an array with every role registered in the list
-     *
-     * @return array|\Phalcon\Acl\RoleInterface[]
-     */
-    public function getRoles(): array
-    {
-    }
 
-    /**
-     * Check whether a role is allowed to access an action from a component
-     *
-     * ```php
-     * // Does andres have access to the customers component to create?
-     * $acl->isAllowed("andres", "Products", "create");
-     *
-     * // Do guests have access to any component to edit?
-     * $acl->isAllowed("guests", "", "edit");
-     * ```
-     *
-     * @param mixed $roleName
-     * @param mixed $componentName
-     * @param string $access
-     * @param array $parameters
-     * @return bool
-     */
-    public function isAllowed($roleName, $componentName, string $access, array $parameters = null): bool
-    {
-    }
+		/**
+		 * Allow access to a role on a resource
+		 *
+		 * You can use '*' as wildcard
+		 *
+		 * Example:
+		 * <code>
+		 * //Allow access to guests to search on customers
+		 * $acl->allow("guests", "customers", "search");
+		 *
+		 * //Allow access to guests to search or create on customers
+		 * $acl->allow("guests", "customers", ["search", "create"]);
+		 *
+		 * //Allow access to any role to browse on products
+		 * $acl->allow("*", "products", "browse");
+		 *
+		 * //Allow access to any role to browse on any resource
+		 * $acl->allow("*", "*", "browse");
+		 * </code>
+		 */
+		public function allow($roleName, $resourceName, $access, $func=null){ }
 
-    /**
-     * Check whether role exist in the roles list
-     *
-     * @param string $roleName
-     * @return bool
-     */
-    public function isRole(string $roleName): bool
-    {
-    }
 
-    /**
-     * Check whether component exist in the components list
-     *
-     * @param string $componentName
-     * @return bool
-     */
-    public function isComponent(string $componentName): bool
-    {
-    }
+		/**
+		 * Deny access to a role on a resource
+		 *
+		 * You can use '*' as wildcard
+		 *
+		 * Example:
+		 * <code>
+		 * //Deny access to guests to search on customers
+		 * $acl->deny("guests", "customers", "search");
+		 *
+		 * //Deny access to guests to search or create on customers
+		 * $acl->deny("guests", "customers", ["search", "create"]);
+		 *
+		 * //Deny access to any role to browse on products
+		 * $acl->deny("*", "products", "browse");
+		 *
+		 * //Deny access to any role to browse on any resource
+		 * $acl->deny("*", "*", "browse");
+		 * </code>
+		 */
+		public function deny($roleName, $resourceName, $access, $func=null){ }
 
-    /**
-     * Sets the default access level (`Phalcon\Enum::ALLOW` or `Phalcon\Enum::DENY`)
-     * for no arguments provided in isAllowed action if there exists func for
-     * accessKey
-     *
-     * @param int $defaultAccess
-     * @return void
-     */
-    public function setNoArgumentsDefaultAction(int $defaultAccess): void
-    {
-    }
 
-    /**
-     * Checks if a role has access to a component
-     *
-     * @param string $roleName
-     * @param string $componentName
-     * @param mixed $access
-     * @param mixed $action
-     * @param mixed $func
-     * @return void
-     */
-    private function allowOrDeny(string $roleName, string $componentName, $access, $action, $func = null): void
-    {
-    }
+		/**
+		 * Check whether a role is allowed to access an action from a resource
+		 *
+		 * <code>
+		 * //Does andres have access to the customers resource to create?
+		 * $acl->isAllowed("andres", "Products", "create");
+		 *
+		 * //Do guests have access to any resource to edit?
+		 * $acl->isAllowed("guests", "*", "edit");
+		 * </code>
+		 *
+		 * @param  RoleInterface|RoleAware|string roleName
+		 * @param  ResourceInterface|ResourceAware|string resourceName
+		 */
+		public function isAllowed($roleName, $resourceName, $access, $parameters=null){ }
 
-    /**
-     * Check whether a role is allowed to access an action from a component
-     *
-     * @param string $roleName
-     * @param string $componentName
-     * @param string $access
-     * @return string|bool
-     */
-    private function canAccess(string $roleName, string $componentName, string $access)
-    {
-    }
 
-    /**
-     * @param array  $collection
-     * @param string $element
-     * @param string $elementName
-     * @param string $suffix
-     *
-     * @throws Exception
-     * @return void
-     */
-    private function checkExists(array $collection, string $element, string $elementName, string $suffix = 'ACL'): void
-    {
-    }
+		/**
+		 * Sets the default access level (Phalcon\Acl::ALLOW or \Phalcon\Acl::DENY)
+		 * for no arguments provided in isAllowed action if there exists func for
+		 * accessKey
+		 */
+		public function setNoArgumentsDefaultAction($defaultAccess){ }
+
+
+		/**
+		 * Returns the default ACL access level for no arguments provided in
+		 * isAllowed action if there exists func for accessKey
+		 */
+		public function getNoArgumentsDefaultAction(){ }
+
+
+		/**
+		 * Return an array with every role registered in the list
+		 */
+		public function getRoles(){ }
+
+
+		/**
+		 * Return an array with every resource registered in the list
+		 */
+		public function getResources(){ }
+
+	}
 }

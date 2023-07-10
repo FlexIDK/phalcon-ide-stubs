@@ -1,173 +1,101 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Db;
+namespace Phalcon\Db {
 
-/**
- * Allows to define reference constraints on tables
- *
- * ```php
- * $reference = new \Phalcon\Db\Reference(
- *     "field_fk",
- *     [
- *         "referencedSchema"  => "invoicing",
- *         "referencedTable"   => "products",
- *         "columns"           => [
- *             "producttype",
- *             "product_code",
- *         ],
- *         "referencedColumns" => [
- *             "type",
- *             "code",
- *         ],
- *     ]
- * );
- * ```
- */
-class Reference implements \Phalcon\Db\ReferenceInterface
-{
+	/**
+	 * Phalcon\Db\Reference
+	 *
+	 * Allows to define reference constraints on tables
+	 *
+	 *<code>
+	 * $reference = new \Phalcon\Db\Reference(
+	 *     "field_fk",
+	 *     [
+	 *         "referencedSchema"  => "invoicing",
+	 *         "referencedTable"   => "products",
+	 *         "columns"           => [
+	 *             "product_type",
+	 *             "product_code",
+	 *         ],
+	 *         "referencedColumns" => [
+	 *             "type",
+	 *             "code",
+	 *         ],
+	 *     ]
+	 * );
+	 *</code>
+	 */
+	
+	class Reference implements \Phalcon\Db\ReferenceInterface {
 
-    /**
-     * Local reference columns
-     *
-     * @var array
-     */
-    protected $columns;
+		protected $_name;
 
-    /**
-     * Constraint name
-     *
-     * @var string
-     */
-    protected $name;
+		protected $_schemaName;
 
-    /**
-     * Referenced Columns
-     *
-     * @var array
-     */
-    protected $referencedColumns;
+		protected $_referencedSchema;
 
-    /**
-     * Referenced Schema
-     *
-     * @var string
-     */
-    protected $referencedSchema;
+		protected $_referencedTable;
 
-    /**
-     * Referenced Table
-     *
-     * @var string
-     */
-    protected $referencedTable;
+		protected $_columns;
 
-    /**
-     * Schema name
-     *
-     * @var string
-     */
-    protected $schemaName;
+		protected $_referencedColumns;
 
-    /**
-     * ON DELETE
-     *
-     * @var string
-     */
-    protected $onDelete;
+		protected $_onDelete;
 
-    /**
-     * ON UPDATE
-     *
-     * @var string
-     */
-    protected $onUpdate;
+		protected $_onUpdate;
 
-    /**
-     * Phalcon\Db\Reference constructor
-     *
-     * @param string $name
-     * @param array $definition
-     */
-    public function __construct(string $name, array $definition)
-    {
-    }
+		/**
+		 * Constraint name
+		 */
+		public function getName(){ }
 
-    /**
-     * Local reference columns
-     *
-     * @return array
-     */
-    public function getColumns(): array
-    {
-    }
 
-    /**
-     * Constraint name
-     *
-     * @return string
-     */
-    public function getName(): string
-    {
-    }
+		public function getSchemaName(){ }
 
-    /**
-     * Referenced Columns
-     *
-     * @return array
-     */
-    public function getReferencedColumns(): array
-    {
-    }
 
-    /**
-     * Referenced Schema
-     *
-     * @return string
-     */
-    public function getReferencedSchema(): string
-    {
-    }
+		public function getReferencedSchema(){ }
 
-    /**
-     * Referenced Table
-     *
-     * @return string
-     */
-    public function getReferencedTable(): string
-    {
-    }
 
-    /**
-     * Schema name
-     *
-     * @return string
-     */
-    public function getSchemaName(): string
-    {
-    }
+		/**
+		 * Referenced Table
+		 */
+		public function getReferencedTable(){ }
 
-    /**
-     * ON DELETE
-     *
-     * @return string
-     */
-    public function getOnDelete(): string
-    {
-    }
 
-    /**
-     * ON UPDATE
-     *
-     * @return string
-     */
-    public function getOnUpdate(): string
-    {
-    }
+		/**
+		 * Local reference columns
+		 */
+		public function getColumns(){ }
+
+
+		/**
+		 * Referenced Columns
+		 */
+		public function getReferencedColumns(){ }
+
+
+		/**
+		 * ON DELETE
+		 */
+		public function getOnDelete(){ }
+
+
+		/**
+		 * ON UPDATE
+		 */
+		public function getOnUpdate(){ }
+
+
+		/**
+		 * \Phalcon\Db\Reference constructor
+		 */
+		public function __construct($name, $definition){ }
+
+
+		/**
+		 * Restore a \Phalcon\Db\Reference object from export
+		 */
+		public static function __set_state($data){ }
+
+	}
 }

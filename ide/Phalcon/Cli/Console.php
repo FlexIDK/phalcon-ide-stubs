@@ -1,54 +1,46 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Cli;
+namespace Phalcon\Cli {
 
-use Phalcon\Application\AbstractApplication;
-use Phalcon\Cli\Router\Route;
-use Phalcon\Cli\Console\Exception;
-use Phalcon\Di\DiInterface;
-use Phalcon\Events\ManagerInterface;
+	/**
+	 * Phalcon\Cli\Console
+	 *
+	 * This component allows to create CLI applications using Phalcon
+	 */
+	
+	class Console extends \Phalcon\Application implements \Phalcon\Di\InjectionAwareInterface, \Phalcon\Events\EventsAwareInterface {
 
-/**
- * This component allows to create CLI applications using Phalcon
- */
-class Console extends AbstractApplication
-{
+		protected $_arguments;
 
-    /**
-     * @var array
-     */
-    protected $arguments = [];
+		protected $_options;
 
-    /**
-     * @var array
-     */
-    protected $options = [];
+		/**
+		 * Merge modules with the existing ones
+		 *
+		 *<code>
+		 * $application->addModules(
+		 *     [
+		 *         "admin" => [
+		 *             "className" => "Multiple\\Admin\\Module",
+		 *             "path"      => "../apps/admin/Module.php",
+		 *         ],
+		 *     ]
+		 * );
+		 *</code>
+		 */
+		public function addModules($modules){ }
 
-    /**
-     * Handle the whole command-line tasks
-     *
-     * @param array $arguments
-     */
-    public function handle(array $arguments = null)
-    {
-    }
 
-    /**
-     * Set an specific argument
-     *
-     * @param array $arguments
-     * @param bool $str
-     * @param bool $shift
-     * @return Console
-     */
-    public function setArgument(array $arguments = null, bool $str = true, bool $shift = true): Console
-    {
-    }
+		/**
+		 * Handle the whole command-line tasks
+		 */
+		public function handle($arguments=null){ }
+
+
+		/**
+		 * Set an specific argument
+		 */
+		public function setArgument($arguments=null, $str=null, $shift=null){ }
+
+	}
 }

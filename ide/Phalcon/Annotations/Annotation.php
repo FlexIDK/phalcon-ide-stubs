@@ -1,133 +1,96 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Annotations;
+namespace Phalcon\Annotations {
 
-/**
- * Represents a single annotation in an annotations collection
- */
-class Annotation
-{
+	/**
+	 * Phalcon\Annotations\Annotation
+	 *
+	 * Represents a single annotation in an annotations collection
+	 */
+	
+	class Annotation {
 
-    /**
-     * Annotation Arguments
-     *
-     * @var array
-     */
-    protected $arguments = [];
+		protected $_name;
 
-    /**
-     * Annotation ExprArguments
-     *
-     * @var array
-     */
-    protected $exprArguments = [];
+		protected $_arguments;
 
-    /**
-     * Annotation Name
-     *
-     * @var string|null
-     */
-    protected $name;
+		protected $_exprArguments;
 
-    /**
-     * Phalcon\Annotations\Annotation constructor
-     *
-     * @param array $reflectionData
-     */
-    public function __construct(array $reflectionData)
-    {
-    }
+		/**
+		 * \Phalcon\Annotations\Annotation constructor
+		 */
+		public function __construct($reflectionData){ }
 
-    /**
-     * Returns an argument in a specific position
-     *
-     * @param mixed $position
-     * @return mixed|null
-     */
-    public function getArgument($position)
-    {
-    }
 
-    /**
-     * Returns the expression arguments
-     *
-     * @return array
-     */
-    public function getArguments(): array
-    {
-    }
+		/**
+		 * Returns the annotation's name
+		 */
+		public function getName(){ }
 
-    /**
-     * Returns the expression arguments without resolving
-     *
-     * @return array
-     */
-    public function getExprArguments(): array
-    {
-    }
 
-    /**
-     * Resolves an annotation expression
-     *
-     * @param array $expr
-     * @return mixed
-     */
-    public function getExpression(array $expr)
-    {
-    }
+		/**
+		 * Resolves an annotation expression
+		 *
+		 * @param array expr
+		 * @return mixed
+		 */
+		public function getExpression($expr){ }
 
-    /**
-     * Returns the annotation's name
-     *
-     * @return string|null
-     */
-    public function getName(): ?string
-    {
-    }
 
-    /**
-     * Returns a named argument
-     *
-     * @param string $name
-     * @return mixed|null
-     */
-    public function getNamedArgument(string $name)
-    {
-    }
+		/**
+		 * Returns the expression arguments without resolving
+		 *
+		 * @return array
+		 */
+		public function getExprArguments(){ }
 
-    /**
-     * Returns a named parameter
-     *
-     * @param string $name
-     * @return mixed
-     */
-    public function getNamedParameter(string $name)
-    {
-    }
 
-    /**
-     * Returns an argument in a specific position
-     *
-     * @param mixed $position
-     * @return bool
-     */
-    public function hasArgument($position): bool
-    {
-    }
+		/**
+		 * Returns the expression arguments
+		 *
+		 * @return array
+		 */
+		public function getArguments(){ }
 
-    /**
-     * Returns the number of arguments that the annotation has
-     *
-     * @return int
-     */
-    public function numberArguments(): int
-    {
-    }
+
+		/**
+		 * Returns the number of arguments that the annotation has
+		 */
+		public function numberArguments(){ }
+
+
+		/**
+		 * Returns an argument in a specific position
+		 *
+		 * @param int|string position
+		 * @return mixed
+		 */
+		public function getArgument($position){ }
+
+
+		/**
+		 * Returns an argument in a specific position
+		 *
+		 * @param int|string position
+		 * @return boolean
+		 */
+		public function hasArgument($position){ }
+
+
+		/**
+		 * Returns a named argument
+		 *
+		 * @return mixed
+		 */
+		public function getNamedArgument($name){ }
+
+
+		/**
+		 * Returns a named parameter
+		 *
+		 * @return mixed
+		 */
+		public function getNamedParameter($name){ }
+
+	}
 }

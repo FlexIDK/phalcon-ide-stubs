@@ -1,222 +1,63 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Image\Adapter;
+namespace Phalcon\Image\Adapter {
 
-use Phalcon\Image\Enum;
-use Phalcon\Image\Exception;
+	class Gd extends \Phalcon\Image\Adapter implements \Phalcon\Image\AdapterInterface {
 
-/**
- * This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-class Gd extends \Phalcon\Image\Adapter\AbstractAdapter
-{
+		protected static $_checked;
+
+		public static function check(){ }
 
 
-    /**
-     * @param string   $file
-     * @param int|null $width
-     * @param int|null $height
-     *
-     * @throws Exception
-     */
-    public function __construct(string $file, int $width = null, int $height = null)
-    {
-    }
+		public function __construct($file, $width=null, $height=null){ }
 
-    /**
-     * Destructor
-     */
-    public function __destruct()
-    {
-    }
 
-    /**
-     * @return string
-     * @throws Exception
-     */
-    public function getVersion(): string
-    {
-    }
+		protected function _resize($width, $height){ }
 
-    /**
-     * @param int $red
-     * @param int $green
-     * @param int $blue
-     * @param int $opacity
-     *
-     * @return void
-     */
-    protected function processBackground(int $red, int $green, int $blue, int $opacity): void
-    {
-    }
 
-    /**
-     * @param int $radius
-     *
-     * @return void
-     */
-    protected function processBlur(int $radius): void
-    {
-    }
+		protected function _crop($width, $height, $offsetX, $offsetY){ }
 
-    /**
-     * @param int $width
-     * @param int $height
-     *
-     * @return false|resource
-     */
-    protected function processCreate(int $width, int $height)
-    {
-    }
 
-    /**
-     * @param int $width
-     * @param int $height
-     * @param int $offsetX
-     * @param int $offsetY
-     *
-     * @return void
-     */
-    protected function processCrop(int $width, int $height, int $offsetX, int $offsetY): void
-    {
-    }
+		protected function _rotate($degrees){ }
 
-    /**
-     * @param int $direction
-     *
-     * @return void
-     */
-    protected function processFlip(int $direction): void
-    {
-    }
 
-    /**
-     * @param AdapterInterface $mask
-     *
-     * @return void
-     */
-    protected function processMask(AdapterInterface $mask)
-    {
-    }
+		protected function _flip($direction){ }
 
-    /**
-     * @param int $amount
-     *
-     * @return void
-     */
-    protected function processPixelate(int $amount): void
-    {
-    }
 
-    /**
-     * @param int  $height
-     * @param int  $opacity
-     * @param bool $fadeIn
-     *
-     * @return void
-     */
-    protected function processReflection(int $height, int $opacity, bool $fadeIn): void
-    {
-    }
+		protected function _sharpen($amount){ }
 
-    /**
-     * @param string $extension
-     * @param int    $quality
-     *
-     * @return false|string
-     * @throws Exception
-     */
-    protected function processRender(string $extension, int $quality)
-    {
-    }
 
-    /**
-     * @param int $width
-     * @param int $height
-     *
-     * @return void
-     */
-    protected function processResize(int $width, int $height): void
-    {
-    }
+		protected function _reflection($height, $opacity, $fadeIn){ }
 
-    /**
-     * @param int $degrees
-     *
-     * @return void
-     */
-    protected function processRotate(int $degrees): void
-    {
-    }
 
-    /**
-     * @param string $file
-     * @param int    $quality
-     *
-     * @return bool
-     * @throws Exception
-     */
-    protected function processSave(string $file, int $quality): bool
-    {
-    }
+		protected function _watermark(\Phalcon\Image\Adapter $watermark, $offsetX, $offsetY, $opacity){ }
 
-    /**
-     * @param int $amount
-     *
-     * @return void
-     */
-    protected function processSharpen(int $amount): void
-    {
-    }
 
-    /**
-     * @param string      $text
-     * @param mixed       $offsetX
-     * @param mixed       $offsetY
-     * @param int         $opacity
-     * @param int         $red
-     * @param int         $green
-     * @param int         $blue
-     * @param int         $size
-     * @param string|null $fontFile
-     *
-     * @return void
-     * @throws Exception
-     */
-    protected function processText(string $text, $offsetX, $offsetY, int $opacity, int $red, int $green, int $blue, int $size, string $fontFile = null): void
-    {
-    }
+		protected function _text($text, $offsetX, $offsetY, $opacity, $r, $g, $b, $size, $fontfile){ }
 
-    /**
-     * @param AdapterInterface $watermark
-     * @param int $offsetX
-     * @param int $offsetY
-     * @param int $opacity
-     * @return void
-     */
-    protected function processWatermark(AdapterInterface $watermark, int $offsetX, int $offsetY, int $opacity): void
-    {
-    }
 
-    /**
-     * Checks the installed version of GD
-     *
-     * @return void
-     * @throws Exception
-     */
-    private function check(): void
-    {
-    }
+		protected function _mask(\Phalcon\Image\Adapter $mask){ }
+
+
+		protected function _background($r, $g, $b, $opacity){ }
+
+
+		protected function _blur($radius){ }
+
+
+		protected function _pixelate($amount){ }
+
+
+		protected function _save($file, $quality){ }
+
+
+		protected function _render($ext, $quality){ }
+
+
+		protected function _create($width, $height){ }
+
+
+		public function __destruct(){ }
+
+	}
 }

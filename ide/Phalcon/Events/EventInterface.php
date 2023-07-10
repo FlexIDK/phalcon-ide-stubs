@@ -1,69 +1,28 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Events;
+namespace Phalcon\Events {
 
-/**
- * Interface for Phalcon\Events\Event class
- */
-interface EventInterface
-{
+	interface EventInterface {
+
+		public function getData();
 
 
-    /**
-     * Gets event data
-     *
-     * @return mixed
-     */
-    public function getData();
+		public function setData($data=null);
 
-    /**
-     * Gets event type
-     *
-     * @return mixed
-     */
-    public function getType();
 
-    /**
-     * Check whether the event is cancelable
-     *
-     * @return bool
-     */
-    public function isCancelable(): bool;
+		public function getType();
 
-    /**
-     * Check whether the event is currently stopped
-     *
-     * @return bool
-     */
-    public function isStopped(): bool;
 
-    /**
-     * Sets event data
-     *
-     * @param mixed $data
-     * @return EventInterface
-     */
-    public function setData($data = null): EventInterface;
+		public function setType($type);
 
-    /**
-     * Sets event type
-     *
-     * @param string $type
-     * @return EventInterface
-     */
-    public function setType(string $type): EventInterface;
 
-    /**
-     * Stops the event preventing propagation
-     *
-     * @return EventInterface
-     */
-    public function stop(): EventInterface;
+		public function stop();
+
+
+		public function isStopped();
+
+
+		public function isCancelable();
+
+	}
 }

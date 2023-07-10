@@ -1,30 +1,10 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\Model;
+namespace Phalcon\Mvc\Model {
 
-use Phalcon\Mvc\ModelInterface;
+	interface ResultInterface {
 
-/**
- * Phalcon\Mvc\Model\ResultInterface
- *
- * All single objects passed as base objects to Resultsets must implement this interface
- */
-interface ResultInterface
-{
+		public function setDirtyState($dirtyState);
 
-
-    /**
-     * Sets the object's state
-     *
-     * @param int $dirtyState
-     * @return bool|ModelInterface
-     */
-    public function setDirtyState(int $dirtyState);
+	}
 }

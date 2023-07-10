@@ -1,149 +1,121 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Di;
+namespace Phalcon\Di {
 
-use Closure;
-use Phalcon\Di\Exception\ServiceResolutionException;
-use Phalcon\Di\Service\Builder;
+	/**
+	 * Phalcon\Di\Service
+	 *
+	 * Represents individually a service in the services container
+	 *
+	 *<code>
+	 * $service = new \Phalcon\Di\Service(
+	 *     "request",
+	 *     "Phalcon\\Http\\Request"
+	 * );
+	 *
+	 * $request = service->resolve();
+	 *</code>
+	 */
+	
+	class Service implements \Phalcon\Di\ServiceInterface {
 
-/**
- * Represents individually a service in the services container
- *
- * ```php
- * $service = new \Phalcon\Di\Service(
- *     "request",
- *     \Phalcon\Http\Request::class
- * );
- *
- * $request = service->resolve();
- * ```
- */
-class Service implements \Phalcon\Di\ServiceInterface
-{
+		protected $_name;
 
-    /**
-     * @var mixed
-     */
-    protected $definition;
+		protected $_definition;
 
-    /**
-     * @var bool
-     */
-    protected $resolved = false;
+		protected $_shared;
 
-    /**
-     * @var bool
-     */
-    protected $shared = false;
+		protected $_resolved;
 
-    /**
-     * @var mixed|null
-     */
-    protected $sharedInstance = null;
+		protected $_sharedInstance;
 
-    /**
-     * Phalcon\Di\Service
-     *
-     * @param mixed $definition
-     * @param bool $shared
-     */
-    final public function __construct($definition, bool $shared = false)
-    {
-    }
+		/**
+		 * \Phalcon\Di\Service
+		 *
+		 * @param string name
+		 * @param mixed definition
+		 * @param boolean shared
+		 */
+		final public function __construct($name, $definition, $shared=null){ }
 
-    /**
-     * Returns the service definition
-     *
-     * @return mixed
-     */
-    public function getDefinition()
-    {
-    }
 
-    /**
-     * Returns a parameter in a specific position
-     *
-     * @return array
-     * @param int $position
-     */
-    public function getParameter(int $position)
-    {
-    }
+		/**
+		 * Returns the service's name
+		 */
+		public function getName(){ }
 
-    /**
-     * Returns true if the service was resolved
-     *
-     * @return bool
-     */
-    public function isResolved(): bool
-    {
-    }
 
-    /**
-     * Check whether the service is shared or not
-     *
-     * @return bool
-     */
-    public function isShared(): bool
-    {
-    }
+		/**
+		 * Sets if the service is shared or not
+		 */
+		public function setShared($shared){ }
 
-    /**
-     * Resolves the service
-     *
-     * @param array $parameters
-     * @param DiInterface $container
-     * @return mixed
-     */
-    public function resolve($parameters = null, DiInterface $container = null)
-    {
-    }
 
-    /**
-     * Set the service definition
-     *
-     * @param mixed $definition
-     * @return void
-     */
-    public function setDefinition($definition): void
-    {
-    }
+		/**
+		 * Check whether the service is shared or not
+		 */
+		public function isShared(){ }
 
-    /**
-     * Changes a parameter in the definition without resolve the service
-     *
-     * @param int $position
-     * @param array $parameter
-     * @return ServiceInterface
-     */
-    public function setParameter(int $position, array $parameter): ServiceInterface
-    {
-    }
 
-    /**
-     * Sets if the service is shared or not
-     *
-     * @param bool $shared
-     * @return void
-     */
-    public function setShared(bool $shared): void
-    {
-    }
+		/**
+		 * Sets/Resets the shared instance related to the service
+		 *
+		 * @param mixed sharedInstance
+		 */
+		public function setSharedInstance($sharedInstance){ }
 
-    /**
-     * Sets/Resets the shared instance related to the service
-     *
-     * @param mixed $sharedInstance
-     * @return void
-     */
-    public function setSharedInstance($sharedInstance): void
-    {
-    }
+
+		/**
+		 * Set the service definition
+		 *
+		 * @param mixed definition
+		 */
+		public function setDefinition($definition){ }
+
+
+		/**
+		 * Returns the service definition
+		 *
+		 * @return mixed
+		 */
+		public function getDefinition(){ }
+
+
+		/**
+		 * Resolves the service
+		 *
+		 * @param array parameters
+		 * @param \Phalcon\DiInterface dependencyInjector
+		 * @return mixed
+		 */
+		public function resolve($parameters=null, \Phalcon\DiInterface $dependencyInjector=null){ }
+
+
+		/**
+		 * Changes a parameter in the definition without resolve the service
+		 */
+		public function setParameter($position, $parameter){ }
+
+
+		/**
+		 * Returns a parameter in a specific position
+		 *
+		 * @param int position
+		 * @return array
+		 */
+		public function getParameter($position){ }
+
+
+		/**
+		 * Returns true if the service was resolved
+		 */
+		public function isResolved(){ }
+
+
+		/**
+		 * Restore the internal state of a service
+		 */
+		public static function __set_state($attributes){ }
+
+	}
 }

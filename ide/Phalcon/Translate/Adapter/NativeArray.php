@@ -1,111 +1,33 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Translate\Adapter;
+namespace Phalcon\Translate\Adapter {
 
-use ArrayAccess;
-use Phalcon\Translate\Exception;
-use Phalcon\Translate\InterpolatorFactory;
+	/**
+	 * Phalcon\Translate\Adapter\NativeArray
+	 *
+	 * Allows to define translation lists using PHP arrays
+	 */
+	
+	class NativeArray extends \Phalcon\Translate\Adapter implements \Phalcon\Translate\AdapterInterface, \ArrayAccess {
 
-/**
- * Class NativeArray
- *
- * Defines translation lists using PHP arrays
- *
- * @package Phalcon\Translate\Adapter
- *
- * @property array $translate
- * @property bool  $triggerError
- */
-class NativeArray extends \Phalcon\Translate\Adapter\AbstractAdapter implements \ArrayAccess
-{
+		protected $_translate;
 
-    /**
-     * @var array
-     */
-    private $translate = [];
+		/**
+		 * \Phalcon\Translate\Adapter\NativeArray constructor
+		 */
+		public function __construct($options){ }
 
-    /**
-     * @var bool
-     */
-    private $triggerError = false;
 
-    /**
-     * NativeArray constructor.
-     *
-     * @param InterpolatorFactory $interpolator
-     * @param array               $options = [
-     *                                'content'      => '',
-     *                                'triggerError' => false
-     *                            ]
-     *
-     * @throws Exception
-     */
-    public function __construct(\Phalcon\Translate\InterpolatorFactory $interpolator, array $options)
-    {
-    }
+		/**
+		 * Returns the translation related to the given key
+		 */
+		public function query($index, $placeholders=null){ }
 
-    /**
-     * Check whether is defined a translation key in the internal array
-     *
-     * @param string $index
-     *
-     * @return bool
-     * @deprecated
-     */
-    public function exists(string $index): bool
-    {
-    }
 
-    /**
-     * Check whether is defined a translation key in the internal array
-     *
-     * @param string $index
-     *
-     * @return bool
-     */
-    public function has(string $index): bool
-    {
-    }
+		/**
+		 * Check whether is defined a translation key in the internal array
+		 */
+		public function exists($index){ }
 
-    /**
-     * Whenever a key is not found this method will be called
-     *
-     * @param string $index
-     *
-     * @return string
-     * @throws Exception
-     */
-    public function notFound(string $index): string
-    {
-    }
-
-    /**
-     * Returns the translation related to the given key
-     *
-     * @param string $index
-     * @param array  $placeholders
-     *
-     * @return string
-     * @throws Exception
-     * @param string $translateKey
-     */
-    public function query(string $translateKey, array $placeholders = []): string
-    {
-    }
-
-    /**
-     * Returns the internal array
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-    }
+	}
 }

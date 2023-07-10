@@ -1,101 +1,54 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Logger;
+namespace Phalcon\Logger {
 
-use DateTimeImmutable;
+	/**
+	 * Phalcon\Logger\Item
+	 *
+	 * Represents each item in a logging transaction
+	 *
+	 */
+	
+	class Item {
 
-/**
- * Phalcon\Logger\Item
- *
- * Represents each item in a logging transaction
- *
- * @property array             $context
- * @property string            $message
- * @property int               $level
- * @property string            $levelName
- * @property DateTimeImmutable $datetime
- */
-class Item
-{
+		protected $_type;
 
-    /**
-     * @var array
-     */
-    protected $context = [];
+		protected $_message;
 
-    /**
-     * @var DateTimeImmutable
-     */
-    protected $dateTime;
+		protected $_time;
 
-    /**
-     * @var string
-     */
-    protected $message;
+		protected $_context;
 
-    /**
-     * @var int
-     */
-    protected $level;
+		/**
+		 * Log type
+		 */
+		public function getType(){ }
 
-    /**
-     * @var string
-     */
-    protected $levelName;
 
-    /**
-     * Item constructor.
-     *
-     * @param string            $message
-     * @param string            $levelName
-     * @param int               $level
-     * @param DateTimeImmutable $datetime
-     * @param array             $context
-     * @param \DateTimeImmutable $dateTime
-     */
-    public function __construct(string $message, string $levelName, int $level, \DateTimeImmutable $dateTime, array $context = [])
-    {
-    }
+		/**
+		 * Log message
+		 */
+		public function getMessage(){ }
 
-    /**
-     * @return array
-     */
-    public function getContext(): array
-    {
-    }
 
-    /**
-     * @return DateTimeImmutable
-     */
-    public function getDateTime(): DateTimeImmutable
-    {
-    }
+		/**
+		 * Log timestamp
+		 */
+		public function getTime(){ }
 
-    /**
-     * @return string
-     */
-    public function getMessage(): string
-    {
-    }
 
-    /**
-     * @return int
-     */
-    public function getLevel(): int
-    {
-    }
+		public function getContext(){ }
 
-    /**
-     * @return string
-     */
-    public function getLevelName(): string
-    {
-    }
+
+		/**
+		 * \Phalcon\Logger\Item constructor
+		 *
+		 * @param string $message
+		 * @param integer $type
+		 * @param integer $time
+		 * @param array $context
+		 */
+		public function __construct($message, $type, $time=null, $context=null){ }
+
+	}
 }

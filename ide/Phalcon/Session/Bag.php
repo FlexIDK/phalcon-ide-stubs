@@ -1,122 +1,178 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Session;
+namespace Phalcon\Session {
 
-use Phalcon\Di\Di;
-use Phalcon\Di\DiInterface;
-use Phalcon\Di\InjectionAwareInterface;
-use Phalcon\Session\ManagerInterface;
-use Phalcon\Support\Collection;
+	/**
+	 * Phalcon\Session\Bag
+	 *
+	 * This component helps to separate session data into "namespaces". Working by this way
+	 * you can easily create groups of session variables into the application
+	 *
+	 * <code>
+	 * $user = new \Phalcon\Session\Bag("user");
+	 *
+	 * $user->name = "Kimbra Johnson";
+	 * $user->age  = 22;
+	 * </code>
+	 */
+	
+	class Bag implements \Phalcon\Di\InjectionAwareInterface, \Phalcon\Session\BagInterface, \IteratorAggregate, \Traversable, \ArrayAccess, \Countable {
 
-/**
- * Phalcon\Session\Bag
- *
- * This component helps to separate session data into "namespaces". Working by
- * this way you can easily create groups of session variables into the
- * application
- *
- * ```php
- * $user = new \Phalcon\Session\Bag("user");
- *
- * $user->name = "Kimbra Johnson";
- * $user->age  = 22;
- * ```
- *
- * @property DiInterface|null $container
- * @property string           $name
- * @property ManagerInterface $session;
- */
-class Bag extends Collection implements \Phalcon\Session\BagInterface, \Phalcon\Di\InjectionAwareInterface
-{
+		protected $_dependencyInjector;
 
-    /**
-     * @var DiInterface|null
-     */
-    private $container;
+		protected $_name;
 
-    /**
-     * Session Bag name
-     *
-     * @var string
-     */
-    private $name;
+		protected $_data;
 
-    /**
-     * @var ManagerInterface
-     */
-    private $session;
+		protected $_initialized;
 
-    /**
-     * @param ManagerInterface $session
-     * @param string           $name
-     */
-    public function __construct(\Phalcon\Session\ManagerInterface $session, string $name)
-    {
-    }
+		protected $_session;
 
-    /**
-     * Destroys the session bag
-     *
-     * @return void
-     */
-    public function clear(): void
-    {
-    }
+		/**
+		 * \Phalcon\Session\Bag constructor
+		 */
+		public function __construct($name){ }
 
-    /**
-     * Returns the DependencyInjector container
-     *
-     * @return DiInterface
-     */
-    public function getDI(): DiInterface
-    {
-    }
 
-    /**
-     * Initialize internal array
-     *
-     * @param array $data
-     * @return void
-     */
-    public function init(array $data = []): void
-    {
-    }
+		/**
+		 * Sets the DependencyInjector container
+		 */
+		public function setDI(\Phalcon\DiInterface $dependencyInjector){ }
 
-    /**
-     * Removes a property from the internal bag
-     *
-     * @param string $element
-     * @return void
-     */
-    public function remove(string $element): void
-    {
-    }
 
-    /**
-     * Sets a value in the session bag
-     *
-     * @param string $element
-     * @param mixed $value
-     * @return void
-     */
-    public function set(string $element, $value): void
-    {
-    }
+		/**
+		 * Returns the DependencyInjector container
+		 */
+		public function getDI(){ }
 
-    /**
-     * Sets the DependencyInjector container
-     *
-     * @param \Phalcon\Di\DiInterface $container
-     * @return void
-     */
-    public function setDI(\Phalcon\Di\DiInterface $container): void
-    {
-    }
+
+		/**
+		 * Initializes the session bag. This method must not be called directly, the
+		 * class calls it when its internal data is accessed
+		 */
+		public function initialize(){ }
+
+
+		/**
+		 * Destroys the session bag
+		 *
+		 *<code>
+		 * $user->destroy();
+		 *</code>
+		 */
+		public function destroy(){ }
+
+
+		/**
+		 * Sets a value in the session bag
+		 *
+		 *<code>
+		 * $user->set("name", "Kimbra");
+		 *</code>
+		 */
+		public function set($property, $value){ }
+
+
+		/**
+		 * Magic setter to assign values to the session bag
+		 *
+		 *<code>
+		 * $user->name = "Kimbra";
+		 *</code>
+		 */
+		public function __set($property, $value){ }
+
+
+		/**
+		 * Obtains a value from the session bag optionally setting a default value
+		 *
+		 *<code>
+		 * echo $user->get("name", "Kimbra");
+		 *</code>
+		 */
+		public function get($property, $defaultValue=null){ }
+
+
+		/**
+		 * Magic getter to obtain values from the session bag
+		 *
+		 *<code>
+		 * echo $user->name;
+		 *</code>
+		 */
+		public function __get($property){ }
+
+
+		/**
+		 * Check whether a property is defined in the internal bag
+		 *
+		 *<code>
+		 * var_dump(
+		 *     $user->has("name")
+		 * );
+		 *</code>
+		 */
+		public function has($property){ }
+
+
+		/**
+		 * Magic isset to check whether a property is defined in the bag
+		 *
+		 *<code>
+		 * var_dump(
+		 *     isset($user["name"])
+		 * );
+		 *</code>
+		 */
+		public function __isset($property){ }
+
+
+		/**
+		 * Removes a property from the internal bag
+		 *
+		 *<code>
+		 * $user->remove("name");
+		 *</code>
+		 */
+		public function remove($property){ }
+
+
+		/**
+		 * Magic unset to remove items using the array syntax
+		 *
+		 *<code>
+		 * unset($user["name"]);
+		 *</code>
+		 */
+		public function __unset($property){ }
+
+
+		/**
+		 * Return length of bag
+		 *
+		 *<code>
+		 * echo $user->count();
+		 *</code>
+		 */
+		final public function count(){ }
+
+
+		/**
+		 * Returns the bag iterator
+		 */
+		final public function getIterator(){ }
+
+
+		final public function offsetSet($property, $value){ }
+
+
+		final public function offsetExists($property){ }
+
+
+		final public function offsetUnset($property){ }
+
+
+		final public function offsetGet($property){ }
+
+	}
 }

@@ -1,252 +1,195 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\Micro;
+namespace Phalcon\Mvc\Micro {
 
-/**
- * Phalcon\Mvc\Micro\Collection
- *
- * Groups Micro-Mvc handlers as controllers
- *
- * ```php
- * $app = new \Phalcon\Mvc\Micro();
- *
- * $collection = new Collection();
- *
- * $collection->setHandler(
- *     new PostsController()
- * );
- *
- * $collection->get("/posts/edit/{id}", "edit");
- *
- * $app->mount($collection);
- * ```
- */
-class Collection implements \Phalcon\Mvc\Micro\CollectionInterface
-{
+	/**
+	 * Phalcon\Mvc\Micro\Collection
+	 *
+	 * Groups Micro-Mvc handlers as controllers
+	 *
+	 *<code>
+	 * $app = new \Phalcon\Mvc\Micro();
+	 *
+	 * $collection = new Collection();
+	 *
+	 * $collection->setHandler(
+	 *     new PostsController()
+	 * );
+	 *
+	 * $collection->get("/posts/edit/{id}", "edit");
+	 *
+	 * $app->mount($collection);
+	 *</code>
+	 */
+	
+	class Collection implements \Phalcon\Mvc\Micro\CollectionInterface {
 
-    /**
-     * @var callable
-     */
-    protected $handler;
+		protected $_prefix;
 
-    /**
-     * @var array
-     */
-    protected $handlers = [];
+		protected $_lazy;
 
-    /**
-     * @var bool
-     */
-    protected $lazy = false;
+		protected $_handler;
 
-    /**
-     * @var string
-     */
-    protected $prefix = '';
+		protected $_handlers;
 
-    /**
-     * Maps a route to a handler that only matches if the HTTP method is DELETE.
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function delete(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
+		/**
+		 * Internal function to add a handler to the group
+		 *
+		 * @param string|array method
+		 * @param string routePattern
+		 * @param mixed handler
+		 * @param string name
+		 */
+		protected function _addMap($method, $routePattern, $handler, $name){ }
 
-    /**
-     * Maps a route to a handler that only matches if the HTTP method is GET.
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function get(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
 
-    /**
-     * Returns the main handler
-     *
-     * @return mixed
-     */
-    public function getHandler()
-    {
-    }
+		/**
+		 * Sets a prefix for all routes added to the collection
+		 */
+		public function setPrefix($prefix){ }
 
-    /**
-     * Returns the registered handlers
-     *
-     * @return array
-     */
-    public function getHandlers(): array
-    {
-    }
 
-    /**
-     * Returns the collection prefix if any
-     *
-     * @return string
-     */
-    public function getPrefix(): string
-    {
-    }
+		/**
+		 * Returns the collection prefix if any
+		 */
+		public function getPrefix(){ }
 
-    /**
-     * Maps a route to a handler that only matches if the HTTP method is HEAD.
-     *
-     * @param string $routePattern
-     * @param callable|string $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function head(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
 
-    /**
-     * Returns if the main handler must be lazy loaded
-     *
-     * @return bool
-     */
-    public function isLazy(): bool
-    {
-    }
+		/**
+		 * Returns the registered handlers
+		 *
+		 * @return array
+		 */
+		public function getHandlers(){ }
 
-    /**
-     * Maps a route to a handler.
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function map(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
 
-    /**
-     * Maps a route to a handler via methods.
-     *
-     * ```php
-     * $collection->mapVia(
-     *     "/test",
-     *     "indexAction",
-     *     ["POST", "GET"],
-     *     "test"
-     * );
-     * ```
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|array $method
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function mapVia(string $routePattern, $handler, $method, string $name = null): CollectionInterface
-    {
-    }
+		/**
+		 * Sets the main handler
+		 *
+		 * @param mixed handler
+		 * @param boolean lazy
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function setHandler($handler, $lazy=null){ }
 
-    /**
-     * Maps a route to a handler that only matches if the HTTP method is
-     * OPTIONS.
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function options(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
 
-    /**
-     * Maps a route to a handler that only matches if the HTTP method is PATCH.
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function patch(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
+		/**
+		 * Sets if the main handler must be lazy loaded
+		 */
+		public function setLazy($lazy){ }
 
-    /**
-     * Maps a route to a handler that only matches if the HTTP method is POST.
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function post(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
 
-    /**
-     * Maps a route to a handler that only matches if the HTTP method is PUT.
-     *
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name *
-     * @return CollectionInterface
-     */
-    public function put(string $routePattern, $handler, string $name = null): CollectionInterface
-    {
-    }
+		/**
+		 * Returns if the main handler must be lazy loaded
+		 */
+		public function isLazy(){ }
 
-    /**
-     * Sets the main handler.
-     *
-     * @param mixed $handler
-     * @param bool $lazy *
-     * @return CollectionInterface
-     */
-    public function setHandler($handler, bool $lazy = false): CollectionInterface
-    {
-    }
 
-    /**
-     * Sets if the main handler must be lazy loaded
-     *
-     * @param bool $lazy *
-     * @return CollectionInterface
-     */
-    public function setLazy(bool $lazy): CollectionInterface
-    {
-    }
+		/**
+		 * Returns the main handler
+		 *
+		 * @return mixed
+		 */
+		public function getHandler(){ }
 
-    /**
-     * Sets a prefix for all routes added to the collection
-     *
-     * @param string $prefix *
-     * @return CollectionInterface
-     */
-    public function setPrefix(string $prefix): CollectionInterface
-    {
-    }
 
-    /**
-     * Internal function to add a handler to the group.
-     *
-     * @param string|array $method
-     * @param string $routePattern
-     * @param callable $handler
-     * @param string|null $name
-     * @return void
-     */
-    protected function addMap($method, string $routePattern, $handler, string $name = null): void
-    {
-    }
+		/**
+		 * Maps a route to a handler
+		 *
+		 * @param  string routePattern
+		 * @param  callable handler
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function map($routePattern, $handler, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler via methods
+		 *
+		 * @param  string routePattern
+		 * @param  callable handler
+		 * @param  string|array method
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function mapVia($routePattern, $handler, $method, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler that only matches if the HTTP method is GET
+		 *
+		 * @param  string routePattern
+		 * @param  callable handler
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function get($routePattern, $handler, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler that only matches if the HTTP method is POST
+		 *
+		 * @param  string routePattern
+		 * @param  callable handler
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function post($routePattern, $handler, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler that only matches if the HTTP method is PUT
+		 *
+		 * @param  string routePattern
+		 * @param  callable handler
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function put($routePattern, $handler, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler that only matches if the HTTP method is PATCH
+		 *
+		 * @param  string routePattern
+		 * @param  callable handler
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function patch($routePattern, $handler, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler that only matches if the HTTP method is HEAD
+		 *
+		 * @param  string routePattern
+		 * @param  callable handler
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function head($routePattern, $handler, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler that only matches if the HTTP method is DELETE
+		 *
+		 * @param  string   routePattern
+		 * @param  callable handler
+		 * @param  string name
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function delete($routePattern, $handler, $name=null){ }
+
+
+		/**
+		 * Maps a route to a handler that only matches if the HTTP method is OPTIONS
+		 *
+		 * @param string routePattern
+		 * @param callable handler
+		 * @return \Phalcon\Mvc\Micro\Collection
+		 */
+		public function options($routePattern, $handler, $name=null){ }
+
+	}
 }

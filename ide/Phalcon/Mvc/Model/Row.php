@@ -1,122 +1,97 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\Model;
+namespace Phalcon\Mvc\Model {
 
-use ArrayAccess;
-use JsonSerializable;
-use Phalcon\Mvc\EntityInterface;
-use Phalcon\Mvc\ModelInterface;
+	/**
+	 * Phalcon\Mvc\Model\Row
+	 *
+	 * This component allows Phalcon\Mvc\Model to return rows without an associated entity.
+	 * This objects implements the ArrayAccess interface to allow access the object as object->x or array[x].
+	 */
+	
+	class Row implements \Phalcon\Mvc\EntityInterface, \Phalcon\Mvc\Model\ResultInterface, \ArrayAccess, \JsonSerializable {
 
-/**
- * This component allows Phalcon\Mvc\Model to return rows without an associated entity.
- * This objects implements the ArrayAccess interface to allow access the object as object->x or array[x].
- */
-class Row implements \Phalcon\Mvc\EntityInterface, \Phalcon\Mvc\Model\ResultInterface, \ArrayAccess, \JsonSerializable
-{
+		/**
+		 * Set the current object's state
+		 */
+		public function setDirtyState($dirtyState){ }
 
 
-    /**
-     * Serializes the object for json_encode
-     *
-     * @return array
-     */
-    public function jsonSerialize(): array
-    {
-    }
+		/**
+		 * Checks whether offset exists in the row
+		 *
+		 * @param string|int $index
+		 * @return boolean
+		 */
+		public function offsetExists($index){ }
 
-    /**
-     * Gets a record in a specific position of the row
-     *
-     * @param string|int $index *
-     * @return string|ModelInterface
-     */
-    public function offsetGet($index)
-    {
-    }
 
-    /**
-     * Checks whether offset exists in the row
-     *
-     * @param string|int $index
-     * @return bool
-     */
-    public function offsetExists($index): bool
-    {
-    }
+		/**
+		 * Gets a record in a specific position of the row
+		 *
+		 * @param string|int index
+		 * @return string|Phalcon\Mvc\ModelInterface
+		 */
+		public function offsetGet($index){ }
 
-    /**
-     * Rows cannot be changed. It has only been implemented to meet the definition of the ArrayAccess interface
-     *
-     * @param string|int $index
-     * @param ModelInterface $value
-     * @return void
-     */
-    public function offsetSet($index, $value): void
-    {
-    }
 
-    /**
-     * Rows cannot be changed. It has only been implemented to meet the definition of the ArrayAccess interface
-     *
-     * @param string|int $offset
-     * @return void
-     */
-    public function offsetUnset($offset): void
-    {
-    }
+		/**
+		 * Rows cannot be changed. It has only been implemented to meet the definition of the ArrayAccess interface
+		 *
+		 * @param string|int index
+		 * @param \Phalcon\Mvc\ModelInterface value
+		 */
+		public function offsetSet($index, $value){ }
 
-    /**
-     * Reads an attribute value by its name
-     *
-     * ```php
-     * echo $robot->readAttribute("name");
-     * ```
-     *
-     * @return mixed
-     * @param string $attribute
-     */
-    public function readAttribute(string $attribute)
-    {
-    }
 
-    /**
-     * Set the current object's state
-     *
-     * @param int $dirtyState
-     * @return bool|ModelInterface
-     */
-    public function setDirtyState(int $dirtyState)
-    {
-    }
+		/**
+		 * Rows cannot be changed. It has only been implemented to meet the definition of the ArrayAccess interface
+		 *
+		 * @param string|int offset
+		 */
+		public function offsetUnset($offset){ }
 
-    /**
-     * Returns the instance as an array representation
-     *
-     * @return array
-     */
-    public function toArray(): array
-    {
-    }
 
-    /**
-     * Writes an attribute value by its name
-     *
-     * ```php
-     * $robot->writeAttribute("name", "Rosey");
-     * ```
-     *
-     * @param mixed $value
-     * @param string $attribute
-     * @return void
-     */
-    public function writeAttribute(string $attribute, $value): void
-    {
-    }
+		/**
+		 * Reads an attribute value by its name
+		 *
+		 *<code>
+		 * echo $robot->readAttribute("name");
+		 *</code>
+		 *
+		 * @param string attribute
+		 * @return mixed
+		 */
+		public function readAttribute($attribute){ }
+
+
+		/**
+		 * Writes an attribute value by its name
+		 *
+		 *<code>
+		 * $robot->writeAttribute("name", "Rosey");
+		 *</code>
+		 *
+		 * @param string attribute
+		 * @param mixed value
+		 */
+		public function writeAttribute($attribute, $value){ }
+
+
+		/**
+		 * Returns the instance as an array representation
+		 *
+		 * @return array
+		 */
+		public function toArray(){ }
+
+
+		/**
+		 * Serializes the object for json_encode
+		 *
+		 * @return array
+		 */
+		public function jsonSerialize(){ }
+
+	}
 }

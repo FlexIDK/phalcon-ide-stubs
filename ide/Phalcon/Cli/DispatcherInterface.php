@@ -1,87 +1,25 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Cli;
+namespace Phalcon\Cli {
 
-use Phalcon\Dispatcher\DispatcherInterface as DispatcherInterfaceBase;
+	interface DispatcherInterface {
 
-/**
- * Interface for Phalcon\Cli\Dispatcher
- */
-interface DispatcherInterface extends DispatcherInterfaceBase
-{
+		public function setTaskSuffix($taskSuffix);
 
 
-    /**
-     * Returns the active task in the dispatcher
-     *
-     * @return TaskInterface
-     */
-    public function getActiveTask(): TaskInterface;
+		public function setDefaultTask($taskName);
 
-    /**
-     * Returns the latest dispatched controller
-     *
-     * @return TaskInterface
-     */
-    public function getLastTask(): TaskInterface;
 
-    /**
-     * Get dispatched options
-     *
-     * @return array
-     */
-    public function getOptions(): array;
+		public function setTaskName($taskName);
 
-    /**
-     * Gets last dispatched task name
-     *
-     * @return string
-     */
-    public function getTaskName(): string;
 
-    /**
-     * Gets default task suffix
-     *
-     * @return string
-     */
-    public function getTaskSuffix(): string;
+		public function getTaskName();
 
-    /**
-     * Sets the default task name
-     *
-     * @param string $taskName
-     * @return void
-     */
-    public function setDefaultTask(string $taskName): void;
 
-    /**
-     * Set the options to be dispatched
-     *
-     * @param array $options
-     * @return void
-     */
-    public function setOptions(array $options): void;
+		public function getLastTask();
 
-    /**
-     * Sets the task name to be dispatched
-     *
-     * @param string $taskName
-     * @return void
-     */
-    public function setTaskName(string $taskName): void;
 
-    /**
-     * Sets the default task suffix
-     *
-     * @param string $taskSuffix
-     * @return void
-     */
-    public function setTaskSuffix(string $taskSuffix): void;
+		public function getActiveTask();
+
+	}
 }

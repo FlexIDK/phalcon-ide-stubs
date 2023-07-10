@@ -1,69 +1,25 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Http\Request;
+namespace Phalcon\Http\Request {
 
-/**
- * Interface for Phalcon\Http\Request\File
- */
-interface FileInterface
-{
+	interface FileInterface {
+
+		public function getSize();
 
 
-    /**
-     * Returns the error if any
-     *
-     * @return string|null
-     */
-    public function getError(): ?string;
+		public function getName();
 
-    /**
-     * Returns the real name of the uploaded file
-     *
-     * @return string
-     */
-    public function getName(): string;
 
-    /**
-     * Gets the real mime type of the upload file using finfo
-     *
-     * @return string
-     */
-    public function getRealType(): string;
+		public function getTempName();
 
-    /**
-     * Returns the file size of the uploaded file
-     *
-     * @return int
-     */
-    public function getSize(): int;
 
-    /**
-     * Returns the temporal name of the uploaded file
-     *
-     * @return string
-     */
-    public function getTempName(): string;
+		public function getType();
 
-    /**
-     * Returns the mime type reported by the browser
-     * This mime type is not completely secure, use getRealType() instead
-     *
-     * @return string
-     */
-    public function getType(): string;
 
-    /**
-     * Move the temporary file to a destination
-     *
-     * @param string $destination
-     * @return bool
-     */
-    public function moveTo(string $destination): bool;
+		public function getRealType();
+
+
+		public function moveTo($destination);
+
+	}
 }

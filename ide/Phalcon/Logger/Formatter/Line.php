@@ -1,69 +1,62 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Logger\Formatter;
+namespace Phalcon\Logger\Formatter {
 
-use Exception;
-use Phalcon\Logger\Item;
+	/**
+	 * Phalcon\Logger\Formatter\Line
+	 *
+	 * Formats messages using an one-line string
+	 */
+	
+	class Line extends \Phalcon\Logger\Formatter implements \Phalcon\Logger\FormatterInterface {
 
-/**
- * Class Line
- */
-class Line extends \Phalcon\Logger\Formatter\AbstractFormatter
-{
+		protected $_dateFormat;
 
-    /**
-     * Format applied to each message
-     *
-     * @var string
-     */
-    protected $format;
+		protected $_format;
 
-    /**
-     * Line constructor.
-     *
-     * @param string $format
-     * @param string $dateFormat
-     */
-    public function __construct(string $format = '[%date%][%level%] %message%', string $dateFormat = 'c')
-    {
-    }
+		/**
+		 * Default date format
+		 */
+		public function getDateFormat(){ }
 
-    /**
-     * Applies a format to a message before sent it to the internal log
-     *
-     * @param Item $item
-     *
-     * @return string
-     * @throws Exception
-     */
-    public function format(\Phalcon\Logger\Item $item): string
-    {
-    }
 
-    /**
-     * Return the format applied to each message
-     *
-     * @return string
-     */
-    public function getFormat(): string
-    {
-    }
+		/**
+		 * Default date format
+		 */
+		public function setDateFormat($dateFormat){ }
 
-    /**
-     * Set the format applied to each message
-     *
-     * @param string $format
-     *
-     * @return Line
-     */
-    public function setFormat(string $format): Line
-    {
-    }
+
+		/**
+		 * Format applied to each message
+		 */
+		public function getFormat(){ }
+
+
+		/**
+		 * Format applied to each message
+		 */
+		public function setFormat($format){ }
+
+
+		/**
+		 * \Phalcon\Logger\Formatter\Line construct
+		 *
+		 * @param string format
+		 * @param string dateFormat
+		 */
+		public function __construct($format=null, $dateFormat=null){ }
+
+
+		/**
+		 * Applies a format to a message before sent it to the internal log
+		 *
+		 * @param string message
+		 * @param int type
+		 * @param int timestamp
+		 * @param array $context
+		 * @return string
+		 */
+		public function format($message, $type, $timestamp, $context=null){ }
+
+	}
 }

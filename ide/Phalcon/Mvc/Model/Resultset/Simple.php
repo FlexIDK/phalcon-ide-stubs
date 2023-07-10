@@ -1,114 +1,68 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\Model\Resultset;
+namespace Phalcon\Mvc\Model\Resultset {
 
-use Phalcon\Di\Di;
-use Phalcon\Di\DiInterface;
-use Phalcon\Mvc\Model;
-use Phalcon\Mvc\Model\Exception;
-use Phalcon\Mvc\Model\Resultset;
-use Phalcon\Mvc\Model\Row;
-use Phalcon\Mvc\ModelInterface;
-use Phalcon\Storage\Serializer\SerializerInterface;
+	/**
+	 * Phalcon\Mvc\Model\Resultset\Simple
+	 *
+	 * Simple resultsets only contains a complete objects
+	 * This class builds every complete object as it is required
+	 */
+	
+	class Simple extends \Phalcon\Mvc\Model\Resultset implements \JsonSerializable, \Serializable, \ArrayAccess, \Countable, \SeekableIterator, \Traversable, \Iterator, \Phalcon\Mvc\Model\ResultsetInterface {
 
-/**
- * Phalcon\Mvc\Model\Resultset\Simple
- *
- * Simple resultsets only contains a complete objects
- * This class builds every complete object as it is required
- */
-class Simple extends Resultset
-{
+		const TYPE_RESULT_FULL = 0;
 
-    /**
-     * @var array|string
-     */
-    protected $columnMap;
+		const TYPE_RESULT_PARTIAL = 1;
 
-    /**
-     * @var ModelInterface|Row
-     */
-    protected $model;
+		const HYDRATE_RECORDS = 0;
 
-    /**
-     * @var bool
-     */
-    protected $keepSnapshots = false;
+		const HYDRATE_OBJECTS = 2;
 
-    /**
-     * Phalcon\Mvc\Model\Resultset\Simple constructor
-     *
-     * @param array $columnMap
-     * @param ModelInterface|Row $model
-     * @param \Phalcon\Db\ResultInterface|false $result
-     * @param mixed|null $cache
-     * @param bool $keepSnapshots false
-     */
-    public function __construct($columnMap, $model, $result, $cache = null, bool $keepSnapshots = false)
-    {
-    }
+		const HYDRATE_ARRAYS = 1;
 
-    /**
-     * Returns current row in the resultset
-     *
-     * @return ModelInterface|null
-     */
-    final public function current(): ?ModelInterface
-    {
-    }
+		protected $_model;
 
-    /**
-     * Returns a complete resultset as an array, if the resultset has a big
-     * number of rows it could consume more memory than currently it does.
-     * Export the resultset to an array couldn't be faster with a large number
-     * of records
-     *
-     * @param bool $renameColumns
-     * @return array
-     */
-    public function toArray(bool $renameColumns = true): array
-    {
-    }
+		protected $_columnMap;
 
-    /**
-     * Serializing a resultset will dump all related rows into a big array
-     *
-     * @return string
-     */
-    public function serialize(): string
-    {
-    }
+		protected $_keepSnapshots;
 
-    /**
-     * Unserializing a resultset will allow to only works on the rows present in
-     * the saved state
-     *
-     * @param mixed $data
-     * @return void
-     */
-    public function unserialize($data): void
-    {
-    }
+		/**
+		 * \Phalcon\Mvc\Model\Resultset\Simple constructor
+		 *
+		 * @param array columnMap
+		 * @param \Phalcon\Mvc\ModelInterface|Phalcon\Mvc\Model\Row model
+		 * @param \Phalcon\Db\Result\Pdo|null result
+		 * @param \Phalcon\Cache\BackendInterface cache
+		 * @param boolean keepSnapshots
+		 */
+		public function __construct($columnMap, $model, $result, \Phalcon\Cache\BackendInterface $cache=null, $keepSnapshots=null){ }
 
-    /**
-     * @return array
-     */
-    public function __serialize(): array
-    {
-    }
 
-    /**
-     * @param array $data
-     * @return void
-     */
-    public function __unserialize(array $data): void
-    {
-    }
+		/**
+		 * Returns current row in the resultset
+		 */
+		final public function current(){ }
+
+
+		/**
+		 * Returns a complete resultset as an array, if the resultset has a big number of rows
+		 * it could consume more memory than currently it does. Export the resultset to an array
+		 * couldn't be faster with a large number of records
+		 */
+		public function toArray($renameColumns=null){ }
+
+
+		/**
+		 * Serializing a resultset will dump all related rows into a big array
+		 */
+		public function serialize(){ }
+
+
+		/**
+		 * Unserializing a resultset will allow to only works on the rows present in the saved state
+		 */
+		public function unserialize($data){ }
+
+	}
 }

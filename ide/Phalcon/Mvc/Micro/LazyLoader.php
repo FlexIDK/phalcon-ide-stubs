@@ -1,66 +1,48 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\Micro;
+namespace Phalcon\Mvc\Micro {
 
-use Phalcon\Mvc\Model\BinderInterface;
+	/**
+	 * Phalcon\Mvc\Micro\LazyLoader
+	 *
+	 * Lazy-Load of handlers for Mvc\Micro using auto-loading
+	 */
+	
+	class LazyLoader {
 
-/**
- * Phalcon\Mvc\Micro\LazyLoader
- *
- * Lazy-Load of handlers for Mvc\Micro using auto-loading
- */
-class LazyLoader
-{
+		protected $_handler;
 
-    /**
-     * @var string
-     */
-    protected $definition;
+		protected $_modelBinder;
 
-    /**
-     * @var object|null
-     */
-    protected $handler = null;
+		protected $_definition;
 
-    /**
-     * Phalcon\Mvc\Micro\LazyLoader constructor
-     *
-     * @param string $definition
-     */
-    public function __construct(string $definition)
-    {
-    }
+		public function getDefinition(){ }
 
-    /**
-     * Calling __call method
-     *
-     * @param array $arguments
-     * @return mixed
-     * @param string $method
-     * @param \Phalcon\Mvc\Model\BinderInterface $modelBinder
-     */
-    public function callMethod(string $method, $arguments, \Phalcon\Mvc\Model\BinderInterface $modelBinder = null)
-    {
-    }
 
-    /**
-     * @return string
-     */
-    public function getDefinition(): string
-    {
-    }
+		/**
+		 * \Phalcon\Mvc\Micro\LazyLoader constructor
+		 */
+		public function __construct($definition){ }
 
-    /**
-     * @return object|null
-     */
-    public function getHandler()
-    {
-    }
+
+		/**
+		 * Initializes the internal handler, calling functions on it
+		 *
+		 * @param  string method
+		 * @param  array arguments
+		 * @return mixed
+		 */
+		public function __call($method, $arguments){ }
+
+
+		/**
+		 * Calling __call method
+		 *
+		 * @param  string method
+		 * @param  array arguments
+		 * @return mixed
+		 */
+		public function callMethod($method, $arguments, \Phalcon\Mvc\Model\BinderInterface $modelBinder=null){ }
+
+	}
 }

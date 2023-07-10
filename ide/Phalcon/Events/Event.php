@@ -1,154 +1,95 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Events;
+namespace Phalcon\Events {
 
-/**
- * This class offers contextual information of a fired event in the
- * EventsManager
- *
- * ```php
- * Phalcon\Events\Event;
- *
- * $event = new Event("db:afterQuery", $this, ["data" => "mydata"], true);
- * if ($event->isCancelable()) {
- *     $event->stop();
- * }
- * ```
- */
-class Event implements \Phalcon\Events\EventInterface
-{
+	/**
+	 * Phalcon\Events\Event
+	 *
+	 * This class offers contextual information of a fired event in the EventsManager
+	 */
+	
+	class Event implements \Phalcon\Events\EventInterface {
 
-    /**
-     * Is event cancelable?
-     *
-     * @var bool
-     */
-    protected $cancelable;
+		protected $_type;
 
-    /**
-     * Event data
-     *
-     * @var mixed
-     */
-    protected $data;
+		protected $_source;
 
-    /**
-     * Event source
-     *
-     * @var object|null
-     */
-    protected $source = null;
+		protected $_data;
 
-    /**
-     * Is event propagation stopped?
-     *
-     * @var bool
-     */
-    protected $stopped = false;
+		protected $_stopped;
 
-    /**
-     * Event type
-     *
-     * @var string
-     */
-    protected $type;
+		protected $_cancelable;
 
-    /**
-     * Phalcon\Events\Event constructor
-     *
-     * @param object $source
-     * @param string $type
-     * @param mixed $data
-     * @param bool $cancelable
-     */
-    public function __construct(string $type, $source = null, $data = null, bool $cancelable = true)
-    {
-    }
+		/**
+		 * Event type
+		 */
+		public function getType(){ }
 
-    /**
-     * @return mixed
-     */
-    public function getData()
-    {
-    }
 
-    /**
-     * @return object|null
-     */
-    public function getSource()
-    {
-    }
+		/**
+		 * Event source
+		 */
+		public function getSource(){ }
 
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-    }
 
-    /**
-     * Check whether the event is cancelable.
-     *
-     * ```php
-     * if ($event->isCancelable()) {
-     *     $event->stop();
-     * }
-     * ```
-     *
-     * @return bool
-     */
-    public function isCancelable(): bool
-    {
-    }
+		/**
+		 * Event data
+		 */
+		public function getData(){ }
 
-    /**
-     * Check whether the event is currently stopped.
-     *
-     * @return bool
-     */
-    public function isStopped(): bool
-    {
-    }
 
-    /**
-     * Sets event data.
-     *
-     * @param mixed $data
-     * @return EventInterface
-     */
-    public function setData($data = null): EventInterface
-    {
-    }
+		/**
+		 * \Phalcon\Events\Event constructor
+		 *
+		 * @param string type
+		 * @param object source
+		 * @param mixed data
+		 * @param boolean cancelable
+		 */
+		public function __construct($type, $source, $data=null, $cancelable=null){ }
 
-    /**
-     * Sets event type.
-     *
-     * @param string $type
-     * @return EventInterface
-     */
-    public function setType(string $type): EventInterface
-    {
-    }
 
-    /**
-     * Stops the event preventing propagation.
-     *
-     * ```php
-     * if ($event->isCancelable()) {
-     *     $event->stop();
-     * }
-     * ```
-     *
-     * @return EventInterface
-     */
-    public function stop(): EventInterface
-    {
-    }
+		/**
+		 * Sets event data.
+		 * @param mixed data
+		 */
+		public function setData($data=null){ }
+
+
+		/**
+		 * Sets event type.
+		 */
+		public function setType($type){ }
+
+
+		/**
+		 * Stops the event preventing propagation.
+		 *
+		 * <code>
+		 * if ($event->isCancelable()) {
+		 *     $event->stop();
+		 * }
+		 * </code>
+		 */
+		public function stop(){ }
+
+
+		/**
+		 * Check whether the event is currently stopped.
+		 */
+		public function isStopped(){ }
+
+
+		/**
+		 * Check whether the event is cancelable.
+		 *
+		 * <code>
+		 * if ($event->isCancelable()) {
+		 *     $event->stop();
+		 * }
+		 * </code>
+		 */
+		public function isCancelable(){ }
+
+	}
 }

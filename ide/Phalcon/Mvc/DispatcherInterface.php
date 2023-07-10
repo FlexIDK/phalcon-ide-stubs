@@ -1,64 +1,25 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc;
+namespace Phalcon\Mvc {
 
-use Phalcon\Dispatcher\DispatcherInterface as DispatcherInterfaceBase;
+	interface DispatcherInterface {
 
-/**
- * Phalcon\Mvc\DispatcherInterface
- *
- * Interface for Phalcon\Mvc\Dispatcher
- */
-interface DispatcherInterface extends DispatcherInterfaceBase
-{
+		public function setControllerSuffix($controllerSuffix);
 
 
-    /**
-     * Returns the active controller in the dispatcher
-     *
-     * @return ControllerInterface
-     */
-    public function getActiveController(): ControllerInterface;
+		public function setDefaultController($controllerName);
 
-    /**
-     * Gets last dispatched controller name
-     *
-     * @return string
-     */
-    public function getControllerName(): string;
 
-    /**
-     * Returns the latest dispatched controller
-     *
-     * @return ControllerInterface
-     */
-    public function getLastController(): ControllerInterface;
+		public function setControllerName($controllerName);
 
-    /**
-     * Sets the default controller suffix
-     *
-     * @param string $controllerSuffix
-     */
-    public function setControllerSuffix(string $controllerSuffix);
 
-    /**
-     * Sets the controller name to be dispatched
-     *
-     * @param string $controllerName
-     */
-    public function setControllerName(string $controllerName);
+		public function getControllerName();
 
-    /**
-     * Sets the default controller name
-     *
-     * @param string $controllerName
-     */
-    public function setDefaultController(string $controllerName);
+
+		public function getLastController();
+
+
+		public function getActiveController();
+
+	}
 }

@@ -1,120 +1,79 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Assets;
+namespace Phalcon\Assets {
 
-/**
- * Represents an inline asset
- *
- * ```php
- * $inline = new \Phalcon\Assets\Inline("js", "alert('hello world');");
- * ```
- */
-class Inline implements \Phalcon\Assets\AssetInterface
-{
+	/**
+	 * Phalcon\Assets\Inline
+	 *
+	 * Represents an inline asset
+	 *
+	 *<code>
+	 * $inline = new \Phalcon\Assets\Inline("js", "alert('hello world');");
+	 *</code>
+	 */
+	
+	class Inline implements \Phalcon\Assets\ResourceInterface {
 
-    /**
-     * @var array
-     */
-    protected $attributes;
+		protected $_type;
 
-    /**
-     * @var string
-     */
-    protected $content;
+		protected $_content;
 
-    /**
-     * @var bool
-     */
-    protected $filter;
+		protected $_filter;
 
-    /**
-     * @var string
-     */
-    protected $type;
+		protected $_attributes;
 
-    /**
-     * Phalcon\Assets\Inline constructor
-     *
-     * @param string $type
-     * @param string $content
-     * @param bool $filter
-     * @param array $attributes
-     */
-    public function __construct(string $type, string $content, bool $filter = true, array $attributes = [])
-    {
-    }
+		/**
+		 */
+		public function getType(){ }
 
-    /**
-     * Gets the asset's key.
-     *
-     * @return string
-     */
-    public function getAssetKey(): string
-    {
-    }
 
-    /**
-     * @return array
-     */
-    public function getAttributes(): array
-    {
-    }
+		public function getContent(){ }
 
-    /**
-     * @return string
-     */
-    public function getContent(): string
-    {
-    }
 
-    /**
-     * @return bool
-     */
-    public function getFilter(): bool
-    {
-    }
+		/**
+		 */
+		public function getFilter(){ }
 
-    /**
-     * @return string
-     */
-    public function getType(): string
-    {
-    }
 
-    /**
-     * Sets extra HTML attributes
-     *
-     * @param array $attributes
-     * @return AssetInterface
-     */
-    public function setAttributes(array $attributes): AssetInterface
-    {
-    }
+		/**
+		 * \Phalcon\Assets\Inline constructor
+		 *
+		 * @param string type
+		 * @param string content
+		 * @param boolean filter
+		 * @param array attributes
+		 */
+		public function __construct($type, $content, $filter=null, $attributes=null){ }
 
-    /**
-     * Sets if the asset must be filtered or not
-     *
-     * @param bool $filter
-     * @return AssetInterface
-     */
-    public function setFilter(bool $filter): AssetInterface
-    {
-    }
 
-    /**
-     * Sets the inline's type
-     *
-     * @param string $type
-     * @return AssetInterface
-     */
-    public function setType(string $type): AssetInterface
-    {
-    }
+		/**
+		 * Sets the inline's type
+		 */
+		public function setType($type){ }
+
+
+		/**
+		 * Sets if the resource must be filtered or not
+		 */
+		public function setFilter($filter){ }
+
+
+		/**
+		 * Sets extra HTML attributes
+		 */
+		public function setAttributes($attributes){ }
+
+
+		/**
+		 * returns extra HTML attributes
+		 */
+		public function getAttributes(){ }
+
+
+		/**
+		 * Gets the resource's key.
+		 */
+		public function getResourceKey(){ }
+
+	}
 }

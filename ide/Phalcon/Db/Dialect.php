@@ -1,516 +1,262 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Db;
+namespace Phalcon\Db {
 
-/**
- * This is the base class to each database dialect. This implements
- * common methods to transform intermediate code into its RDBMS related syntax
- */
-abstract class Dialect implements \Phalcon\Db\DialectInterface
-{
+	/**
+	 * Phalcon\Db\Dialect
+	 *
+	 * This is the base class to each database dialect. This implements
+	 * common methods to transform intermediate code into its RDBMS related syntax
+	 */
+	
+	abstract class Dialect implements \Phalcon\Db\DialectInterface {
 
-    /**
-     * @var string
-     */
-    protected $escapeChar;
+		protected $_escapeChar;
 
-    /**
-     * @var array
-     */
-    protected $customFunctions = [];
+		protected $_customFunctions;
 
-    /**
-     * Generate SQL to create a new savepoint
-     *
-     * @param string $name
-     * @return string
-     */
-    public function createSavepoint(string $name): string
-    {
-    }
+		/**
+		 * Registers custom SQL functions
+		 */
+		public function registerCustomFunction($name, $customFunction){ }
 
-    /**
-     * Escape identifiers
-     *
-     * @param string $str
-     * @param string $escapeChar
-     * @return string
-     */
-    final public function escape(string $str, string $escapeChar = null): string
-    {
-    }
 
-    /**
-     * Escape Schema
-     *
-     * @param string $str
-     * @param string $escapeChar
-     * @return string
-     */
-    final public function escapeSchema(string $str, string $escapeChar = null): string
-    {
-    }
+		/**
+		 * Returns registered functions
+		 */
+		public function getCustomFunctions(){ }
 
-    /**
-     * Returns a SQL modified with a FOR UPDATE clause
-     *
-     * ```php
-     * $sql = $dialect->forUpdate("SELECT FROM robots");
-     *
-     * echo $sql; // SELECT FROM robots FOR UPDATE
-     * ```
-     *
-     * @param string $sqlQuery
-     * @return string
-     */
-    public function forUpdate(string $sqlQuery): string
-    {
-    }
 
-    /**
-     * Gets a list of columns with escaped identifiers
-     *
-     * ```php
-     * echo $dialect->getColumnList(
-     *     [
-     *         "column1",
-     *         "column",
-     *     ]
-     * );
-     * ```
-     *
-     * @param array $columnList
-     * @param string $escapeChar
-     * @param array $bindCounts
-     * @return string
-     */
-    final public function getColumnList(array $columnList, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Escape Schema
+		 */
+		final public function escapeSchema($str, $escapeChar=null){ }
 
-    /**
-     * Returns registered functions
-     *
-     * @return array
-     */
-    public function getCustomFunctions(): array
-    {
-    }
 
-    /**
-     * Resolve Column expressions
-     *
-     * @param array|string $column
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final public function getSqlColumn($column, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Escape identifiers
+		 */
+		final public function escape($str, $escapeChar=null){ }
 
-    /**
-     * Transforms an intermediate representation for an expression into a database system valid expression
-     *
-     * @param array $expression
-     * @param string $escapeChar
-     * @param array $bindCounts
-     * @return string
-     */
-    public function getSqlExpression(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Transform an intermediate representation of a schema/table into a
-     * database system valid expression
-     *
-     * @param mixed $table
-     * @param string $escapeChar
-     * @return string
-     */
-    final public function getSqlTable($table, string $escapeChar = null): string
-    {
-    }
+		/**
+		 * Generates the SQL for LIMIT clause
+		 *
+		 * <code>
+		 * $sql = $dialect->limit("SELECT * FROM robots", 10);
+		 * echo $sql; // SELECT * FROM robots LIMIT 10
+		 *
+		 * $sql = $dialect->limit("SELECT * FROM robots", [10, 50]);
+		 * echo $sql; // SELECT * FROM robots LIMIT 10 OFFSET 50
+		 * </code>
+		 */
+		public function limit($sqlQuery, $number){ }
 
-    /**
-     * Generates the SQL for LIMIT clause
-     *
-     * ```php
-     * // SELECT FROM robots LIMIT 10
-     * echo $dialect->limit(
-     *     "SELECT FROM robots",
-     *     10
-     * );
-     *
-     * // SELECT FROM robots LIMIT 10 OFFSET 50
-     * echo $dialect->limit(
-     *     "SELECT FROM robots",
-     *     [10, 50]
-     * );
-     * ```
-     *
-     * @param string $sqlQuery
-     * @param mixed $number
-     * @return string
-     */
-    public function limit(string $sqlQuery, $number): string
-    {
-    }
 
-    /**
-     * Registers custom SQL functions
-     *
-     * @param string $name
-     * @param callable $customFunction
-     * @return Dialect
-     */
-    public function registerCustomFunction(string $name, $customFunction): Dialect
-    {
-    }
+		/**
+		 * Returns a SQL modified with a FOR UPDATE clause
+		 *
+		 *<code>
+		 * $sql = $dialect->forUpdate("SELECT * FROM robots");
+		 * echo $sql; // SELECT * FROM robots FOR UPDATE
+		 *</code>
+		 */
+		public function forUpdate($sqlQuery){ }
 
-    /**
-     * Generate SQL to release a savepoint
-     *
-     * @param string $name
-     * @return string
-     */
-    public function releaseSavepoint(string $name): string
-    {
-    }
 
-    /**
-     * Generate SQL to rollback a savepoint
-     *
-     * @param string $name
-     * @return string
-     */
-    public function rollbackSavepoint(string $name): string
-    {
-    }
+		/**
+		 * Gets a list of columns with escaped identifiers
+		 *
+		 * <code>
+		 * echo $dialect->getColumnList(
+		 *     [
+		 *         "column1",
+		 *         "column",
+		 *     ]
+		 * );
+		 * </code>
+		 */
+		final public function getColumnList($columnList, $escapeChar=null, $bindCounts=null){ }
 
-    /**
-     * Builds a SELECT statement
-     *
-     * @param array $definition
-     * @return string
-     */
-    public function select(array $definition): string
-    {
-    }
 
-    /**
-     * Checks whether the platform supports savepoints
-     *
-     * @return bool
-     */
-    public function supportsSavepoints(): bool
-    {
-    }
+		/**
+		 * Resolve Column expressions
+		 */
+		final public function getSqlColumn($column, $escapeChar=null, $bindCounts=null){ }
 
-    /**
-     * Checks whether the platform supports releasing savepoints.
-     *
-     * @return bool
-     */
-    public function supportsReleaseSavepoints(): bool
-    {
-    }
 
-    /**
-     * Returns the size of the column enclosed in parentheses
-     *
-     * @param ColumnInterface $column
-     * @return string
-     */
-    protected function getColumnSize(ColumnInterface $column): string
-    {
-    }
+		/**
+		 * Transforms an intermediate representation for an expression into a database system valid expression
+		 */
+		public function getSqlExpression($expression, $escapeChar=null, $bindCounts=null){ }
 
-    /**
-     * Returns the column size and scale enclosed in parentheses
-     *
-     * @param ColumnInterface $column
-     * @return string
-     */
-    protected function getColumnSizeAndScale(ColumnInterface $column): string
-    {
-    }
 
-    /**
-     * Checks the column type and if not string it returns the type reference
-     *
-     * @param ColumnInterface $column
-     * @return string
-     */
-    protected function checkColumnType(ColumnInterface $column): string
-    {
-    }
+		/**
+		 * Transform an intermediate representation of a schema/table into a database system valid expression
+		 */
+		final public function getSqlTable($table, $escapeChar=null){ }
 
-    /**
-     * Checks the column type and returns the updated SQL statement
-     *
-     * @param ColumnInterface $column
-     * @return string
-     */
-    protected function checkColumnTypeSql(ColumnInterface $column): string
-    {
-    }
 
-    /**
-     * Resolve
-     *
-     * @param array $expression
-     * @param string $escapeChar
-     * @return string
-     */
-    final protected function getSqlExpressionAll(array $expression, string $escapeChar = null): string
-    {
-    }
+		/**
+		 * Builds a SELECT statement
+		 */
+		public function select($definition){ }
 
-    /**
-     * Resolve binary operations expressions
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionBinaryOperations(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Resolve CASE expressions
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionCase(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Checks whether the platform supports savepoints
+		 */
+		public function supportsSavepoints(){ }
 
-    /**
-     * Resolve CAST of values
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionCastValue(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Resolve CONVERT of values encodings
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionConvertValue(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Checks whether the platform supports releasing savepoints.
+		 */
+		public function supportsReleaseSavepoints(){ }
 
-    /**
-     * Resolve a FROM clause
-     *
-     * @param mixed $expression
-     * @param string $escapeChar
-     * @return string
-     */
-    final protected function getSqlExpressionFrom($expression, string $escapeChar = null): string
-    {
-    }
 
-    /**
-     * Resolve function calls
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionFunctionCall(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Generate SQL to create a new savepoint
+		 */
+		public function createSavepoint($name){ }
 
-    /**
-     * Resolve a GROUP BY clause
-     *
-     * @param array|string $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionGroupBy($expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Resolve a HAVING clause
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionHaving(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Generate SQL to release a savepoint
+		 */
+		public function releaseSavepoint($name){ }
 
-    /**
-     * Resolve a JOINs clause
-     *
-     * @param array|string $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionJoins($expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Resolve a LIMIT clause
-     *
-     * @param array|string $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionLimit($expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Generate SQL to rollback a savepoint
+		 */
+		public function rollbackSavepoint($name){ }
 
-    /**
-     * Resolve Lists
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionList(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Resolve object expressions
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionObject(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Resolve Column expressions
+		 */
+		final protected function getSqlExpressionScalar($expression, $escapeChar=null, $bindCounts=null){ }
 
-    /**
-     * Resolve an ORDER BY clause
-     *
-     * @param array|string $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionOrderBy($expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Resolve qualified expressions
-     *
-     * @param array $expression
-     * @param string $escapeChar
-     * @return string
-     */
-    final protected function getSqlExpressionQualified(array $expression, string $escapeChar = null): string
-    {
-    }
+		/**
+		 * Resolve object expressions
+		 */
+		final protected function getSqlExpressionObject($expression, $escapeChar=null, $bindCounts=null){ }
 
-    /**
-     * Resolve Column expressions
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts
-     * @return string
-     */
-    final protected function getSqlExpressionScalar(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Resolve unary operations expressions
-     *
-     * @param array $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionUnaryOperations(array $expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
+		/**
+		 * Resolve qualified expressions
+		 */
+		final protected function getSqlExpressionQualified($expression, $escapeChar=null){ }
 
-    /**
-     * Resolve a WHERE clause
-     *
-     * @param array|string $expression
-     * @param string|null $escapeChar
-     * @param array $bindCounts *
-     * @return string
-     */
-    final protected function getSqlExpressionWhere($expression, string $escapeChar = null, array $bindCounts = []): string
-    {
-    }
 
-    /**
-     * Prepares column for this RDBMS
-     *
-     * @param string $qualified
-     * @param string $alias
-     * @param string $escapeChar
-     * @return string
-     */
-    protected function prepareColumnAlias(string $qualified, string $alias = null, string $escapeChar = null): string
-    {
-    }
+		/**
+		 * Resolve binary operations expressions
+		 */
+		final protected function getSqlExpressionBinaryOperations($expression, $escapeChar=null, $bindCounts=null){ }
 
-    /**
-     * Prepares table for this RDBMS
-     *
-     * @param string $table
-     * @param string $schema
-     * @param string $alias
-     * @param string $escapeChar
-     * @return string
-     */
-    protected function prepareTable(string $table, string $schema = null, string $alias = null, string $escapeChar = null): string
-    {
-    }
 
-    /**
-     * Prepares qualified for this RDBMS
-     *
-     * @param string $column
-     * @param string $domain
-     * @param string $escapeChar
-     * @return string
-     */
-    protected function prepareQualified(string $column, string $domain = null, string $escapeChar = null): string
-    {
-    }
+		/**
+		 * Resolve unary operations expressions
+		 */
+		final protected function getSqlExpressionUnaryOperations($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve function calls
+		 */
+		final protected function getSqlExpressionFunctionCall($expression, $escapeChar, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve Lists
+		 */
+		final protected function getSqlExpressionList($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve *
+		 */
+		final protected function getSqlExpressionAll($expression, $escapeChar=null){ }
+
+
+		/**
+		 * Resolve CAST of values
+		 */
+		final protected function getSqlExpressionCastValue($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve CONVERT of values encodings
+		 */
+		final protected function getSqlExpressionConvertValue($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve CASE expressions
+		 */
+		final protected function getSqlExpressionCase($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve a FROM clause
+		 */
+		final protected function getSqlExpressionFrom($expression, $escapeChar=null){ }
+
+
+		/**
+		 * Resolve a JOINs clause
+		 */
+		final protected function getSqlExpressionJoins($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve a WHERE clause
+		 */
+		final protected function getSqlExpressionWhere($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve a GROUP BY clause
+		 */
+		final protected function getSqlExpressionGroupBy($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve a HAVING clause
+		 */
+		final protected function getSqlExpressionHaving($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve an ORDER BY clause
+		 */
+		final protected function getSqlExpressionOrderBy($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Resolve a LIMIT clause
+		 */
+		final protected function getSqlExpressionLimit($expression, $escapeChar=null, $bindCounts=null){ }
+
+
+		/**
+		 * Prepares column for this RDBMS
+		 */
+		protected function prepareColumnAlias($qualified, $alias=null, $escapeChar=null){ }
+
+
+		/**
+		 * Prepares table for this RDBMS
+		 */
+		protected function prepareTable($table, $schema=null, $alias=null, $escapeChar=null){ }
+
+
+		/**
+		 * Prepares qualified for this RDBMS
+		 */
+		protected function prepareQualified($column, $domain=null, $escapeChar=null){ }
+
+	}
 }

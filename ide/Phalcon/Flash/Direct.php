@@ -1,43 +1,25 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Flash;
+namespace Phalcon\Flash {
 
-/**
- * Class Direct
- *
- * @package Phalcon\Flash
- */
-class Direct extends \Phalcon\Flash\AbstractFlash
-{
+	/**
+	 * Phalcon\Flash\Direct
+	 *
+	 * This is a variant of the Phalcon\Flash that immediately outputs any message passed to it
+	 */
+	
+	class Direct extends \Phalcon\Flash implements \Phalcon\Di\InjectionAwareInterface, \Phalcon\FlashInterface {
+
+		/**
+		 * Outputs a message
+		 */
+		public function message($type, $message){ }
 
 
-    /**
-     * Outputs a message
-     *
-     * @param string $type
-     * @param mixed  $message
-     *
-     * @return string|null
-     * @throws Exception
-     */
-    public function message(string $type, $message): ?string
-    {
-    }
+		/**
+		 * Prints the messages accumulated in the flasher
+		 */
+		public function output($remove=null){ }
 
-    /**
-     * Prints the messages accumulated in the flasher
-     *
-     * @param bool $remove
-     * @return void
-     */
-    public function output(bool $remove = true): void
-    {
-    }
+	}
 }

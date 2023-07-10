@@ -1,74 +1,34 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Db;
+namespace Phalcon\Db {
 
-/**
- * Interface for Phalcon\Db\Reference
- */
-interface ReferenceInterface
-{
+	interface ReferenceInterface {
+
+		public function getName();
 
 
-    /**
-     * Gets local columns which reference is based
-     *
-     * @return array
-     */
-    public function getColumns(): array;
+		public function getSchemaName();
 
-    /**
-     * Gets the index name
-     *
-     * @return string
-     */
-    public function getName(): string;
 
-    /**
-     * Gets the referenced on delete
-     *
-     * @return string
-     */
-    public function getOnDelete(): string;
+		public function getReferencedSchema();
 
-    /**
-     * Gets the referenced on update
-     *
-     * @return string
-     */
-    public function getOnUpdate(): string;
 
-    /**
-     * Gets referenced columns
-     *
-     * @return array
-     */
-    public function getReferencedColumns(): array;
+		public function getColumns();
 
-    /**
-     * Gets the schema where referenced table is
-     *
-     * @return string
-     */
-    public function getReferencedSchema(): string;
 
-    /**
-     * Gets the referenced table
-     *
-     * @return string
-     */
-    public function getReferencedTable(): string;
+		public function getReferencedTable();
 
-    /**
-     * Gets the schema where referenced table is
-     *
-     * @return string
-     */
-    public function getSchemaName(): string;
+
+		public function getReferencedColumns();
+
+
+		public function getOnDelete();
+
+
+		public function getOnUpdate();
+
+
+		public static function __set_state($data);
+
+	}
 }

@@ -1,367 +1,194 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Db\Dialect;
+namespace Phalcon\Db\Dialect {
 
-use Phalcon\Db\Dialect;
-use Phalcon\Db\Column;
-use Phalcon\Db\Exception;
-use Phalcon\Db\IndexInterface;
-use Phalcon\Db\ColumnInterface;
-use Phalcon\Db\ReferenceInterface;
-use Phalcon\Db\DialectInterface;
+	/**
+	 * Phalcon\Db\Dialect\Mysql
+	 *
+	 * Generates database specific SQL for the MySQL RDBMS
+	 */
+	
+	class Mysql extends \Phalcon\Db\Dialect implements \Phalcon\Db\DialectInterface {
 
-/**
- * Generates database specific SQL for the MySQL RDBMS
- */
-class Mysql extends Dialect
-{
+		protected $_escapeChar;
 
-    /**
-     * @var string
-     */
-    protected $escapeChar = '`';
+		/**
+		 * Gets the column name in MySQL
+		 */
+		public function getColumnDefinition(\Phalcon\Db\ColumnInterface $column){ }
 
-    /**
-     * Generates SQL to add a column to a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param \Phalcon\Db\ColumnInterface $column
-     * @return string
-     */
-    public function addColumn(string $tableName, string $schemaName, \Phalcon\Db\ColumnInterface $column): string
-    {
-    }
 
-    /**
-     * Generates SQL to add an index to a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param \Phalcon\Db\ReferenceInterface $reference
-     * @return string
-     */
-    public function addForeignKey(string $tableName, string $schemaName, \Phalcon\Db\ReferenceInterface $reference): string
-    {
-    }
+		/**
+		 * Generates SQL to add a column to a table
+		 */
+		public function addColumn($tableName, $schemaName, \Phalcon\Db\ColumnInterface $column){ }
 
-    /**
-     * Generates SQL to add an index to a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param \Phalcon\Db\IndexInterface $index
-     * @return string
-     */
-    public function addIndex(string $tableName, string $schemaName, \Phalcon\Db\IndexInterface $index): string
-    {
-    }
 
-    /**
-     * Generates SQL to add the primary key to a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param \Phalcon\Db\IndexInterface $index
-     * @return string
-     */
-    public function addPrimaryKey(string $tableName, string $schemaName, \Phalcon\Db\IndexInterface $index): string
-    {
-    }
+		/**
+		 * Generates SQL to modify a column in a table
+		 */
+		public function modifyColumn($tableName, $schemaName, \Phalcon\Db\ColumnInterface $column, \Phalcon\Db\ColumnInterface $currentColumn=null){ }
 
-    /**
-     * Generates SQL to create a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param array $definition
-     * @return string
-     */
-    public function createTable(string $tableName, string $schemaName, array $definition): string
-    {
-    }
 
-    /**
-     * Generates SQL to create a view
-     *
-     * @param string $viewName
-     * @param array $definition
-     * @param string $schemaName
-     * @return string
-     */
-    public function createView(string $viewName, array $definition, string $schemaName = null): string
-    {
-    }
+		/**
+		 * Generates SQL to delete a column from a table
+		 */
+		public function dropColumn($tableName, $schemaName, $columnName){ }
 
-    /**
-     * Generates SQL describing a table
-     *
-     * ```php
-     * print_r(
-     *     $dialect->describeColumns("posts")
-     * );
-     * ```
-     *
-     * @param string $table
-     * @param string $schema
-     * @return string
-     */
-    public function describeColumns(string $table, string $schema = null): string
-    {
-    }
 
-    /**
-     * Generates SQL to query indexes on a table
-     *
-     * @param string $table
-     * @param string $schema
-     * @return string
-     */
-    public function describeIndexes(string $table, string $schema = null): string
-    {
-    }
+		/**
+		 * Generates SQL to add an index to a table
+		 */
+		public function addIndex($tableName, $schemaName, \Phalcon\Db\IndexInterface $index){ }
 
-    /**
-     * Generates SQL to query foreign keys on a table
-     *
-     * @param string $table
-     * @param string $schema
-     * @return string
-     */
-    public function describeReferences(string $table, string $schema = null): string
-    {
-    }
 
-    /**
-     * Generates SQL to delete a column from a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param string $columnName
-     * @return string
-     */
-    public function dropColumn(string $tableName, string $schemaName, string $columnName): string
-    {
-    }
+		/**
+		 * Generates SQL to delete an index from a table
+		 */
+		public function dropIndex($tableName, $schemaName, $indexName){ }
 
-    /**
-     * Generates SQL to delete a foreign key from a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param string $referenceName
-     * @return string
-     */
-    public function dropForeignKey(string $tableName, string $schemaName, string $referenceName): string
-    {
-    }
 
-    /**
-     * Generates SQL to delete an index from a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param string $indexName
-     * @return string
-     */
-    public function dropIndex(string $tableName, string $schemaName, string $indexName): string
-    {
-    }
+		/**
+		 * Generates SQL to add the primary key to a table
+		 */
+		public function addPrimaryKey($tableName, $schemaName, \Phalcon\Db\IndexInterface $index){ }
 
-    /**
-     * Generates SQL to delete primary key from a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @return string
-     */
-    public function dropPrimaryKey(string $tableName, string $schemaName): string
-    {
-    }
 
-    /**
-     * Generates SQL to drop a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param bool $ifExists
-     * @return string
-     */
-    public function dropTable(string $tableName, string $schemaName = null, bool $ifExists = true): string
-    {
-    }
+		/**
+		 * Generates SQL to delete primary key from a table
+		 */
+		public function dropPrimaryKey($tableName, $schemaName){ }
 
-    /**
-     * Generates SQL to drop a view
-     *
-     * @param string $viewName
-     * @param string $schemaName
-     * @param bool $ifExists
-     * @return string
-     */
-    public function dropView(string $viewName, string $schemaName = null, bool $ifExists = true): string
-    {
-    }
 
-    /**
-     * Gets the column name in MySQL
-     *
-     * @param \Phalcon\Db\ColumnInterface $column
-     * @return string
-     */
-    public function getColumnDefinition(\Phalcon\Db\ColumnInterface $column): string
-    {
-    }
+		/**
+		 * Generates SQL to add an index to a table
+		 */
+		public function addForeignKey($tableName, $schemaName, \Phalcon\Db\ReferenceInterface $reference){ }
 
-    /**
-     * Generates SQL to check DB parameter FOREIGN_KEY_CHECKS.
-     *
-     * @return string
-     */
-    public function getForeignKeyChecks(): string
-    {
-    }
 
-    /**
-     * List all tables in database
-     *
-     * ```php
-     * print_r(
-     *     $dialect->listTables("blog")
-     * );
-     * ```
-     *
-     * @param string $schemaName
-     * @return string
-     */
-    public function listTables(string $schemaName = null): string
-    {
-    }
+		/**
+		 * Generates SQL to delete a foreign key from a table
+		 */
+		public function dropForeignKey($tableName, $schemaName, $referenceName){ }
 
-    /**
-     * Generates the SQL to list all views of a schema or user
-     *
-     * @param string $schemaName
-     * @return string
-     */
-    public function listViews(string $schemaName = null): string
-    {
-    }
 
-    /**
-     * Generates SQL to modify a column in a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @param \Phalcon\Db\ColumnInterface $column
-     * @param \Phalcon\Db\ColumnInterface $currentColumn
-     * @return string
-     */
-    public function modifyColumn(string $tableName, string $schemaName, \Phalcon\Db\ColumnInterface $column, \Phalcon\Db\ColumnInterface $currentColumn = null): string
-    {
-    }
+		/**
+		 * Generates SQL to create a table
+		 */
+		public function createTable($tableName, $schemaName, $definition){ }
 
-    /**
-     * Returns a SQL modified with a LOCK IN SHARE MODE clause
-     *
-     * ```php
-     * $sql = $dialect->sharedLock("SELECT FROM robots");
-     *
-     * echo $sql; // SELECT FROM robots LOCK IN SHARE MODE
-     * ```
-     *
-     * @param string $sqlQuery
-     * @return string
-     */
-    public function sharedLock(string $sqlQuery): string
-    {
-    }
 
-    /**
-     * Generates SQL checking for the existence of a schema.table
-     *
-     * ```php
-     * echo $dialect->tableExists("posts", "blog");
-     *
-     * echo $dialect->tableExists("posts");
-     * ```
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @return string
-     */
-    public function tableExists(string $tableName, string $schemaName = null): string
-    {
-    }
+		/**
+		 * Generates SQL to truncate a table
+		 */
+		public function truncateTable($tableName, $schemaName){ }
 
-    /**
-     * Generates the SQL to describe the table creation options
-     *
-     * @param string $table
-     * @param string $schema
-     * @return string
-     */
-    public function tableOptions(string $table, string $schema = null): string
-    {
-    }
 
-    /**
-     * Generates SQL to truncate a table
-     *
-     * @param string $tableName
-     * @param string $schemaName
-     * @return string
-     */
-    public function truncateTable(string $tableName, string $schemaName): string
-    {
-    }
+		/**
+		 * Generates SQL to drop a table
+		 */
+		public function dropTable($tableName, $schemaName=null, $ifExists=null){ }
 
-    /**
-     * Generates SQL checking for the existence of a schema.view
-     *
-     * @param string $viewName
-     * @param string $schemaName
-     * @return string
-     */
-    public function viewExists(string $viewName, string $schemaName = null): string
-    {
-    }
 
-    /**
-     * Generates SQL to add the table creation options
-     *
-     * @param array $definition
-     * @return string
-     */
-    protected function getTableOptions(array $definition): string
-    {
-    }
+		/**
+		 * Generates SQL to create a view
+		 */
+		public function createView($viewName, $definition, $schemaName=null){ }
 
-    /**
-     * Checks if the size and/or scale are present and encloses those values
-     * in parentheses if need be
-     *
-     * @param \Phalcon\Db\ColumnInterface $column
-     * @return string
-     */
-    private function checkColumnSizeAndScale(\Phalcon\Db\ColumnInterface $column): string
-    {
-    }
 
-    /**
-     * Checks if a column is unsigned or not and returns the relevant SQL syntax
-     *
-     * @param \Phalcon\Db\ColumnInterface $column
-     * @return string
-     */
-    private function checkColumnUnsigned(\Phalcon\Db\ColumnInterface $column): string
-    {
-    }
+		/**
+		 * Generates SQL to drop a view
+		 */
+		public function dropView($viewName, $schemaName=null, $ifExists=null){ }
+
+
+		/**
+		 * Generates SQL checking for the existence of a schema.table
+		 *
+		 * <code>
+		 * echo $dialect->tableExists("posts", "blog");
+		 *
+		 * echo $dialect->tableExists("posts");
+		 * </code>
+		 */
+		public function tableExists($tableName, $schemaName=null){ }
+
+
+		/**
+		 * Generates SQL checking for the existence of a schema.view
+		 */
+		public function viewExists($viewName, $schemaName=null){ }
+
+
+		/**
+		 * Generates SQL describing a table
+		 *
+		 * <code>
+		 * print_r(
+		 *     $dialect->describeColumns("posts")
+		 * );
+		 * </code>
+		 */
+		public function describeColumns($table, $schema=null){ }
+
+
+		/**
+		 * List all tables in database
+		 *
+		 * <code>
+		 * print_r(
+		 *     $dialect->listTables("blog")
+		 * );
+		 * </code>
+		 */
+		public function listTables($schemaName=null){ }
+
+
+		/**
+		 * Generates the SQL to list all views of a schema or user
+		 */
+		public function listViews($schemaName=null){ }
+
+
+		/**
+		 * Generates SQL to query indexes on a table
+		 */
+		public function describeIndexes($table, $schema=null){ }
+
+
+		/**
+		 * Generates SQL to query foreign keys on a table
+		 */
+		public function describeReferences($table, $schema=null){ }
+
+
+		/**
+		 * Generates the SQL to describe the table creation options
+		 */
+		public function tableOptions($table, $schema=null){ }
+
+
+		/**
+		 * Generates SQL to add the table creation options
+		 */
+		protected function _getTableOptions($definition){ }
+
+
+		/**
+		 * Generates SQL to check DB parameter FOREIGN_KEY_CHECKS.
+		 */
+		public function getForeignKeyChecks(){ }
+
+
+		/**
+		 * Returns a SQL modified with a LOCK IN SHARE MODE clause
+		 *
+		 *<code>
+		 * $sql = $dialect->sharedLock("SELECT * FROM robots");
+		 * echo $sql; // SELECT * FROM robots LOCK IN SHARE MODE
+		 *</code>
+		 */
+		public function sharedLock($sqlQuery){ }
+
+	}
 }

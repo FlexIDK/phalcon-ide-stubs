@@ -1,62 +1,41 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Acl;
+namespace Phalcon\Acl {
 
-/**
- * This class defines role entity and its description
- */
-class Role implements \Phalcon\Acl\RoleInterface
-{
+	/**
+	 * Phalcon\Acl\Role
+	 *
+	 * This class defines role entity and its description
+	 */
+	
+	class Role implements \Phalcon\Acl\RoleInterface {
 
-    /**
-     * Role description
-     *
-     * @var string
-     */
-    private $description;
+		protected $_name;
 
-    /**
-     * Role name
-     *
-     * @var string
-     */
-    private $name;
+		protected $_description;
 
-    /**
-     * Phalcon\Acl\Role constructor
-     *
-     * @param string $name
-     * @param string $description
-     */
-    public function __construct(string $name, string $description = null)
-    {
-    }
+		/**
+		 * Role name
+		 */
+		public function getName(){ }
 
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-    }
 
-    /**
-     * @return string
-     */
-    public function getDescription(): string
-    {
-    }
+		/**
+		 * Role name
+		 */
+		public function __toString(){ }
 
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-    }
+
+		/**
+		 * Role description
+		 */
+		public function getDescription(){ }
+
+
+		/**
+		 * \Phalcon\Acl\Role constructor
+		 */
+		public function __construct($name, $description=null){ }
+
+	}
 }

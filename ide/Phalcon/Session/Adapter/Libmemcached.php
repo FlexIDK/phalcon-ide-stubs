@@ -1,43 +1,95 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Session\Adapter;
+namespace Phalcon\Session\Adapter {
 
-use Phalcon\Storage\AdapterFactory;
+	/**
+	 * Phalcon\Session\Adapter\Libmemcached
+	 *
+	 * This adapter store sessions in libmemcached
+	 *
+	 * <code>
+	 * use Phalcon\Session\Adapter\Libmemcached;
+	 *
+	 * $session = new Libmemcached(
+	 *     [
+	 *         "servers" => [
+	 *             [
+	 *                 "host"   => "localhost",
+	 *                 "port"   => 11211,
+	 *                 "weight" => 1,
+	 *             ],
+	 *         ],
+	 *         "client" => [
+	 *             \Memcached::OPT_HASH       => \Memcached::HASH_MD5,
+	 *             \Memcached::OPT_PREFIX_KEY => "prefix.",
+	 *         ],
+	 *         "lifetime" => 3600,
+	 *         "prefix"   => "my_",
+	 *     ]
+	 * );
+	 *
+	 * $session->start();
+	 *
+	 * $session->set("var", "some-value");
+	 *
+	 * echo $session->get("var");
+	 * </code>
+	 */
+	
+	class Libmemcached extends \Phalcon\Session\Adapter implements \Phalcon\Session\AdapterInterface {
 
-/**
- * Phalcon\Session\Adapter\Libmemcached
- */
-class Libmemcached extends \Phalcon\Session\Adapter\AbstractAdapter
-{
+		const SESSION_ACTIVE = 2;
+
+		const SESSION_NONE = 1;
+
+		const SESSION_DISABLED = 0;
+
+		protected $_libmemcached;
+
+		protected $_lifetime;
+
+		public function getLibmemcached(){ }
 
 
-    /**
-     * Libmemcached constructor.
-     *
-     * @param AdapterFactory $factory
-     * @param array          $options = [
-     *     'servers' => [
-     *         [
-     *             'host' => 'localhost',
-     *             'port' => 11211,
-     *             'weight' => 1,
-     *
-     *         ]
-     *     ],
-     *     'defaultSerializer' => 'Php',
-     *     'lifetime' => 3600,
-     *     'serializer' => null,
-     *     'prefix' => 'sess-memc-'
-     * ]
-     */
-    public function __construct(\Phalcon\Storage\AdapterFactory $factory, array $options = [])
-    {
-    }
+		public function getLifetime(){ }
+
+
+		/**
+		 * \Phalcon\Session\Adapter\Libmemcached constructor
+		 *
+		 * @throws \Phalcon\Session\Exception
+		 */
+		public function __construct($options){ }
+
+
+		public function open(){ }
+
+
+		public function close(){ }
+
+
+		/**
+		 * {@inheritdoc}
+		 */
+		public function read($sessionId){ }
+
+
+		/**
+		 * {@inheritdoc}
+		 */
+		public function write($sessionId, $data){ }
+
+
+		/**
+		 * {@inheritdoc}
+		 */
+		public function destroy($sessionId=null){ }
+
+
+		/**
+		 * {@inheritdoc}
+		 */
+		public function gc(){ }
+
+	}
 }

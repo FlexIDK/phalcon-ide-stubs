@@ -1,31 +1,23 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Assets\Inline;
+namespace Phalcon\Assets\Inline {
 
-use Phalcon\Assets\Inline as InlineBase;
+	/**
+	 * Phalcon\Assets\Inline\Js
+	 *
+	 * Represents an inline Javascript
+	 */
+	
+	class Js extends \Phalcon\Assets\Inline implements \Phalcon\Assets\ResourceInterface {
 
-/**
- * Represents an inline JavaScript
- */
-class Js extends \Phalcon\Assets\Inline
-{
+		/**
+		 * \Phalcon\Assets\Inline\Js
+		 *
+		 * @param string content
+		 * @param boolean filter
+		 * @param array attributes
+		 */
+		public function __construct($content, $filter=null, $attributes=null){ }
 
-
-    /**
-     * Phalcon\Assets\Inline\Js constructor
-     *
-     * @param string $content
-     * @param bool $filter
-     * @param array $attributes
-     */
-    public function __construct(string $content, bool $filter = true, array $attributes = [])
-    {
-    }
+	}
 }

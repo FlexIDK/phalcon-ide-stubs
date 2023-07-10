@@ -1,36 +1,13 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc;
+namespace Phalcon\Mvc {
 
-use Phalcon\Di\DiInterface;
+	interface ModuleDefinitionInterface {
 
-/**
- * Phalcon\Mvc\ModuleDefinitionInterface
- *
- * This interface must be implemented by class module definitions
- */
-interface ModuleDefinitionInterface
-{
+		public function registerAutoloaders(\Phalcon\DiInterface $dependencyInjector=null);
 
 
-    /**
-     * Registers an autoloader related to the module
-     *
-     * @param \Phalcon\Di\DiInterface $container
-     */
-    public function registerAutoloaders(\Phalcon\Di\DiInterface $container = null);
+		public function registerServices(\Phalcon\DiInterface $dependencyInjector);
 
-    /**
-     * Registers services related to the module
-     *
-     * @param \Phalcon\Di\DiInterface $container
-     */
-    public function registerServices(\Phalcon\Di\DiInterface $container);
+	}
 }

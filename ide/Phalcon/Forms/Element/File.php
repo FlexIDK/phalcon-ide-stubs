@@ -1,25 +1,21 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Forms\Element;
+namespace Phalcon\Forms\Element {
 
-use Phalcon\Tag;
+	/**
+	 * Phalcon\Forms\Element\File
+	 *
+	 * Component INPUT[type=file] for forms
+	 */
+	
+	class File extends \Phalcon\Forms\Element implements \Phalcon\Forms\ElementInterface {
 
-/**
- * Component INPUT[type=file] for forms
- */
-class File extends \Phalcon\Forms\Element\AbstractElement
-{
+		/**
+		 * Renders the element widget returning html
+		 *
+		 * @param array attributes
+		 */
+		public function render($attributes=null){ }
 
-    /**
-     * @var string
-     */
-    protected $method = 'inputFile';
-
+	}
 }

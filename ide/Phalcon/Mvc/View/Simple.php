@@ -1,360 +1,274 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\View;
+namespace Phalcon\Mvc\View {
 
-use Closure;
-use Phalcon\Di\DiInterface;
-use Phalcon\Di\Injectable;
-use Phalcon\Events\EventsAwareInterface;
-use Phalcon\Events\ManagerInterface;
-use Phalcon\Mvc\ViewBaseInterface;
-use Phalcon\Mvc\View\Engine\EngineInterface;
-use Phalcon\Mvc\View\Engine\Php as PhpEngine;
+	/**
+	 * Phalcon\Mvc\View\Simple
+	 *
+	 * This component allows to render views without hierarchical levels
+	 *
+	 *<code>
+	 * use Phalcon\Mvc\View\Simple as View;
+	 *
+	 * $view = new View();
+	 *
+	 * // Render a view
+	 * echo $view->render(
+	 *     "templates/my-view",
+	 *     [
+	 *         "some" => $param,
+	 *     ]
+	 * );
+	 *
+	 * // Or with filename with extension
+	 * echo $view->render(
+	 *     "templates/my-view.volt",
+	 *     [
+	 *         "parameter" => $here,
+	 *     ]
+	 * );
+	 *</code>
+	 */
+	
+	class Simple extends \Phalcon\Di\Injectable implements \Phalcon\Events\EventsAwareInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\Mvc\ViewBaseInterface {
 
-/**
- * Phalcon\Mvc\View\Simple
- *
- * This component allows to render views without hierarchical levels
- *
- * ```php
- * use Phalcon\Mvc\View\Simple as View;
- *
- * $view = new View();
- *
- * // Render a view
- * echo $view->render(
- *     "templates/my-view",
- *     [
- *         "some" => $param,
- *     ]
- * );
- *
- * // Or with filename with extension
- * echo $view->render(
- *     "templates/my-view.volt",
- *     [
- *         "parameter" => $here,
- *     ]
- * );
- * ```
- */
-class Simple extends Injectable implements \Phalcon\Mvc\ViewBaseInterface, \Phalcon\Events\EventsAwareInterface
-{
+		protected $_options;
 
-    /**
-     * @var string
-     */
-    protected $activeRenderPath;
+		protected $_viewsDir;
 
-    /**
-     * @var string
-     */
-    protected $content;
+		protected $_partialsDir;
 
-    /**
-     * @var EngineInterface[]|false
-     */
-    protected $engines = false;
+		protected $_viewParams;
 
-    /**
-     * @var ManagerInterface|null
-     */
-    protected $eventsManager;
+		protected $_engines;
 
-    /**
-     * @var array
-     */
-    protected $options = [];
+		protected $_registeredEngines;
 
-    /**
-     * @var array
-     */
-    protected $registeredEngines = [];
+		protected $_activeRenderPath;
 
-    /**
-     * @var string
-     */
-    protected $viewsDir;
+		protected $_content;
 
-    /**
-     * @var array
-     */
-    protected $viewParams = [];
+		protected $_cache;
 
-    /**
-     * Phalcon\Mvc\View\Simple constructor
-     *
-     * @param array $options
-     */
-    public function __construct(array $options = [])
-    {
-    }
+		protected $_cacheOptions;
 
-    /**
-     * Magic method to retrieve a variable passed to the view
-     *
-     * ```php
-     * echo $this->view->products;
-     * ```
-     *
-     * @return mixed|null
-     * @param string $key
-     */
-    public function __get(string $key)
-    {
-    }
+		/**
+		 */
+		public function getRegisteredEngines(){ }
 
-    /**
-     * Magic method to pass variables to the views
-     *
-     * ```php
-     * $this->view->products = $products;
-     * ```
-     *
-     * @return void
-     * @param string $key
-     * @param mixed $value
-     */
-    public function __set(string $key, $value): void
-    {
-    }
 
-    /**
-     * Returns the path of the view that is currently rendered
-     *
-     * @return string
-     */
-    public function getActiveRenderPath(): string
-    {
-    }
+		/**
+		 * \Phalcon\Mvc\View\Simple constructor
+		 */
+		public function __construct($options=null){ }
 
-    /**
-     * Returns output from another view stage
-     *
-     * @return string
-     */
-    public function getContent(): string
-    {
-    }
 
-    /**
-     * Returns the internal event manager
-     *
-     * @return ManagerInterface|null
-     */
-    public function getEventsManager(): ?ManagerInterface
-    {
-    }
+		/**
+		 * Sets views directory. Depending of your platform, always add a trailing slash or backslash
+		 */
+		public function setViewsDir($viewsDir){ }
 
-    /**
-     * Returns parameters to views
-     *
-     * @return array
-     */
-    public function getParamsToView(): array
-    {
-    }
 
-    /**
-     * @return array
-     */
-    public function getRegisteredEngines(): array
-    {
-    }
+		/**
+		 * Gets views directory
+		 */
+		public function getViewsDir(){ }
 
-    /**
-     * Returns a parameter previously set in the view
-     *
-     * @return mixed|null
-     * @param string $key
-     */
-    public function getVar(string $key)
-    {
-    }
 
-    /**
-     * Gets views directory
-     *
-     * @return string
-     */
-    public function getViewsDir(): string
-    {
-    }
+		/**
+		 * Register templating engines
+		 *
+		 *<code>
+		 * $this->view->registerEngines(
+		 *     [
+		 *         ".phtml" => "Phalcon\\Mvc\\View\\Engine\\Php",
+		 *         ".volt"  => "Phalcon\\Mvc\\View\\Engine\\Volt",
+		 *         ".mhtml" => "MyCustomEngine",
+		 *     ]
+		 * );
+		 *</code>
+		 */
+		public function registerEngines($engines){ }
 
-    /**
-     * Renders a partial view
-     *
-     * ```php
-     * // Show a partial inside another view
-     * $this->partial("shared/footer");
-     * ```
-     *
-     * ```php
-     * // Show a partial inside another view with parameters
-     * $this->partial(
-     *     "shared/footer",
-     *     [
-     *         "content" => $html,
-     *     ]
-     * );
-     * ```
-     *
-     * @return void
-     * @param string $partialPath
-     * @param mixed $params
-     */
-    public function partial(string $partialPath, $params = null): void
-    {
-    }
 
-    /**
-     * Register templating engines
-     *
-     * ```php
-     * $this->view->registerEngines(
-     *     [
-     *         ".phtml" => \Phalcon\Mvc\View\Engine\Php::class,
-     *         ".volt"  => \Phalcon\Mvc\View\Engine\Volt::class,
-     *         ".mhtml" => \MyCustomEngine::class,
-     *     ]
-     * );
-     * ```
-     *
-     * @return void
-     * @param array $engines
-     */
-    public function registerEngines(array $engines): void
-    {
-    }
+		/**
+		 * Loads registered template engines, if none is registered it will use \Phalcon\Mvc\View\Engine\Php
+		 *
+		 * @return array
+		 */
+		protected function _loadTemplateEngines(){ }
 
-    /**
-     * Renders a view
-     *
-     * @return string
-     * @param string $path
-     * @param array $params
-     */
-    public function render(string $path, array $params = []): string
-    {
-    }
 
-    /**
-     * Externally sets the view content
-     *
-     * ```php
-     * $this->view->setContent("<h1>hello</h1>");
-     * ```
-     *
-     * @return Simple
-     * @param string $content
-     */
-    public function setContent(string $content): Simple
-    {
-    }
+		/**
+		 * Tries to render the view with every engine registered in the component
+		 *
+		 * @param string path
+		 * @param array  params
+		 */
+		final protected function _internalRender($path, $params){ }
 
-    /**
-     * Sets the events manager
-     *
-     * @return void
-     * @param \Phalcon\Events\ManagerInterface $eventsManager
-     */
-    public function setEventsManager(\Phalcon\Events\ManagerInterface $eventsManager): void
-    {
-    }
 
-    /**
-     * Adds parameters to views (alias of setVar)
-     *
-     * ```php
-     * $this->view->setParamToView("products", $products);
-     * ```
-     *
-     * @return Simple
-     * @param string $key
-     * @param mixed $value
-     */
-    public function setParamToView(string $key, $value): Simple
-    {
-    }
+		/**
+		 * Renders a view
+		 *
+		 * @param  string path
+		 * @param  array  params
+		 */
+		public function render($path, $params=null){ }
 
-    /**
-     * Set a single view parameter
-     *
-     * ```php
-     * $this->view->setVar("products", $products);
-     * ```
-     *
-     * @return Simple
-     * @param string $key
-     * @param mixed $value
-     */
-    public function setVar(string $key, $value): Simple
-    {
-    }
 
-    /**
-     * Set all the render params
-     *
-     * ```php
-     * $this->view->setVars(
-     *     [
-     *         "products" => $products,
-     *     ]
-     * );
-     * ```
-     *
-     * @return Simple
-     * @param array $params
-     * @param bool $merge
-     */
-    public function setVars(array $params, bool $merge = true): Simple
-    {
-    }
+		/**
+		 * Renders a partial view
+		 *
+		 * <code>
+		 * // Show a partial inside another view
+		 * $this->partial("shared/footer");
+		 * </code>
+		 *
+		 * <code>
+		 * // Show a partial inside another view with parameters
+		 * $this->partial(
+		 *     "shared/footer",
+		 *     [
+		 *         "content" => $html,
+		 *     ]
+		 * );
+		 * </code>
+		 */
+		public function partial($partialPath, $params=null){ }
 
-    /**
-     * Sets views directory
-     *
-     * @return void
-     * @param string $viewsDir
-     */
-    public function setViewsDir(string $viewsDir): void
-    {
-    }
 
-    /**
-     * Loads registered template engines, if none are registered it will use
-     * Phalcon\Mvc\View\Engine\Php
-     *
-     * @return array
-     */
-    protected function loadTemplateEngines(): array
-    {
-    }
+		/**
+		 * Sets the cache options
+		 */
+		public function setCacheOptions($options){ }
 
-    /**
-     * Tries to render the view with every engine registered in the component
-     *
-     * @param string $path
-     * @param array $params *
-     * @return void
-     */
-    final protected function internalRender(string $path, $params): void
-    {
-    }
 
-    /**
-     * @todo Remove this when we get traits
-     * @param string $directory
-     * @return string
-     */
-    private function getDirSeparator(string $directory): string
-    {
-    }
+		/**
+		 * Returns the cache options
+		 *
+		 * @return array
+		 */
+		public function getCacheOptions(){ }
+
+
+		/**
+		 * Create a \Phalcon\Cache based on the internal cache options
+		 */
+		protected function _createCache(){ }
+
+
+		/**
+		 * Returns the cache instance used to cache
+		 */
+		public function getCache(){ }
+
+
+		/**
+		 * Cache the actual view render to certain level
+		 *
+		 *<code>
+		 * $this->view->cache(
+		 *     [
+		 *         "key"      => "my-key",
+		 *         "lifetime" => 86400,
+		 *     ]
+		 * );
+		 *</code>
+		 */
+		public function cache($options=null){ }
+
+
+		/**
+		 * Adds parameters to views (alias of setVar)
+		 *
+		 *<code>
+		 * $this->view->setParamToView("products", $products);
+		 *</code>
+		 */
+		public function setParamToView($key, $value){ }
+
+
+		/**
+		 * Set all the render params
+		 *
+		 *<code>
+		 * $this->view->setVars(
+		 *     [
+		 *         "products" => $products,
+		 *     ]
+		 * );
+		 *</code>
+		 */
+		public function setVars($params, $merge=null){ }
+
+
+		/**
+		 * Set a single view parameter
+		 *
+		 *<code>
+		 * $this->view->setVar("products", $products);
+		 *</code>
+		 */
+		public function setVar($key, $value){ }
+
+
+		/**
+		 * Returns a parameter previously set in the view
+		 */
+		public function getVar($key){ }
+
+
+		/**
+		 * Returns parameters to views
+		 *
+		 * @return array
+		 */
+		public function getParamsToView(){ }
+
+
+		/**
+		 * Externally sets the view content
+		 *
+		 *<code>
+		 * $this->view->setContent("<h1>hello</h1>");
+		 *</code>
+		 */
+		public function setContent($content){ }
+
+
+		/**
+		 * Returns cached output from another view stage
+		 */
+		public function getContent(){ }
+
+
+		/**
+		 * Returns the path of the view that is currently rendered
+		 *
+		 * @return string
+		 */
+		public function getActiveRenderPath(){ }
+
+
+		/**
+		 * Magic method to pass variables to the views
+		 *
+		 *<code>
+		 * $this->view->products = $products;
+		 *</code>
+		 */
+		public function __set($key, $value){ }
+
+
+		/**
+		 * Magic method to retrieve a variable passed to the view
+		 *
+		 *<code>
+		 * echo $this->view->products;
+		 *</code>
+		 */
+		public function __get($key){ }
+
+	}
 }

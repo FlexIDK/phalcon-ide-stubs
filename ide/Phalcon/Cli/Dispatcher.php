@@ -1,196 +1,132 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Cli;
+namespace Phalcon\Cli {
 
-use Phalcon\Cli\Dispatcher\Exception;
-use Phalcon\Dispatcher\AbstractDispatcher as CliDispatcher;
-use Phalcon\Events\ManagerInterface;
-use Phalcon\Filter\FilterInterface;
+	/**
+	 * Phalcon\Cli\Dispatcher
+	 *
+	 * Dispatching is the process of taking the command-line arguments, extracting the module name,
+	 * task name, action name, and optional parameters contained in it, and then
+	 * instantiating a task and calling an action on it.
+	 *
+	 * <code>
+	 * use Phalcon\Di;
+	 * use Phalcon\Cli\Dispatcher;
+	 *
+	 * $di = new Di();
+	 * $dispatcher = new Dispatcher();
+	 * $dispatcher->setDi($di);
+	 *
+	 * $dispatcher->setTaskName("posts");
+	 * $dispatcher->setActionName("index");
+	 * $dispatcher->setParams([]);
+	 *
+	 * $handle = $dispatcher->dispatch();
+	 * </code>
+	 */
+	
+	class Dispatcher extends \Phalcon\Dispatcher implements \Phalcon\Events\EventsAwareInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\DispatcherInterface, \Phalcon\Cli\DispatcherInterface {
 
-/**
- * Dispatching is the process of taking the command-line arguments, extracting
- * the module name, task name, action name, and optional parameters contained in
- * it, and then instantiating a task and calling an action on it.
- *
- * ```php
- * use Phalcon\Di\Di;
- * use Phalcon\Cli\Dispatcher;
- *
- * $di = new Di();
- *
- * $dispatcher = new Dispatcher();
- *
- * $dispatcher->setDi($di);
- *
- * $dispatcher->setTaskName("posts");
- * $dispatcher->setActionName("index");
- * $dispatcher->setParams([]);
- *
- * $handle = $dispatcher->dispatch();
- * ```
- */
-class Dispatcher extends \Phalcon\Dispatcher\AbstractDispatcher implements \Phalcon\Cli\DispatcherInterface
-{
+		const EXCEPTION_NO_DI = 0;
 
-    protected $defaultHandler = 'main';
+		const EXCEPTION_CYCLIC_ROUTING = 1;
 
-    /**
-     * @var string
-     */
-    protected $defaultAction = 'main';
+		const EXCEPTION_HANDLER_NOT_FOUND = 2;
 
-    /**
-     * @var string
-     */
-    protected $handlerSuffix = 'Task';
+		const EXCEPTION_INVALID_HANDLER = 3;
 
-    /**
-     * @var array
-     */
-    protected $options = [];
+		const EXCEPTION_INVALID_PARAMS = 4;
 
-    /**
-     * Calls the action method.
-     *
-     * @param mixed $handler
-     * @param string $actionMethod
-     * @param array $params
-     * @return mixed
-     */
-    public function callActionMethod($handler, string $actionMethod, array $params = [])
-    {
-    }
+		const EXCEPTION_ACTION_NOT_FOUND = 5;
 
-    /**
-     * Returns the active task in the dispatcher
-     *
-     * @return TaskInterface
-     */
-    public function getActiveTask(): TaskInterface
-    {
-    }
+		protected $_handlerSuffix;
 
-    /**
-     * Returns the latest dispatched controller
-     *
-     * @return TaskInterface
-     */
-    public function getLastTask(): TaskInterface
-    {
-    }
+		protected $_defaultHandler;
 
-    /**
-     * Gets an option by its name or numeric index
-     *
-     * @param  mixed $option
-     * @param  string|array $filters
-     * @param  mixed $defaultValue
-     * @return mixed
-     */
-    public function getOption($option, $filters = null, $defaultValue = null)
-    {
-    }
+		protected $_defaultAction;
 
-    /**
-     * Get dispatched options
-     *
-     * @return array
-     */
-    public function getOptions(): array
-    {
-    }
+		protected $_options;
 
-    /**
-     * Gets last dispatched task name
-     *
-     * @return string
-     */
-    public function getTaskName(): string
-    {
-    }
+		/**
+		 * Sets the default task suffix
+		 */
+		public function setTaskSuffix($taskSuffix){ }
 
-    /**
-     * Gets the default task suffix
-     *
-     * @return string
-     */
-    public function getTaskSuffix(): string
-    {
-    }
 
-    /**
-     * Check if an option exists
-     *
-     * @param mixed $option
-     * @return bool
-     */
-    public function hasOption($option): bool
-    {
-    }
+		/**
+		 * Sets the default task name
+		 */
+		public function setDefaultTask($taskName){ }
 
-    /**
-     * Sets the default task name
-     *
-     * @param string $taskName
-     * @return void
-     */
-    public function setDefaultTask(string $taskName): void
-    {
-    }
 
-    /**
-     * Set the options to be dispatched
-     *
-     * @param array $options
-     * @return void
-     */
-    public function setOptions(array $options): void
-    {
-    }
+		/**
+		 * Sets the task name to be dispatched
+		 */
+		public function setTaskName($taskName){ }
 
-    /**
-     * Sets the task name to be dispatched
-     *
-     * @param string $taskName
-     * @return void
-     */
-    public function setTaskName(string $taskName): void
-    {
-    }
 
-    /**
-     * Sets the default task suffix
-     *
-     * @param string $taskSuffix
-     * @return void
-     */
-    public function setTaskSuffix(string $taskSuffix): void
-    {
-    }
+		/**
+		 * Gets last dispatched task name
+		 */
+		public function getTaskName(){ }
 
-    /**
-     * Handles a user exception
-     *
-     * @param \Exception $exception
-     */
-    protected function handleException(\Exception $exception)
-    {
-    }
 
-    /**
-     * Throws an internal exception
-     *
-     * @param string $message
-     * @param int $exceptionCode
-     */
-    protected function throwDispatchException(string $message, int $exceptionCode = 0)
-    {
-    }
+		/**
+		 * Throws an internal exception
+		 */
+		protected function _throwDispatchException($message, $exceptionCode=null){ }
+
+
+		/**
+		 * Handles a user exception
+		 */
+		protected function _handleException(\Exception $exception){ }
+
+
+		/**
+		 * Returns the latest dispatched controller
+		 */
+		public function getLastTask(){ }
+
+
+		/**
+		 * Returns the active task in the dispatcher
+		 */
+		public function getActiveTask(){ }
+
+
+		/**
+		 * Set the options to be dispatched
+		 */
+		public function setOptions($options){ }
+
+
+		/**
+		 * Get dispatched options
+		 */
+		public function getOptions(){ }
+
+
+		/**
+		 * Gets an option by its name or numeric index
+		 *
+		 * @param  mixed $option
+		 * @param  string|array $filters
+		 * @param  mixed $defaultValue
+		 */
+		public function getOption($option, $filters=null, $defaultValue=null){ }
+
+
+		/**
+		 * Check if an option exists
+		 */
+		public function hasOption($option){ }
+
+
+		/**
+		 * Calls the action method.
+		 */
+		public function callActionMethod($handler, $actionMethod, $params=null){ }
+
+	}
 }

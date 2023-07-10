@@ -1,29 +1,19 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\View\Engine;
+namespace Phalcon\Mvc\View\Engine {
 
-/**
- * Adapter to use PHP itself as templating engine
- */
-class Php extends \Phalcon\Mvc\View\Engine\AbstractEngine
-{
+	/**
+	 * Phalcon\Mvc\View\Engine\Php
+	 *
+	 * Adapter to use PHP itself as templating engine
+	 */
+	
+	class Php extends \Phalcon\Mvc\View\Engine implements \Phalcon\Mvc\View\EngineInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\Events\EventsAwareInterface {
 
+		/**
+		 * Renders a view using the template engine
+		 */
+		public function render($path, $params, $mustClean=null){ }
 
-    /**
-     * Renders a view using the template engine
-     *
-     * @param string $path
-     * @param mixed $params
-     * @param bool $mustClean
-     */
-    public function render(string $path, $params, bool $mustClean = false)
-    {
-    }
+	}
 }

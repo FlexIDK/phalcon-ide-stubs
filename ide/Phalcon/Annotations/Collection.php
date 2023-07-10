@@ -1,146 +1,100 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Annotations;
+namespace Phalcon\Annotations {
 
-use Countable;
-use Iterator;
+	/**
+	 * Phalcon\Annotations\Collection
+	 *
+	 * Represents a collection of annotations. This class allows to traverse a group of annotations easily
+	 *
+	 *<code>
+	 * //Traverse annotations
+	 * foreach ($classAnnotations as $annotation) {
+	 *     echo "Name=", $annotation->getName(), PHP_EOL;
+	 * }
+	 *
+	 * //Check if the annotations has a specific
+	 * var_dump($classAnnotations->has("Cacheable"));
+	 *
+	 * //Get an specific annotation in the collection
+	 * $annotation = $classAnnotations->get("Cacheable");
+	 *</code>
+	 */
+	
+	class Collection implements \Iterator, \Traversable, \Countable {
 
-/**
- * Represents a collection of annotations. This class allows to traverse a group
- * of annotations easily
- *
- * ```php
- * // Traverse annotations
- * foreach ($classAnnotations as $annotation) {
- *     echo "Name=", $annotation->getName(), PHP_EOL;
- * }
- *
- * // Check if the annotations has a specific
- * var_dump($classAnnotations->has("Cacheable"));
- *
- * // Get an specific annotation in the collection
- * $annotation = $classAnnotations->get("Cacheable");
- * ```
- */
-class Collection implements \Iterator, \Countable
-{
+		protected $_position;
 
-    /**
-     * @var array
-     */
-    protected $annotations;
+		protected $_annotations;
 
-    /**
-     * @var int
-     */
-    protected $position = 0;
+		/**
+		 * \Phalcon\Annotations\Collection constructor
+		 *
+		 * @param array reflectionData
+		 */
+		public function __construct($reflectionData=null){ }
 
-    /**
-     * Phalcon\Annotations\Collection constructor
-     *
-     * @param array $reflectionData
-     */
-    public function __construct(array $reflectionData = [])
-    {
-    }
 
-    /**
-     * Returns the number of annotations in the collection
-     *
-     * @return int
-     */
-    public function count(): int
-    {
-    }
+		/**
+		 * Returns the number of annotations in the collection
+		 */
+		public function count(){ }
 
-    /**
-     * Returns the current annotation in the iterator
-     *
-     * @return mixed
-     */
-    public function current()
-    {
-    }
 
-    /**
-     * Returns the first annotation that match a name
-     *
-     * @param string $name
-     * @return Annotation
-     */
-    public function get(string $name): Annotation
-    {
-    }
+		/**
+		 * Rewinds the internal iterator
+		 */
+		public function rewind(){ }
 
-    /**
-     * Returns all the annotations that match a name
-     *
-     * @param string $name
-     * @return array|Annotation[]
-     */
-    public function getAll(string $name): array
-    {
-    }
 
-    /**
-     * Returns the internal annotations as an array
-     *
-     * @return array|Annotation[]
-     */
-    public function getAnnotations(): array
-    {
-    }
+		/**
+		 * Returns the current annotation in the iterator
+		 *
+		 * @return \Phalcon\Annotations\Annotation
+		 */
+		public function current(){ }
 
-    /**
-     * Check if an annotation exists in a collection
-     *
-     * @param string $name
-     * @return bool
-     */
-    public function has(string $name): bool
-    {
-    }
 
-    /**
-     * Returns the current position/key in the iterator
-     *
-     * @return int
-     */
-    public function key(): int
-    {
-    }
+		/**
+		 * Returns the current position/key in the iterator
+		 */
+		public function key(){ }
 
-    /**
-     * Moves the internal iteration pointer to the next position
-     *
-     * @return void
-     */
-    public function next(): void
-    {
-    }
 
-    /**
-     * Rewinds the internal iterator
-     *
-     * @return void
-     */
-    public function rewind(): void
-    {
-    }
+		/**
+		 * Moves the internal iteration pointer to the next position
+		 */
+		public function next(){ }
 
-    /**
-     * Check if the current annotation in the iterator is valid
-     *
-     * @return bool
-     */
-    public function valid(): bool
-    {
-    }
+
+		/**
+		 * Check if the current annotation in the iterator is valid
+		 */
+		public function valid(){ }
+
+
+		/**
+		 * Returns the internal annotations as an array
+		 */
+		public function getAnnotations(){ }
+
+
+		/**
+		 * Returns the first annotation that match a name
+		 */
+		public function get($name){ }
+
+
+		/**
+		 * Returns all the annotations that match a name
+		 */
+		public function getAll($name){ }
+
+
+		/**
+		 * Check if an annotation exists in a collection
+		 */
+		public function has($name){ }
+
+	}
 }

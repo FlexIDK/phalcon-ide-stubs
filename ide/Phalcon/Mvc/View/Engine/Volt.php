@@ -1,185 +1,79 @@
-<?php
+<?php 
 
-/* This file is part of the Phalcon Framework.
- *
- * (c) Phalcon Team <team@phalcon.io>
- *
- * For the full copyright and license information, please view the LICENSE.txt
- * file that was distributed with this source code.
- */
-namespace Phalcon\Mvc\View\Engine;
+namespace Phalcon\Mvc\View\Engine {
 
-use Phalcon\Di\DiInterface;
-use Phalcon\Events\EventsAwareInterface;
-use Phalcon\Events\ManagerInterface;
-use Phalcon\Html\Link\Link;
-use Phalcon\Html\Link\Serializer\Header;
-use Phalcon\Mvc\View\Engine\Volt\Compiler;
-use Phalcon\Mvc\View\Exception;
+	/**
+	 * Phalcon\Mvc\View\Engine\Volt
+	 *
+	 * Designer friendly and fast template engine for PHP written in Zephir/C
+	 */
+	
+	class Volt extends \Phalcon\Mvc\View\Engine implements \Phalcon\Mvc\View\EngineInterface, \Phalcon\Di\InjectionAwareInterface, \Phalcon\Events\EventsAwareInterface {
 
-/**
- * Designer friendly and fast template engine for PHP written in Zephir/C
- */
-class Volt extends \Phalcon\Mvc\View\Engine\AbstractEngine implements \Phalcon\Events\EventsAwareInterface
-{
+		protected $_options;
 
-    /**
-     * @var Compiler
-     */
-    protected $compiler;
+		protected $_compiler;
 
-    /**
-     * @var ManagerInterface|null
-     */
-    protected $eventsManager;
+		protected $_macros;
 
-    /**
-     * @var array
-     */
-    protected $macros = [];
+		/**
+		 * Set Volt's options
+		 */
+		public function setOptions($options){ }
 
-    /**
-     * @var array
-     */
-    protected $options = [];
 
-    /**
-     * Checks if a macro is defined and calls it
-     *
-     * @params string name
-     * @params array arguments
-     *
-     * @return mixed
-     * @param string $name
-     * @param array $arguments
-     */
-    public function callMacro(string $name, array $arguments = [])
-    {
-    }
+		/**
+		 * Return Volt's options
+		 */
+		public function getOptions(){ }
 
-    /**
-     * Performs a string conversion
-     *
-     * @return string
-     * @param string $text
-     * @param string $from
-     * @param string $to
-     */
-    public function convertEncoding(string $text, string $from, string $to): string
-    {
-    }
 
-    /**
-     * Returns the Volt's compiler
-     *
-     * @return Compiler
-     */
-    public function getCompiler(): Compiler
-    {
-    }
+		/**
+		 * Returns the Volt's compiler
+		 */
+		public function getCompiler(){ }
 
-    /**
-     * Returns the internal event manager
-     *
-     * @return ManagerInterface|null
-     */
-    public function getEventsManager(): ?ManagerInterface
-    {
-    }
 
-    /**
-     * Return Volt's options
-     *
-     * @return array
-     */
-    public function getOptions(): array
-    {
-    }
+		/**
+		 * Renders a view using the template engine
+		 */
+		public function render($templatePath, $params, $mustClean=null){ }
 
-    /**
-     * Checks if the needle is included in the haystack
-     *
-     * @param mixed $needle
-     * @param array|string $haystack *
-     * @return bool
-     */
-    public function isIncluded($needle, $haystack): bool
-    {
-    }
 
-    /**
-     * Length filter. If an array/object is passed a count is performed otherwise a strlen/mb_strlen
-     *
-     * @param mixed $item *
-     * @return int
-     */
-    public function length($item): int
-    {
-    }
+		/**
+		 * Length filter. If an array/object is passed a count is performed otherwise a strlen/mb_strlen
+		 */
+		public function length($item){ }
 
-    /**
-     * Parses the preload element passed and sets the necessary link headers
-     *
-     * @todo find a better way to handle this
-     * @param mixed $parameters
-     * @return string
-     */
-    public function preload($parameters): string
-    {
-    }
 
-    /**
-     * Renders a view using the template engine
-     *
-     * @param string $path
-     * @param mixed $params
-     * @params bool mustClean
-     *
-     * @return void
-     * @param bool $mustClean
-     */
-    public function render(string $path, $params, bool $mustClean = false)
-    {
-    }
+		/**
+		 * Checks if the needle is included in the haystack
+		 */
+		public function isIncluded($needle, $haystack){ }
 
-    /**
-     * Sets the events manager
-     *
-     * @param ManagerInterface $eventsManager *
-     * @return void
-     */
-    public function setEventsManager(\Phalcon\Events\ManagerInterface $eventsManager): void
-    {
-    }
 
-    /**
-     * Set Volt's options
-     *
-     * @param array $options *
-     * @return void
-     */
-    public function setOptions(array $options)
-    {
-    }
+		/**
+		 * Performs a string conversion
+		 */
+		public function convertEncoding($text, $from, $to){ }
 
-    /**
-     * Extracts a slice from a string/array/traversable object value
-     *
-     * @param mixed $value
-     * @param int $start
-     * @param mixed $end
-     */
-    public function slice($value, int $start = 0, $end = null)
-    {
-    }
 
-    /**
-     * Sorts an array
-     *
-     * @param array $value
-     * @return array
-     */
-    public function sort(array $value): array
-    {
-    }
+		/**
+		 * Extracts a slice from a string/array/traversable object value
+		 */
+		public function slice($value, $start=null, $end=null){ }
+
+
+		/**
+		 * Sorts an array
+		 */
+		public function sort($value){ }
+
+
+		/**
+		 * Checks if a macro is defined and calls it
+		 */
+		public function callMacro($name, $arguments=null){ }
+
+	}
 }
