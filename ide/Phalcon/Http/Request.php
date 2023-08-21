@@ -17,6 +17,7 @@ use Phalcon\Http\Message\RequestMethodInterface;
 use Phalcon\Http\Request\File;
 use Phalcon\Http\Request\FileInterface;
 use Phalcon\Http\Request\Exception;
+use Phalcon\Support\Helper\Json\Decode;
 use UnexpectedValueException;
 use stdClass;
 
@@ -984,6 +985,15 @@ class Request extends AbstractInjectionAware implements \Phalcon\Http\RequestInt
      * @return mixed
      */
     private function getPatchPut(string $collection, string $name = null, $filters = null, $defaultValue = null, bool $notAllowEmpty = false, bool $noRecursive = false)
+    {
+    }
+
+    /**
+     * parse multipart/form-data from raw data
+     *
+     * @return array
+     */
+    private function getFormData(): array
     {
     }
 }

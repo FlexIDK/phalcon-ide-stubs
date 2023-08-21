@@ -96,6 +96,15 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
     protected $strategy = null;
 
     /**
+     * Return the internal cache adapter
+     *
+     * @return CacheAdapterInterface|null
+     */
+    public function getAdapter(): ?CacheAdapterInterface
+    {
+    }
+
+    /**
      * Returns table attributes names (fields)
      *
      * ```php
@@ -442,8 +451,9 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
      *
      * @param \Phalcon\Mvc\ModelInterface $model
      * @param int $index
+     * @return array|null
      */
-    final public function readColumnMapIndex(\Phalcon\Mvc\ModelInterface $model, int $index)
+    final public function readColumnMapIndex(\Phalcon\Mvc\ModelInterface $model, int $index): ?array
     {
     }
 
@@ -459,9 +469,9 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
      * ```
      *
      * @param \Phalcon\Mvc\ModelInterface $model
-     * @return array
+     * @return array|null
      */
-    final public function readMetaData(\Phalcon\Mvc\ModelInterface $model): array
+    final public function readMetaData(\Phalcon\Mvc\ModelInterface $model): ?array
     {
     }
 
@@ -479,8 +489,9 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
      *
      * @param \Phalcon\Mvc\ModelInterface $model
      * @param int $index
+     * @return array|null
      */
-    final public function readMetaDataIndex(\Phalcon\Mvc\ModelInterface $model, int $index)
+    final public function readMetaDataIndex(\Phalcon\Mvc\ModelInterface $model, int $index): ?array
     {
     }
 
@@ -613,7 +624,7 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
     }
 
     /**
-     * Initialize the metadata for certain table
+     * Initialize old behaviour for compatability
      *
      * @param \Phalcon\Mvc\ModelInterface $model
      * @param mixed $key
@@ -621,6 +632,28 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
      * @param mixed $schema
      */
     final protected function initialize(\Phalcon\Mvc\ModelInterface $model, $key, $table, $schema)
+    {
+    }
+
+    /**
+     * Initialize the metadata for certain table
+     *
+     * @param \Phalcon\Mvc\ModelInterface $model
+     * @param mixed $key
+     * @return bool
+     */
+    final protected function initializeMetaData(\Phalcon\Mvc\ModelInterface $model, $key): bool
+    {
+    }
+
+    /**
+     * Initialize ColumnMap for a certain table
+     *
+     * @param \Phalcon\Mvc\ModelInterface $model
+     * @param mixed $key
+     * @return bool
+     */
+    final protected function initializeColumnMap(\Phalcon\Mvc\ModelInterface $model, $key): bool
     {
     }
 
@@ -642,6 +675,26 @@ abstract class MetaData implements \Phalcon\Di\InjectionAwareInterface, \Phalcon
      * @return mixed
      */
     protected function getArrVal(array $collection, $index, $defaultValue = null)
+    {
+    }
+
+    /**
+     * Returns a MetaData Unique key for meta-data is created using className
+     *
+     * @return string
+     * @param \Phalcon\Mvc\ModelInterface $model
+     */
+    public final function getMetaDataUniqueKey(\Phalcon\Mvc\ModelInterface $model): ?string
+    {
+    }
+
+    /**
+     * Returns a ColumnMap Unique key for meta-data is created using className
+     *
+     * @return string
+     * @param \Phalcon\Mvc\ModelInterface $model
+     */
+    public final function getColumnMapUniqueKey(\Phalcon\Mvc\ModelInterface $model): ?string
     {
     }
 }

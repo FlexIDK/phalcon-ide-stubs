@@ -50,6 +50,8 @@ class Token
     }
 
     /**
+     * Return the registered claims
+     *
      * @return Item
      */
     public function getClaims(): Item
@@ -57,6 +59,8 @@ class Token
     }
 
     /**
+     * Return the registered headers
+     *
      * @return Item
      */
     public function getHeaders(): Item
@@ -64,6 +68,8 @@ class Token
     }
 
     /**
+     * Return the payload
+     *
      * @return string
      */
     public function getPayload(): string
@@ -71,6 +77,8 @@ class Token
     }
 
     /**
+     * Return the signature
+     *
      * @return Signature
      */
     public function getSignature(): Signature
@@ -78,6 +86,8 @@ class Token
     }
 
     /**
+     * Return the token
+     *
      * @return string
      */
     public function getToken(): string

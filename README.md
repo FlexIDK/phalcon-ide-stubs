@@ -2,10 +2,11 @@
 
 ## Phalcon IDE stubs
 
-Current version: **v5.2.2**
+Current version: **v5.3.0**
 
 Other [tags](https://github.com/FlexIDK/phalcon-ide-stubs/tags):
 
+- [5.3.0](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.3.0)
 - [5.2.2](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.2.2)
 - [5.2.1](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.2.1)
 - [5.1.4](https://github.com/FlexIDK/phalcon-ide-stubs/releases/tag/5.1.4)

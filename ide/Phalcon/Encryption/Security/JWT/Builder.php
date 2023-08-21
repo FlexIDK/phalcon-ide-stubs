@@ -9,18 +9,25 @@
  */
 namespace Phalcon\Encryption\Security\JWT;
 
-use InvalidArgumentException;
-use Phalcon\Support\Collection;
-use Phalcon\Support\Collection\CollectionInterface;
 use Phalcon\Encryption\Security\JWT\Exceptions\ValidatorException;
 use Phalcon\Encryption\Security\JWT\Signer\SignerInterface;
 use Phalcon\Encryption\Security\JWT\Token\Enum;
 use Phalcon\Encryption\Security\JWT\Token\Item;
 use Phalcon\Encryption\Security\JWT\Token\Signature;
 use Phalcon\Encryption\Security\JWT\Token\Token;
+use Phalcon\Support\Collection;
+use Phalcon\Support\Collection\CollectionInterface;
+use Phalcon\Support\Helper\Json\Encode;
 
 /**
- * JWT Builder
+ * Builder
+ *
+ * The builder offers
+ *
+ * @property CollectionInterface $claims
+ * @property CollectionInterface $jose
+ * @property string              $passphrase
+ * @property SignerInterface     $signer
  *
  * @link https://tools.ietf.org/html/rfc7519
  */
@@ -31,6 +38,11 @@ class Builder
      * @var CollectionInterface
      */
     private $claims;
+
+    /**
+     * @var Encode
+     */
+    private $encode;
 
     /**
      * @var CollectionInterface
@@ -72,6 +84,18 @@ class Builder
      * @return Builder
      */
     public function addClaim(string $name, $value): Builder
+    {
+    }
+
+    /**
+     * Adds a custom claim
+     *
+     * @param string $name
+     * @param mixed  $value
+     *
+     * @return Builder
+     */
+    public function addHeader(string $name, $value): Builder
     {
     }
 
@@ -320,17 +344,6 @@ class Builder
      * @return string
      */
     private function encodeUrl(string $input): string
-    {
-    }
-
-    /**
-     * @todo This will be removed when traits are introduced
-     * @param mixed $data
-     * @param int $options
-     * @param int $depth
-     * @return string
-     */
-    private function encode($data, int $options = 0, int $depth = 512): string
     {
     }
 }
